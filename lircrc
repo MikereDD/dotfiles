@@ -1,0 +1,260 @@
+## Lirc Keys Apples Macbook 1st Edition Remote
+#
+## Start MOC remote
+#
+# Play/Pause Toggle Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_PAUSE
+     config = mocp -G
+     repeat = 0
+end
+## Stop Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_VOLUMEDOWN
+     config = amixer set PCM 5%- &
+     repeat = 0
+end
+# Toggle KEY_MUTE Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_VOLUMEUP
+     config = amixer set PCM 5%+ &
+     repeat = 0
+end
+# Stop Moc
+# Next Song Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_NEXT
+     config = mocp -f
+     repeat = 0
+end
+# Prev Song Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_PREVIOUS
+     config = mocp -r
+     repeat = 0
+end
+# Exit Moc
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = #
+     config = mocp -x
+     repeat = 0
+end
+#
+## End MOC Remote
+
+#
+## Start Dell MCE Remote
+#
+### MPlayer lirc setup
+# Show OSD
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_MENU
+     repeat = 3
+     config = osd
+end
+# Pause playback
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_PAUSE
+     repeat = 3
+     config = pause
+end
+# Skip ahead a minute if playing
+# If paused, resume playing
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_PLAY
+     repeat = 3
+     config = seek +1
+end
+# Stop playback and exit
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_STOP
+     repeat = 3
+     config = quit
+end
+# Mute
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_MUTE
+     repeat = 3
+     config = mute
+end
+# Seek forward 30 seconds
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_FORWARD
+     repeat = 3
+     config = seek +10
+end
+# Quit
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_BACK
+     repeat = 3
+     config = quit
+end
+# Seek backward 10 minutes
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_REWIND
+     repeat = 3
+     config = seek -10
+end
+# fullscreen
+begin
+     remote = Dell-MCE-RC1974009
+     prog = mplayer
+     button = KEY_OK
+     repeat = 3
+     config = vo_fullscreen
+     config = vo_ontop
+end
+# volume up
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_VOLUMEUP
+     repeat = 3
+     config = amixer set PCM 5%+ &
+end
+# volume down
+begin
+     remote = Dell-MCE-RC1974009
+     prog = irexec
+     button = KEY_VOLUMEDOWN
+     repeat = 3
+     config = amixer set PCM 5%- &
+end
+
+#
+## End Dell MCE remote
+
+#
+## Start Hauppauge 350 Remote
+#
+
+### VLC lirc setup
+# Pause playback
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_PAUSE
+     repeat = 3
+     config = key-play-pause
+end
+# Skip ahead a minute if playing
+# If paused, resume playing
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_PLAY
+     repeat = 3
+     config = key-play
+end
+# Stop playback and exit
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_STOP
+     repeat = 3
+     config = key-stop
+end
+# Mute
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_MUTE
+     repeat = 3
+     config = key-vol-mute
+end
+# Seek forward 30 seconds
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_FASTFORWARD
+     repeat = 3
+     config = key-faster
+end
+# Quit
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_BACK
+     repeat = 3
+     config = key-quit
+end
+# Seek backward 10 minutes
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_REWIND
+     repeat = 3
+     config = key-prev
+end
+# fullscreen
+begin
+     remote = Hauppauge_350
+     prog = vlc
+     button = KEY_OK
+     repeat = 3
+     config = key-fullscreen
+end
+# volume up
+begin
+     remote = Hauppauge_350
+     prog = irexec
+     button = KEY_VOLUMEUP
+     repeat = 3
+     config = amixer set PCM 5%+ &
+end
+# volume down
+begin
+     remote = Hauppauge_350
+     prog = irexec
+     button = KEY_VOLUMEDOWN
+     repeat = 3
+     config = amixer set PCM 5%- &
+end
+
+# IVTV - Channels
+begin
+     remote = Hauppauge_350
+     prog = mplayer
+     button = 2
+     repeat = 0
+     config = ivtv-tune --channel=2
+end
+begin
+     remote = Hauppauge_350
+     prog = mplayer
+     button = 3
+     repeat = 0
+     config = ivtv-tune --channel=3
+end
+
+#
+## End Hauppauge 350 Remote
+#

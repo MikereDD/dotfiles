@@ -1,0 +1,62 @@
+  #archtitle>a, #logo{
+  background-image: url(http://pix.m-redd.com/bbslogo.png) !important;
+  width: 379px !important;
+  height: 114px !important;
+#  background-image: none !important;
+#  background-color: #232323;
+#  display: none;
+} 
+  html, body, tbody, tr, td, div { background-color: #232323 !important; color: #777777 !important }
+   pre {
+      display: block !important ; 
+      background-color: #333333 !important ;
+      border: #777777 solid 0.1em !important ;
+      color: #999999 !important ;
+      font-family: "courier" !important ;
+      margin:  1em 2em 2em 1.3em !important ;
+      overflow: auto !important ;
+      padding: 0.5em 2em 1em 1em !important ;
+      text-align: left !important ;
+      white-space: pre !important ;
+      font-family: "courier" !important ;
+   }
+
+   /* defaults for all links */
+   a:link, a:visited { color: #999999 !important } 
+   a:active { font-weight: bold !important }
+   a:hover { color: #007700 !important }
+   h1, h2, h3, h4, h5 { color: #007700 !important }
+
+}
+
+/*****************************************/
+/* /www.dlitz.net/software/pycrypto/doc/ */
+/*****************************************/
+@-moz-document 
+ url-prefix('http://www.dlitz.net/software/pycrypto/doc/')
+ {
+    span.pre { color: #007700 !important }
+ }
+
+/***********************************************/
+/* http://www.inference.phy.cam.ac.uk/saw27/*  */
+/***********************************************/
+@-moz-document url-prefix('http://www.inference.phy.cam.ac.uk/saw27/') {
+    span.pre { color: #007700 !important }
+}
+
+/*****************************************/
+/* bugzilla.mozilla.org */
+/*****************************************/
+@-moz-document 
+ domain('bugzilla.mozilla.org')
+ {
+    body { background: none #191919 !important }
+    * { border-color: #555555 !important }
+    div.navigation,
+    div.navigation i,
+    table#attachment_table th,
+    span.bz_first_comment_head,
+    span.bz_comment_head { color: #797979 !important ; background-color: #191919 !important }
+    span.quote { color: #9F9450 !important }
+

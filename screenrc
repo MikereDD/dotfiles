@@ -1,0 +1,122 @@
+#
+# ~/.screenrc
+# M. reDD  - mredd -at- 0tue0.com
+# http://m-redd.com
+#
+###############################
+# Color table:
+# # 0 Black             .    leave color unchanged
+# # 1 Red               b    blue
+# # 2 Green             c    cyan
+# # 3 Brown / yellow    d    default color
+# # 4 Blue              g    green           b    bold
+# # 5 Purple            k    blacK           B    blinking
+# # 6 Cyan              m    magenta         d    dim
+# # 7 White             r    red             r    reverse
+# # 8 unused/illegal    w    white           s    standout
+# # 9 transparent       y    yellow          u    underline
+term screen-256color
+#terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#name the session
+sessionname screen
+
+# ============================
+# Password
+# ============================
+# password SZnBqiqMtfa6k
+# Do NOT remove the comment if
+# you don't know what this does!
+# (TODO describe the effect - obviously)
+
+# no annoying audible bell, please
+vbell on
+
+# detach on hangup
+autodetach on
+
+# don't display the copyright page
+startup_message off
+
+# emulate .logout message
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+
+# advertise hardstatus support to $TERMCAP
+ termcapinfo  * '' 'hs:ts=\E_:fs=\E\\:ds=\E_\E\\'
+
+###
+shell                 bash
+
+# make the shell in every window a login shell
+shell -$SHELL
+
+defscrollback 1000
+
+################
+#
+# xterm tweaks
+#
+
+# tell screen that you term can scroll
+termcapinfo xterm ti@:te@
+# bind Shift+PgUp/PgDn
+bindkey -m "^[[5;2~" stuff ^b
+bindkey -m "^[[6;2~" stuff ^f
+
+##########
+# Aid for 256 Colors
+#
+# terminfo and termcap for nice 256 color terminal
+# allow bold colors - necessary for some reason
+attrcolor b ".I"
+# tell screen how to set colors. AB = background, AF=foreground
+#termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+# erase background with current bg color
+#defbce "on" 
+
+################
+#
+# keybindings
+#
+
+#remove some stupid / dangerous key bindings
+bind k
+bind ^k
+bind .
+bind ^\
+bind \\
+bind ^h
+bind h
+#make them better
+bind 'K' kill
+bind 'I' login on
+bind 'O' login off
+bind '}' history
+
+################
+#
+# default windows
+#
+
+# shelltitle '$ | '
+#screen -t shell 0
+#
+#
+#  Toggle 'fullscreen' or not.
+#
+bind f eval "caption splitonly" "hardstatus ignore"
+bind F eval "caption always"    "hardstatus alwayslastline"
+#%{+b kk} %=%{-s} %{.k%-w%{.k}%n %{.w}%t%{.k}%+w%{.} %{+s} %=
+#caption always "%{= W} %{+b}%{w}%n%{= 3}   %=%{-s}%{+b}%{= w}%-Lw%50>%{= m}%n%f%{= r}%{+b}%{= w}%t%+Lw%<%{-}%{= W}%-=%?] %="
+#hardstatus alwayslastline "%{= W}  [%{+b}%{= W}%H%{-}%{= W}]  %{= W}[%{= B}%D,%M '%y - %c%{-}%{= W}] [ %{= G}%l%{= W}] "
+# Backticks
+backtick 1 60 60 cat $HOME/.get_mail
+#caption always '%{= .w} Load: %l %= | %= %1`'
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{b}- %{w}%m%{b}/%{w}%d%{b}/%{w}%y |%H|'  
+# bind = resize =
+# bind + resize +1
+# bind - resize -1
+# bind _ resize max
+#
+# defnonblock 1
+# blankerprg rain -d 100
+# idle 30 blanker

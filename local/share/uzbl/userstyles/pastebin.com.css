@@ -1,0 +1,250 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+html, body {
+	color:#bbb!important;
+	background-color: #111!important;
+	margin:0px!important;
+	padding:0px!important;
+	font:11px verdana, arial, helvetica, sans-serif!important;
+}
+
+h1 {
+	border: 1px solid #000!important;
+	background-color: #666!important;
+	color: #ffffff!important;
+	font-family: trebuchet ms, verdana, sans-serif!important;
+	font-size: 11px!important;
+	font-weight: bold!important;
+	text-align: left!important;
+	padding: 3px 10px!important;
+	margin: 0px!important; 
+}
+	
+input, select, textarea {
+	background: #111!important;
+	border: #999 1px solid!important;
+	color: #bbb!important;
+	margin: 2px!important;
+}
+
+p {
+	font:11px verdana, arial, helvetica, sans-serif!important;
+	margin:0px 10px 10px 10px!important;
+}
+
+select{
+font:11px verdana, arial, helvetica, sans-serif!important;
+		
+}
+
+label
+{
+	font-weight:bold!important;
+}
+
+.syntax, .diff
+{
+	background:#333!important;
+	border: 1px solid #000!important;
+}
+
+.syntax a
+{
+	font-family: 'Courier New', Courier, monospace!important; 
+	font-weight: normal!important;
+	color:black!important;
+	text-decoration:underline!important;
+}
+
+.syntax > div > ol > li > div
+{
+	color: #888!important;
+	margin-left: 1em!important;
+}
+
+a {
+	color:white!important;
+	font-size:11px!important;
+	font-family:verdana, arial, helvetica, sans-serif!important;
+	font-weight:600!important;
+	text-decoration:none!important;
+}
+
+a:link {color:white!important; text-decoration:underline!important;}
+a:visited {color:#aaa!important;}
+a:hover {color:#99FFFF!important;text-decoration:underline!important;}
+  
+h1 a{color:white!important; text-decoration:underline!important;font-weight:bold!important;}
+h1 a:link{color:white!important;}
+h1 a:visited{color:white!important;}
+h1 a:hover{color:#99FFFF!important;background-color:transparent!important;}
+
+#content h1
+{
+background-color: #666!important;
+
+}
+
+#titlebar a{color:white!important; text-decoration:underline!important;font-weight:bold!important;}
+#titlebar a:link{color:white!important;}
+#titlebar a:visited{color:white!important;}
+#titlebar a:hover{color:#99FFFF!important;background-color:transparent!important;}
+
+a.code {
+	text-decoration:underline!important; 
+	font-family:courier, fixed!important;
+	font-weight:normal!important;}
+a.code:link {color:#09c!important;}
+a.code:visited {color:#07a!important;}
+a.code:hover {text-decoration:underline!important;}
+
+
+
+
+code { font-size:12px!important;width:98%!important;}
+
+.codeedit {	font-size:12px!important;width:98%!important;}
+
+
+#titlebar {
+	background-color: #444!important;
+	border-bottom: solid 1px #999!important;
+	color: #fff!important;
+	font-size:1em!important;
+	height:1.5em!important;
+	margin-bottom: 11px!important;
+	padding: 0px 0px 0px 5px!important;
+}
+
+.nav { margin: 0px 5px 0px 5px!important; }
+	
+
+
+#Content>p {margin:0px!important;}
+#Content>p+p {text-indent:30px!important;}
+
+#content {
+	margin:0px 0px 50px 150px!important;
+	padding:5px!important;
+	background-color: #444!important;
+	border:#000 1px solid!important;
+}
+
+#menu {
+	position:absolute!important;
+	top:29px!important;
+	left:0px!important;
+	width:140px!important;
+	padding:3px!important;
+	background-color: #444!important;
+	border:#000 1px solid!important;
+	line-height:17px!important;
+	overflow: hidden!important;
+
+}
+
+/* be nice to Opera 5 */
+body>#Menu {width:150px!important;}
+
+#menu>p {margin:5px 10px 5px 10px!important;line-height:1.5em!important;}
+
+li.highlight{
+	background-color: #666!important; 
+	border: #000 1px solid!important;
+	margin: .25em!important;
+	padding: .25em!important;
+}
+
+#menu ul {
+	margin-left:15px!important;
+	margin-top:0px!important;
+	padding-left:0px!important;
+}
+
+#menu li {
+	list-style-type: square!important;
+	line-height: 11px!important;
+	padding-bottom: 3px!important;
+}
+
+
+#namebox
+{
+	float:left!important;
+}
+
+#expirybox
+{
+	float:left!important;
+	margin-left:20px!important;
+}
+
+#expirybox label
+{
+	padding-left:3px!important;
+	padding-right:3px!important;
+	
+}
+
+#expirybox label.current
+{
+	background:#888!important;
+	border: #000 1px solid!important;
+	color: #ddd!important;
+	padding: .2em!important;
+}
+
+#expiryinfo
+{
+	color:#999!important;
+	font-style:italic!important;
+	margin-top: 1em!important;
+}
+
+#end
+{
+	clear:both!important;
+}
+
+.diff
+{
+	width: 100%!important;
+}
+
+table.diff td
+{
+	text-align:right!important;
+	padding:1px!important;
+	font-size:8pt!important;
+}
+
+table.diff td.code
+{
+	text-align:left!important;
+	font-family: 'Courier New', Courier, monospace!important; 
+	font-weight: normal!important;
+}
+
+table.diff td.code pre
+{
+	margin:0!important;
+	padding:0!important;
+}
+
+table.diff tr.new
+{
+	background:#B9A799!important;
+	color: #000!important;
+}
+table.diff tr.old
+{
+	background:#593A33!important;
+}
+table.diff tr.hidenew
+{
+	display:none!important;
+}
+table.diff tr.hideold
+{
+	display:none!important;
+}

@@ -1,0 +1,54 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
+
+   #leaderboard,
+
+   #floattop,
+
+   #ctl00_ctl00_floattop,
+
+   #rightskyad,
+
+   #toprightad,
+
+   #blogads,
+
+   #headerlogo,
+
+   #btf160,
+
+   .skyscraper,
+
+   #header,
+
+   #footer,
+
+   #subfooter,
+
+   #footerad,
+
+   #sendtofriend,
+
+   #leftcolumnad,
+
+   #footer728Ad,
+
+   .commentnow + div,
+
+   .socmarks
+
+       { display:none; }
+
+   
+
+   .masterPageMainbody { margin-top:0px !important; }
+
+
+
+   .globalNavTop { margin-top:0px !important; }
+
+
+
+   #panemain { padding-top:0px !important; }
+
+   #pane3 { width:300px !important; }
