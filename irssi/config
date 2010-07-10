@@ -346,7 +346,7 @@ settings = {
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
-    theme = "reDDmod";
+    theme = "reDD";
     hilight_color = "%g";
     hilight_act_color = "%R";
     autolog = "yes";
