@@ -334,28 +334,33 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
-    awl_1 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_1 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
   };
 };
 settings = {
   core = {
-    real_name = "M. reDD";
-    user_name = "MreDD";
-    nick = "MikereDD";
+    real_name = "";
+    user_name = "";
+    nick = "";
     timestamp_format = "%H:%M:%S";
+    quit_message = "I Found My Pillow Fuckers...";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "fe-common/core" = { theme = "reDDmod"; };
+  "fe-common/core" = {
+    theme = "reDDmod";
+    hilight_color = "%g";
+    hilight_act_color = "%R";
+    autolog = "yes";
+    autolog_path = "~/.irssi/logs/$0.log";
+    autoclose_query = "86400";
+    show_quit_once = "yes";
+  };
   "perl/core/scripts" = {
     awl_display_key = "$Q%K|%n$H$C$S";
     awl_block = "-11";
     nojoinquit_nicks = "Darkstar";
+    trackbar_style = "%g";
+    nicklist_screen_split_windows = "(status) (msgs)";
+    nicklist_automode = "SCREEN";
   };
   "irc/dcc" = {
     dcc_upload_path = "~";
@@ -373,10 +378,14 @@ settings = {
   };
 };
 hilights = (
-  { text = "MreDD"; nick = "yes"; word = "yes"; },
-  { text = "outhere"; nick = "yes"; word = "yes"; }
+  { text = ""; nick = "yes"; word = "yes"; },
+  { text = ""; nick = "yes"; word = "yes"; },
+  { text = ""; nick = "yes"; word = "yes"; }
 );
 logs = { };
+keyboard = (
+  { key = "something"; id = "command"; data = "nicklist scroll -10"; }
+);
 windows = {
   1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
   2 = { name = "hilight"; sticky = "yes"; };
@@ -482,6 +491,6 @@ windows = {
   };
 };
 mainwindows = {
-  12 = { first_line = "7"; lines = "53"; };
-  2 = { first_line = "1"; lines = "6"; };
+  3 = { first_line = "6"; lines = "56"; };
+  2 = { first_line = "1"; lines = "5"; };
 };
