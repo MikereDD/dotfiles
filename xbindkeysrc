@@ -108,6 +108,28 @@
 "(eject -t /dev/dvd)"
     m:0x18 + c:54
     Alt+Mod2 + c
+
+# Luanch Browser
+"(chromeplus)"
+    m:0x58 + c:57
+    Alt+Mod2+Mod4 + n
+# Luanch Email
+"(thunderbird)"
+    m:0x58 + c:26
+    Alt+Mod2+Mod4 + e
+# Launch URXvt Tabbed
+"(urxvt -pe tabbed -name "tabbed")"
+    m:0x58 + c:30
+    Alt+Mod2+Mod4 + u
+# Launch MPlayer TV
+"(mplayer -ao alsa -vf pp=lb /dev/video0)"
+    m:0x58 + c:28
+    Alt+Mod2+Mod4 + t
+# Launch MOC
+"(sh $HOME/.wmii-hg/scripts/random-bg-rxvt.sh)"
+    m:0x58 + c:58
+    Alt+Mod2+Mod4 + m
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

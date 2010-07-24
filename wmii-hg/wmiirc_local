@@ -15,12 +15,6 @@ export WMII_FOCUSCOLORS="#a41f29 #280100 #686b6c"
 export WMII_BACKGROUND="feh --bg-center /home/mredd/images/wallpapers/wallpaper-dual-Roge.png"
 export WMII_FONT="-*-clean-*-*-*-*-12-*-*-*-*-*-*-*"
 export WMII_TERM="urxvt"
-# My Apps
-export WMII_BROWSER="chromeplus"
-export WMII_EMAIL="thunderbird"
-export WMII_TABBED="urxvt -pe tabbed -title Tabbed -fn 'xft:Liberation Mono:pixelsize=13:antialias=true:hinting=true'"
-export WMII_TV="mplayer -ao alsa -vf pp=lb /dev/video0"
-export WMII_MUSICPLAYER="sh $HOME/.wmii-hg/scripts/random-bg-rxvt.sh"
 
 # Menu history
 hist="$(wmiir namespace)/history"
