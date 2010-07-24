@@ -118,7 +118,7 @@
     m:0x58 + c:26
     Alt+Mod2+Mod4 + e
 # Launch URXvt Tabbed
-"(urxvt -pe tabbed -name "tabbed")"
+"(urxvt -pe tabbedex -name "URXvt")"
     m:0x58 + c:30
     Alt+Mod2+Mod4 + u
 # Launch MPlayer TV
@@ -129,6 +129,10 @@
 "(sh $HOME/.wmii-hg/scripts/random-bg-rxvt.sh)"
     m:0x58 + c:58
     Alt+Mod2+Mod4 + m
+# KDXClient
+"(./apps/kdx/KDXClient.lexe)"
+    m:0x58 + c:45
+    Alt+Mod2+Mod4 + k
 
 ##################################
 # End of xbindkeys configuration #
