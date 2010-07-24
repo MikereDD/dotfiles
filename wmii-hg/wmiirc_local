@@ -1,0 +1,52 @@
+# Configuration Variables
+MODKEY=Mod4
+UP=k
+DOWN=j
+LEFT=h
+RIGHT=l
+
+# Bars
+noticetimeout=5
+noticebar=/rbar/!notice
+
+# Colors tuples: "<text> <background> <border>"
+export WMII_NORMCOLORS="#f3f5f4 #220010 #751713"
+export WMII_FOCUSCOLORS="#a41f29 #280100 #686b6c"
+export WMII_BACKGROUND="feh --bg-center /home/mredd/images/wallpapers/wallpaper-dual-Roge.png"
+export WMII_FONT="-*-clean-*-*-*-*-12-*-*-*-*-*-*-*"
+export WMII_TERM="urxvt"
+# My Apps
+export WMII_BROWSER="chromeplus"
+export WMII_EMAIL="thunderbird"
+export WMII_TABBED="urxvt -pe tabbed -title Tabbed -fn 'xft:Liberation Mono:pixelsize=13:antialias=true:hinting=true'"
+export WMII_TV="mplayer -ao alsa -vf pp=lb /dev/video0"
+export WMII_MUSICPLAYER="sh $HOME/.wmii-hg/scripts/random-bg-rxvt.sh"
+
+# Menu history
+hist="$(wmiir namespace)/history"
+histnum=5000
+
+# Column Rules
+wmiir write /colrules <<!
+/gimp/ -> 15+68+31
+/.*/ -> 62+38 # Golden Ratio
+!
+
+# Status Bar Info
+status() {
+	echo -n label $($HOME/.wmii-hg/scripts/vol-bar.sh) $($HOME/.wmii-hg/scripts/check_weather.sh) "|" $($HOME/.wmii-hg/scripts/mcorebar.sh) "|" $($HOME/.wmii-hg/scripts/checktemp.sh) $($HOME/.wmii-hg/scripts/uptime.sh) "-" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "-" $(date +'%R:%S %m/%d/%Y')
+}
+
+# WM Configuration
+wmiir write /ctl <<!
+	font $WMII_FONT
+	focuscolors $WMII_FOCUSCOLORS
+	normcolors $WMII_NORMCOLORS
+	grabmod $MODKEY
+	border 0
+        bar on top
+!
+# set wallpaper
+$WMII_BACKGROUND
+
+
