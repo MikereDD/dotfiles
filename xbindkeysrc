@@ -110,9 +110,12 @@
     Alt+Mod2 + c
 
 # Luanch Browser
-"(chromeplus)"
+"(uzbl-tabbed)"
     m:0x58 + c:57
     Alt+Mod2+Mod4 + n
+"(chromeplus)"
+    m:0x5c + c:57
+    Control+Alt+Mod2+Mod4 + n
 # Luanch Email
 "(thunderbird)"
     m:0x58 + c:26

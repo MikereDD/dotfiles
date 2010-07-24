@@ -22,8 +22,22 @@ histnum=5000
 
 # Column Rules
 wmiir write /colrules <<!
-/gimp/ -> 15+68+31
-/.*/ -> 62+38 # Golden Ratio
+    /gimp/ -> 17+83+41
+    /.*/ -> 62+38 # Golden Ratio
+!
+
+# Tagging Rules
+wmiir write /rules <<!
+    # Apps with system tray icons like to their main windows
+    # Give them permission.
+    /^Pidgin:/ allow=+activate
+
+    # MPlayer and VLC don't float by default, but should.
+    /MPlayer|VLC/ floating=on
+
+    # ROX puts all of its windows in the same group, so they open
+    # with the same tags.  Disable grouping for ROX Filer.
+    /^ROX-Filer:/ group=0
 !
 
 # Status Bar Info
