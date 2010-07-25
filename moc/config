@@ -144,16 +144,16 @@
 
 # FastDirs, these allow you jump directly to a directory, the key bindings are
 # in the keymap file.
- Fastdir1           =   "/mnt/b/Music/Classical/"
- Fastdir2           =   "/mnt/b/Music/Electro/"
- Fastdir3           =   "/mnt/b/Music/HipHop-Rap/"
- Fastdir4           =   "/mnt/b/Music/Indie/"
- Fastdir5           =   "/mnt/b/Music/Jazz-Soul/"
- Fastdir6           =   "/mnt/b/Music/Punk-Reggae-Ska/"
- Fastdir7           =   "/mnt/b/Music/Rock/"
- Fastdir8           =   "/mnt/b/Music/White_Collection/"
- Fastdir9           =   "/mnt/b/Music/OST/"
- Fastdir10          =   "/mnt/b/Music/World/"
+ Fastdir1           =   "~/Music/Classical/"
+ Fastdir2           =   "~/Music/Electro/"
+ Fastdir3           =   "~/Music/HipHop-Rap/"
+ Fastdir4           =   "~/Music/Indie/"
+ Fastdir5           =   "~/Music/Jazz-Soul/"
+ Fastdir6           =   "~/Music/Punk-Reggae-Ska/"
+ Fastdir7           =   "~/Music/Rock/"
+ Fastdir8           =   "~/Music/White_Collection/"
+ Fastdir9           =   "~/Music/OST/"
+ Fastdir10          =   "~/Music/World/"
 
 # How fast to seek? Number of seconds per key stroke.
  SeekTime		    =   2
