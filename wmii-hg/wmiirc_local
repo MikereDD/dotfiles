@@ -10,8 +10,8 @@ noticetimeout=5
 noticebar=/rbar/!notice
 
 # Colors tuples: "<text> <background> <border>"
-export WMII_NORMCOLORS="#f3f5f4 #220010 #751713"
-export WMII_FOCUSCOLORS="#a41f29 #280100 #686b6c"
+export WMII_NORMCOLORS="#667d8a #220010 #751713"
+export WMII_FOCUSCOLORS="#f3f5f4 #280100 #686b6c"
 export WMII_BACKGROUND="feh --bg-center /home/mredd/images/wallpapers/wallpaper-dual-Roge.png"
 export WMII_FONT="-*-clean-*-*-*-*-12-*-*-*-*-*-*-*"
 export WMII_TERM="urxvt"
