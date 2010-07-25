@@ -414,32 +414,12 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "#trivia";
-        tag = "Pyrrhous";
-      }
-    );
-  };
-  6 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#Staff";
-        tag = "Pyrrhous";
-      }
-    );
-  };
-  7 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
         name = "#bbs";
         tag = "BBSes";
       }
     );
   };
-  8 = {
+  6 = {
     items = (
       {
         type = "CHANNEL";
@@ -449,7 +429,7 @@ windows = {
       }
     );
   };
-  9 = {
+  7 = {
     items = (
       {
         type = "CHANNEL";
@@ -459,7 +439,7 @@ windows = {
       }
     );
   };
-  10 = {
+  8 = {
     items = (
       {
         type = "CHANNEL";
@@ -469,28 +449,8 @@ windows = {
       }
     );
   };
-  11 = {
-    items = (
-      {
-        type = "QUERY";
-        chat_type = "IRC";
-        name = "-psyBNC";
-        tag = "BBSes";
-      }
-    );
-  };
-  12 = {
-    items = (
-      {
-        type = "QUERY";
-        chat_type = "IRC";
-        name = "-psyBNC";
-        tag = "Pyrrhous";
-      }
-    );
-  };
 };
 mainwindows = {
-  3 = { first_line = "6"; lines = "56"; };
+  10 = { first_line = "6"; lines = "62"; };
   2 = { first_line = "1"; lines = "5"; };
 };
