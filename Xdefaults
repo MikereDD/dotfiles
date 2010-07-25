@@ -32,41 +32,40 @@ Xft.hintstyle:  hintslight
 ! LightGrey   = color7 + White    = color15
 
 ! Hornet
-*color0:  #303030
-*color1:  #c03000
-*color2:  #b1d631
-*color3:  #fecf35
-*color4:  #4b5661
-*color5:  #7e8aa2
-*color6:  #4bb5c1
-*color7:  #e2e2e5
-*color8:  #c03000
-*color10: #b1d631
-*color11: #fecf35
-*color12: #4b5661
-*color13: #7e8aa2
-*color14: #4bb5c1
-*color15: #e2e2e5
+!*color0:  #303030
+!*color1:  #c03000
+!*color2:  #b1d631
+!*color3:  #fecf35
+!*color4:  #4b5661
+!*color5:  #7e8aa2
+!*color6:  #4bb5c1
+!*color7:  #e2e2e5
+!*color8:  #c03000
+!*color10: #b1d631
+!*color11: #fecf35
+!*color12: #4b5661
+!*color13: #7e8aa2
+!*color14: #4bb5c1
+!*color15: #e2e2e5
 
 
 ! Merged
-!*color0:  #000000
-!*color1:  #963C59
-!*color2:  #76B243
-!*color3:  #B2B27F
-!*color4:  #5986B2
-!*color5:  #B250B1
-!*color6:  #698FB2
-!*color7:  #8f8f8f
-!*color8:  #3c414c
-
-!*color9:  #CF6171
-!*color10: #A8FF60
-!*color11: #FFFFB6
-!*color12: #6699CC
-!*color13: #FF73FD
-!*color14: #96CBFE
-!*color15: #F6F3E8
+*color0:  #000000
+*color1:  #963C59
+*color2:  #76B243
+*color3:  #B2B27F
+*color4:  #5986B2
+*color5:  #B250B1
+*color6:  #698FB2
+*color7:  #8f8f8f
+*color8:  #3c414c
+*color9:  #CF6171
+*color10: #A8FF60
+*color11: #FFFFB6
+*color12: #6699CC
+*color13: #FF73FD
+*color14: #96CBFE
+*color15: #F6F3E8
 
 URxvt*termName:                   rxvt-256color
 ! font preference
@@ -129,34 +128,37 @@ URxvt*mapAlert:           true
 !inhibit writing record into the system log file utmp
 URxvt*utmpInhibit:        true
 !! BEGIN urlLauncher settings !!
-URxvt*perl-lib:           /usr/lib/urxvt/perl/
 !URxvt*perl-ext-common: default,matcher,clipboard
 URxvt*perl-ext-common: default,matcher
+URxvt*keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt*underlineURLs: true
+URxvt*perl-lib:           ${HOME}/.urxvt/
+URxvt*perl-ext: selection,mark-yank-urls
 URxvt*urlLauncher:        /home/mredd/.urxvt/urxvt-to-uzbl.sh
-!URxvt*urlLauncher:        conkeror
-!URxvt*urlLauncher:        vimprobable2
-!! END urlLauncher settings !!
-!tabs
-!URxvt*tabbed.hide              true
-!URxvt*tabbed.newButton         false
-!URxvt*tabbar-fg:               64
-URxvt*tabbar-bg:               234
-!URxvt*tab-fg:                  95
-URxvt*tab-bg:                  233
-URxvt*tabbed.secondaryScroll:  true
-URxvt*tabbed.matcher.button:   2
-!URxvt*tabbed.perl-ext-common: default,matcher,clipboard
-URxvt*tabbed.perl-ext-common: default,matcher
 URxvt*keysym.C-Delete:    perl:matcher
 URxvt*matcher.button:     1
 URxvt*matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 URxvt*matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
 URxvt*matcher.launcher.2: gvim +$2 $1
-!uzbl yank url
-URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
-URxvt.underlineURLs: true
-URxvt.perl-lib: /home/mredd/.urxvt/
-URxvt.perl-ext: selection,mark-yank-urls
+!tabs
+URxvt*tabbed.autohide:          yes
+URxvt*tabbar-fg:               124
+URxvt*tabbar-bg:               232
+URxvt*tab-fg:                  51
+URxvt*tab-bg:                  233
+URxvt*title-fg:                124
+URxvt*title-bg:                232
+!URxvt*tabbed.secondaryScroll:  true
+URxvt*tabbed.matcher.button:   2
+!URxvt*tabbed.perl-ext-common: default,matcher,clipboard
+URxvt*tabbed.perl-ext-common: default,matcher
+URxvt*tabbed.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt*tabbed.underlineURLs: true
+URxvt*tabbed.perl-lib:           ${HOME}/.urxvt/
+URxvt*tabbed.perl-ext: selection,mark-yank-urls
+URxvt*tabbed.urlLauncher:        /home/mredd/.urxvt/urxvt-to-uzbl.sh
+!! END urlLauncher settings !!
+
 !
 !transparent=0000 opaque=ffff
 URxvt*cursorColor:       #485e6c

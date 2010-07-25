@@ -121,7 +121,7 @@
     m:0x58 + c:26
     Alt+Mod2+Mod4 + e
 # Launch URXvt Tabbed
-"(urxvt -pe tabbedex -name "URXvt")"
+"(urxvt -pe tabbedex -name "URXvt" --perl-lib ${HOME}/.urxvt/ -pe mark-yank-urls)"
     m:0x58 + c:30
     Alt+Mod2+Mod4 + u
 # Launch MPlayer TV
