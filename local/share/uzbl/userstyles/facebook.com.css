@@ -1,3 +1,4 @@
+@namespace url(http://www.w3.org/1999/xhtml);
 
 /*||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -5,30 +6,112 @@
 
 ||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||*/
 
-.inside.app_content_2309869772 {background: #444 !important; border: none !important}
+.uiTooltip.uiButtonNoText.uiSelectorButton.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed {-moz-border-radius: 6px  !important}
 
+.mts.commentBtn.stat_elem.uiButton.uiButtonConfirm.uiButtonMedium {margin-left: 200px !important}
+
+.uiUfiAddComment textarea{width: 580px !important;}
+
+.uiUfiAddComment.clearfix.ufiItem.uiListItem.uiListVerticalItemBorder.uiUfiAddCommentCollapsed {background: #222 !important}
+
+.ufiItem {width: 630px !important; background: #222 !important; border-bottom: solid 1px #444 !important; -moz-border-radius: 6px  !important}
+
+#navAccountInfo {border-bottom: solid 1px #444 !important}  
+
+.uiLinkButton.logoutButton, .uiLinkButton.logoutButton:hover {width: 190px !important; border: none !important}
+
+.mvl.ptm.uiInterstitial.login_page_interstitial.uiInterstitialLarge.white_box {background: #222 !important; border: solid 1px #444 !important}
+
+.uiHeader.uiHeaderTopAndBottomBorder.mbm.pbs {border-top: 1px #444 solid !important; border-bottom: 1px #444 solid !important}
+
+#jewelBoxMail.jewelHighlightItem li a:hover,
+#jewelBoxMail.jewelHighlightItem li a:active,
+#jewelBoxMail.jewelHighlightItem li a:focus,
+#jewelBoxNotif.jewelHighlightItem li.selected a   {background: #222 !important;border:none!important}                                                                                                                 
+.fbx_action_list.uiHeaderActions.rfloat.fsl.fwb.fcb {margin-right: 10px !important}
+
+.mal.ptm.uiInterstitial.login_page_interstitial.uiInterstitialLarge.white_box {background: #222 !important; border: none !important}
+
+.mlm.hideButton.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed:hover {background: #222 !important; border: none !important}
+
+.uiSearchInput {background: #222 !important;}
+
+#pagelet_betabox {display: none !important}
+
+.uiSearchInput button{ display: none !important}
+
+.uiButton.uiButtonLarge.uiButtonDefault {background: #444 !important; border:none !important; -moz-border-radius: 6px  !important}
+
+.fg_action_hide {display: none !important}
+
+.profile-pagelet-section {margin-left: -160px !important; padding-right: 15px !important}
+
+.uiButtonSuppressedNoText.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.uiTooltip {background: #222 !important; border: none !important}
+
+.uiButtonSuppressedNoText.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.uiTooltip:hover {background: #444 !important; border: none !important;  -moz-border-radius: 4px  !important}
+
+.sx_icons_event {height: 16px !important}
+
+.fbChatBuddylist a.friend {border: solid 1px #444 !important}
+
+.fbNubFlyout {background: #111 !important;}
+
+.fbChatBuddylistPanel.clearfix  {background: #222 !important; border: none !important;}
+
+#fbChatBuddyListParent {background: #222 !important; border: none !important;}
+
+.rule {border-top: none !important} 
+
+.fbNubFlyoutTitlebar.clearfix {background: #222 !important; border: solid 1px #444  !important;  -moz-border-radius: 8px 8px 0px 0px !important}
+
+.clearfix.rNubContainer  {background: #222 !important;border: none !important;}
+
+#fbDockChat {background: #222 !important; border-top: solid 1px #444  !important;}
+
+.fbNubButton { background: #222 !important; border: none !important; }
+
+.fbDockWrapper.fbDockWrapperBottom.fbDockWrapperRight { background: #222 !important; border-top: solid 1px #444  !important; border-right: none !important;  border-left: solid 1px #444  !important;  -moz-border-radius: 8px 0px 0px 0px !important}
+
+#pagelet_eventbox input.event_name {width:200px !important}
+
+.inputtext.event_name.DOMControl_placeholder {width: 200px !important}
+
+.uiLinkButton:hover,
+.uiLinkButton input:hover,
+.uiLinkButton input:focus,
+.uiLinkButton input:active{text-decoration:none !important}
+
+#event_create_name {width: 200px !important}
+
+.datebox {border: none !important}
+
+.uiTokenizer.mbs.clearfix {background: #222 !important; border: none !important}
+
+.inside.app_content_2309869772 {background: #444 !important; border: none !important}
 
 .uiMorePager.fbStreamPager.lightblue_box {background: #222 !important; border: none !important}
 
-.uiButton.uiButtonConfirm.uiButtonLarge, .uiButton.uiButtonSpecial.uiButtonMedium, .uiButton.uiButtonConfirm.uiButtonMedium, .signup_btn.UIButton.UIButton_Green.UIButton_Large.UIActionButton_SuppressMargin.UIActionButton {background: #444 !important; border: none !important}
+.uiButton.uiButtonConfirm.uiButtonLarge, .uiButton.uiButtonSpecial.uiButtonMedium, .uiButton.uiButtonConfirm.uiButtonMedium, .signup_btn.UIButton.UIButton_Green.UIButton_Large.UIActionButton_SuppressMargin.UIActionButton {background: #444 !important; border: none !important;  -moz-border-radius: 6px !important}
 
 .UIRoundedTransparentBox_Corner.UIRoundedTransparentBox_TL, .UIRoundedTransparentBox_Corner.UIRoundedTransparentBox_TR, .UIRoundedTransparentBox_Corner.UIRoundedTransparentBox_BL, .UIRoundedTransparentBox_Corner.UIRoundedTransparentBox_BR {display: none !important}
+
+.title_header.add_border  {-moz-border-radius: 6px !important}
 
 .signup_box.clearfix {-moz-border-radius: 20px !important}
 
 .uiHeader.uiHeaderBottomBorder.mbm.pbs {border-bottom: solid 2px #444 !important}
 
-.comments_add_box_submit {background: #222 !important; border: none !important}
+.comments_add_box_submit {background: #222 !important; -moz-border-radius: 6px !important; border: none !important}
 
 .home #leftCol {min-height: 340px !important}
 
-.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.mlm {background: #222 !important; border: none !important}
+.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.mlm {background: #222 !important; -moz-border-radius: 6px !important; border: none !important}
 
-.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.mlm:hover  {background: #222 !important; border: solid 1px #222 !important; border-bottom: none !important}
+.uiButton.uiButtonDefault.uiButtonMedium.uiButtonSuppressed.mlm:hover  {background: #222 !important; -moz-border-radius: 6px !important; border: solid 1px #222 !important; border-bottom: none !important}
 
 .uiTypeahead, .uiTypeahead .wrap {border: none !important}
 
-.uiListItem {background: #444 !important}
+.uiListItem {background: #444 !important; -moz-border-radius: 8px !important}
 
 .buddy_row.uiListItem {background: #222 !important;}
 
@@ -40,13 +123,13 @@
 
 .calltoaction {background: #222 !important; border: solid 1px #222 !important;}
 
-.UIStandardFrame_Content {width: 970px !important}
+.UIStandardFrame_Content {width: 980px !important; margin-left: -10px !important}
 
 .UITwoColumnLayout_Content {width: 730px !important}
 
-.UITwoColumnLayout_NarrowContent {margin-right: 10px !important}
+.UITwoColumnLayout_NarrowContent {margin-right: -20px !important; width: 200px !important}
 
-.UIComposer_SubmitButton.uiButton.uiButtonConfirm.uiButtonLarge {background: #444 !important; border: none !important}
+.UIComposer_SubmitButton.uiButton.uiButtonConfirm.uiButtonLarge {background: #444 !important; border: none !important; -moz-border-radius: 6px !important}
 
 .uiStreamCollapsed {border-top: solid 1px #222 !important}
 
@@ -54,7 +137,7 @@
 .uiListMedium,
 .uiListDark{border-top: solid 2px #222 !important}
 
-.uiBubbleCount.mls, .number {background: #222 !important}
+.uiBubbleCount.mls, .number {background: #222 !important; -moz-border-radius: 4px 4px 4px 4px !important}
 
 .hasLeftCol #rightCol {padding-right: 2px !important}
 
@@ -70,13 +153,13 @@
 
 #home_left_column {width:940px !important;}
 
-.ufi_section {width:465px !important;}
+.ufi_section {width:565px !important;}
 
 .add_comment_text {width:510px !important;}
 
 .adcolumn_wrapper {display: none;}
 
-#rightCol {background: #222 !important; width: 213px !important;   position:fixed;  top: 42px !important;  margin-left: 799px !important; border-right: solid 1px #444 !important; border-bottom: solid 1px #444 !important;}
+#rightCol {background: #222 !important; width: 213px !important;   position:fixed;  top: 42px !important;  margin-left: 799px !important; -moz-border-radius: 0px 0px 15px 0px !important; border-right: solid 1px #444 !important; border-bottom: solid 1px #444 !important;}
 
 
 #pagelet_pymkbox, #pagelet_connectbox {display: none !important}
@@ -101,16 +184,16 @@
 #jewelMail:hover
  {background: transparent url(  http://i13.photobucket.com/albums/a261/ericparsons/speech.png  )  no-repeat 10px 0!important  ; display:block; position:absolute; height:25px !important; left:-9px !important; width:32px !important; top:3px !important}
 
-#jewelAlert {background: transparent url(  http://i13.photobucket.com/albums/a261/ericparsons/Image2-1.png  )  no-repeat 10px 0!important  ; display:block; position:absolute; height:25px !important; left:-4px !important; width:32px !important; top:2px !important}
+#jewelNotif {background: transparent url(  http://i13.photobucket.com/albums/a261/ericparsons/Image2-1.png  )  no-repeat 10px 0!important  ; display:block; position:absolute; height:25px !important; left:-4px !important; width:32px !important; top:2px !important}
 
-#jewelAlert:hover
+#jewelNotif:hover
  {background: transparent url(  http://i13.photobucket.com/albums/a261/ericparsons/earth.png  )  no-repeat 10px 0!important  ; display:block; position:absolute; height:25px !important; left:-4px !important; width:32px !important; top:2px !important}
 
 #globalContainer {margin-top: 41px !important;}
 
 #globalContainer > div:first-child {width: 981px !important;margin: 0 auto !important;}
 
-#pageHead {width: 981px !important;position: fixed !important;top: 0 !important;}
+#pageHead {background: #222 !important; width: 981px !important;position: fixed !important;top: 0 !important;}
 
 #blueBar {position: fixed !important; top: 0 !important;}
 
@@ -120,7 +203,7 @@
 
 #pageLogo a:hover{background: transparent url(http://i13.photobucket.com/albums/a261/ericparsons/namehover.png)  no-repeat 5px 0!important  ; display:block; position:absolute; height:31px; left:-6px; width:103px !important; top:15px !important}
 
-#pagelet_stream_header {background: #444 !important; border-top: none !important}
+#pagelet_stream_header {background: #444 !important; border-top: none !important; -moz-border-radius: 10px !important}
 
 .uiTextSubtitle.fbx_action_list.rfloat {padding-right: 30px !important}
 
@@ -136,14 +219,14 @@
 
 .uiTextTitle.fbx_action_list.uiHeaderActions.rfloat {margin-right: 10px !important}
 
-#headNavOut {background: #222 !important; border-bottom: solid 1px #222 !important; border-left: solid 1px #444 !important; border-right:  solid 1px #444 !important; border-top: solid 1px #444 !important}
+#headNavOut {background: #222 !important; -moz-border-radius: 15px 15px 0px 0px !important; border-bottom: solid 1px #222 !important; border-left: solid 1px #444 !important; border-right:  solid 1px #444 !important; border-top: solid 1px #444 !important}
 
 #contentCol {background: #222 !important; border-left: solid 1px #444 !important; border-top: none !important; padding-top: 6px !important}
 
 #mainContainer {border-right: solid 1px #444 !important;}
 
 #leftCol {position: fixed !important; background: #222 !important;  border-left: solid 1px #444 !important; border-bottom: solid 1px #444 !important; border-right: 
- none !important}
+ none !important; border-top: solid 1px #444 !important; -moz-border-radius: 0px 0px 0px 15px !important}
 
 .uiHeaderTopBorder{border-top: 1px solid #444 !important}
 
@@ -155,15 +238,15 @@
 
 #navAccountName, .fbxWelcomeBoxName {text-decoration: none !important}
 
-#navAccount ul{background: #222 !important; border-bottom: solid 1px #444 !important}
+#navAccount ul{background: #222 !important; border-bottom: solid 1px #444 !important; -moz-border-radius: 10px 0px 10px 10px  !important}
 
-#navAccountLink {background: #222 !important}
+#navAccountLink {background: #222 !important; -moz-border-radius: 0px 15px 0px 0px !important}
 
-#navAccount.openToggler{background-color:#222 !important; }
+#navAccount.openToggler{background-color:#222 !important; -moz-border-radius: 0px 15px 0px 0px!important; }
 
 #navAccount > UL {background-color:#222}
 
-#jewelCase {background: #222 !important; border: none !important; width: 970px !important}
+#jewelCase {background: #222 !important; border: none !important; width: 970px !important; -moz-border-radius: 15px 15px 0px 0px !important}
 
 #requestsWrapper, #mailWrapper, #notificationsWrapper {background: #222 !important; border: none !important;}
 
@@ -171,34 +254,34 @@
 .jewelToggler:focus,
 .jewelToggler:hover {outline:none !important; background-color: #222 !important ;text-decoration:none !important;}
 
-#jewelBoxRequest  {background: #444 !important; border: solid 1px #222 !important }
+#jewelBoxRequest  {background: #444 !important; -moz-border-radius: 15px 15px 15px 15px !important; border: solid 1px #222 !important }
 
-.openToggler .jewelToggler { background-color:#444 !important;}
+.openToggler .jewelToggler { background-color:#444 !important; -moz-border-radius: 6px 6px 0px 0px !important;}
 
-#jewelBoxMail {background: #444 !important; border: solid 1px #222 !important; }
+#jewelBoxMail {background: #444 !important; -moz-border-radius: 15px 15px 15px 15px !important; border: solid 1px #222 !important; }
 
 .uiTextTitle.jewelHeader {border-bottom: solid 2px #222 !important;}
 
-.seeMore {background: #444 !important; border-top: solid 2px #222 !important;}
+.seeMore {background: #444 !important; -moz-border-radius: 0px 0px 15px 15px !important; border-top: solid 2px #222 !important;}
 
 #jewelBoxMail li a:hover,
 #jewelBoxMail li a:active,
 #jewelBoxMail li a:focus {background: #222 !important; border: solid 1px #222 !important}
 
-#jewelBoxAlert {background: #444 !important; border: solid 1px #222 !important; }
+#jewelBoxNotif{background: #444 !important; -moz-border-radius:15px 15px 15px 15px !important; border: solid 1px #222 !important; }
 
 .uiSideNav .selected .item,
 .uiSideNav ul .selected .subitem,
 .uiSideNav .selected .item:hover,
-.uiSideNav ul .selected .subitem:hover {background: #444 !important}
+.uiSideNav ul .selected .subitem:hover {background: #444 !important; -moz-border-radius: 6px !important}
 
 .uiSideNav .item:hover,
-.uiSideNav .subitem:hover  {background: #444 !important}
+.uiSideNav .subitem:hover  {background: #444 !important; -moz-border-radius: 6px !important}
 
 .uiSideNav .item,
 .uiSideNav .subitem {border-bottom: solid 2px #222 !important}
 
-#friends_online_sidebar > LI > A:hover {background: #444 !important}
+#friends_online_sidebar > LI > A:hover {background: #444 !important; -moz-border-radius: 6px !important}
 
 #pageNav > LI > A:hover {background: #222 !important;}
 
@@ -211,7 +294,7 @@ label.uiCloseButton input:active {background:#222!important;}
 
 label.uiCloseButton {padding-right: 4pt !important}
 
-.fbx_bar {background: #222 !important; border-top: solid 1px #444 !important; border-left: solid 1px #444 !important}
+.fbx_bar {background: #222 !important; -moz-border-radius:  15px 0px 0px 0px !important; border-top: solid 1px #444 !important; border-left: solid 1px #444 !important}
 
 .fbx_bar #presence_ui {background: #222 !important; border: none !important}
 
@@ -222,7 +305,7 @@ label.uiCloseButton {padding-right: 4pt !important}
 
 #presence .presence_bar_button .inner_button:hover  {background: #222 !important; border: none !important}
 
-#pageFooter {background: #444 !important;}
+#pageFooter {background: #444 !important;  -moz-border-radius:  0px 0px 15px 15px !important;}
 
 #contentCurve {background: #444 !important; border: none !important}
 
@@ -238,7 +321,7 @@ label.uiCloseButton {padding-right: 4pt !important}
 .mediaThumb.mediaThumbLarge.mediaAlbum {border: none !important}
 
 .mediaThumb:hover,
-.mediaThumb:hover .mediaThumbWrapper {border: none !important}
+.mediaThumb:hover .mediaThumbWrapper {border: none !important; -moz-box-shadow: 0px 0px 3em 5px #444 !important}
 
 
 
@@ -250,7 +333,7 @@ label.uiCloseButton {padding-right: 4pt !important}
 
 .UIButton.UIButton_Gray.UIFormButton {background: #222 !important; border: solid 1px #222 !important}
 
-.searchButton.uiButton.uiButtonConfirm.uiButtonLarge  {background: #444 !important; border: solid 1px #222 !important }
+.searchButton.uiButton.uiButtonConfirm.uiButtonLarge  {background: #444 !important; border: solid 1px #222 !important; -moz-border-radius: 6px !important }
 
 #buddy_list_panel .flyout_open {border: solid 1px #444 !important}
 
@@ -272,7 +355,7 @@ label.uiCloseButton {padding-right: 4pt !important}
 .profile .box a.selected,
 .profile .basic_info_summary a.selected{ background-position: left -36px !important}
 
-#profile_settings  > DIV + DIV > H3 > SPAN {background: #444 !important}
+#profile_settings  > DIV + DIV > H3 > SPAN {background: #444 !important; -moz-border-radius: 6px !important}
 
 .UIIntentionalStory_Profile_First.UIStory.UIIntentionalStory.aid_636546649 {margin-top: 10px !important}
 
@@ -284,7 +367,7 @@ label.uiCloseButton {padding-right: 4pt !important}
 
 .uiButton.uiButtonConfirm.uiButtonMedium, .uiButton.uiButtonDefault.uiButtonMedium {background: #444 !important; border: solid 1px #444 !important;}
 
-.popout_tab_button.highlight.disabled {background: #444 !important; border: solid 1px #444 !important}
+.popout_tab_button.highlight.disabled {background: #444 !important; border: solid 1px #444 !important; -moz-border-radius:  6px  !important}
 
 #open_chats {border-top: solid 1px #111 !important}
 

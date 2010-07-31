@@ -1,3 +1,5 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
 body, #content, #watch-headline-container, #watch-video-container, #watch-main-container, .footer .yt-uix-pager, .splitter, #mymedia #view-pane .settings, #mymedia #view-pane .actions, #mymedia #table .video.even, #mymedia #table .video-details.even, #mymedia #table .video.odd, #mymedia #table .video-details.odd, #mymedia #view-pane .footer, #mymedia #table, #no-playlists, .searchFooterBox .yt-uix-pager, input, .feedmodule-anchor, textarea, #record-tab-content, .vert-bar, .message td, .msg-subject-open .subject, .shows-table, .shows-table .alt td, #google_companion_ad_div, #watch-show-brand-div, #watch-channel-brand-div, #channel-body, #user_playlist_navigator, #main-channel-content, .watch-next-list-actions
 {
     background: black !important;

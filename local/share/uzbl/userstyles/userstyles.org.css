@@ -1,3 +1,5 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
 html, body { background: none !important; color: #ccc !important; background-color: #333 !important; }
 
 #style-list { background-color: #222 !important; border: solid 6px #222 !important; -moz-border-radius: 10px !important }

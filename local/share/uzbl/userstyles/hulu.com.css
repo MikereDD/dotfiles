@@ -1,3 +1,5 @@
+@namespace url(http://www.w3.org/1999/xhtml);
+
 body, #overlay-top, #overlay-bottom, #description-container, #breakout-container, #video_search_term, div.section, div.tab-header, div.bg-gray, div.fluid{
 	background:#232323 !important;
         h1, h2, h3, h4, h5 { color: #007700 !important }
