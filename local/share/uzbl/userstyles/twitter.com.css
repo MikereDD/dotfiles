@@ -1,15 +1,13 @@
-#side #trends, #side #saved_searches, #side p.promotion {
+@namespace url(http://www.w3.org/1999/xhtml);
 
+#side #recommended_users, #side #trends, #side #saved_searches, #side p.promotion {
 display: none !important;
-
 }
-
-
 
 #side div#profile.section {
-
-margin-bottom: 17px !important;
-
+margin-bottom: 10px !important;
 }
+
+*{background-color:white !important; color:black !important; font-family: "Lucidia Console", Monaco, monospace !important; text-decoration:none !important}
 
 

@@ -6,7 +6,7 @@
 
 # Music Directory
 # MusicDir		     =   "/home/mredd/playlists/"
- MusicDir           =   "/mnt/b/Music/"
+ MusicDir           =   "/home/mredd/Music/"
 # How to sort? FileName is the only option for now.
  Sort			    =   FileName
 
@@ -35,7 +35,7 @@
 # %(X:TRUE:FALSE) - ternary expression - if X exists, do TRUE, otherwaise
 #                   FALSE. '\' - escape character (must be double, because of 
 #                   config interpreter). man zshmisc for more info.
- FormatString		=   "%a - %t [%A]"
+ FormatString		=   "%t - %a [%A]"
 
 # Output buffer size in kilobytes. Minimum value is 128KB. */
  OutputBuffer		=   2048
@@ -102,8 +102,8 @@
 
 # Theme
 #  Theme             =   crustal_balls
- Theme              =   red_theme
-
+# Theme              =   red_theme
+ Theme              =   mono_dim_theme
 # The theme used when running on on xterm
  XTermTheme         =   transparent-background
 
@@ -144,16 +144,16 @@
 
 # FastDirs, these allow you jump directly to a directory, the key bindings are
 # in the keymap file.
- Fastdir1           =   "/mnt/b/Music/Classical/"
- Fastdir2           =   "/mnt/b/Music/Electro/"
- Fastdir3           =   "/mnt/b/Music/HipHop-Rap/"
- Fastdir4           =   "/mnt/b/Music/Indie/"
- Fastdir5           =   "/mnt/b/Music/Jazz-Soul/"
- Fastdir6           =   "/mnt/b/Music/Punk-Reggae-Ska/"
- Fastdir7           =   "/mnt/b/Music/Rock/"
- Fastdir8           =   "/mnt/b/Music/White_Collection/"
- Fastdir9           =   "/mnt/b/Music/OST/"
- Fastdir10          =   "/mnt/b/Music/World/"
+ Fastdir1           =   "~/Music/Classical/"
+ Fastdir2           =   "~/Music/Electro/"
+ Fastdir3           =   "~/Music/HipHop-Rap/"
+ Fastdir4           =   "~/Music/Indie/"
+ Fastdir5           =   "~/Music/Jazz-Soul/"
+ Fastdir6           =   "~/Music/Punk-Reggae-Ska/"
+ Fastdir7           =   "~/Music/Rock/"
+ Fastdir8           =   "~/Music/White_Collection/"
+ Fastdir9           =   "~/Music/OST/"
+ Fastdir10          =   "~/Music/World/"
 
 # How fast to seek? Number of seconds per key stroke.
  SeekTime		    =   2
@@ -206,9 +206,9 @@
 
 # Main window layout
 # Default configuration:
- Layout1             =   "playlist:0,0,100%,50% playlist:0,50%,100%,50%"
+ Layout3             =   "playlist:0,0,100%,50% playlist:0,50%,100%,50%"
  Layout2             =   "directory:0,0,100%,FILL"
- Layout3             =   "directory:0,0,50%,100% playlist:50%,0,50%,100%"
+ Layout1             =   "directory:0,0,50%,100% playlist:50%,0,50%,100%"
 
 # When the song changes, should the menu be scrolled so that the currently
 # played file is visible?
@@ -263,3 +263,6 @@
 
 # Display full paths instead of just file names in the playlist.
  PlaylistFullPaths	 =   no
+
+# LastFM Scrobble
+ OnSongChange = "/home/mredd/.moc/scripts/moc_submit_lastfm --artist %a --title %t --length %d --album %r"
