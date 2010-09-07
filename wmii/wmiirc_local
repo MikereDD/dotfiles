@@ -1,0 +1,63 @@
+# Configuration Variables
+MODKEY=Mod4
+UP=k
+DOWN=j
+LEFT=h
+RIGHT=l
+
+# Bars
+noticetimeout=5
+noticebar=/rbar/!notice
+
+# Colors tuples: "<text> <background> <border>"
+export WMII_NORMCOLORS="#667d8a #220010 #751713"
+export WMII_FOCUSCOLORS="#f3f5f4 #280100 #686b6c"
+export WMII_BACKGROUND="feh --bg-center /home/mredd/images/wallpapers/3120x1050-maggotworms-arch.png"
+export WMII_FONT="-*-clean-*-*-*-*-12-*-*-*-*-*-*-*"
+export WMII_TERM="urxvt -name URxvt"
+
+# Menu history
+hist="$(wmiir namespace)/history"
+histnum=5000
+
+# Column Rules
+wmiir write /colrules <<!
+    /gimp/ -> 17+83+41
+    /.*/ -> 62+38 # Golden Ratio
+!
+
+# Tagging Rules
+wmiir write /rules <<!
+    # Apps with system tray icons like to their main windows
+    # Give them permission.
+    /^Pidgin:/ allow=+activate
+
+    # MPlayer and VLC don't float by default, but should.
+    /MPlayer|VLC/ floating=on
+
+    # ROX puts all of its windows in the same group, so they open
+    # with the same tags. Disable grouping for ROX Filer.
+    /^ROX-Filer:/ group=0
+!
+
+# Status Bar Info
+status() {
+echo -n $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/checktemp.sh) "|" $($HOME/.wmii/scripts/uptime.sh) Updates: $(perl 
+$HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
+}
+
+# WM Configuration
+wmiir write /ctl <<!
+font $WMII_FONT
+focuscolors $WMII_FOCUSCOLORS
+normcolors $WMII_NORMCOLORS
+grabmod $MODKEY
+border 0
+        bar on top
+!
+# set wallpaper
+$WMII_BACKGROUND
+
+#trayer --edge top --align right --widthtype request --width 1 --height 1 --transparent true --alpha 255 &
+#wistrut $(wmiir read /tag/sel/index | awk '/panel:trayer:panel/{print $2}') &
+
