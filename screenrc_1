@@ -95,10 +95,10 @@ bind '}' history
 # shelltitle '$ | '
 screen -t shell 0 
 screen -t irc 1 irssi
-screen -t cim 2 centerim
-screen -t twit 3 $HOME/apps/bin/bashtc
-screen -t fbcmd 4
-screen -t video 5 
+screen -t cim 2 centerim 
+#screen -t twit 3 $HOME/apps/bin/bashtc
+screen -t social 3 
+screen -t video  4
 
 #
 #

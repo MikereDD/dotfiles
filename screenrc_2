@@ -94,16 +94,14 @@ bind '}' history
 #
 
 # shelltitle '$ | '
-screen -t shell 0 
 screen -t www 1 elinks https://ssl.scroogle.org
-screen -t fm 2 vifm $HOME /mnt
+screen -t fm 2 vifm $HOME/ /mnt/
 screen -t vim 3 vim 
-#screen -t tel 4
-screen -t ftp 4 lftp
-screen -t ssh 5 
-screen -t git 6
-screen -t todo 7 calcurse
-#
+screen -t todo 4 calcurse
+screen -t wifi 5 wicd-curses
+screen -t htop 6 htop
+screen -t net 7
+
 #
 #
 #  Toggle 'fullscreen' or not.
