@@ -55,6 +55,6 @@ if [ "$NPV" == "" ];then echo -e "${W}On VLC${K}: ${LGY} Empty.. ${R}[${LGY}Noth
 else
 if [ "$NPV" == "/dev/video0" ];then echo -e "${W}On VLC${K}: ${LB}Watching TV aka.. ${R}[${LGY}IdiotBox${R}]"
 else
-echo -e "${W}On VLC${GY}: ${O}$NPV "
+echo -e "${LB}On VLC${GY}: ${T}$NPV "
 fi
 fi
