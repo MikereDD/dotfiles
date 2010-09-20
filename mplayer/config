@@ -21,8 +21,8 @@ vo="vdpau"
 # Video Mode
 #vm="no"
 # Used by drivers: dga2, x11, sdl
-x="1360" # scale movie to <x> pixels width
-y="768" # scale movie to <y> pixels height
+x="780" # scale movie to <x> pixels width
+y="420" # scale movie to <y> pixels height
 # Zoom 
 #zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
 # Audio Channel
