@@ -4,6 +4,10 @@
 # http://m-redd.com
 #
 ###############################
+
+# UTF-8 everywhere
+defutf8 on
+
 # Color table:
 # # 0 Black             .    leave color unchanged
 # # 1 Red               b    blue
@@ -95,10 +99,9 @@ bind '}' history
 # shelltitle '$ | '
 screen -t shell 0 
 screen -t irc 1 
-screen -t cim 2  
-#screen -t twit 3 $HOME/apps/bin/bashtc
-screen -t social 3 
-screen -t video  4
+screen -t web 2  
+screen -t moc 3 
+screen -t radio  4
 
 #
 #
@@ -110,8 +113,8 @@ bind F eval "caption always"    "hardstatus alwayslastline"
 # Backticks
 backtick 1 30 30 cat $HOME/.get_mail
 # Status
-caption always '%{= w} %{b}Load: %l %= %{r}| %= %{b}%1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= .5}%-w%{w}%n%{r}`%{w}%t%{-b r}%{.5}%+w %= %{w}%c %{b}- %{w}%m%{b}/%{w}%d%{b}/%{w}%y |%H|'  
+caption always '%{= w} %{w}Load: %l %= %{r}| %= %{w}%1`'
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= .5}%-w%{w}%n%{r}`%{w}%t%{-b r}%{.5}%+w %= %{w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|'  
 # bind = resize =
 # bind + resize +1
 # bind - resize -1

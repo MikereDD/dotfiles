@@ -1,9 +1,13 @@
 #
 # ~/.screenrc
-# M. reDD  - mredd -at- 0tue0.com
+# M. reDD - MreDD -at- 0tue0.com
 # http://m-redd.com
 #
 ###############################
+
+# UTF-8 everywhere
+defutf8 on
+
 # Color table:
 # # 0 Black             .    leave color unchanged
 # # 1 Red               b    blue
@@ -15,18 +19,14 @@
 # # 7 White             r    red             r    reverse
 # # 8 unused/illegal    w    white           s    standout
 # # 9 transparent       y    yellow          u    underline
+
 term screen-256color
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
-sessionname screen
+sessionname filemanger 
 
-# ============================
-# Password
-# ============================
-# password SZnBqiqMtfa6k
-# Do NOT remove the comment if
-# you don't know what this does!
-# (TODO describe the effect - obviously)
+# This is how one can set a reattach password:
+# password ODSJQf.4IJN7E    # "1234"
 
 # no annoying audible bell, please
 vbell on
@@ -53,11 +53,8 @@ defscrollback 1000
 
 ################
 #
-# screenrc
+# xterm tweaks
 #
-
-# UTF-8 everywhere
-defutf8 on
 
 # tell screen that you term can scroll
 termcapinfo xterm ti@:te@
@@ -101,20 +98,18 @@ bind '}' history
 #
 
 # shelltitle '$ | '
-#screen -t shell 0
+screen -t shell 0
+screen -t fm 1 vifm $HOME/ /mnt/
+#screen -t bashc 
+
 #
 #
 #  Toggle 'fullscreen' or not.
 #
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
-#%{+b kk} %=%{-s} %{.k%-w%{.k}%n %{.w}%t%{.k}%+w%{.} %{+s} %=
-#caption always "%{= W} %{+b}%{w}%n%{= 3}   %=%{-s}%{+b}%{= w}%-Lw%50>%{= m}%n%f%{= r}%{+b}%{= w}%t%+Lw%<%{-}%{= W}%-=%?] %="
-#hardstatus alwayslastline "%{= W}  [%{+b}%{= W}%H%{-}%{= W}]  %{= W}[%{= B}%D,%M '%y - %c%{-}%{= W}] [ %{= G}%l%{= W}] "
-# Backticks
-#backtick 1 60 60 cat $HOME/.get_mail
-#caption always '%{= .w} Load: %l %= | %= %1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|'  
+# Status
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= r}%-w%{w}%n%{r}`%{w}%t%{-b r}%{r}%+w %= %{.w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|' 
 # bind = resize =
 # bind + resize +1
 # bind - resize -1

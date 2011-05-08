@@ -4,6 +4,10 @@
 # http://m-redd.com
 #
 ###############################
+
+# UTF-8 everywhere
+defutf8 on
+
 # Color table:
 # # 0 Black             .    leave color unchanged
 # # 1 Red               b    blue
@@ -19,7 +23,7 @@
 term screen-256color
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
-sessionname web-edit 
+sessionname code 
 
 # This is how one can set a reattach password:
 # password ODSJQf.4IJN7E    # "1234"
@@ -94,13 +98,11 @@ bind '}' history
 #
 
 # shelltitle '$ | '
-screen -t www 1 elinks https://ssl.scroogle.org
-screen -t fm 2 vifm $HOME/ /mnt/
-screen -t vim 3 vim 
-screen -t todo 4 calcurse
-screen -t wifi 5 wicd-curses
-screen -t htop 6 htop
-screen -t net 7
+screen -t shell 0
+screen -t git 1
+screen -t edit 2 vim
+screen -t todo 3 calcurse
+#screen -t synergy 4 synergyc -f 172.16.128.8 
 
 #
 #
@@ -109,7 +111,7 @@ screen -t net 7
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
 # Status
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= r}%-w%{w}%n%{r}`%{w}%t%{-b r}%{r}%+w %= %{.w}%c %{b}- %{w}%m%{b}/%{w}%d%{b}/%{w}%y |%H|' 
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= r}%-w%{w}%n%{r}`%{w}%t%{-b r}%{r}%+w %= %{.w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|' 
 # bind = resize =
 # bind + resize +1
 # bind - resize -1
