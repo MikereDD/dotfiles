@@ -10,10 +10,14 @@ noticetimeout=5
 noticebar=/rbar/!notice
 
 # Colors tuples: "<text> <background> <border>"
-export WMII_NORMCOLORS="#f17233 #080b0a #724d30"
-export WMII_FOCUSCOLORS="#f17233 #080b0a #bfbfbf"
-export WMII_BACKGROUND="feh --bg-center /home/mredd/wallpapers/wallpaper-889602.jpg"
-export WMII_FONT="xft:Antipasto:pixelsize=14:antialias=true:bold:hinting=true"
+#export WMII_NORMCOLORS="#f17233 #080b0a #724d30"
+#export WMII_FOCUSCOLORS="#f17233 #080b0a #bfbfbf"
+export WMII_NORMCOLORS="#e6e8fa #080b0a #ebc79e"
+export WMII_FOCUSCOLORS="#ebc79e #161e1b #e6e8fa"
+#export WMII_BACKGROUND="feh --bg-center /home/mredd/wallpapers/wallpaper-889602.jpg"
+export WMII_BACKGROUND="feh --bg-center /home/mredd/wallpapers/wallpaper-928033.png"
+#export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
+export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
 export WMII_TERM="urxvt -name shell"
 
 # Menu history
@@ -40,17 +44,15 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer|VLC|Boxee|boxee/ -> ~+video
-    /KDX.*/ -> ~+social
+    /MPlayer|VLC|Boxee|boxee|huludesktop/ -> ~+video+social+web+code
     /Firefox|Namoroka.*|dwb|DWB|vimprobable2|Mozilla.*|Thunderbird|Muttator/ -> +web
-    /gedit|leafpad/ -> +code
+    /Code|gedit|gedit.*|*.gedit|leafpad/ -> +code
     /Gimp.*/ -> ~+art
-    /gedit.*|*.gedit/ -> +code
     /Admin/ -> +admin
     /Social/ -> +social
-    /Code/ -> +code
-    /MPlayer|VLC/ -> ~+video
-    /nautilus|thunar|File*Manager.*|*.File*Manger/ -> +file
+    /KDX.*/ -> ~+social
+    /nautilus|thunar|File Manager|File*Manager.*|*.File*Manger/ -> +file
+    /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /armagetronad/ -> +game
     /.*/ -> sel
     /.*/ -> 1
@@ -58,7 +60,7 @@ wmiir write /tagrules <<!
 
 # Status Bar Info
 status() {
-echo -n $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
+echo -n $($HOME/.wmii/scripts/wifi.sh) "|" $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
 }
 
 local_events() {
