@@ -98,10 +98,11 @@ bind '}' history
 
 # shelltitle '$ | '
 screen -t shell 0 
-screen -t irc 1 
-screen -t web 2  
-screen -t moc 3 
-screen -t radio  4
+screen -t irc 1  
+screen -t web 2 elinks https://encrypted.google.com
+screen -t moc 3 mocp
+screen -t radio 4 sh /home/mredd/scripts/audio/radio-switcher.sh
+screen -t iw 5 wicd-curses
 
 #
 #

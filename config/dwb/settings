@@ -1,0 +1,148 @@
+
+[default]
+# General settings
+#-------------------------------------------
+startpage=https://bbs.archlinux.org/
+user-agent=DWB (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)
+user-stylesheet-uri=
+proxy=false
+message-delay=2
+default-encoding=utf8
+custom-encoding=utf8
+auto-completion=true
+enable-spell-checking=true
+proxy-url=
+auto-load-images=true
+complete-bookmarks=true
+history-length=500
+complete-history=true
+complete-searchengines=true
+enable-site-specific-quirks=true
+spell-checking-languages=english
+
+
+# Colours
+#-------------------------------------------
+normal-bg-color=#505050
+insertmode-fg-color=#ffffff
+insertmode-bg-color=#303030
+active-fg-color=#ffffff
+normal-fg-color=#cccccc
+active-bg-color=#000000
+normal-completion-fg-color=#eeeeee
+active-completion-fg-color=#53868b
+active-completion-bg-color=#000000
+normal-completion-bg-color=#151515
+tab-active-fg-color=#FFFFFF
+tab-normal-fg-color=#cccccc
+tab-active-bg-color=#000000
+tab-normal-bg-color=#505050
+tab-number-color=#7ac5cd
+status-blocked-color=#ffffff
+status-allowed-color=#00ff00
+ssl-trusted-color=#00ff00
+ssl-untrusted-color=#ff0000
+settings-fg-color=#ffffff
+settings-bg-color=#151515
+settings-border=1px dotted black
+error-color=#ff0000
+
+# Interface
+#-------------------------------------------
+zoom-step=0.10
+auto-shrink-images=true
+print-backgrounds=true
+resizable-text-areas=true
+editable=true
+enable-default-context-menu=true
+enable-spatial-navigation=true
+complete-commands=true
+auto-resize-window=false
+
+# Layout
+#-------------------------------------------
+size=30
+factor=0.30
+zoom-level=1.00
+default-width=1000
+default-height=940
+layout=Normal MAXIMIZED
+enforce-96-dpi=false
+tabbed-browsing=true
+background-tabs=true
+hide-tabbar=never
+single-instance=false
+full-content-zoom=true
+tab-key-cycles-through-elements=true
+
+# Fonts
+#-------------------------------------------
+font=Droid Sans Mono Slashed 10
+font-inactive=
+font-completion=
+font-entry=
+default-font-size=10
+normal-font-size=10
+serif-font-family=serif
+monospace-font-family=monospace
+cursive-font-family=serif
+default-font-family=sans-serif
+sans-serif-font-family=sans-serif
+default-monospace-font-size=10
+fantasy-font-family=serif
+active-font-size=10
+minimum-logical-font-size=7
+minimum-font-size=6
+ 
+# Hints
+#-------------------------------------------
+hint-style=letter
+hint-font-size=9px
+hint-font-family=monospace
+hint-font-weight=normal
+hint-opacity=0.85
+hint-normal-color=#ffff99
+hint-active-color=#00ff00
+hint-bg-color=#000088
+hint-fg-color=#ffffff
+hint-border=2px dashed #000000
+hint-letter-seq=FDSARTGBVECWXQYIOPMNHZULKJ
+
+# Sessions & cookies
+#-------------------------------------------
+cookies=true
+save-session=false
+enable-page-cache=true
+enable-private-browsing=false
+enable-offline-web-application-cache=true
+
+# Scripts & plugins
+#-------------------------------------------
+enable-plugins=true
+plugin-blocker=false
+enable-scripts=true
+enable-java-applet=true
+complete-userscripts=true
+adblocker=false
+block-content=true
+javascript-can-access-clipboard=false
+javascript-can-open-windows-automatically=true
+content-block-regex=(application|text)/(x-)?(shockwave-flash|javascript)
+
+# Miscellaneous
+#-------------------------------------------
+enable-caret-browsing=true
+use-fifo=false
+mail-program=thunderbird 'dwb_uri'
+ftp-client=urxvt -e lftp 'dwb_uri'
+download-use-external-program=false
+download-external-command=urxvt -e wget 'dwb_uri' -O 'dwb_output' --load-cookies 'dwb_cookies'
+enable-html5-local-storage=true
+enable-developer-extras=true
+enable-xss-auditor=true
+enable-dom-paste=false
+enable-file-access-from-file-uris=true
+enable-html5-database=true
+enable-universal-access-from-file-uris=true
+scroll-step=0.00
+mail-client=thunderbird 'dwb_uri'

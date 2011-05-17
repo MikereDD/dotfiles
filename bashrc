@@ -5,60 +5,35 @@
 # Smaller than Life Projects
 # By: MreDD     mredd (at) 0tue0.com
 ##################
-##copy progress bar
-copy() { # src dst [width]
-    srcsize=$(stat -c %s $1) || return $?
-    dstsize=0
-    width=${3:-25}
-    mega=$(( 1024 * 1024 ))
-    start=$(date +%s)
-    cat $1 | (
-    while [[ dstsize -lt srcsize ]]
-    do
-        dd bs=512 count=2048 2>/dev/null || return $?
-        (( dstsize += $mega ))
-        [[ dstsize -gt srcsize ]] && dstsize=$srcsize
 
-        # print truncated filename
-        name=$(basename $1 | cut -b -20)
-        printf "\r%-20s " $name 1>&2
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-        # print percentage
-        percent=$(( 100 * $dstsize / $srcsize ))
-        printf "%3d%% [" $percent 1>&2
+# Keychain lines to help ssh-agent
+eval `keychain --eval --agents ssh id_rsa`
 
-        # print progress bar
-        bar=$(( $width * $dstsize / $srcsize ))
-        for i in $(seq 1 $bar); do printf "=" 1>&2; done
-        for i in $(seq $bar $(( $width-1 ))); do printf " " 1>&2; done
+#if [ -f /etc/bashrc ]; then
+#    . /etc/bashrc # --> Read /etc/bashrc, if present.
+#fi
 
-        # print size of file copied
-        if [[ $dstsize -le 1024 ]]; then
-            printf -v size "%d" $dstsize;
-        elif [[ $dstsize -le $mega ]]; then
-            printf -v size "%d kB" $(( $dstsize / 1024  ));
-        else
-            printf -v size "%d MB" $(( $dstsize / $mega ));
-        fi
-        printf "] %7s" "$size" 1>&2
+# Screen hack
+export SDL_VIDEO_FULLSCREEN_HEAD=1
+#
+#export LC_ALL=
+#export LC_COLLATE="C"
+#export LANG="UTF-8"
 
-        # print estimated time of arrival
-        elapsed=$(( $(date +%s) - $start ))
-        remain=$(( $srcsize - $dstsize ))
-        eta=$(( ($elapsed * $remain) / $dstsize + 1))
-        if [[ $remain == 0 ]]; then eta=0; fi
-        etamin=$(( $eta / 60 ))
-        etasec=$(( $eta % 60 ))
-        if [[ $eta > 0 ]]; then etastr="ETA"; else etastr="   "; fi
-        printf "   %02d:%02d $etastr" $etamin $etasec 1>&2
-    done
-    echo 1>&2
-    ) | cat >$2
-}
-#ssh
-#eval `ssh-agent`
-#/usr/bin/keychain -Q -q --nogui ~/.ssh/id_dsa
-#[[ -f $HOME/.keychain/$HOSTNAME-sh ]] && source $HOME/.keychain/$HOSTNAME-sh
+# Grooveshark hack
+alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
+
+if [ "$COLORTERM" == "rxvt" ]; then
+    export TERM=rxvt-256color
+fi
+
+#if [ "$COLORTERM" == "putty-256color" ]; then
+#    export TERM=rxvt-256color
+#fi
+
 # GIT STATUS MAGIC (START)
 GIT_PS1_SHOWDIRTYSTATE=true
 function parse_git_branch {
@@ -69,22 +44,22 @@ function parse_git_branch {
   remote_pattern="# Your branch is (.*) of"
   diverge_pattern="# Your branch and (.*) have diverged"
   if [[ ! ${git_status}} =~ "working directory clean" ]]; then
-state="${COLOR_RED}⚡"
+state="${COLOR_RED}\u26a1"
   fi
   # add an else if or two here if you want to get more specific
   if [[ ${git_status} =~ ${remote_pattern} ]]; then
 if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-remote="${COLOR_YELLOW}↑"
+remote="${COLOR_YELLOW}\u2191"
     else
-remote="${COLOR_YELLOW}↓"
+remote="${COLOR_YELLOW}\u2193"
     fi
 fi
 if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-remote="${COLOR_YELLOW}↕"
+remote="${COLOR_YELLOW}\u2195"
   fi
 if [[ ${git_status} =~ ${branch_pattern} ]]; then
 branch=${BASH_REMATCH[1]}
-    echo -e "${COLOR_LIGHT_GREEN}➔(${branch})${remote}${state}"
+    echo -e "${COLOR_LIGHT_GREEN}\u2794(${branch})${remote}${state}"
   fi
 }
 
@@ -149,7 +124,8 @@ BGW="\[\033[47m\]"  # white
 BGW="\[\e[1;43m\]"  # orange
 BGW="\[\e[1;45m\]"  # purple
 BGGR="\[\e[0;90m\]"
-UC=$W                 # user's color
+#UC=$W               # user's color
+TR="\[\e[0m\]"      # Text Reset
 
 [ $UID -eq "0" ] && UC=$R   # root's color
 
@@ -161,17 +137,6 @@ eval $(dircolors -b ~/.dir_colors)
 elif [[ -f /etc/DIR_COLORS ]] ; then
 eval $(dircolors -b /etc/DIR_COLORS)
 fi
-fi
-
-#
-set show-all-if-ambiguous on
-
-if [ "$TERM" = "Linux" ]; then
-  PROMPT_COMMAND='dirs | wmiir write /client/sel/label'
-fi
-
-if [ "$COLORTERM" == "rxvt" ]; then
-    export TERM=rxvt-256color
 fi
 
 #
@@ -199,17 +164,6 @@ bash_prompt_command() {
         NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
     fi
 }
-
-# Bash shell driver for 'go' (http://code.google.com/p/go-tool/).
-function go {
-    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
-    python -m go $*
-    if [ -f $GO_SHELL_SCRIPT ] ; then
-        source $GO_SHELL_SCRIPT
-    fi
-    unset GO_SHELL_SCRIPT
-}
-
 #screenwm
 #eval screen "exec screenwm init"
 
@@ -219,15 +173,22 @@ PROMPT_COMMAND=bash_prompt_command
 #unset bash_prompt
 
 #bash completion
-complete -cf sudo
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
+complete -cf sudo
+complete -cf man
+
 
 # Bash Aliases
 ##################
 if [ -f ~/.bash_aliases ]; then
- . ~/.bash_aliases
+    . ~/.bash_aliases
+fi
+
+# Inputrc file - Faster Completion
+if [ -f ~/.inputrc ]; then
+    . ~/.inputrc
 fi
 
 # grep color
@@ -239,31 +200,17 @@ alias grep='grep --color=auto'
 ##################
 shopt -s checkwinsize
 
-#export LESS_TERMCAP_mb=$'\E[01;31m'
-#export LESS_TERMCAP_md=$'\E[01;31m'
-#export LESS_TERMCAP_me=$'\E[0m'
-#export LESS_TERMCAP_se=$'\E[0m'                           
-#export LESS_TERMCAP_so=$'\E[01;44;33m'                                 
-#export LESS_TERMCAP_ue=$'\E[0m'
-#export LESS_TERMCAP_us=$'\E[01;32m'
-#
-
 #
 export EDITOR="vim"
-export BROWSER="elinks"
+#export BROWSER="elinks"
+#export BROWSER="/usr/bin/vimprobable2-tabbed"
+export BROWSER="dwb"
 #export PAGER="$HOME/apps/bin/vimpager"
+export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
+export HISTCONTROL="ignoredups"
+#source /usr/share/cdargs/cdargs-bash.sh
 
-# WELCOME SCREEN
-####################
-clear
-echo "";
-#sysinfo
-uptime
-echo ""
-fortune
-echo "";
-
-PS1="${DG}[${LG}\u${R}@${TQ}\h${DG}]${W}──${DG}[${DG}\$(tty | sed -e 's:/dev/::'):${GL}\$(ls -1 | wc -l | sed 's: ::g') ${DG}files${LG}:${GL}\$(ls -lah | grep -m 1 total | sed 's/total //')b${DG}] \n ${W}┌─${DG}[${LP}\${NEW_PWD}${DG}] \n ${LG}└─${R}:${DG}(${LG} "
+PS1="${TQ}[${LG}\u${R}@${P}\h${TQ}]${W}--${TQ}[${DG}\$(tty | sed -e 's:/dev/::')${TQ}:${GL}\$(ls -1 | wc -l | sed 's: ::g') ${R}files${LG}:${GL}\$(ls -lah | grep -m 1 total | sed 's/total //')b${TQ}] \n ${W}+-${TQ}[${GL}\${NEW_PWD}${TQ}] \n ${LG}+-${R}:${TQ}(${LG} "
 
 #EOF
 ##################
