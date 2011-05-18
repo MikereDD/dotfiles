@@ -1,0 +1,49 @@
+# save plain text passwords in ~/.lftp/bookmarks on 'bookmark add' command. Off by default.
+set bmk:save-passwords no
+#The value is used when 'open' is used with just host name without protocol. Default is 'ftp'.
+#set cmd:default-protocol ftp
+# if true, exit when an unconditional (without || and && at begin) command fails.
+set cmd:fail-exit no
+# The commands in string are executed before lftp exits. 
+set cmd:at-exit bye
+# time of command execution, which is considered as 'long' and a beep is done before next prompt. 0 means off.
+set cmd:long-running 1
+# default ls argument
+#set cmd:ls-default "ls -lh"
+# If true, lftp uses control connection address instead of the one returned  in  PASV reply for data connection. This can be useful for broken NATs. Default is false.
+set ftp:fix-pasv-address true
+# if true, lftp will try to correct address returned by server for PASV command in case when server address is  in  public  network and PASV returns an address from a private network. In this case lftp would substitute server address instead of the one returned by  PASV  command, port number would not be changed.  Default is true.
+set ftp:passive-mode true
+# if true,try to negotiate SSL connection with ftp server for non-anonymous access. Default is true. This and other  ssl  set‐ tings are only available if lftp was compiled with an ssl/tls library.
+set ftp:ssl-allow true
+#set ftp:ssl-force true
+set ftp:ssl-auth TLS
+# if true, request ssl connection for data transfers. This is cpu-intensive but provides privacy. Default is false.
+set ftp:ssl-protect-data true
+# if true, request ssl connection for data  transfer  between  two ftp  servers  in  FXP mode. CPSV or SSCN command will be used in that case. If ssl connection fails for some reason,  lftp  would try unprotected FXP transfer unless ftp:ssl-force is set for any of the two servers. Default is false.
+set ftp:ssl-protect-fxp true
+# enables csh-like history expansion.
+set cmd:csh-history on
+# when false, lftp refuses to go to background when exiting. To force it, use 'exit bg'.
+set cmd:move-background yes
+# when  true (default), lftp detaches itself from the control terminal when moving to background, it is not possible  to  attach back
+set cmd:move-background-detach yes
+set ssl:verify-certificate no
+# Number of jobs run in parallel in non-interactive mode. For example, this may be useful for scripts with multiple 'get' commands. Note that setting this to a value greater than 1 changes conditional execution behaviour, basically makes it inconsistent. 
+set cmd:parallel 1
+# Number of jobs run in parallel in a queue.
+set cmd:queue-parallel 1
+# This setting is the default value for cls --time-style option.
+set cmd:time-style "%b %e %Y|%b %e %H:%M"
+# local character set. It is set from current locale initially.
+set file:charset utf-8
+# the character set used by fish server in requests, replies and file listings. Default is empty which means the same as local.
+set fish:charset utf-8
+# the program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port number. Default is 'ssh -a -x'. You can set it to 'rsh', for example.
+set fish:connect-program "ssh -a -x"
+# use specified shell on server side. Default is /bin/sh. On some systems, /bin/sh exits when doing cd to a non-existent directory. lftp can handle that but it has to reconnect. Set it to /bin/bash for such systems if bash is installed. 
+set fish:shell /bin/bash
+# Custom command prompt line
+set cmd:prompt "\[\e[0;96m\](lftp)\] \[\e[0;92m\]\]\u\[\033[0;35m\]@\]\[\e[0;36m\]\]\h\] -+ \n +- \[\e[0;35m\]\]\W\] -+ \n +- \[\e[0;95m\]:(\] \[\e[00m\]\]"
+set cmd:default-title "lftp \h:\w"
+
