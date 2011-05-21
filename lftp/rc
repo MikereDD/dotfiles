@@ -44,6 +44,6 @@ set fish:connect-program "ssh -a -x"
 # use specified shell on server side. Default is /bin/sh. On some systems, /bin/sh exits when doing cd to a non-existent directory. lftp can handle that but it has to reconnect. Set it to /bin/bash for such systems if bash is installed. 
 set fish:shell /bin/bash
 # Custom command prompt line
-set cmd:prompt "\[\e[0;96m\](lftp)\] \[\e[0;92m\]\]\u\[\033[0;35m\]@\]\[\e[0;36m\]\]\h\] -+ \n +- \[\e[0;35m\]\]\W\] -+ \n +- \[\e[0;95m\]:(\] \[\e[00m\]\]"
+set cmd:prompt "\[\e[0;37m\](\[\033[0;31m\]lftp\[\e[0;37m\])\] \[\e[0;96m\]\]\u\[\033[0;31m\]@\]\[\e[0;37m\]\]\h\] \[\e[0;37m\]-\[\033[0;31m\]+ \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;96m\]\]\W\] \[\e[0;37m\]-\[\033[0;31m\]+\] \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;37m\]:\[\033[0;31m\](\] \[\e[00m\]\]"
 set cmd:default-title "lftp \h:\w"
 
