@@ -1,0 +1,58 @@
+## moc theme - http://moc.daper.net/
+# theme: into the past
+# created on: Sat May 21 20:54:08 PDT 2011
+# by: MikereDD - http://m-redd.com
+#
+##
+# Dumb Terminal - teh lazy coders...
+# Smaller than Life Projects
+# Main Page: http://dt.tehspork.com
+# Git Repo: https://github.com/dumbterminal/
+##
+#
+background             =	 red      default
+frame                  =	 white	  black     bold
+#
+window_title           =	 white	  default   bold
+#
+directory              =	 white	  default
+selected_directory     =	 grey	  black     bold
+#
+playlist               =	 cyan	  default
+selected_playlist      =	 cyan	  black 	bold
+#
+file                   =	 blue	  default
+selected_file          =	 blue	  black 	bold
+marked_file            =	 white	  default	underline
+marked_selected_file   =     white    black  	bold,underline
+#
+info                   =	 white	  default   bold
+selected_info          =     grey     black     bold
+marked_info            =     red      default   bold
+marked_selected_info   =     red      black     bold,underline
+#
+title                  =	 white	  default   bold	
+state                  =	 grey	  black     bold,underline
+
+current_time           =	 white	  default
+time_left              =	 red	  black     bold
+total_time             =	 grey	  default
+time_total_frames      =	 white	  black     bold
+#
+sound_parameters       =	 white	  default   bold
+legend                 =	 green	  default   underline	
+disabled               =	 cyan	  black
+enabled                =	 green	  default   bold
+#
+empty_mixer_bar        =	 blue	  black
+filled_mixer_bar       =	 red	  default   bold
+empty_time_bar         =	 white	  black
+filled_time_bar        =	 red      default   bold
+#
+entry                  =	 white	  default
+entry_title            =	 white	  black     bold
+#
+status                 =     yellow   default
+error                  =	 red	  black     bold,underline
+message                =     blue	  default   bold
+plist_time             =     white	  black     bold

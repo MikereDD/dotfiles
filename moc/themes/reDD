@@ -1,0 +1,58 @@
+## moc theme - http://moc.daper.net/
+# theme: reDD
+# created on: Fri Jan 14 04:32:49 PDT 2009
+# by: MikereDD - http://m-redd.com
+#
+##
+# Dumb Terminal - teh lazy coders...
+# Smaller than Life Projects
+# Main Page: http://dt.tehspork.com
+# Git Repo: https://github.com/dumbterminal/
+##
+#
+background             =	 default  default
+frame                  =	 blue	  default
+#
+window_title           =	 white	  default
+#
+directory              =	 red	  default
+selected_directory     =	 white	  default	bold
+#
+playlist               =	 green	  default
+selected_playlist      =	 black	  default	bold
+#
+file                   =	 blue	  default   bold
+selected_file          =	 white	  default	bold
+marked_file	       =         red	  default	bold
+marked_selected_file   =     red      black	    bold
+#
+info                   =	 blue	  default   bold
+selected_info          =     blue     black     underline
+marked_info            =     red      default   bold
+marked_selected_info   =     red      black     underline
+#
+title                  =	 red	  default	
+state                  =	 white	  default
+#
+current_time           =	 blue	  default
+time_left              =	 green	  default
+total_time             =	 white	  default
+time_total_frames      =	 green	  default
+#
+sound_parameters       =	 blue	  default
+legend                 =	 green	  default	
+disabled               =	 black	  default
+enabled                =	 white	  default
+#
+empty_mixer_bar        =	 blue	  default
+filled_mixer_bar       =	 blue	  red
+empty_time_bar         =	 green	  default
+filled_time_bar        =	 green	  red
+#
+entry                  =	 white	  default
+entry_title            =	 green	  default
+#
+status                 =     blue     default
+error                  =	 red	  default
+message                =     blue	  default
+plist_time             =     green	  default 
