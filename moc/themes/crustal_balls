@@ -10,49 +10,49 @@
 # Git Repo: https://github.com/dumbterminal/
 ##
 #
-background		      = white  	      default	normal
-frame			      = blue            default     normal
+background		        =    white  	default	 normal
+frame			        =    blue       default  normal
 #
-window_title		= cyan		black	      bold
+window_title		    =    cyan		black	 bold
 #
-directory		      = blue	  	default 	bold
-selected_directory	= red 		default	normal
+directory		        =    blue	  	default  bold
+selected_directory	    =    red 		default	 normal
 #
-playlist		      = blue		black	      normal
-selected_playlist	      = red		      default	bold
+playlist		        =    blue		black	 normal
+selected_playlist	    =    red		default	 bold
 #
-file			      = cyan		default     normal
-selected_file		= red		      black	      bold
-marked_file		      = white		default	bold
-marked_selected_file	= red		      default	      bold
+file			        =    cyan		default  normal
+selected_file		    =    red		black	 bold
+marked_file		        =    white		default	 bold
+marked_selected_file	=    red		default	 bold
 #
-info			      = green		default	normal
-selected_info          =     blue     black     underline
-marked_info            =     red      black   bold
-marked_selected_info   =     cyan      default     underline
+info			        =    green		default	 normal
+selected_info           =    blue       black    underline
+marked_info             =    red        black    bold
+marked_selected_info    =    cyan       default  underline
 #
-title			      = blue		default	bold
-state			      = red		      default	bold,blink
+title			        =    blue		default  bold
+state			        =    red		default	 bold,blink
 #
-current_time		= blue		default	bold
-time_left		      = cyan		default	normal
-total_time		      = black		default	bold
-time_total_frames	      = black		default	normal
+current_time		    =    blue		default	 bold
+time_left		        =    cyan		default	 normal
+total_time		        =    black		default	 bold
+time_total_frames	    =    black		default	 normal
 #
-sound_parameters	      = green		black	      bold
-legend			= red		      black       normal
-disabled		      = black		default	bold
-enabled			= blue		default	bold
+sound_parameters	    =    green		black	 bold
+legend			        =    red		black    normal
+disabled		        =    black		default	 bold
+enabled			        =    blue		default	 bold
 #
-empty_mixer_bar		= white		black 	bold
-filled_mixer_bar	      = blue		black	      bold
-empty_time_bar		= red		      default	bold
-filled_time_bar		= black		default	normal
+empty_mixer_bar		    =    white		black 	 bold
+filled_mixer_bar	    =    blue		black	 bold
+empty_time_bar		    =    red		default	 bold
+filled_time_bar		    =    black		default	 normal
 #
-entry			      = cyan		default	bold
-entry_title		      = blue		black 	bold
+entry			        =    cyan		default	 bold
+entry_title		        =    blue		black 	 bold
 #
-status			= blue		black	      bold
-error			      = red		      yellow	bold
-message			= magenta	      black	      bold
-plist_time		      = cyan		black	bold
+status			        =    blue		black	 bold
+error			        =    red		yellow	 bold
+message			        =    magenta	black	 bold
+plist_time		        =    cyan		black	 bold
