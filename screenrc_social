@@ -19,7 +19,16 @@ defutf8 on
 # # 7 White             r    red             r    reverse
 # # 8 unused/illegal    w    white           s    standout
 # # 9 transparent       y    yellow          u    underline
-term screen-256color
+
+# Custom changes #
+# term
+#term screen-256color
+term xterm-256color
+#term rxvt-256color
+
+# encoding
+encoding UTF-8
+
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
 sessionname social
@@ -98,10 +107,11 @@ bind '}' history
 
 # shelltitle '$ | '
 screen -t shell 0 
-screen -t irc 1  
+screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
 screen -t moc 3 mocp
 screen -t radio 4 sh /home/mredd/scripts/audio/radio-switcher.sh
+screen -t torrent rtorrent
 screen -t iw 5 wicd-curses
 
 #
@@ -112,10 +122,10 @@ screen -t iw 5 wicd-curses
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
 # Backticks
-backtick 1 30 30 cat $HOME/.get_mail
+backtick 1 30 30 sh $HOME/.wmii/scripts/reademailcount.sh
 # Status
-caption always '%{= w} %{w}Load: %l %= %{r}| %= %{w}%1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= .5}%-w%{w}%n%{r}`%{w}%t%{-b r}%{.5}%+w %= %{w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|'  
+caption always '%{= w} %{w}Load: %{r}%l %= %{r}| %= %{b}%1`'
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= w}%-w%{g}%n%{r}`%{g}%t%{-b r}%{= w}%+w %= %{w}%c %{r}- %{w}%m%{r}/%{w}%d%{r}/%{w}%y |%{r}%H%{w}|'  
 # bind = resize =
 # bind + resize +1
 # bind - resize -1

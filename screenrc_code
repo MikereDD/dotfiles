@@ -20,7 +20,15 @@ defutf8 on
 # # 8 unused/illegal    w    white           s    standout
 # # 9 transparent       y    yellow          u    underline
 
-term screen-256color
+# Custom changes #
+# term
+#term screen-256color
+term xterm-256color
+#term rxvt-256color
+
+# encoding
+encoding UTF-8
+
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
 sessionname code 
@@ -98,11 +106,13 @@ bind '}' history
 #
 
 # shelltitle '$ | '
-screen -t shell 0
-screen -t git 1
-screen -t edit 2 vim
-screen -t todo 3 calcurse
+screen -t shell 0 
+screen -t edit 1 vim
+screen -t todo 2 calcurse
+screen -fn -t ftp 3 lftp
 #screen -t synergy 4 synergyc -f 172.16.128.8 
+chdir $HOME/dev
+screen -fn -t dev 4   
 
 #
 #
@@ -111,7 +121,7 @@ screen -t todo 3 calcurse
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
 # Status
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= r}%-w%{w}%n%{r}`%{w}%t%{-b r}%{r}%+w %= %{.w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|' 
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= w}%-w%{g}%n%{r}`%{g}%t%{-b r}%{w}%+w %= %{.w}%c %{r}- %{w}%m%{r}/%{w}%d%{r}/%{w}%y %{r}|%{g}%H%{r}|' 
 # bind = resize =
 # bind + resize +1
 # bind - resize -1

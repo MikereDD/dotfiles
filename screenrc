@@ -15,7 +15,16 @@
 # # 7 White             r    red             r    reverse
 # # 8 unused/illegal    w    white           s    standout
 # # 9 transparent       y    yellow          u    underline
-term screen-256color
+
+# Custom changes #
+# term
+#term screen-256color
+term xterm-256color
+#term rxvt-256color
+
+# encoding
+encoding UTF-8
+
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
 sessionname screen
@@ -128,7 +137,7 @@ bind F eval "caption always"    "hardstatus alwayslastline"
 # Backticks
 #backtick 1 60 60 cat $HOME/.get_mail
 #caption always '%{= .w} Load: %l %= | %= %1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|'  
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y |%{b}%H%{w}|'  
 # bind = resize =
 # bind + resize +1
 # bind - resize -1

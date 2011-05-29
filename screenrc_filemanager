@@ -20,7 +20,15 @@ defutf8 on
 # # 8 unused/illegal    w    white           s    standout
 # # 9 transparent       y    yellow          u    underline
 
-term screen-256color
+# Custom changes #
+# term
+#term screen-256color
+term xterm-256color
+#term rxvt-256color
+
+# encoding
+encoding UTF-8
+
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
 sessionname filemanger 
@@ -109,7 +117,7 @@ screen -t fm 1 vifm $HOME/ /mnt/
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
 # Status
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= r}%-w%{w}%n%{r}`%{w}%t%{-b r}%{r}%+w %= %{.w}%c %{w}- %{w}%m%{w}/%{w}%d%{w}/%{w}%y |%H|' 
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{r}%n%{w}`%{r}%t%{-b r}%{g}%+w %= %{.g}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y %{g}|%{r}%H%{g}|' 
 # bind = resize =
 # bind + resize +1
 # bind - resize -1
