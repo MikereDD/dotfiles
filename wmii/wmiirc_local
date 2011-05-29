@@ -46,12 +46,13 @@ wmiir write /tagrules <<!
     #
     /MPlayer|VLC|Boxee|boxee|huludesktop/ -> ~+video+social+web+code
     /Firefox|Namoroka.*|dwb|DWB|vimprobable2|Mozilla.*|Thunderbird|Muttator/ -> +web
-    /Code|gedit|gedit.*|*.gedit|leafpad/ -> +code
+    /gedit|leafpad/ -> +code
     /Gimp.*/ -> ~+art
+    /Code/ -> +code
     /Admin/ -> +admin
     /Social/ -> +social
     /KDX.*/ -> ~+social
-    /nautilus|thunar|File Manager|File*Manager.*|*.File*Manger/ -> +file
+    /nautilus|thunar|File Manager/ -> +file
     /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /armagetronad/ -> +game
     /.*/ -> sel
@@ -60,7 +61,7 @@ wmiir write /tagrules <<!
 
 # Status Bar Info
 status() {
-echo -n $($HOME/.wmii/scripts/wifi.sh) "|" $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
+echo -n $($HOME/.wmii/scripts/np-moc_radio.sh) $($HOME/.wmii/scripts/wifi.sh) "|" $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
 }
 
 local_events() {
@@ -119,14 +120,17 @@ focuscolors $WMII_FOCUSCOLORS
 normcolors $WMII_NORMCOLORS
 grabmod $MODKEY
 border 0
-        bar on top
+bar on top
 !
 # set wallpaper
 $WMII_BACKGROUND
 
 # Misc
-#scripts
+# apps
+pkill -9 devmon;devmon 2>&1 > ~/tmp/devmon.log &
+# scripts
 #progsfile="$(wmiir namespace)/.proglist"
 #action weather &
 #action uptime &
 #action status &
+
