@@ -5,9 +5,6 @@
 #
 ###############################
 
-# UTF-8 everywhere
-defutf8 on
-
 # Color table:
 # # 0 Black             .    leave color unchanged
 # # 1 Red               b    blue
@@ -22,12 +19,18 @@ defutf8 on
 
 # Custom changes #
 # term
-#term screen-256color
-term xterm-256color
+term screen-256color
+#term xterm-256color
 #term rxvt-256color
 
 # encoding
 encoding UTF-8
+
+# UTF-8 everywhere
+defutf8 on
+
+# fix residual editor text
+altscreen on
 
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
@@ -110,7 +113,7 @@ screen -t shell 0
 screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
 screen -t moc 3 mocp
-screen -t radio 4 sh /home/mredd/scripts/audio/radio-switcher.sh
+screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
 screen -t torrent rtorrent
 screen -t iw 5 wicd-curses
 

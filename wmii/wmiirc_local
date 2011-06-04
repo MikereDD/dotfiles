@@ -44,15 +44,22 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer|VLC|Boxee|boxee|huludesktop/ -> ~+video+social+web+code
-    /Firefox|Namoroka.*|dwb|DWB|vimprobable2|Mozilla.*|Thunderbird|Muttator/ -> +web
+    /MPlayer.*/ -> ~+video+code+social+web
+    /VLC.*|vlc.*/ -> ~+video+code+social+web
+    /Boxee.*|boxee.*/ -> ~+video+code+social+web
+    /huludesktop|huludesktop.*/ -> ~+video+code+social+web
+    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*/ -> +web
+    /Thunderbird.*|Muttator.*/ -> +web
+    /dwb.*|DWB.*/ -> +web
+    /vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +code
     /Gimp.*/ -> ~+art
-    /Code/ -> +code
-    /Admin/ -> +admin
-    /Social/ -> +social
+    /CP shell/ -> +code
+    /SU shell/ -> +admin
+    /HS shell/ -> +social
+    /VE shell/ -> +video+code+social+web
     /KDX.*/ -> ~+social
-    /nautilus|thunar|File Manager/ -> +file
+    /nautilus|thunar|FM shell/ -> +file
     /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /armagetronad/ -> +game
     /.*/ -> sel

@@ -18,12 +18,18 @@
 
 # Custom changes #
 # term
-#term screen-256color
-term xterm-256color
+term screen-256color
+#term xterm-256color
 #term rxvt-256color
 
 # encoding
 encoding UTF-8
+
+# UTF-8 everywhere
+defutf8 on
+
+# fix residual editor text
+altscreen on
 
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
@@ -66,14 +72,6 @@ shell                 bash
 shell -$SHELL
 
 defscrollback 1000
-
-################
-#
-# screenrc
-#
-
-# UTF-8 everywhere
-defutf8 on
 
 # tell screen that you term can scroll
 termcapinfo xterm ti@:te@
