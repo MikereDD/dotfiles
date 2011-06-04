@@ -210,7 +210,7 @@ export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
 export HISTCONTROL="ignoredups"
 #source /usr/share/cdargs/cdargs-bash.sh
 
-PS1="${TQ}[${LG}\u${R}@${P}\h${TQ}]${W}--${TQ}[${DG}\$(tty | sed -e 's:/dev/::')${TQ}:${GL}\$(ls -1 | wc -l | sed 's: ::g') ${R}files${LG}:${GL}\$(ls -lah | grep -m 1 total | sed 's/total //')b${TQ}] \n ${W}+-${TQ}[${GL}\${NEW_PWD}${TQ}] \n ${LG}+-${R}:${TQ}(${LG} "
+PS1="${P}[${GL}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${Y}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${Y}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}(${LG} "
 
 #EOF
 ##################
