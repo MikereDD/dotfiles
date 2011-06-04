@@ -4,15 +4,9 @@
 # http://m-redd.com
 #
 ###############################
-#Synergy
-#/usr/bin/killall synergyc 
-#sleep 1 
-#synergyc 172.16.128.8
+#
 #Font Help
 xset +fp ${HOME}/.fonts
-# SSH
-eval `/usr/bin/ssh-agent`
-SSH_ASKPASS=/usr/lib/openssh/x11-ssh-askpass ssh-add < /dev/null
 
 # Misc
 if [ -f $HOME/.Xmodmap ]; then
@@ -23,21 +17,28 @@ fi
 
 autocutsel -fork &
 autocutsel -selection PRIMARY -fork &
-xrdb -load .Xdefaults &
+xrdb -load ~/.Xdefaults &
 xset m 4 1 &
 xcompmgr &
 xbindkeys &
 sabnzbd &
 xscreensaver -no-splash &
+#sh ~/scripts/synergyc start &
 synergys &
 numlockx &
-#noip2 -c /home/mredd/.noip2.rc
-xset +fp /usr/share/fonts/local
-xset fp rehash
-#xmodmap ~/.xmodmap-`uname -n`
-#sh ~/scripts/net/MultipleDropboxInstances.sh 
+#noip2 -c ~/.noip2.rc &
+xset +fp /usr/share/fonts/local &
+xset fp rehash &
+xmodmap ~/.Xmodmap &
+sh ~/scripts/net/MultipleDropboxInstances.sh &
+#pkill -9 g15macro ; g15macro &
+#devmon 2>&1 > ~/tmp/devmon.log &
 sleep 1
-#sh ~/scripts/synergyc start
 #wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
-#until exec ck-launch-session wmii; do true ; done
-until exec wmii; do true ; done
+#until wmii; do
+#    true 
+#done
+until exec ck-launch-session wmii; do
+    true
+done
+
