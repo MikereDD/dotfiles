@@ -27,7 +27,8 @@ histnum=5000
 # Column Rules
 wmiir write /colrules <<!
     /gimp/ -> 17+83+41
-    /.*/ -> 62+38 # Golden Ratio
+   /xcalc/ -> 275x350+1638+21
+  /.*/ -> 62+38 # Golden Ratio
 !
 
 # Tagging Rules
@@ -54,6 +55,7 @@ wmiir write /tagrules <<!
     /vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +code
     /Gimp.*/ -> ~+art
+    /xcalc/ -> ~
     /CP shell/ -> +code
     /SU shell/ -> +admin
     /HS shell/ -> +social
