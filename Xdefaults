@@ -19,53 +19,50 @@ Xft.hinting:                                 full
 Xft.hintstyle:                               hintslight
 
 ! Terminal themes --
-*background:                                 #202020
-*foreground:                                 #e2e2e5
+!*background:                                 #202020
+!*foreground:                                 #e2e2e5
 
-! Black       = color0 + DarkGray = color8
-! DarkRed     = color1 + Red      = color9
-! DarkGreen   = color2 + Green    = color10
-! DarkYellow  = color3 + Yellow   = color11
-! DarkBlue    = color4 + Blue     = color12
-! DarkMagenta = color5 + Magenta  = color13
-! DarkCyan    = color6 + Cyan     = color14
-! LightGrey   = color7 + White    = color15
+!Theme Twenty-One
+!*background: rgb:1a/1a/1a
+!*background: #080b0a
+!*background: rgb:1111/1111/1111/dddd
+!*foreground: rgb:aa/aa/aa
+!*color0:     rgb:00/00/00
+!*color8:     rgb:66/66/66
+!*color1:     rgb:9e/18/28
+!*color9:     rgb:bc/57/66
+!*color2:     rgb:00/88/00
+!*color10:    rgb:61/a1/71
+!*color3:     rgb:d2/bb/4b
+!*color11:    rgb:e7/db/52
+!*color4:     rgb:41/41/71
+!*color12:    rgb:50/85/af
+!*color5:     rgb:96/3c/59
+!*color13:    rgb:a9/7a/99
+!*color6:     rgb:41/81/79
+!*color14:    rgb:6b/a4/a4
+!*color7:     rgb:be/be/be
+!*color15:    rgb:ff/ff/ff
 
-! Hornet
-!*color0:  #303030
-!*color1:  #c03000
-!*color2:  #b1d631
-!*color3:  #fecf35
-!*color4:  #4b5661
-!*color5:  #7e8aa2
-!*color6:  #4bb5c1
-!*color7:  #e2e2e5
-!*color8:  #c03000
-!*color10: #b1d631
-!*color11: #fecf35
-!*color12: #4b5661
-!*color13: #7e8aa2
-!*color14: #4bb5c1
-!*color15: #e2e2e5
-
-
-! Merged
-*color0:  #000000
-*color1:  #963C59
-*color2:  #76B243
-*color3:  #B2B27F
-*color4:  #5986B2
-*color5:  #B250B1
-*color6:  #698FB2
-*color7:  #8f8f8f
-*color8:  #3c414c
-*color9:  #CF6171
-*color10: #A8FF60
-*color11: #FFFFB6
-*color12: #6699CC
-*color13: #FF73FD
-*color14: #96CBFE
-*color15: #F6F3E8
+!Theme Twenty-Two
+*background: rgb:00/00/00
+*foreground: rgb:be/be/be
+*color0:     rgb:00/00/00
+*color1:     rgb:d3/62/65
+*color2:     rgb:ae/ce/91
+*color3:     rgb:e7/e1/8c
+*color4:     rgb:7a/7a/b0
+*color5:     rgb:96/3c/59
+*color6:     rgb:7f/9f/7f
+*color7:     rgb:be/be/be
+*color8:     rgb:66/66/66
+*color9:     rgb:ef/81/71
+*color10:    rgb:e5/f7/79
+*color11:    rgb:f0/df/af
+*color12:    rgb:8e/9f/bc
+*color13:    rgb:ef/9e/be
+*color14:    rgb:71/be/be
+*color15:    rgb:ff/ff/ff
 
 URxvt*termName:                    rxvt-256color
 ! font preference
@@ -81,18 +78,18 @@ URxvt.keysym.C-equal:              command:\033]710;xft:Bitstream Vera Sans Mono
 URxvt.keysym.C-plus:               command:\033]710;xft:Pragmata:pixelsize=15:antialias=true:hinting=true\007
 
 !initial size
-URxvt*geometry:                    126x30
+URxvt*geometry:                    100x40
 !internal whitespace
 URxvt*borderless:                  true
 URxvt*internalBorder:              0
 !fade text n% upon unfocus
-URxvt*fading:                      5
+URxvt*fading:                      30
 !darken=(0 to 100) lighten=(-1 to -100)
-URxvt*shading:                     50
+URxvt*shading:                     90
 !tint background with this color
-URxvt*tintColor:                   #191717
+URxvt*tintColor:                   #080b0a
 !set to 32-bit for real transparency (compositing required)
-URxvt*depth:                       32
+URxvt*depth:                       32 
 !save n lines of scrollback buffer
 URxvt*saveLines:                   32767
 !flash screen for attention
@@ -109,9 +106,9 @@ URxvt*scrollBar:                  false
 URxvt*scrollstyle:                plain
 !scrollbar alignment
 URxvt*scrollBar_right:            true
-URxvt*scrollColor:                #777777
+URxvt*scrollColor:                #080b0a
 !transparency
-URxvt*transparent:                false
+URxvt*transparent:                true
 !is this a login shell?
 URxvt*loginShell:                 true
 !set the TERM environment variable
@@ -134,12 +131,13 @@ URxvt*keysym.M-u: perl:mark-yank-urls:activate_mark_mode
 URxvt*underlineURLs:              true
 URxvt*perl-lib:                   ${HOME}/.urxvt/
 URxvt*perl-ext:                   selection,mark-yank-urls
-URxvt*urlLauncher:                /home/mredd/.urxvt/urxvt-to-uzbl.sh
+!URxvt*urlLauncher:                firefox
+URxvt*urlLauncher:                dwb
 URxvt*keysym.C-Delete:            perl:matcher
 URxvt*matcher.button:             1
 URxvt*matcher.pattern.1:          \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 URxvt*matcher.pattern.2:          \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt*matcher.launcher.2:         gvim +$2 $1
+URxvt*matcher.launcher.2:         vim +$2 $1
 !tabs
 URxvt*tabbed.autohide:            yes
 URxvt*tabbar-fg:                  124
@@ -156,7 +154,8 @@ URxvt*tabbed.keysym.M-u:          perl:mark-yank-urls:activate_mark_mode
 URxvt*tabbed.underlineURLs:       true
 URxvt*tabbed.perl-lib:            ${HOME}/.urxvt/
 URxvt*tabbed.perl-ext:            selection,mark-yank-urls
-URxvt*tabbed.urlLauncher:         /home/mredd/.urxvt/urxvt-to-uzbl.sh
+!URxvt*tabbed.urlLauncher:         firefox
+URxvt*tabbed.urlLauncher:         dwb
 !! END urlLauncher settings !!
 
 !
@@ -256,7 +255,7 @@ xscreensaver.dateFormat:    %I:%M%P %a %b %d, %Y
 
 !xcalc --
 
-xcalc*geometry:                        225x300
+xcalc*geometry:                        275x350+1638+21
 xcalc.ti.bevel.background:             #191717
 xcalc.ti.bevel.screen.background:      #000000
 xcalc.ti.bevel.screen.DEG.background:  #000000
