@@ -23,21 +23,21 @@ spell-checking-languages=english
 
 # Colours
 #-------------------------------------------
-normal-bg-color=#505050
+normal-bg-color=#222222
 insertmode-fg-color=#ffffff
 insertmode-bg-color=#303030
-active-fg-color=#ffffff
-normal-fg-color=#cccccc
-active-bg-color=#000000
+active-fg-color=#0c9ac7
+normal-fg-color=#097fb1
+active-bg-color=#222222
 normal-completion-fg-color=#eeeeee
 active-completion-fg-color=#53868b
 active-completion-bg-color=#000000
 normal-completion-bg-color=#151515
-tab-active-fg-color=#FFFFFF
-tab-normal-fg-color=#cccccc
-tab-active-bg-color=#000000
-tab-normal-bg-color=#505050
-tab-number-color=#7ac5cd
+tab-active-fg-color=#0c92c7
+tab-normal-fg-color=#097fb1
+tab-active-bg-color=#333333
+tab-normal-bg-color=#222222
+tab-number-color=#c3c3c3
 status-blocked-color=#ffffff
 status-allowed-color=#00ff00
 ssl-trusted-color=#00ff00
