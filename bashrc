@@ -209,6 +209,8 @@ export BROWSER="dwb"
 export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
 export HISTCONTROL="ignoredups"
 #source /usr/share/cdargs/cdargs-bash.sh
+export SDL_AUDIODRIVER=alsa
+export AUDIODEV=plug:dmix
 
 PS1="${P}[${GL}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${Y}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${Y}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}(${LG} "
 

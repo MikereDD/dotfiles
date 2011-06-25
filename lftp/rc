@@ -108,9 +108,9 @@ set cmd:term-status/*rxvt* "\e[11;0]\e]2;\T\007\e[11]"
 set cmd:set-term-status on
 
 # IPV4 Address
-#set ftp:port-ipv4 **********
+#set ftp:port-ipv4 *.*.*.*
 # Port Range
-set ftp:port-range 60310-60320
+#set ftp:port-range *-*
 
 # Custom command prompt line
 set cmd:prompt "\[\e[0;37m\](\[\033[0;31m\]lftp\[\e[0;37m\])\] \[\e[0;96m\]\]\u\[\033[0;31m\]@\]\[\e[0;37m\]\]\h\] \[\e[0;37m\]-\[\033[0;31m\]+ \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;96m\]\]\W\] \[\e[0;37m\]-\[\033[0;31m\]+\] \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;37m\]:\[\033[0;31m\](\] \[\e[00m\]\]"
