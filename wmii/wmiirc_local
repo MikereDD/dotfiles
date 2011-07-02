@@ -57,7 +57,7 @@ wmiir write /tagrules <<!
     /dwb.*|DWB.*/ -> +web
     /vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +code
-    /Gimp.*/ -> ~+art
+    /Gimp.*|darktable/ -> ~+art
     /xcalc/ -> ~
     /CP shell/ -> +code
     /SU shell/ -> +admin
