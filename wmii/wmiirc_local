@@ -9,18 +9,25 @@ RIGHT=l
 noticetimeout=5
 noticebar=/rbar/!notice
 
-# Colors tuples: "<text> <background> <border>"
+# Colors "<text> <background> <border>"
 #export WMII_NORMCOLORS="#f17233 #080b0a #724d30"
 #export WMII_FOCUSCOLORS="#f17233 #080b0a #bfbfbf"
 #export WMII_NORMCOLORS="#e6e8fa #080b0a #ebc79e"
 #export WMII_FOCUSCOLORS="#ebc79e #161e1b #e6e8fa"
-export WMII_FOCUSCOLORS="#0c92c7 #222222 #c3c3c3"
-export WMII_NORMCOLORS="#097fb1 #222222 #7e7e7e"
+#export WMII_FOCUSCOLORS="#0c92c7 #222222 #c3c3c3"
+#export WMII_NORMCOLORS="#097fb1 #222222 #7e7e7e"
+export WMII_FOCUSCOLORS="#cfd4d0 #03090b #0ebf6e"
+export WMII_NORMCOLORS="#aab8bb #000000 #7b0367"
+# Wallpaper
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-889602.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-928033.png"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-104860.jpg"
-#export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
-export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-104860.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-958895.jpg"
+# Font
+export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
+#export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
+#export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
+# Terminal
 export WMII_TERM="urxvt -name shell"
 
 # Menu history
