@@ -36,8 +36,11 @@ histnum=5000
 
 # Column Rules
 wmiir write /colrules <<!
-    /gimp/ -> 17+83+41
-   /xcalc/ -> 275x350+1638+21
+  /gimp/ -> 17+83+41
+  /xcalc/ -> 275x350+1638+21
+  /MusicManager.*/ -> 159x18+1755+22
+  /wineserver.*/ -> 159x18+1755+22
+  /Wine.*/ -> 159x18+1755+22
   /.*/ -> 62+38 # Golden Ratio
 !
 
@@ -73,6 +76,7 @@ wmiir write /tagrules <<!
     /KDX.*/ -> ~+social
     /nautilus|thunar|FM shell/ -> +file
     /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+    /Wine System.*/ -> ~+gmm
     /armagetronad/ -> +game
     /.*/ -> sel
     /.*/ -> 1
@@ -106,7 +110,7 @@ Key $MODKEY-7
 Key $MODKEY-8
               wmiir xwrite /ctl view "video"
 Key $MODKEY-9
-              wmiir xwrite /ctl view "test"
+              wmiir xwrite /ctl view "gmm"
 Key $MODKEY-Shift-0
               wmiir xwrite /client/sel/tags "admin"
 Key $MODKEY-Shift-1
@@ -126,7 +130,7 @@ Key $MODKEY-Shift-7
 Key $MODKEY-Shift-8
               wmiir xwrite /client/sel/tags "video"
 Key $MODKEY-Shift-9
-              wmiir xwrite /client/sel/tags "test"
+              wmiir xwrite /client/sel/tags "gmm"
 !
               done
 

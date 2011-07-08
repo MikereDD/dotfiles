@@ -186,6 +186,12 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# Bash Binds
+##################
+if [ -f ~/.bash_binds ]; then
+    . ~/.bash_binds
+fi
+
 # Inputrc file - Faster Completion
 if [ -f ~/.inputrc ]; then
     . ~/.inputrc
