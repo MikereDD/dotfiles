@@ -3,7 +3,9 @@
 # General settings
 #-------------------------------------------
 startpage=https://bbs.archlinux.org/
-user-agent=DWB (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)
+#user-agent=DWB (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)
+user-agent=DWB Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2
+#user-agent=Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2 ChromePlus
 user-stylesheet-uri=
 proxy=false
 message-delay=2
@@ -33,11 +35,16 @@ normal-completion-fg-color=#eeeeee
 active-completion-fg-color=#53868b
 active-completion-bg-color=#000000
 normal-completion-bg-color=#151515
-tab-active-fg-color=#0c92c7
-tab-normal-fg-color=#097fb1
-tab-active-bg-color=#333333
-tab-normal-bg-color=#222222
-tab-number-color=#c3c3c3
+#tab-active-fg-color=#0c92c7
+tab-active-fg-color=#ffffff
+#tab-normal-fg-color=#097fb1
+tab-normal-fg-color=#aab8bb
+#tab-active-bg-color=#333333
+tab-active-bg-color=#000000
+#tab-normal-bg-color=#222222
+tab-normal-bg-color=#03090b
+#tab-number-color=#c3c3c3
+tab-number-color=#0ebf6e
 status-blocked-color=#ffffff
 status-allowed-color=#00ff00
 ssl-trusted-color=#00ff00
