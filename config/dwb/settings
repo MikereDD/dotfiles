@@ -4,8 +4,8 @@
 #-------------------------------------------
 startpage=https://bbs.archlinux.org/
 #user-agent=DWB (X11; U; Unix; en-US) AppleWebKit/531.2+ Compatible (Safari)
-user-agent=DWB Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2
-#user-agent=Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2 ChromePlus
+#user-agent=DWB Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2
+user-agent=Mozilla/5.0 (X11; U; Linux x86_64; en-US) AppleWebKit/533.2 (KHTML, like Gecko) Chrome/5.0.342.9 Safari/533.2 ChromePlus
 user-stylesheet-uri=
 proxy=false
 message-delay=2
@@ -16,7 +16,7 @@ enable-spell-checking=true
 proxy-url=
 auto-load-images=true
 complete-bookmarks=true
-history-length=500
+history-length=1000
 complete-history=true
 complete-searchengines=true
 enable-site-specific-quirks=true
@@ -88,18 +88,18 @@ font=Droid Sans Mono Slashed 10
 font-inactive=
 font-completion=
 font-entry=
-default-font-size=10
-normal-font-size=10
+default-font-size=12
+normal-font-size=12
 serif-font-family=serif
 monospace-font-family=monospace
 cursive-font-family=serif
 default-font-family=sans-serif
 sans-serif-font-family=sans-serif
-default-monospace-font-size=10
+default-monospace-font-size=12
 fantasy-font-family=serif
-active-font-size=10
-minimum-logical-font-size=7
-minimum-font-size=6
+active-font-size=12
+minimum-logical-font-size=10
+minimum-font-size=8
  
 # Hints
 #-------------------------------------------
