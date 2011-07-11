@@ -89,9 +89,9 @@ tab-key-cycles-through-elements=true
 #-------------------------------------------
 #font=Droid Sans Mono Slashed 10
 font=Maven Pro 1o
-font-inactive=Antipasto 10
+font-inactive=Geo Medium 10
 font-completion=Pragmata TT 10
-font-entry=Geo Medium 10
+font-entry=Maven Pro Medium 10
 default-font-size=12
 normal-font-size=10
 serif-font-family=serif
