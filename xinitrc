@@ -23,6 +23,7 @@ x='xinit'
 # Start Window Manager
 case "$1" in
     awesome)
+# Awesome
            autocutsel -fork &
            autocutsel -selection PRIMARY -fork &
            xrdb -load ~/.Xdefaults &
@@ -44,6 +45,7 @@ case "$1" in
            sleep 1
            exec ck-launch-session awesome ;;
     lunchbox)
+# Lunchbox
            autocutsel -fork &
            autocutsel -selection PRIMARY -fork &
            xrdb -load ~/.Xdefaults &
@@ -65,6 +67,7 @@ case "$1" in
            sleep 1
            exec ck-launch-session lunchbox ;;
     wmfs)
+# WMFS
            autocutsel -fork &
            autocutsel -selection PRIMARY -fork &
            xrdb -load ~/.Xdefaults &
@@ -86,6 +89,7 @@ case "$1" in
            sleep 1
            exec ck-launch-session wmfs ;;
     *)
+# WMii
            autocutsel -fork &
            autocutsel -selection PRIMARY -fork &
            xrdb -load ~/.Xdefaults &
