@@ -84,7 +84,7 @@ wmiir write /tagrules <<!
 
 # Status Bar Info
 status() {
-echo -n $($HOME/.wmii/scripts/np-moc_radio.sh) $($HOME/.wmii/scripts/wifi.sh) "|" $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
+echo -n $($HOME/.wmii/scripts/np-moc_radio.sh) $($HOME/.wmii/scripts/wifi-eth0.sh) "|" $($HOME/.wmii/scripts/check_weather.sh) "|" $($HOME/.wmii/scripts/uptime.sh) "|" Updates: $(perl $HOME/scripts/conky-scripts/updates/arch-updates/conky-updates.pl) "|" $(date +'%R:%S %m/%d/%Y')
 }
 
 local_events() {
