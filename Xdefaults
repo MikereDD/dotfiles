@@ -127,11 +127,13 @@ URxvt*mapAlert:                   true
 URxvt*utmpInhibit:                true
 !! BEGIN urlLauncher settings !!
 !URxvt*perl-ext-common:            default,matcher,clipboard,keyboard-select
-URxvt*perl-ext-common:            default,matcher,clipboard,keyboard-select,tabbedex
-URxvt*keysym.M-u:                 perl:mark-yank-urls:activate_mark_mode
+URxvt*perl-ext-common:            default,matcher,clipboard,keyboard-select,url-select,tabbedex
+!URxvt*keysym.M-u:                 perl:mark-yank-urls:activate_mark_mode
+URxvt.keysym.M-u:                 perl:url-select:select_next
 URxvt.keysym.M-Escape:            perl:keyboard-select:activate
 URxvt.keysym:M-s:                 perl:keyboard-select:search
 URxvt*underlineURLs:              true
+URvxt.urlButton:                  2
 URxvt*perl-lib:                   ${HOME}/.urxvt/
 URxvt*perl-ext:                   selection,mark-yank-urls
 !URxvt*urlLauncher:                firefox
