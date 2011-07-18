@@ -1,6 +1,6 @@
 #!/bin/bash
 # Dumb Terminal Arch Linux System Info Dump
-VER="0.2"
+VER="0.3"
 # http://dt.tehspork.com
 # Dumb Terminal
 #  Smaller than Life Projects
