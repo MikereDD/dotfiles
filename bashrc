@@ -129,14 +129,16 @@ TR="\[\e[0m\]"      # Text Reset
 
 [ $UID -eq "0" ] && UC=$R   # root's color
 
-# Dir_Colors
+# Dir_Colors & LS++ LS_COLORS
 ##################
 if type -P dircolors >/dev/null ; then
-if [[ -f ~/.dir_colors ]] ; then
-eval $(dircolors -b ~/.dir_colors)
-elif [[ -f /etc/DIR_COLORS ]] ; then
-eval $(dircolors -b /etc/DIR_COLORS)
-fi
+    if [[ -f $HOME/.LS_COLORS ]] ; then
+        eval $( dircolors -b $HOME/.LS_COLORS )
+    elif [[ -f $HOME/.dir_colors ]] ; then
+        eval $( dircolors -b $HOME/.dir_colors )
+    elif [[ -f /etc/DIR_COLORS ]] ; then
+        eval $( dircolors -b /etc/DIR_COLORS )
+    fi
 fi
 
 #
