@@ -16,17 +16,27 @@ noticebar=/rbar/!notice
 #export WMII_FOCUSCOLORS="#ebc79e #161e1b #e6e8fa"
 #export WMII_FOCUSCOLORS="#0c92c7 #222222 #c3c3c3"
 #export WMII_NORMCOLORS="#097fb1 #222222 #7e7e7e"
-export WMII_FOCUSCOLORS="#cfd4d0 #03090b #0ebf6e"
-export WMII_NORMCOLORS="#aab8bb #000000 #7b0367"
+#export WMII_FOCUSCOLORS="#cfd4d0 #03090b #0ebf6e"
+#export WMII_NORMCOLORS="#aab8bb #000000 #7b0367"
+export WMII_FOCUSCOLORS="#fefefe #0b0a0a #cccccc"
+export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
 # Wallpaper
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-889602.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-928033.png"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-104860.jpg"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-958895.jpg"
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-958895.jpg"
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_Dark_Knight-The_Joker-wallpaper.jpg"
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_movies_DC_Comics_Dark_Knight_The_Joker_wallpaper.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Dark_wallpaper.jpg"
+
+
 # Font
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
 #export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
 #export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
+#export WMII_FONT="xft:Pragmata TT:pixelsize=12:antialias=true:bold:hinting=true"
+#export WMII_FONT="xft:Skyhook Mono:pixelsize=12:antialias=true:bold:hinting=true"
+#export WMII_FONT="xft:Lintel:pixelsize=12:antialias=true:bold:hinting=true"
 # Terminal
 export WMII_TERM="urxvt -name shell"
 
@@ -77,6 +87,7 @@ wmiir write /tagrules <<!
     /nautilus|thunar|FM shell/ -> +file
     /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /Wine System.*/ -> ~+gmm
+    /Spotify.*/ -> ~+gmm
     /armagetronad/ -> +game
     /.*/ -> sel
     /.*/ -> 1
