@@ -20,7 +20,7 @@ TITLE=`mocp -i | grep SongTitle | cut -f2 -d ":"`
 ## Streaming Radio Players
 # Variables Shell-FM - radio
 #IFONLFM=`sh $HOME/scripts/system/check_shell-fm_running-PID.sh`
-if [ -f /home/mredd/.shell-fm/nowplaying ]; then
+if [ -f $HOME/.shell-fm/nowplaying ]; then
    IFONLFM=`sh $HOME/scripts/system/check_shell-fm_running-PID.sh`
    NPLFM=`cat $HOME/.shell-fm/nowplaying`
    echo "LastFM: $NPLFM " | wmiir create /rbar/anowplaying
