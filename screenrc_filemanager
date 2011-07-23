@@ -33,6 +33,8 @@ defutf8 on
 altscreen on
 
 #terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+terminfo rxvt* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+
 #name the session
 sessionname filemanger 
 

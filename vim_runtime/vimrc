@@ -2,7 +2,7 @@
 " Maintainer: amix the lucky stiff
 "             http://amix.dk - amix@amix.dk
 "
-" Version: 3.3 - 21/01/10 01:05:46
+" Version: 3.6 - 25/08/10 14:40:30
 "
 " Blog_post: 
 "       http://amix.dk/blog/post/19486#The-ultimate-vim-configuration-vimrc
@@ -11,7 +11,7 @@
 " Raw_version: 
 "       http://amix.dk/vim/vimrc.txt
 "
-" How_to_Install:
+" How_to_Install_on_Unix:
 "    $ mkdir ~/.vim_runtime
 "    $ svn co svn://orangoo.com/vim ~/.vim_runtime
 "    $ cat ~/.vim_runtime/install.sh
@@ -41,11 +41,12 @@
 "    -> Python section
 "    -> JavaScript section
 "
+"
 " Plugins_Included:
 "     > minibufexpl.vim - http://www.vim.org/scripts/script.php?script_id=159
 "       Makes it easy to get an overview of buffers:
 "           info -> :e ~/.vim_runtime/plugin/minibufexpl.vim
-"
+" 
 "     > bufexplorer - http://www.vim.org/scripts/script.php?script_id=42
 "       Makes it easy to switch between buffers:
 "           info -> :help bufExplorer
@@ -62,11 +63,20 @@
 "       Snippets for many languages (similar to TextMate's):
 "           info -> :help snipMate
 "
-"     > fuzzyfinder - http://www.vim.org/scripts/script.php?script_id=1984
-"       Find files fast (similar to TextMate's feature):
-"           info -> :help fuzzyfinder@en
+"     > mru.vim - http://www.vim.org/scripts/script.php?script_id=521
+"       Plugin to manage Most Recently Used (MRU) files:
+"           info -> :e ~/.vim_runtime/plugin/mru.vim
+"
+"     > Command-T - http://www.vim.org/scripts/script.php?script_id=3025
+"       Command-T plug-in provides an extremely fast, intuitive mechanism for opening filesa:
+"           info -> :help CommandT
+"           screencast and web-help -> http://amix.dk/blog/post/19501
+"
 "
 "  Revisions:
+"     > 3.6: Added lots of stuff (colors, Command-T, Vim 7.3 persistent undo etc.)
+"     > 3.5: Paste mode is now shown in status line  if you are in paste mode
+"     > 3.4: Added mru.vim
 "     > 3.3: Added syntax highlighting for Mako mako.vim 
 "     > 3.2: Turned on python_highlight_all for better syntax
 "            highlighting for Python
@@ -78,8 +88,13 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 256 Color help when on other systems
+if &term =~# '^\(screen\|rxvt\|xterm\)$'
+    set t_Co=256
+endif
+
 " Sets how many lines of history VIM has to remember
-set history=600
+set history=700
 
 " Enable filetype plugin
 filetype plugin on
@@ -96,23 +111,20 @@ let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" Fast editing of the .vimrc
-map <leader>e :e! ~/.vim_runtime/vimrc<cr>
+if MySys() == "windows"
+    " Fast editing of the .vimrc
+    map <leader>e :e! ~/_vim_runtime/vimrc<cr>
 
-" When vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+    " When vimrc is edited, reload it
+    autocmd! bufwritepost vimrc source ~/_vim_runtime/vimrc
+else
+    " Fast editing of the .vimrc
+    map <leader>e :e! ~/.vim_runtime/vimrc<cr>
 
-" Nerdtree stuff
-"Increase window size to 25 columns
-let NERDTreeVinSize=9
+    " When vimrc is edited, reload it
+    autocmd! bufwritepost vimrc source ~/.vim_runtime/vimrc
+endif
 
-"nmap <F10> to toggle NERDTree window
-nmap <silent> <F10> :NERDTreeToggle<CR>
-" Toggle Line Numbers
-"nmap <F6> to set unset Line Numbers
-"Set No Line Numbers and use Toggle
-set nonu
-nmap <silent> <F6> :set nu!<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -133,10 +145,12 @@ set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 
 set ignorecase "Ignore case when searching
+set smartcase
 
 set hlsearch "Highlight search things
 
 set incsearch "Make search act like search in modern browsers
+set nolazyredraw "Don't redraw while executing macros 
 
 set magic "Set magic on, for regular expressions
 
@@ -147,7 +161,25 @@ set mat=2 "How many tenths of a second to blink
 set noerrorbells
 set novisualbell
 set t_vb=
+set tm=500
 
+" Nerdtree stuff
+"Increase window size to 9 columns
+let NERDTreeVinSize=9
+
+"nmap <F10> to toggle NERDTree window
+nmap <silent> <F10> :NERDTreeToggle<CR>
+
+" Toggle Line Numbers
+"nmap <F6> to set unset Line Numbers
+"Set No Line Numbers and use Toggle
+set nonu
+nmap <silent> <F6> :set nu!<CR>
+
+"Last.FM
+"let g:shellsocket="/tmpp/shell-fm.sck"
+" VimCommander
+"noremap <silent> <F11> :cal VimCommanderToggle()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -156,35 +188,36 @@ syntax enable "Enable syntax hl
 
 " Set font according to system
 if MySys() == "mac"
-  set gfn=Bitstream\ Vera\ Sans\ Mono:h13
+  set gfn=Menlo:h14
   set shell=/bin/bash
 elseif MySys() == "windows"
   set gfn=Bitstream\ Vera\ Sans\ Mono:h10
 elseif MySys() == "linux"
-  set gfn=Monospace\ 10
+  set gfn=Pragmata\ 10
   set shell=/bin/bash
+  set t_Co=256
+"  set t_AB=^[[48;5;%dm
+"  set t_AF=^[[38;5;%dm
 endif
 
 if has("gui_running")
   set guioptions-=T
-  set background=dark
   set t_Co=256
+"  set t_AB=^[[48;5;%dm
+"  set t_AF=^[[38;5;%dm
   set background=dark
-  colorscheme peaksea
-  "colorscheme calmar256-dark-mod
-
-  set nu
-else
-  "colorscheme zellner
-  "colorscheme vibrantink-mod
-  "colorscheme vividchalk-mod
-  "colorscheme ir_black
-  colorscheme blackdust
-  "colorscheme hhviolet
-  "colorscheme digerati
   "colorscheme peaksea
+  "colorscheme ir_black
+  colorscheme 256-grayvim
+  set nonu
+else
+    set t_Co=256
+"    set t_AB=^[[48;5;%dm
+"    set t_AF=^[[38;5;%dm
+  "colorscheme zellner
+  "colorscheme bw
+  colorscheme railscasts
   set background=dark
-  
   set nonu
 endif
 
@@ -198,12 +231,24 @@ set ffs=unix,dos,mac "Default file types
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files and backups
+" => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn backup off, since most stuff is in SVN, git anyway...
 set nobackup
 set nowb
 set noswapfile
+
+"Persistent undo
+try
+    if MySys() == "windows"
+      set undodir=C:\Windows\Temp
+    else
+      set undodir=~/.vim_runtime/undodir
+    endif
+    
+    set undofile
+catch
+endtry
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -221,32 +266,36 @@ set ai "Auto indent
 set si "Smart indet
 set wrap "Wrap lines
 
-map <leader>t2 :setlocal shiftwidth=2<cr>
-map <leader>t4 :setlocal shiftwidth=4<cr>
-map <leader>t8 :setlocal shiftwidth=4<cr>
-
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
 """"""""""""""""""""""""""""""
-" Really useful!
+" NOTICE: Really useful!
+
 "  In visual mode when you press * or # to search for the current selection
-vnoremap <silent> * :call VisualSearch('f')<CR>
-vnoremap <silent> # :call VisualSearch('b')<CR>
+vnoremap <silent> * :call VisualSelection('f')<CR>
+vnoremap <silent> # :call VisualSelection('b')<CR>
 
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSearch('gv')<CR>
+vnoremap <silent> gv :call VisualSelection('gv')<CR>
+
+" Some useful keys for vimgrep
 map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
+" When you press <leader>r you can search and replace the selected text
+vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 
+"
+" From an idea by Michael Naumann
+" 
 function! CmdLine(str)
     exe "menu Foo.Bar :" . a:str
     emenu Foo.Bar
     unmenu Foo
 endfunction 
 
-" From an idea by Michael Naumann
-function! VisualSearch(direction) range
+function! VisualSelection(direction) range
     let l:saved_reg = @"
     execute "normal! vgvy"
 
@@ -257,6 +306,8 @@ function! VisualSearch(direction) range
         execute "normal ?" . l:pattern . "^M"
     elseif a:direction == 'gv'
         call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
+    elseif a:direction == 'replace'
+        call CmdLine("%s" . '/'. l:pattern . '/')
     elseif a:direction == 'f'
         execute "normal /" . l:pattern . "^M"
     endif
@@ -272,7 +323,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Smart mappings on the command line
 cno $h e ~/
-cno $d e ~/Desktop/
+cno $d c <C-\>eCurrentFileDir("e")<cr>
 cno $j e ./
 cno $c e <C-\>eCurrentFileDir("e")<cr>
 
@@ -324,6 +375,10 @@ endfunc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"Useful when moving accross long lines
+map j gj
+map k gk
+
 " Map space to / (search) and c-space to ? (backgwards search)
 map <space> /
 map <c-space> ?
@@ -346,7 +401,7 @@ map <right> :bn<cr>
 map <left> :bp<cr>
 
 " Tab configuration
-map <leader>tn :tabnew %<cr>
+map <leader>tn :tabnew! %<cr>
 map <leader>te :tabedit 
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
@@ -382,6 +437,16 @@ try
 catch
 endtry
 
+" Return to last edit position (You want this!) *N*
+"autocmd BufReadPost *
+"     \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"     \   exe "normal! g`\"" |
+"     \ endif
+
+
+"Remeber open buffers on close
+"set viminfo^=%
+
 
 """"""""""""""""""""""""""""""
 " => Statusline
@@ -389,33 +454,53 @@ endtry
 " Always hide the statusline
 set laststatus=2
 
-" Format the statusline
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+"Git branch
+function! GitBranch()
+    try
+        let branch = system("git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* //'")
+    catch
+        return ''
+    endtry
 
+    if branch != ''
+        return '   Git Branch: ' . substitute(branch, '\n', '', 'g')
+    en
 
-function! CurDir()
-    let curdir = substitute(getcwd(), '/Users/amir/', "~/", "g")
-    return curdir
+    return ''
 endfunction
 
+function! CurDir()
+    return substitute(getcwd(), '/Users/amir/', "~/", "g")
+endfunction
+
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Format the statusline
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L%{GitBranch()}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Parenthesis/bracket expanding
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap $1 <esc>`>a)<esc>`<i(<esc>
-vnoremap $2 <esc>`>a]<esc>`<i[<esc>
-vnoremap $3 <esc>`>a}<esc>`<i{<esc>
-vnoremap $$ <esc>`>a"<esc>`<i"<esc>
-vnoremap $q <esc>`>a'<esc>`<i'<esc>
-vnoremap $e <esc>`>a"<esc>`<i"<esc>
+"vnoremap $1 <esc>`>a)<esc>`<i(<esc>
+"vnoremap $2 <esc>`>a]<esc>`<i[<esc>
+"vnoremap $3 <esc>`>a}<esc>`<i{<esc>
+"vnoremap $$ <esc>`>a"<esc>`<i"<esc>
+"vnoremap $q <esc>`>a'<esc>`<i'<esc>
+"vnoremap $e <esc>`>a"<esc>`<i"<esc>
 
 " Map auto complete of (, ", ', [
-inoremap $1 ()<esc>i
-inoremap $2 []<esc>i
-inoremap $3 {}<esc>i
-inoremap $4 {<esc>o}<esc>O
-inoremap $q ''<esc>i
-inoremap $e ""<esc>i
+"inoremap $1 ()<esc>i
+"inoremap $2 []<esc>i
+"inoremap $3 {}<esc>i
+"inoremap $4 {<esc>o}<esc>O
+"inoremap $q ''<esc>i
+"inoremap $e ""<esc>i
+"inoremap $t <><esc>i
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -451,6 +536,8 @@ func! DeleteTrailingWS()
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 
+set guitablabel=%t
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Cope
@@ -466,24 +553,26 @@ map <leader>p :cp<cr>
 """"""""""""""""""""""""""""""
 let g:bufExplorerDefaultHelp=0
 let g:bufExplorerShowRelativePath=1
+let g:bufExplorerFindActive=1
+let g:bufExplorerSortBy='name'
+map <leader>o :BufExplorer<cr>
 
 
 """"""""""""""""""""""""""""""
 " => Minibuffer plugin
 """"""""""""""""""""""""""""""
 let g:miniBufExplModSelTarget = 1
-let g:miniBufExplorerMoreThanOne = 2
+let g:miniBufExplorerMoreThanOne = 0
 let g:miniBufExplModSelTarget = 0
 let g:miniBufExplUseSingleClick = 1
 let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplVSplit = 12
+let g:miniBufExplVSplit = 20
 let g:miniBufExplSplitBelow=1
-
-let g:bufExplorerSortBy = "name"
 
 autocmd BufRead,BufNew :call UMiniBufExplorer
 
-map <leader>u :TMiniBufExplorer<cr>:TMiniBufExplorer<cr>
+map <leader>u :TMiniBufExplorer<cr>
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -508,7 +597,6 @@ map <leader>s? z=
 """"""""""""""""""""""""""""""
 " => Python section
 """"""""""""""""""""""""""""""
-au FileType python set nocindent
 let python_highlight_all = 1
 au FileType python syn keyword pythonDecorator True None False self
 
@@ -544,20 +632,26 @@ function! JavaScriptFold()
     syn region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 
     function! FoldText()
-    return substitute(getline(v:foldstart), '{.*', '{...}', '')
+        return substitute(getline(v:foldstart), '{.*', '{...}', '')
     endfunction
     setl foldtext=FoldText()
 endfunction
 
 
 """"""""""""""""""""""""""""""
-" => Fuzzy finder
+" => MRU plugin
 """"""""""""""""""""""""""""""
-try
-    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
-catch
-endtry
+let MRU_Max_Entries = 400
+map <leader>f :MRU<CR>
+
+
+""""""""""""""""""""""""""""""
+" => Command-T
+""""""""""""""""""""""""""""""
+let g:CommandTMaxHeight = 15
+set wildignore+=*.o,*.obj,.git,*.pyc
+noremap <leader>y :CommandTFlush<cr>
+"noremap! <leader>j :PeepOpen<cr>
 
 
 """"""""""""""""""""""""""""""
@@ -565,6 +659,7 @@ endtry
 """"""""""""""""""""""""""""""
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -575,5 +670,19 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 "Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>
+au BufRead,BufNewFile ~/buffer iab <buffer> xh1 ===========================================
 
+map <leader>pp :setlocal paste!<cr>
 
+map <leader>bb :cd ..<cr>
+
+map <leader>ct :cd ~/Desktop/Todoist/todoist<cr>
+map <leader>cw :cd ~/Desktop/Wedoist/wedoist<cr>
+map <leader>cp :cd ~/Desktop/PlurkGit/trunk<cr>
+
+if MySys() == "mac"
+    if has("gui_running")
+      set fuoptions=maxvert,maxhorz
+      au GUIEnter * set fullscreen
+    endif
+endif

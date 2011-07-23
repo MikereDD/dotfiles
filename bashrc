@@ -6,6 +6,8 @@
 # By: MreDD     mredd (at) 0tue0.com
 ##################
 
+#export TERM='linux'
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -26,9 +28,27 @@ export SDL_VIDEO_FULLSCREEN_HEAD=1
 # Grooveshark hack
 alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
 
-if [ "$COLORTERM" == "rxvt" ]; then
-    export TERM=rxvt-256color
+#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+#    export TERM='xterm-256color'
+#else
+#    export TERM='xterm-color'
+#fi
+
+if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
+    export TERM='rxvt-unicode-256color'
+elif [ -e /usr/share/terminfo/r/rxvt-256color ]; then
+    export TERM='rxvt-256color'
+elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
+elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
+    export TERM='rxvt-color'
+else
+    export TERM='xterm-color'
 fi
+
+#if [ "$COLORTERM" == "rxvt" ]; then
+#    export TERM=rxvt-256color
+#fi
 
 #if [ "$COLORTERM" == "putty-256color" ]; then
 #    export TERM=rxvt-256color
