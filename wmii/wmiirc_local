@@ -68,26 +68,18 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*/ -> ~+video+code+social+web
-    /VLC.*|vlc.*/ -> ~+video+code+social+web
-    /Boxee.*|boxee.*/ -> ~+video+code+social+web
-    /huludesktop|huludesktop.*/ -> ~+video+code+social+web
-    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*/ -> +web
-    /Thunderbird.*|Muttator.*/ -> +web
-    /dwb.*|DWB.*/ -> +web
-    /vimprobable2.*|uzbl.*/ -> +web
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web
+    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +code
     /Gimp.*|Darktable/ -> ~+art
     /xcalc/ -> ~
     /CP shell/ -> +code
     /SU shell/ -> +admin
     /HS shell/ -> +social
-    /VE shell/ -> +video+code+social+web
+    /VE shell/ -> +video
     /KDX.*/ -> ~+social
-    /nautilus|thunar|FM shell/ -> +file
-    /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
-    /Wine System.*/ -> ~+gmm
-    /Spotify.*/ -> ~+gmm
+    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+    /Wine System.*Spotify.*/ -> ~+gmm
     /armagetronad/ -> +game
     /.*/ -> sel
     /.*/ -> 1
@@ -113,7 +105,7 @@ Key $MODKEY-3
 Key $MODKEY-4
               wmiir xwrite /ctl view "office"
 Key $MODKEY-5
-              wmiir xwrite /ctl view "file"
+              wmiir xwrite /ctl view "abvb"
 Key $MODKEY-6
               wmiir xwrite /ctl view "art"
 Key $MODKEY-7
@@ -133,7 +125,7 @@ Key $MODKEY-Shift-3
 Key $MODKEY-Shift-4
               wmiir xwrite /client/sel/tags "office"
 Key $MODKEY-Shift-5
-              wmiir xwrite /client/sel/tags "file"
+              wmiir xwrite /client/sel/tags "abvb"
 Key $MODKEY-Shift-6
               wmiir xwrite /client/sel/tags "art"
 Key $MODKEY-Shift-7

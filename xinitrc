@@ -39,7 +39,7 @@ case "$1" in
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
-           sh ~/scripts/net/MultipleDropboxInstances.sh &
+#           sh ~/scripts/net/MultipleDropboxInstances.sh &
            #pkill -9 g15macro ; g15macro &
            #devmon 2>&1 > ~/tmp/devmon.log &
            sleep 1
@@ -55,38 +55,19 @@ case "$1" in
            sabnzbd &
            xscreensaver -no-splash &
            #sh ~/scripts/synergyc start &
-           synergys &
+#           synergys &
            numlockx &
            #noip2 -c ~/.noip2.rc &
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
-           sh ~/scripts/net/MultipleDropboxInstances.sh &
+#           sh ~/scripts/net/MultipleDropboxInstances.sh &
            #pkill -9 g15macro ; g15macro &
            #devmon 2>&1 > ~/tmp/devmon.log &
            sleep 1
            exec ck-launch-session lunchbox ;;
     wmfs)
 # WMFS
-           autocutsel -fork &
-           autocutsel -selection PRIMARY -fork &
-           xrdb -load ~/.Xdefaults &
-           xset m 4 1 &
-           xcompmgr &
-           xbindkeys &
-           sabnzbd &
-           xscreensaver -no-splash &
-           #sh ~/scripts/synergyc start &
-           synergys &
-           numlockx &
-           #noip2 -c ~/.noip2.rc &
-           xset +fp /usr/share/fonts/local &
-           xset fp rehash &
-           xmodmap ~/.Xmodmap &
-           sh ~/scripts/net/MultipleDropboxInstances.sh &
-           #pkill -9 g15macro ; g15macro &
-           #devmon 2>&1 > ~/tmp/devmon.log &
-           sleep 1
            exec ck-launch-session wmfs ;;
     *)
 # WMii
@@ -99,13 +80,13 @@ case "$1" in
            sabnzbd &
            xscreensaver -no-splash &
            #sh ~/scripts/synergyc start &
-           synergys &
+#           synergys &
            numlockx &
            #noip2 -c ~/.noip2.rc &
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
-           sh ~/scripts/net/MultipleDropboxInstances.sh &
+#           sh ~/scripts/net/MultipleDropboxInstances.sh &
            #pkill -9 g15macro ; g15macro &
            #devmon 2>&1 > ~/tmp/devmon.log &
            sleep 1
