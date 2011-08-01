@@ -47,7 +47,7 @@ alias home="cd ~"
 alias un="tar -zxvf"
 alias mountedinfo="df -hT"
 alias ping="ping -c 10 "
-alias ns="netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail +2"
+alias ns="netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail -2"
 alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias c="cal"
 alias up="uptime"
