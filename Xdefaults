@@ -84,13 +84,16 @@ URxvt*geometry:                   100x40
 URxvt*borderless:                 true
 URxvt*internalBorder:             0
 !fade text n% upon unfocus
-URxvt*fading:                     30
+URxvt*fading:                     20
 !darken=(0 to 100) lighten=(-1 to -100)
-URxvt*shading:                    90
+URxvt*shading:                    20
 !tint background with this color
-URxvt*tintColor:                  #080b0a
+URxvt*tintColor:                  grey
+!URxvt*tintColor:                  #080b0a
 !set to 32-bit for real transparency (compositing required)
-URxvt*depth:                      32 
+URxvt*depth:                      32
+URxvt*transparency:               true
+wterm*transparency:               true
 !save n lines of scrollback buffer
 URxvt*saveLines:                  32767
 !flash screen for attention
