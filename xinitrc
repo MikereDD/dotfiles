@@ -92,5 +92,6 @@ case "$1" in
            sleep 1
            #wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
            #until wmii; do true; done
+           VBoxClient-all &
            until exec ck-launch-session wmii; do true; done ;;
 esac

@@ -47,7 +47,9 @@ alias home="cd ~"
 alias un="tar -zxvf"
 alias mountedinfo="df -hT"
 alias ping="ping -c 10 "
-alias ns="netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail -2"
+#alias ns="netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail -2"
+alias netstatlisttcpudpips="netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
+alias netstatlistnatips="netstat -nat | awk '{ print $5}' | cut -d: -f1 | sed -e '/^$/d' | uniq"
 alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias c="cal"
 alias up="uptime"
@@ -339,6 +341,8 @@ alias mplayertv="mplayer -vo xv /dev/video0 "
 alias weechat="weechat-curses"ALIAS
 # Google MusicManager - Wine
 alias musicmanager="MusicManager"
+# Virtualbox
+alias virtbox="virtualbox &"
 
 # Logitech Cam
 #################
