@@ -1,142 +1,114 @@
+###########################
+# xbindkeys configuration #
+###########################
 #
-# .xbindkeysrc
+# Version: 0.1.3
+#
+# If you edit this, do not forget to uncomment any lines that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h 
+# The XK_ is not needed. 
+#
+# List of modifier (on my keyboard): 
+#   Control, Shift, Mod1 (Alt), Mod2 (NumLock), 
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll). 
+#
+# Another way to specifie a key is to use 'xev' and set the 
+# keycode with c:nnn or the modifier with m:nnn where nnn is 
+# the keycode or the state returned by xev 
+#
+# This file is created by xbindkey_config 
+# The structure is : 
+# # Remark 
+# "command" 
+# m:xxx + c:xxx 
+# Shift+... 
+
+
+
+
 #keystate_numlock = enable
+#keystate_scrolllock = enable
 #keystate_capslock = enable
-#keystate_scrolllock= enable
-
-#"(urxvt -name 'shell')"
-#    m:0x50 + c:36
-#    Mod2+Mod4 + Return
 
 
-## specify a mouse button
-#"xterm"
-#  control + b:2
 
+## Titled Shells
+"urxvt -name 'social'"
+    m:0x58 + c:36
+    Alt+Mod2+Mod4 + Return 
 
-## Me
-# Transparency
+"urxvt -name 'code'"
+    m:0x54 + c:36
+    Control+Mod2+Mod4 + Return 
 
-# Menu
-#"(sh $HOME/scripts/system/dzenmenu.sh)"
-#   m:0x0 + c:180
-#   G6
-#"(sh $HOME/scripts/system/9menu.sh)"
-#   m:0x0 + c:177
-#   G3   
+"urxvt -name 'filemanager'"
+    m:0x59 + c:36
+    Shift+Alt+Mod2+Mod4 + Return 
 
-#  Media Buttons
-# Volume Wheel
-"(amixer set PCM 4%-)"
-    m:0x0 + c:122
-    XF86AudioLowerVolume
+"urxvt -name 'su'"
+    m:0x18 + c:36
+    Alt+Mod2 + Return 
 
-"(amixer set PCM 4%+)"
-    m:0x0 + c:123
-    XF86AudioRaiseVolum
+"urxvt -name 'video'"
+    m:0x58 + c:55
+    Alt+Mod2+Mod4 + v
 
-# Mute
-"(amixer set PCM 0% unmute)"
-    m:0x0 + c:121
-    XF86AudioMute
+## Browser
+"dwb -r Mine"
+    m:0x50 + c:57
+    Mod2+Mod4 + n 
 
-# Play
-"(mocp -G)"
-    m:0x0 + c:172
-    XF86AudioPlay XF86AudioPause XF86AudioPlay XF86AudioPause
+# Email
+"thunderbird"
+    m:0x51 + c:36
+    Shift+Mod2+Mod4 + Return 
 
-# Stop
-"(mocp -s)"
-    m:0x0 + c:174
-    XF86AudioStop
-
-# Previous
-"(mocp -r)"
-    m:0x0 + c:173
-    XF86AudioPrev
-
-# Skip
-"(mocp -f)"
-    m:0x0 + c:171
-    XF86AudioNext
-
-# PrintScreen Key
-"(/home/mredd/scripts/image/scrotsnap.sh)"
-    m:0x0 + c:107
-    Print
-# Delay 5 sec PrintScreen Key Combo
-"(/home/mredd/scripts/image/scrotdelay.sh)"
-    m:0x40 + c:107
-    Mod4 + Print
-# Start LxBluray
-"(v4l2-ctl -i 1 && vlc --hdtv-fix --deinterlace-mode=b --disable-screensaver --control lirc /dev/video0)"
-    m:0x10 + c:179
-    Mod2 + G5
-#"(v4l2-ctl -i 1 && mplayer -ao alsa -vf pp=lb /dev/video0 &)"
-#    m:0x0 + c:176
-#    G2
-
-# Games
-"(armagetronad)"
-    m:0x10 + c:183
-    Mod2 + G9
-"xdotool type --delay 0 --clearmodifiers "$(xsel -bo)""
- alt+Insert
-
-# VirtualBox
-"(VirtualBox)"
-    m:0x10 + c:181
-    Mod2 + G7
-
-# Open Optical Drives
-#  DVD0
-# Eject
-"(eject /dev/dvd0)"
-    m:0x58 + c:32
-    Alt+Mod2+Mod4 + o
-# Close
-"(eject -t /dev/dvd0)"
-   m:0x58 + c:54
-   Alt+Mod2+Mod4 + c
-#  DVD1
-#  Eject
-"(eject /dev/dvd)"
-    m:0x18 + c:32
-    Alt+Mod2 + o
-
-#  Close
-"(eject -t /dev/dvd)"
-    m:0x18 + c:54
-    Alt+Mod2 + c
-
-# Luanch Browser
-"(uzbl-tabbed)"
-    m:0x58 + c:57
-    Alt+Mod2+Mod4 + n
-"(chromeplus)"
-    m:0x5c + c:57
-    Control+Alt+Mod2+Mod4 + n
-# Luanch Email
-"(thunderbird)"
-    m:0x58 + c:26
-    Alt+Mod2+Mod4 + e
-# Launch URXvt Tabbed
-"(urxvt -pe tabbedex -name "URXvt" --perl-lib ${HOME}/.urxvt/ -pe mark-yank-urls)"
-    m:0x58 + c:30
-    Alt+Mod2+Mod4 + u
-# Launch MPlayer TV
-"(mplayer -ao alsa -vf pp=lb /dev/video0)"
-    m:0x58 + c:28
-    Alt+Mod2+Mod4 + t
-# Launch MOC
-"(sh $HOME/.wmii-hg/scripts/random-bg-rxvt.sh)"
+# Google MusicManager - Wine
+"MusicManager"
     m:0x58 + c:58
     Alt+Mod2+Mod4 + m
-# KDXClient
-"(./apps/kdx/KDXClient.lexe)"
-    m:0x58 + c:45
-    Alt+Mod2+Mod4 + k
 
-##################################
-# End of xbindkeys configuration #
-##################################
+## Raise Volume
+"amixer -q set PCM 3+ unmute"
+    m:0x10 + c:123
+    Mod2 + XF86AudioRaiseVolume 
+
+## Lower Volume
+"amixer -q set PCM 3- unmute"
+    m:0x10 + c:122
+    Mod2 + XF86AudioLowerVolume 
+
+## Mute Volume
+"amixer sset PCM toggle"
+    m:0x10 + c:121
+    Mod2 + XF86AudioMute 
+
+"(mocp -G)"
+    m:0x10 + c:172
+    Mod2 + XF86AudioPlay
+
+"(mocp -s)"
+    m:0x10 + c:174
+    Mod2 + XF86AudioStop
+
+"(mocp -r)"
+    m:0x10 + c:173
+    Mod2 + XF86AudioPrev
+
+"(mocp -f)"
+    m:0x10 + c:171
+    Mod2 + XF86AudioNext
+
+# Mouse Forward
+"xte 'key j'"
+    m:0x0 + b:9
+     
+# Mouse Back
+"xte 'key k'"
+    m:0x0 + b:8     
+
+#
+# End of xbindkeys configuration
