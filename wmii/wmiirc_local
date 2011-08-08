@@ -73,10 +73,10 @@ wmiir write /tagrules <<!
     /gedit|leafpad/ -> +code
     /Gimp.*|Darktable/ -> ~+art
     /xcalc/ -> ~
-    /CP shell/ -> +code
-    /SU shell/ -> +admin
-    /HS shell/ -> +social
-    /VE shell/ -> +video
+    /code/ -> +code
+    /su/ -> +admin
+    /social/ -> +social
+    /video/ -> +video
     /KDX.*/ -> ~+social
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /Wine System.*Spotify.*/ -> ~+gmm
