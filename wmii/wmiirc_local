@@ -74,14 +74,14 @@ wmiir write /tagrules <<!
     /Gimp.*|Darktable/ -> ~+art
     /xcalc/ -> ~
     /code/ -> +code
-    /su/ -> +admin
+    /root/ -> +admin
     /social/ -> +social
     /video/ -> +video
     /KDX.*/ -> ~+social
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /Wine System.*Spotify.*/ -> ~+gmm
     /armagetronad/ -> +game
-    /virtualbox.*|Oracle.*/ -> +abvb
+    /virtualbox.*|Oracle.*|VBE.*/ -> +vbe
     /.*/ -> sel
     /.*/ -> 1
 !
@@ -106,7 +106,7 @@ Key $MODKEY-3
 Key $MODKEY-4
               wmiir xwrite /ctl view "office"
 Key $MODKEY-5
-              wmiir xwrite /ctl view "abvb"
+              wmiir xwrite /ctl view "vbe"
 Key $MODKEY-6
               wmiir xwrite /ctl view "art"
 Key $MODKEY-7
@@ -126,7 +126,7 @@ Key $MODKEY-Shift-3
 Key $MODKEY-Shift-4
               wmiir xwrite /client/sel/tags "office"
 Key $MODKEY-Shift-5
-              wmiir xwrite /client/sel/tags "abvb"
+              wmiir xwrite /client/sel/tags "vbe"
 Key $MODKEY-Shift-6
               wmiir xwrite /client/sel/tags "art"
 Key $MODKEY-Shift-7
