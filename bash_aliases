@@ -23,12 +23,21 @@ alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
 alias resetbash="reset;source $HOME/.bash_profile"
 
 # ls quick command aliases
-alias ls="ls --color=always"
-alias lsl="ls -l --color=always"
-alias lsal="ls -al --color=always"
-alias lsA="ls -A --color=always"
-alias lsAl="ls -Al --color=always"
-alias lsg="ls --color=always | grep $@"
+#alias ls="ls --color=always"
+#alias lsl="ls -l --color=always"
+#alias lsal="ls -al --color=always"
+#alias lsA="ls -A --color=always"
+#alias lsAl="ls -Al --color=always"
+#alias lsg="ls --color=always | grep $@"
+alias ls="ls++ "
+alias lsl="ls++ -l"
+alias lsal="ls++ -al"
+alias lsA="ls++ -A"
+alias lsAl="ls++ -Al"
+
+# encrypt
+alias mntdbcrypt="encfs $HOME/.typ0dboxs/ $HOME/Dropbox-typo/TiBu/"
+alias umntdbcrypt="fusermount -u $HOME/Dropbox-typo/TiBu/"
 
 #
 alias mv="mv -i"

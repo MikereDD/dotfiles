@@ -27,8 +27,8 @@ export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-958895.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_Dark_Knight-The_Joker-wallpaper.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_movies_DC_Comics_Dark_Knight_The_Joker_wallpaper.jpg"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Dark_wallpaper.jpg"
-
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Dark_wallpaper.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-122975.jpg"
 
 # Font
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
@@ -38,7 +38,7 @@ export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
 #export WMII_FONT="xft:Skyhook Mono:pixelsize=12:antialias=true:bold:hinting=true"
 #export WMII_FONT="xft:Lintel:pixelsize=12:antialias=true:bold:hinting=true"
 # Terminal
-export WMII_TERM="urxvt -name shell"
+export WMII_TERM="urxvt -name 'shell'"
 
 # Menu history
 hist="$(wmiir namespace)/history"
@@ -48,7 +48,7 @@ histnum=5000
 wmiir write /colrules <<!
   /gimp/ -> 17+83+41
   /xcalc/ -> 275x350+1638+21
-  /MusicManager.*/ -> 159x18+1755+22
+  /Music Manager.*/ -> 159x18+1755+22
   /wineserver.*/ -> 159x18+1755+22
   /Wine.*/ -> 159x18+1755+22
   /.*/ -> 62+38 # Golden Ratio
@@ -68,18 +68,17 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web+vbe
     /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +code
     /Gimp.*|Darktable/ -> ~+art
     /xcalc/ -> ~
     /code/ -> +code
     /root/ -> +admin
-    /social/ -> +social
-    /video/ -> +video
-    /KDX.*/ -> ~+social
+    /social|KDX.*/ -> +social
+    /video.*|doh!.*/ -> +video
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
-    /Wine System.*Spotify.*/ -> ~+gmm
+    /Music.Manager.*/ -> ~+gmm
     /armagetronad/ -> +game
     /virtualbox.*|Oracle.*|VBE.*/ -> +vbe
     /.*/ -> sel

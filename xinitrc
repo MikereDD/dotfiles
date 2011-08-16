@@ -79,19 +79,19 @@ case "$1" in
            xbindkeys &
            sabnzbd &
            xscreensaver -no-splash &
-           #sh ~/scripts/synergyc start &
+#           sh ~/scripts/synergyc start &
 #           synergys &
            numlockx &
-           #noip2 -c ~/.noip2.rc &
+#           noip2 -c ~/.noip2.rc &
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
-#           sh ~/scripts/net/MultipleDropboxInstances.sh &
-           #pkill -9 g15macro ; g15macro &
-           #devmon 2>&1 > ~/tmp/devmon.log &
+           sh ~/scripts/net/MultipleDropboxInstances.sh &
+#           pkill -9 g15macro ; g15macro &
+#           devmon 2>&1 > ~/tmp/devmon.log &
            sleep 1
-           #wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
-           #until wmii; do true; done
+#           wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
+#           until wmii; do true; done
            VBoxClient-all &
            until exec ck-launch-session wmii; do true; done ;;
 esac

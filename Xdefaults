@@ -46,24 +46,99 @@ Xft.hintstyle:                    hintslight
 !*color15:                         rgb:ff/ff/ff
 
 !Theme Twenty-Two
-*background:                      rgb:00/00/00
-*foreground:                      rgb:be/be/be
-*color0:                          rgb:00/00/00
-*color1:                          rgb:d3/62/65
-*color2:                          rgb:ae/ce/91
-*color3:                          rgb:e7/e1/8c
-*color4:                          rgb:7a/7a/b0
-*color5:                          rgb:96/3c/59
-*color6:                          rgb:7f/9f/7f
-*color7:                          rgb:be/be/be
-*color8:                          rgb:66/66/66
-*color9:                          rgb:ef/81/71
-*color10:                         rgb:e5/f7/79
-*color11:                         rgb:f0/df/af
-*color12:                         rgb:8e/9f/bc
-*color13:                         rgb:ef/9e/be
-*color14:                         rgb:71/be/be
-*color15:                         rgb:ff/ff/ff
+!*background:                      rgb:00/00/00
+!*foreground:                      rgb:be/be/be
+!*color0:                          rgb:00/00/00
+!*color1:                          rgb:d3/62/65
+!*color2:                          rgb:ae/ce/91
+!*color3:                          rgb:e7/e1/8c
+!*color4:                          rgb:7a/7a/b0
+!*color5:                          rgb:96/3c/59
+!*color6:                          rgb:7f/9f/7f
+!*color7:                          rgb:be/be/be
+!*color8:                          rgb:66/66/66
+!*color9:                          rgb:ef/81/71
+!*color10:                         rgb:e5/f7/79
+!*color11:                         rgb:f0/df/af
+!*color12:                         rgb:8e/9f/bc
+!*color13:                         rgb:ef/9e/be
+!*color14:                         rgb:71/be/be
+!*color15:                         rgb:ff/ff/ff
+
+!*background:                      rgb:00/00/00
+!*foreground:                      rgb:be/be/be
+!black
+!*color0:         rgb:19/19/19
+!*color8:         rgb:25/25/25
+!red
+!*color1:         rgb:80/32/32
+!*color9:         rgb:98/2b/2b
+!green
+!*color2:         rgb:5b/76/2f
+!*color10:        rgb:89/b8/3f
+!brown/yellow
+!*color3:         rgb:aa/99/43
+!*color11:        rgb:ef/ef/60
+!blue
+!*color4:         rgb:32/4c/80
+!*color12:        rgb:2b/4f/98
+!magenta
+!*color5:         rgb:70/6c/9a
+!*color13:        rgb:82/6a/b1
+!cyan
+!*color6:         rgb:92/b1/9e
+!*color14:        rgb:a1/cd/cd
+!white
+!*color7:         rgb:ff/ff/ff
+!*color15:        rgb:dd/dd/dd
+
+!*foreground:              #a0a0a0
+!*background:              #1B1D1E
+!*background:              #121212
+!black
+!*color0:                  #1B1D1E
+!*color8:                  #505354
+!red
+!*color1:                  #F92672
+!*color9:                  #FF5995
+!green
+!*color2:                  #82B414
+!*color10:                 #B6E354
+!yellow
+!*color3:                  #FD971F
+!*color11:                 #FEED6C
+!blue
+!*color4:                  #4E82AA
+!*color12:                 #0C73C2
+!magenta
+!*color5:                  #8C54FE
+!*color13:                 #9E6FFE
+!cyan
+!*color6:                  #465457
+!*color14:                 #899CA1
+!white
+!*color7:                  #CCCCC6
+!*color15:                 #F8F8F2
+
+! astromouse
+*background: #101010
+*foreground: #b5b5b5
+*color0:  #1c1c1c
+*color8:  #3d3a3a
+*color1:  #d74b73
+*color9:  #b94062
+*color2 : #9acc79
+*color10: #8fb676
+*color3:  #d0d26b
+*color11: #c8bc45
+*color4 : #77b6c5
+*color12: #8fa7b9
+*color5:  #a488d9
+*color13: #8888a1
+*color6:  #7fcab3
+*color14: #6ec2a8
+*color7:  #8d8d8d
+*color15: #dad3d3
 
 URxvt*termName:                   rxvt-256color
 ! font preference
@@ -84,9 +159,9 @@ URxvt*geometry:                   100x40
 URxvt*borderless:                 true
 URxvt*internalBorder:             0
 !fade text n% upon unfocus
-URxvt*fading:                     20
+URxvt*fading:                     60
 !darken=(0 to 100) lighten=(-1 to -100)
-URxvt*shading:                    20
+URxvt*shading:                    85
 !tint background with this color
 URxvt*tintColor:                  grey
 !URxvt*tintColor:                  #080b0a
