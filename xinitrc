@@ -44,28 +44,6 @@ case "$1" in
            #devmon 2>&1 > ~/tmp/devmon.log &
            sleep 1
            exec ck-launch-session awesome ;;
-    lunchbox)
-# Lunchbox
-           autocutsel -fork &
-           autocutsel -selection PRIMARY -fork &
-           xrdb -load ~/.Xdefaults &
-           xset m 4 1 &
-           xcompmgr &
-           xbindkeys &
-           sabnzbd &
-           xscreensaver -no-splash &
-           #sh ~/scripts/synergyc start &
-#           synergys &
-           numlockx &
-           #noip2 -c ~/.noip2.rc &
-           xset +fp /usr/share/fonts/local &
-           xset fp rehash &
-           xmodmap ~/.Xmodmap &
-#           sh ~/scripts/net/MultipleDropboxInstances.sh &
-           #pkill -9 g15macro ; g15macro &
-           #devmon 2>&1 > ~/tmp/devmon.log &
-           sleep 1
-           exec ck-launch-session lunchbox ;;
     wmfs)
 # WMFS
            exec ck-launch-session wmfs ;;
@@ -77,21 +55,22 @@ case "$1" in
            xset m 4 1 &
            xcompmgr &
            xbindkeys &
-           sabnzbd &
+#           sabnzbd &
            xscreensaver -no-splash &
 #           sh ~/scripts/synergyc start &
-#           synergys &
+           synergys &
            numlockx &
 #           noip2 -c ~/.noip2.rc &
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
-           xmodmap ~/.Xmodmap &
-           sh ~/scripts/net/MultipleDropboxInstances.sh &
+#           xmodmap ~/.Xmodmap &
+#           sh ~/scripts/net/MultipleDropboxInstances.sh &
 #           pkill -9 g15macro ; g15macro &
 #           devmon 2>&1 > ~/tmp/devmon.log &
-           sleep 1
+#           sleep 1
 #           wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
 #           until wmii; do true; done
-           VBoxClient-all &
-           until exec ck-launch-session wmii; do true; done ;;
+#           VBoxClient-all &
+            sh /home/mredd/scripts/net/mntsshfs.sh &
+            until exec ck-launch-session wmii; do true; done ;;
 esac
