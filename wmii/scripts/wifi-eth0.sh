@@ -17,12 +17,21 @@ eth0card=$(lspci | grep Ethernet | awk '{print $4,$9,$10,$11}')
 etinein=$(ifconfig $interfaceE | grep bytes | awk '/TX bytes/ {print $3$4}' | sed 's/bytes://')
 etineout=$(ifconfig $interfaceE | grep bytes | awk '/TX bytes/ {print $7$8}' | sed 's/bytes://')
 ip=$(wget -q -O - api.myiptest.com | awk -F"\"" '{print $4}')
+localip=$(ip addr | egrep "inet" | egrep "wlan0|eth0" | cut -f1 -d '/' | awk '{print $2}')
 
 if [ "$ssid" == "b0rked" ]; then
-      echo -e "essid: $ssid In: $wtinetin Out: $wtinetout"
+      echo -e "essid: $ssid In: $wtinetin Out: $wtinetout" | wmiir create /rbar/bnetinfo
+      sleep 40
+      wmiir remove /rbar/bnetinfo
+      echo -e "local: $localip" | wmiir create /rbar/bnetinfo
+      sleep 5
   elif [ "$ip" != "" ]; then
-      echo -e "wired: $ip In: $etinein Out: $etineout"
+      echo -e "wired: $ip In: $etinein Out: $etineout" | wmiir create /rbar/bnetinfo
+      sleep 40
+      wmiir remove /rbar/bnetinfo
+      echo -e "local: $localip" | wmiir create /rbar/bnetinfo
+      sleep 5
   else
-      echo -e ":-: No Interwebz :-:"
+      echo -e ":-: No Interwebz :-:" | wmiir create /rbar/bnetinfo
 fi
 
