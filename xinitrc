@@ -39,6 +39,7 @@ case "$1" in
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
+           sh /home/mredd/scripts/net/mntsshfs.sh &
 #           sh ~/scripts/net/MultipleDropboxInstances.sh &
            #pkill -9 g15macro ; g15macro &
            #devmon 2>&1 > ~/tmp/devmon.log &
@@ -46,6 +47,21 @@ case "$1" in
            exec ck-launch-session awesome ;;
     wmfs)
 # WMFS
+           autocutsel -fork &
+           autocutsel -selection PRIMARY -fork &
+           xrdb -load ~/.Xdefaults &
+           xset m 4 1 &
+           xcompmgr &
+           xbindkeys &
+#           sabnzbd &
+           xscreensaver -no-splash &
+#           sh ~/scripts/synergyc start &
+           synergys &
+           numlockx &
+#           noip2 -c ~/.noip2.rc &
+           xset +fp /usr/share/fonts/local &
+           xset fp rehash &
+           sh /home/mredd/scripts/net/mntsshfs.sh &
            exec ck-launch-session wmfs ;;
     *)
 # WMii
