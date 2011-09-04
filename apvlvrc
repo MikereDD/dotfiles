@@ -1,0 +1,29 @@
+" map n to <C-f> to goto next page
+"map n <C-f>
+"
+"map J 
+"map I 
+"map O 
+map Z zi
+map z zo
+
+set autoreload      = 0
+set autoscrolldoc   = no
+set autoscrollpage  = no
+set commandtimeout  = 2000
+set content         = no
+set continuous      = no
+set continuouspad   = 2
+set defaultdir      = ~/Books
+set doubleclick     = line
+set fullscreen      = no
+"set guioptions      =  
+set noinfo          = yes
+set pdfcache        = 4
+set scrollbar       = no
+set visualmode      = yes
+set wrapscan        = yes
+set zoom            = fitwidth
+
+
+" vim: set ft     = vim:
