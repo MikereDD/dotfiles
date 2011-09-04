@@ -90,11 +90,11 @@ alias mvnzb="$HOME/scripts/misc/mvnzb.sh"
 alias mplayer="mplayer -identify $@> $HOME/.mplayer/mylog.log"
 alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
 # urxvt quick aliases
-alias sshell="urxvt -name 'social' &"
-alias cshell="urxvt -name 'code' &"
-alias fmshell="urxvt -name 'filemanager' &"
+alias ashell="urxvt -name 'a' &"
+alias cshell="urxvt -name 'c' &"
+alias fmshell="urxvt -name 'fm' &"
 alias sushell="urxvt -name 'su' &"
-alias vshell="urxvt -name 'video' &"
+alias bshell="urxvt -name 'b' &"
 alias transi="transset-df .85 "
 #alias less="$PAGER"
 
@@ -271,14 +271,14 @@ ghclone ()
 
 # Screen Aliases
 #############
-alias socialscreen="screen -c $HOME/.screenrc_social"
-alias codescreen="screen -c $HOME/.screenrc_code"
-alias fmscreen="screen -c $HOME/.screenrc_filemanager"
-alias adminscreen="screen -c $HOME/.screenrc_admin"
-alias scrnso="screen -dr so"
-alias scrnco="screen -dr co"
-alias scrnad="screen -dr ad"
-alias scrnfi="screen -dr fi"
+alias a_screen="screen -c $HOME/.screenrc_a"
+alias c_screen="screen -c $HOME/.screenrc_c"
+alias fm_screen="screen -c $HOME/.screenrc_f"
+alias su_screen="screen -c $HOME/.screenrc_su"
+alias scrnna="screen -dr a"
+alias scrnb="screen -dr c"
+alias scrnsu="screen -dr su"
+alias scrnf="screen -dr f"
 
 # Slackware Tools
 #############

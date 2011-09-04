@@ -1,6 +1,6 @@
 #
 # ~/.screenrc
-# M. reDD - mredd -at- 0tue0.com
+# M. reDD - MreDD -at- 0tue0.com
 # http://m-redd.com
 #
 ###############################
@@ -36,10 +36,10 @@ altscreen on
 terminfo rxvt* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 #name the session
-sessionname social
+sessionname f 
 
 # This is how one can set a reattach password:
-#password     # "1234"
+# password ODSJQf.4IJN7E    # "1234"
 
 # no annoying audible bell, please
 vbell on
@@ -111,26 +111,18 @@ bind '}' history
 #
 
 # shelltitle '$ | '
-screen -t shell 0 
-screen -t irc 1 irssi
-screen -t web 2 elinks https://encrypted.google.com
-screen -t moc 3 mocp
-screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
-screen -t torrent 5 rtorrent
-screen -t iw 6 wicd-curses
+screen -t shell 0
+screen -t fm 1 vifm $HOME/ /mnt/
+#screen -t bashc 
 
-#
 #
 #
 #  Toggle 'fullscreen' or not.
 #
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
-# Backticks
-backtick 1 30 30 sh $HOME/.wmii/scripts/reademailcount.sh
 # Status
-caption always '%{= w} %{w}Load: %{r}%l %= %{r}| %= %{b}%1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= w}%-w%{g}%n%{r}`%{g}%t%{-b r}%{= w}%+w %= %{w}%c %{r}- %{w}%m%{r}/%{w}%d%{r}/%{w}%y |%{r}%H%{w}|'  
+hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{r}%n%{w}`%{r}%t%{-b r}%{g}%+w %= %{.g}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y %{g}|%{r}%H%{g}|' 
 # bind = resize =
 # bind + resize +1
 # bind - resize -1
