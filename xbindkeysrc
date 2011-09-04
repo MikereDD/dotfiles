@@ -36,15 +36,15 @@
 
 
 ## Titled Shells
-"urxvt -name 'social'"
+"urxvt -name 'a'"
     m:0x58 + c:36
     Alt+Mod2+Mod4 + Return 
 
-"urxvt -name 'code'"
+"urxvt -name 'c'"
     m:0x54 + c:36
     Control+Mod2+Mod4 + Return 
 
-"urxvt -name 'filemanager'"
+"urxvt -name 'fm'"
     m:0x59 + c:36
     Shift+Alt+Mod2+Mod4 + Return 
 
@@ -52,14 +52,17 @@
     m:0x18 + c:36
     Alt+Mod2 + Return 
 
-"urxvt -name 'video'"
+"urxvt -name 'doh!'"
     m:0x58 + c:55
     Alt+Mod2+Mod4 + v
 
 ## Browser
-"dwb -r Mine"
+#"dwb -r Mine"
+#    m:0x50 + c:57
+#    Mod2+Mod4 + n 
+"firefox"
     m:0x50 + c:57
-    Mod2+Mod4 + n 
+    Mod2+mod4 + n
 
 # Email
 "thunderbird"
@@ -109,6 +112,10 @@
 # Mouse Back
 "xte 'key k'"
     m:0x0 + b:8     
+
+"(slock)"
+    m:0x5c + c:39
+    Control+Alt+Mod2+Mod4 + s
 
 #
 # End of xbindkeys configuration
