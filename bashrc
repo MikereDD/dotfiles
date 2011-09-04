@@ -41,12 +41,23 @@ alias ssh="TERM=linux ssh"
 
 #
 export EDITOR="vim"
-#export BROWSER="elinks"
-#export BROWSER="/usr/bin/vimprobable2-tabbed"
-export BROWSER="dwb"
+#export BROWSER="elinks"                                                                                                                                                                        
+#export BROWSER="/usr/bin/vimprobable2-tabbed"                                                                                                                                                  
+#export BROWSER="dwb"
+if [ -n "$DISPLAY" ]; then
+    BROWSER=dwb
+else
+    BROWSER=elinks
+fi
+# Proxy
+ftp_proxy="ftp://192.168.11.1:21"
+http_proxy="http://192.168.11.1:80"
+#
 export PAGER="vimpager"
 export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
-export HISTCONTROL="ignoredups"
+#export HISTCONTROL="ignoredups"
+#export HISTCONTROL="ignorespace"
+export HISTCONTROL="ignoreboth"
 #source /usr/share/cdargs/cdargs-bash.sh
 export SDL_AUDIODRIVER="alsa"
 export AUDIODEV="plug:dmix"
@@ -224,6 +235,11 @@ fi
 # Inputrc file - Faster Completion
 if [ -f ~/.inputrc ]; then
     . ~/.inputrc
+fi
+
+# Bash Logout
+if [ -f ~/.bash_logout ]; then
+    . ~/.bash_logout
 fi
 
 # grep color
