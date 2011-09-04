@@ -238,9 +238,9 @@ if [ -f ~/.inputrc ]; then
 fi
 
 # Bash Logout
-if [ -f ~/.bash_logout ]; then
-    . ~/.bash_logout
-fi
+#if [ -f ~/.bash_logout ]; then
+#    . ~/.bash_logout
+#fi
 
 # grep color
 ##################
