@@ -36,14 +36,22 @@ alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/g
 
 if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
     export TERM='rxvt-unicode-256color'
+elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
+    export TERM='rxvt-unicode'
 elif [ -e /usr/share/terminfo/r/rxvt-256color ]; then
     export TERM='rxvt-256color'
-elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
-    export TERM='xterm-256color'
 elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
     export TERM='rxvt-color'
-else
+elif [ -e /usr/share/terminfo/r/rxvt ]; then
+    export TERM='rxvt'
+elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
+    export TERM='xterm-256color'
+elif [ -e /usr/share/terminfo/x/xterm-color ]; then
     export TERM='xterm-color'
+elif [ -e /usr/share/terminfo/x/xterm ]; then
+    export TERM='xterm'
+else
+    TERM='xterm'
 fi
 
 #if [ "$COLORTERM" == "rxvt" ]; then

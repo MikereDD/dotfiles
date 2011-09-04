@@ -39,7 +39,7 @@ case "$1" in
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
            xmodmap ~/.Xmodmap &
-           sh /home/mredd/scripts/net/mntsshfs.sh &
+           sh /home/mredd/scripts/net/mntsshfs.sh 
 #           sh ~/scripts/net/MultipleDropboxInstances.sh &
            #pkill -9 g15macro ; g15macro &
            #devmon 2>&1 > ~/tmp/devmon.log &
@@ -61,7 +61,7 @@ case "$1" in
 #           noip2 -c ~/.noip2.rc &
            xset +fp /usr/share/fonts/local &
            xset fp rehash &
-           sh /home/mredd/scripts/net/mntsshfs.sh &
+           sh /home/mredd/scripts/net/mntsshfs.sh 
            exec ck-launch-session wmfs ;;
     *)
 # WMii
@@ -87,6 +87,6 @@ case "$1" in
 #           wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
 #           until wmii; do true; done
 #           VBoxClient-all &
-            sh /home/mredd/scripts/net/mntsshfs.sh &
+            sh /home/mredd/scripts/net/mntsshfs.sh 
             until exec ck-launch-session wmii; do true; done ;;
 esac
