@@ -68,19 +68,19 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web+vbe
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web+b
     /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +web
-    /gedit|leafpad/ -> +code
+    /gedit|leafpad/ -> +c
     /Gimp.*|Darktable/ -> ~+art
     /xcalc/ -> ~
-    /code/ -> +code
-    /root/ -> +admin
-    /social|KDX.*/ -> +social
-    /video.*|doh!.*/ -> +video
+    /code|c.*/ -> +c
+    /root/ -> +su
+    /a.*|pidgin/ -> +a
+    /b.*|doh!.*|KDX.*/ -> +b
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
-    /Music.Manager.*/ -> ~+gmm
-    /armagetronad/ -> +game
-    /virtualbox.*|Oracle.*|VBE.*/ -> +vbe
+    /Music.Manager.*/ -> ~+d
+    /armagetronad/ -> +c
+    /virtualbox.*|Oracle.*|VBE.*/ -> +e
     /.*/ -> sel
     /.*/ -> 1
 !
@@ -95,45 +95,45 @@ local_events() {
             for i in 0 1 2 3 4 5 6 7 8 9; do
                      cat <<!
 Key $MODKEY-0
-              wmiir xwrite /ctl view "admin"
+              wmiir xwrite /ctl view "su"
 Key $MODKEY-1
-              wmiir xwrite /ctl view "social"
-Key $MODKEY-2
-              wmiir xwrite /ctl view "code"
-Key $MODKEY-3
               wmiir xwrite /ctl view "web"
-Key $MODKEY-4
+Key $MODKEY-2
               wmiir xwrite /ctl view "office"
-Key $MODKEY-5
-              wmiir xwrite /ctl view "vbe"
-Key $MODKEY-6
+Key $MODKEY-3
               wmiir xwrite /ctl view "art"
+Key $MODKEY-4
+              wmiir xwrite /ctl view "a"
+Key $MODKEY-5
+              wmiir xwrite /ctl view "b"
+Key $MODKEY-6
+              wmiir xwrite /ctl view "c"
 Key $MODKEY-7
-              wmiir xwrite /ctl view "game"
+              wmiir xwrite /ctl view "d"
 Key $MODKEY-8
-              wmiir xwrite /ctl view "video"
+              wmiir xwrite /ctl view "e"
 Key $MODKEY-9
-              wmiir xwrite /ctl view "gmm"
+              wmiir xwrite /ctl view "f"
 Key $MODKEY-Shift-0
-              wmiir xwrite /client/sel/tags "admin"
+              wmiir xwrite /client/sel/tags "su"
 Key $MODKEY-Shift-1
-              wmiir xwrite /client/sel/tags "social"
-Key $MODKEY-Shift-2
-              wmiir xwrite /client/sel/tags "code"
-Key $MODKEY-Shift-3
               wmiir xwrite /client/sel/tags "web"
-Key $MODKEY-Shift-4
+Key $MODKEY-Shift-2
               wmiir xwrite /client/sel/tags "office"
-Key $MODKEY-Shift-5
-              wmiir xwrite /client/sel/tags "vbe"
-Key $MODKEY-Shift-6
+Key $MODKEY-Shift-3
               wmiir xwrite /client/sel/tags "art"
+Key $MODKEY-Shift-4
+              wmiir xwrite /client/sel/tags "a"
+Key $MODKEY-Shift-5
+              wmiir xwrite /client/sel/tags "b"
+Key $MODKEY-Shift-6
+              wmiir xwrite /client/sel/tags "c"
 Key $MODKEY-Shift-7
-              wmiir xwrite /client/sel/tags "game"
+              wmiir xwrite /client/sel/tags "d"
 Key $MODKEY-Shift-8
-              wmiir xwrite /client/sel/tags "video"
+              wmiir xwrite /client/sel/tags "e"
 Key $MODKEY-Shift-9
-              wmiir xwrite /client/sel/tags "gmm"
+              wmiir xwrite /client/sel/tags "f"
 !
               done
 
