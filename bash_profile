@@ -25,4 +25,4 @@ if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
   #exec xinit -- /usr/bin/X -nolisten tcp vt7
 fi
 
-alias ssh="TERM=linux ssh"
+

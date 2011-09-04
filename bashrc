@@ -54,6 +54,8 @@ else
     TERM='xterm'
 fi
 
+alias ssh="TERM=linux ssh"
+
 #if [ "$COLORTERM" == "rxvt" ]; then
 #    export TERM=rxvt-256color
 #fi
