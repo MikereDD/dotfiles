@@ -44,4 +44,4 @@
  bind -m emacs '"\ev": vi-editing-mode'
 
 ## Specify vi editing mode
- set -o vi
+ set -o vim
