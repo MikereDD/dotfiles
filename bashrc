@@ -6,8 +6,6 @@
 # By: MreDD     mredd (at) 0tue0.com
 ##################
 
-#export TERM='linux'
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -18,22 +16,7 @@ eval `keychain --eval --agents ssh id_rsa`
 #    . /etc/bashrc # --> Read /etc/bashrc, if present.
 #fi
 
-# Screen hack
-export SDL_VIDEO_FULLSCREEN_HEAD=1
-#
-#export LC_ALL=
-#export LC_COLLATE="C"
-#export LANG="UTF-8"
-
-# Grooveshark hack
-alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
-
-#if [ -e /usr/share/terminfo/x/xterm-256color ]; then
-#    export TERM='xterm-256color'
-#else
-#    export TERM='xterm-color'
-#fi
-
+# Term 
 if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
     export TERM='rxvt-unicode-256color'
 elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
@@ -56,13 +39,27 @@ fi
 
 alias ssh="TERM=linux ssh"
 
-#if [ "$COLORTERM" == "rxvt" ]; then
-#    export TERM=rxvt-256color
-#fi
+#
+export EDITOR="vim"
+#export BROWSER="elinks"
+#export BROWSER="/usr/bin/vimprobable2-tabbed"
+export BROWSER="dwb"
+export PAGER="vimpager"
+export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
+export HISTCONTROL="ignoredups"
+#source /usr/share/cdargs/cdargs-bash.sh
+export SDL_AUDIODRIVER="alsa"
+export AUDIODEV="plug:dmix"
 
-#if [ "$COLORTERM" == "putty-256color" ]; then
-#    export TERM=rxvt-256color
-#fi
+# Screen hack
+export SDL_VIDEO_FULLSCREEN_HEAD=1
+#
+#export LC_ALL=
+#export LC_COLLATE="C"
+#export LANG="UTF-8"
+
+# Grooveshark hack
+alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
 
 # GIT STATUS MAGIC (START)
 GIT_PS1_SHOWDIRTYSTATE=true
@@ -237,18 +234,6 @@ alias grep='grep --color=auto'
 # Dynamic resizing
 ##################
 shopt -s checkwinsize
-
-#
-export EDITOR="vim"
-#export BROWSER="elinks"
-#export BROWSER="/usr/bin/vimprobable2-tabbed"
-export BROWSER="dwb"
-#export PAGER="$HOME/apps/bin/vimpager"
-export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
-export HISTCONTROL="ignoredups"
-#source /usr/share/cdargs/cdargs-bash.sh
-export SDL_AUDIODRIVER=alsa
-export AUDIODEV=plug:dmix
 
 PS1="${P}[${GL}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${Y}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${Y}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}(${LG} "
 
