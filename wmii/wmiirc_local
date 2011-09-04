@@ -68,7 +68,7 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+video+code+social+web+b
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+a+b+web
     /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +web
     /gedit|leafpad/ -> +c
     /Gimp.*|Darktable/ -> ~+art
