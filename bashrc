@@ -9,13 +9,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Keychain lines to help ssh-agent
-eval `keychain --eval --agents ssh id_rsa`
-
-#if [ -f /etc/bashrc ]; then
-#    . /etc/bashrc # --> Read /etc/bashrc, if present.
-#fi
-
 # Term 
 if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
     export TERM='rxvt-unicode-256color'

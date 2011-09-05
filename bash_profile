@@ -15,6 +15,13 @@ function go {
     unset GO_SHELL_SCRIPT
 }
 
+# Keychain lines to help ssh-agent
+eval `keychain --eval --agents ssh id_ecdsa id_rsa id_dsa`
+
+# source keychains
+source ~/.keychain/${HOSTNAME}-sh > /dev/null
+
+#sourcing ~/.bashrc is a good thing
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
