@@ -18,8 +18,10 @@ noticebar=/rbar/!notice
 #export WMII_NORMCOLORS="#097fb1 #222222 #7e7e7e"
 #export WMII_FOCUSCOLORS="#cfd4d0 #03090b #0ebf6e"
 #export WMII_NORMCOLORS="#aab8bb #000000 #7b0367"
-export WMII_FOCUSCOLORS="#fefefe #0b0a0a #cccccc"
-export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
+#export WMII_FOCUSCOLORS="#fefefe #0b0a0a #cccccc"
+#export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
+export WMII_FOCUSCOLORS="#ffffff #000000 #700d10"
+export WMII_NORMCOLORS="#d9c7d0 #050505 #91686b"
 # Wallpaper
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-889602.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-928033.png"
@@ -28,8 +30,8 @@ export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_Dark_Knight-The_Joker-wallpaper.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_movies_DC_Comics_Dark_Knight_The_Joker_wallpaper.jpg"
 #export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Dark_wallpaper.jpg"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-122975.jpg"
-
+#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-122975.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
 # Font
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
 #export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
@@ -68,19 +70,19 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+a+b+web
-    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +web
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+v
+    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +w
     /gedit|leafpad/ -> +c
-    /Gimp.*|Darktable/ -> ~+art
+    /Gimp.*|Darktable/ -> ~+g
     /xcalc/ -> ~
     /code|c.*/ -> +c
-    /root/ -> +su
+    /root/ -> +a
     /a.*|pidgin/ -> +a
-    /b.*|doh!.*|KDX.*/ -> +b
-    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+    /b.*|KDX.*/ -> +i
+    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o
     /Music.Manager.*/ -> ~+d
     /armagetronad/ -> +c
-    /virtualbox.*|Oracle.*|VBE.*/ -> +e
+    /virtualbox.*|Oracle.*|VBE.*/ -> +v
     /.*/ -> sel
     /.*/ -> 1
 !
@@ -95,45 +97,45 @@ local_events() {
             for i in 0 1 2 3 4 5 6 7 8 9; do
                      cat <<!
 Key $MODKEY-0
-              wmiir xwrite /ctl view "su"
-Key $MODKEY-1
-              wmiir xwrite /ctl view "web"
-Key $MODKEY-2
-              wmiir xwrite /ctl view "office"
-Key $MODKEY-3
-              wmiir xwrite /ctl view "art"
-Key $MODKEY-4
               wmiir xwrite /ctl view "a"
-Key $MODKEY-5
-              wmiir xwrite /ctl view "b"
-Key $MODKEY-6
+Key $MODKEY-1
+              wmiir xwrite /ctl view "i"
+Key $MODKEY-2
               wmiir xwrite /ctl view "c"
-Key $MODKEY-7
-              wmiir xwrite /ctl view "d"
-Key $MODKEY-8
+Key $MODKEY-3
               wmiir xwrite /ctl view "e"
-Key $MODKEY-9
+Key $MODKEY-4
               wmiir xwrite /ctl view "f"
+Key $MODKEY-5
+              wmiir xwrite /ctl view "g"
+Key $MODKEY-6
+              wmiir xwrite /ctl view "w"
+Key $MODKEY-7
+              wmiir xwrite /ctl view "m"
+Key $MODKEY-8
+              wmiir xwrite /ctl view "v"
+Key $MODKEY-9
+              wmiir xwrite /ctl view "o"
 Key $MODKEY-Shift-0
-              wmiir xwrite /client/sel/tags "su"
-Key $MODKEY-Shift-1
-              wmiir xwrite /client/sel/tags "web"
-Key $MODKEY-Shift-2
-              wmiir xwrite /client/sel/tags "office"
-Key $MODKEY-Shift-3
-              wmiir xwrite /client/sel/tags "art"
-Key $MODKEY-Shift-4
               wmiir xwrite /client/sel/tags "a"
-Key $MODKEY-Shift-5
-              wmiir xwrite /client/sel/tags "b"
-Key $MODKEY-Shift-6
+Key $MODKEY-Shift-1
+              wmiir xwrite /client/sel/tags "i"
+Key $MODKEY-Shift-2
               wmiir xwrite /client/sel/tags "c"
-Key $MODKEY-Shift-7
-              wmiir xwrite /client/sel/tags "d"
-Key $MODKEY-Shift-8
+Key $MODKEY-Shift-3
               wmiir xwrite /client/sel/tags "e"
-Key $MODKEY-Shift-9
+Key $MODKEY-Shift-4
               wmiir xwrite /client/sel/tags "f"
+Key $MODKEY-Shift-5
+              wmiir xwrite /client/sel/tags "g"
+Key $MODKEY-Shift-6
+              wmiir xwrite /client/sel/tags "w"
+Key $MODKEY-Shift-7
+              wmiir xwrite /client/sel/tags "m"
+Key $MODKEY-Shift-8
+              wmiir xwrite /client/sel/tags "v"
+Key $MODKEY-Shift-9
+              wmiir xwrite /client/sel/tags "o"
 !
               done
 
