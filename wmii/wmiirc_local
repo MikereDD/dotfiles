@@ -77,11 +77,11 @@ wmiir write /tagrules <<!
     /xcalc/ -> ~
     /code|c.*/ -> +c
     /root/ -> +a
-    /a.*|pidgin/ -> +a
+    /i.*|pidgin/ -> +i
     /b.*|KDX.*/ -> +i
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o
-    /Music.Manager.*/ -> ~+d
-    /armagetronad/ -> +c
+    /Music.Manager.*/ -> ~+m
+    /armagetronad/ -> +g
     /virtualbox.*|Oracle.*|VBE.*/ -> +v
     /.*/ -> sel
     /.*/ -> 1
