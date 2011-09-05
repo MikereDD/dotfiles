@@ -9,7 +9,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Term 
+# Term
 if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
     export TERM='rxvt-unicode-256color'
 elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
@@ -34,8 +34,8 @@ alias ssh="TERM=linux ssh"
 
 #
 export EDITOR="vim"
-#export BROWSER="elinks"                                                                                                                                                                        
-#export BROWSER="/usr/bin/vimprobable2-tabbed"                                                                                                                                                  
+#export BROWSER="elinks"
+#export BROWSER="/usr/bin/vimprobable2-tabbed"
 #export BROWSER="dwb"
 if [ -n "$DISPLAY" ]; then
     BROWSER=dwb
