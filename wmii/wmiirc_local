@@ -70,19 +70,17 @@ wmiir write /tagrules <<!
     /^ROX-Filer:/ group=0
     #
     #
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop|huludesktop.*/ -> ~+v
-    /firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +w
-    /gedit|leafpad/ -> +c
-    /Gimp.*|Darktable/ -> ~+g
     /xcalc/ -> ~
-    /code|c.*/ -> +c
-    /root/ -> +a
-    /i.*|pidgin/ -> +i
-    /b.*|KDX.*/ -> +i
-    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o
-    /Music.Manager.*/ -> ~+m
-    /armagetronad/ -> +g
-    /virtualbox.*|Oracle.*|VBE.*/ -> +v
+    /root/ -> +s
+    /Gimp.*|Darktable.*/ -> +a
+    /virtualbox.*|Oracle.*|VBE.*/ -> +b
+    /c|code|gedit.*|leafpad.*/ -> +c
+    /armagetronad.*/ -> +g
+    /i|b|KDX.*|Pidgin.*/ -> +i
+    /Music.Manager.*/ -> ~+m    
+    /nautilus.*|thunar.*|FM shell|LibreOffice.*|libreoffice.*|apvlv.*|xchm.*|mcomix.*/ -> +o    
+    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop.*/ -> ~+v
+    /filezilla.*|FileZilla.*|firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +w
     /.*/ -> sel
     /.*/ -> 1
 !
@@ -99,13 +97,13 @@ local_events() {
 Key $MODKEY-0
               wmiir xwrite /ctl view "a"
 Key $MODKEY-1
-              wmiir xwrite /ctl view "i"
+              wmiir xwrite /ctl view "b"
 Key $MODKEY-2
               wmiir xwrite /ctl view "c"
 Key $MODKEY-3
-              wmiir xwrite /ctl view "e"
+              wmiir xwrite /ctl view "i"
 Key $MODKEY-4
-              wmiir xwrite /ctl view "f"
+              wmiir xwrite /ctl view "s"
 Key $MODKEY-5
               wmiir xwrite /ctl view "g"
 Key $MODKEY-6
@@ -119,13 +117,13 @@ Key $MODKEY-9
 Key $MODKEY-Shift-0
               wmiir xwrite /client/sel/tags "a"
 Key $MODKEY-Shift-1
-              wmiir xwrite /client/sel/tags "i"
+              wmiir xwrite /client/sel/tags "b"
 Key $MODKEY-Shift-2
               wmiir xwrite /client/sel/tags "c"
 Key $MODKEY-Shift-3
-              wmiir xwrite /client/sel/tags "e"
+              wmiir xwrite /client/sel/tags "i"
 Key $MODKEY-Shift-4
-              wmiir xwrite /client/sel/tags "f"
+              wmiir xwrite /client/sel/tags "s"
 Key $MODKEY-Shift-5
               wmiir xwrite /client/sel/tags "g"
 Key $MODKEY-Shift-6
