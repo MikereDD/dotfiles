@@ -74,13 +74,12 @@ wmiir write /tagrules <<!
     /root/ -> +s
     /Gimp.*|Darktable.*/ -> +a
     /virtualbox.*|Oracle.*|VBE.*/ -> +b
-    /c|code|gedit.*|leafpad.*/ -> +c
-    /armagetronad.*/ -> +g
-    /i|b|KDX.*|Pidgin.*/ -> +i
+    /c|code|gedit|leafpad/ -> +c
+    /armagetronad/ -> +g
     /Music.Manager.*/ -> ~+m    
-    /nautilus.*|thunar.*|FM shell|LibreOffice.*|libreoffice.*|apvlv.*|xchm.*|mcomix.*/ -> +o    
-    /MPlayer.*|VLC.*|vlc.*|Boxee.*|boxee.*|huludesktop.*/ -> ~+v
-    /filezilla.*|FileZilla.*|firefox.*|Firefox.*|Namoroka.*|Mozilla.*|Thunderbird.*|Muttator.*|dwb.*|DWB.*|vimprobable2.*|uzbl.*/ -> +w
+    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o    
+    /MPlayer|VLC|vlc|Boxee|boxee|huludesktop/ -> ~+v
+    /filezilla|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +w
     /.*/ -> sel
     /.*/ -> 1
 !
