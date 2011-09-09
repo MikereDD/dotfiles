@@ -47,7 +47,7 @@ ftp_proxy="ftp://192.168.11.1:21"
 http_proxy="http://192.168.11.1:80"
 #
 export PAGER="vimpager"
-export PATH="$PATH:/home/mredd:/home/mredd/apps/bin"
+export PATH="$PATH:$HOME:$HOME/apps/bin"
 #export HISTCONTROL="ignoredups"
 #export HISTCONTROL="ignorespace"
 export HISTCONTROL="ignoreboth"
