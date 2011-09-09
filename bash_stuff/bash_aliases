@@ -406,12 +406,6 @@ alias snapdelay="sh $HOME/scripts/image/scrotdelay.sh "
 alias dragscrot="sh $HOME/scripts/image/dragscrot.sh "
 alias infosshot="perl $HOME/scripts/image/info.pl"
 
-# Bash Aliases
-##################
-if [ -f $HOME/.bash_aliases_ssh-ftp-shares ]; then
- . $HOME/.bash_aliases_ssh-ftp-shares
-fi
-
 # Fifo Nicklist Irssi
 ##################
 #alias irsii="aterm -name aterm -title irssi -g 112x65+215+32 &"
@@ -424,6 +418,9 @@ alias wallpaperzim="feh --bg-center $HOME/images/wallpapers/invader-zim2.png"
 alias wallpaperhobbes="feh --bg-center $HOME/images/wallpapers/Calvin-Hobbes.jpg"
 alias wallpapercanti="feh --bg-center $HOME/images/wallpapers/Canti.png"
 alias wallpaperflcl=-"feh --bg-center $HOME/images/wallpaper/1440-900-FLCL-bw-2.png"
+
+# Grooveshark hack
+alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
 
 # Apps with Wine
 ##################

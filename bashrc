@@ -213,16 +213,22 @@ complete -cf sudo
 complete -cf man
 
 
+###
+# Bash Suff
+# ~/.bash_suff
+#
+# Bash Binds
+if [ -f ~/.bash_stuff/bash_binds ]; then
+    . ~/.bash_stuff/bash_binds
+fi
 # Bash Aliases
 ##################
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.bash_stuff/bash_aliases ]; then
+    . ~/.bash_stuff/bash_aliases
 fi
-
-# Bash Binds
-##################
-if [ -f ~/.bash_binds ]; then
-    . ~/.bash_binds
+# Bash Passwords
+if [ -f ~/.bash_stuff/bash_passwd ]; then
+    . ~/.bash_stuff/bash_passwd
 fi
 
 # Inputrc file - Faster Completion
