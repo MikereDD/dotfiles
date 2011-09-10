@@ -6,6 +6,42 @@
 # By: MreDD     mredd (at) 0tue0.com
 ##################
 
+###
+# Bash Suff
+# ~/.bash_suff
+## Bash Colors
+if [ -f ~/.bash_stuff/bash_colors ]; then
+    . ~/.bash_stuff/bash_colors
+fi
+# Bash Binds
+if [ -f ~/.bash_stuff/bash_binds ]; then
+    . ~/.bash_stuff/bash_binds
+fi
+# Bash Aliases
+##################
+if [ -f ~/.bash_stuff/bash_aliases ]; then
+    . ~/.bash_stuff/bash_aliases
+fi
+# Bash Passwords
+if [ -f ~/.bash_stuff/bash_passwd ]; then
+    . ~/.bash_stuff/bash_passwd
+fi
+
+# Inputrc file - Faster Completion
+if [ -f ~/.inputrc ]; then
+    . ~/.inputrc
+fi
+
+# Bash Logout
+#if [ -f ~/.bash_logout ]; then
+#    . ~/.bash_logout
+#fi
+
+#bash completion
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -129,44 +165,8 @@ PROMPT_COMMAND=bash_prompt_command
 #bash_prompt
 #unset bash_prompt
 
-#bash completion
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
 complete -cf sudo
 complete -cf man
-
-
-###
-# Bash Suff
-# ~/.bash_suff
-## Bash Colors
-if [ -f ~/.bash_stuff/colors ]; then
-    . ~/.bash_stuff/colors
-fi
-# Bash Binds
-if [ -f ~/.bash_stuff/bash_binds ]; then
-    . ~/.bash_stuff/bash_binds
-fi
-# Bash Aliases
-##################
-if [ -f ~/.bash_stuff/bash_aliases ]; then
-    . ~/.bash_stuff/bash_aliases
-fi
-# Bash Passwords
-if [ -f ~/.bash_stuff/bash_passwd ]; then
-    . ~/.bash_stuff/bash_passwd
-fi
-
-# Inputrc file - Faster Completion
-if [ -f ~/.inputrc ]; then
-    . ~/.inputrc
-fi
-
-# Bash Logout
-#if [ -f ~/.bash_logout ]; then
-#    . ~/.bash_logout
-#fi
 
 # grep color
 ##################
