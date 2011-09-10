@@ -62,6 +62,8 @@ export SDL_VIDEO_FULLSCREEN_HEAD=1
 #export LC_COLLATE="C"
 #export LANG="UTF-8"
 
+# Tweetdeck hack
+alias tweetdeck='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/tweetdeck/tweetdeck.air'
 # Grooveshark hack
 alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
 
