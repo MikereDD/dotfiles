@@ -161,7 +161,8 @@ URxvt*internalBorder:             0
 !fade text n% upon unfocus
 URxvt*fading:                     60
 !darken=(0 to 100) lighten=(-1 to -100)
-URxvt*shading:                    85
+!URxvt*shading:                    85
+URxvt*shading:                    15
 !tint background with this color
 URxvt*tintColor:                  grey
 !URxvt*tintColor:                  #080b0a

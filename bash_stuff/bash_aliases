@@ -87,7 +87,7 @@ alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
 
 alias mvnzb="$HOME/scripts/misc/mvnzb.sh"
 #alias mplayeralsa="mplayer -ao alsa "
-alias mplayer="mplayer -identify $@> $HOME/.mplayer/mylog.log"
+alias mplayerlog="mplayer -identify $@> $HOME/.mplayer/mylog.log"
 alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
 # urxvt quick aliases
 alias ashell="urxvt -name 'a' &"
@@ -168,6 +168,23 @@ pacmansearch() {
      -e 's#^community/.*#\\033[1;35m&\\033[0;37m#g' \
      -e 's#^.*/.* [0-9].*#\\033[0;36m&\\033[0;37m#g' ) \
      \033[0m"
+}
+
+pacl() {
+    repoz=`grep -v '^\[options\]' /etc/pacman.conf | grep '^\[.*\]' | sed -e 's/^\[\([^]]*\)\]$/\1/g'`
+    repo=''
+    if [[ -z $1 ]]; then
+        echo -e "invalid parameter: use a repo or 'all' for all\nrepos available:"
+        for rep in $repoz; do  echo -n "  ${rep}";  done
+        echo ""
+        return
+    elif [[ $1 != 'all' ]]; then repo=$1; fi
+
+    local CL='\\e[';  local RS='\\e[0;0m'
+
+    echo -e "$(pacman -Sl ${repo} | sed "
+    /\[installed\]$/s,.*,${CL}0;33m&${RS},
+    ")"
 }
 
 # Yaourt aliases
