@@ -17,7 +17,7 @@ MACHINE="$(uname -m)"
 KERNEL="$(uname -r)"
 UPTIME="$(uptime | cut -f 2 -d "p" | cut -f 1 -d ",")"
 SHELL="$SHELL"
-TERMINAL="$TERM"
+TERM="$TERM"
 EDITOR="$EDITOR"
 BROWSER="$BROWSER"
 PACKAGES="$(pacman -Q | wc -l)"
@@ -33,5 +33,9 @@ SCRNRESOLUTION="$(xdpyinfo | grep dimensions | awk '{print $2}')"
 WINDOWMANAGER="$(ps -A | awk '{print $4}' | grep wmii | head -1 | tr -d 'rc')"
 HARDDISC="$(fdisk -l 2> /dev/null | grep Disk | grep -v identifier | awk '{print $3,$4}' | tr -d '\n' | sed 's|,|\ |g')"
 AUDIOCARD="$(lspci|grep "Audio device" | cut -f2 -d '[' | tr -d ']' | sed 's|SB ||g')"
-
+if [ "$TERM" = "tty" ]; then
+    TERM="rxvt-unicode-256color"
+else
+    TERM="$TERM"
+fi
 echo -e "User: $USER - Hostname: $HOSTNAME - Distro: $DISTRO$MACHINE - Kernel: $KERNEL - Uptime:$UPTIME - Shell: $SHELL - Terminal: $TERM - Editor: $EDITOR - Browser: $BROWSER - Packages: $PACKAGES - CPU: $CPU Ram: "`expr $MEMUSED / 1024`"Mb" / "`expr $MEMTOTAL / 1024 - 1`"Gb" GPU: $GPU - Resolution: $SCRNRESOLUTION Audio: $AUDIOCARD Webcam:$USBCAM - Keyboard: $KEYBOARD - Mouse: $MOUSE - Window Manager: $WINDOWMANAGER - Harddisc: $HARDDISC"
