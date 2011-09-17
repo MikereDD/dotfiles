@@ -112,12 +112,15 @@ bind '}' history
 
 # shelltitle '$ | '
 screen -t shell 0 
-screen -t irc 1 
+screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
-screen -t moc 3 mocp
-screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
-screen -t torrent 5 
-screen -t iw 6 wicd-curses
+#screen -t moc 3 mocp
+screen -t moc user@server.local -p port
+#screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
+screen -t radio user@server.local -p port
+screen -t torrent 5 rtorrent
+#screen -t iw 6 wicd-curses
+screen -t iw ssh user@server.local -p port
 
 #
 #
