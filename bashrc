@@ -69,7 +69,9 @@ fi
 alias ssh="TERM=linux ssh"
 
 #
+# Editor
 export EDITOR="vim"
+# Browser
 #export BROWSER="elinks"
 #export BROWSER="/usr/bin/vimprobable2-tabbed"
 #export BROWSER="dwb"
