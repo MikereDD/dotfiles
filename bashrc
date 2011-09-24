@@ -82,14 +82,22 @@ fi
 ftp_proxy="ftp://192.168.11.1:21"
 http_proxy="http://192.168.11.1:80"
 #
+# Pager
 export PAGER="vimpager"
+# Path's Binary
 export PATH="$PATH:$HOME:$HOME/apps/bin"
+# History
 #export HISTCONTROL="ignoredups"
 #export HISTCONTROL="ignorespace"
 export HISTCONTROL="ignoreboth"
+# CDARGS Custom BASH
 #source /usr/share/cdargs/cdargs-bash.sh
+# SDL Audio
 export SDL_AUDIODRIVER="alsa"
+# ALSA Audio
 export AUDIODEV="plug:dmix"
+# Display
+export DISPLAY=:0.0
 
 # Screen hack
 export SDL_VIDEO_FULLSCREEN_HEAD=1
@@ -177,7 +185,7 @@ alias grep='grep --color=auto'
 ##################
 shopt -s checkwinsize
 
-PS1="${P}[${GL}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${Y}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${Y}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}(${LG} "
+PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${TQ}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${TQ}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}(${LG} "
 
 #EOF
 ##################
