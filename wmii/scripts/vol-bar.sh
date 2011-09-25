@@ -7,43 +7,43 @@ VOLUME=$(amixer sget "$CHANNEL" | tail -n 1 | awk '{print $5}' | tr -d []%)
 VBARS=$(expr $VOLUME / 10)
 case $VBARS in
         1)
-                VBAR='[|---------]'
+                VBAR='|'
                 ;;
         2)
-                VBAR='[||--------]'
+                VBAR='||'
                 ;;
         3)
-                VBAR='[|||-------]'
+                VBAR='|||'
                 ;;
         4)
-                VBAR='[||||------]'
+                VBAR='||||'
                 ;;
         5)
-                VBAR='[|||||-----]'
+                VBAR='|||||'
                 ;;
         6)
-                VBAR='[||||||----]'
+                VBAR='||||||'
                 ;;
         7)
-                VBAR='[|||||||---]'
+                VBAR='|||||||'
                 ;;
         8)
-                VBAR='[||||||||--]'
+                VBAR='||||||||'
                 ;;
         9)
-                VBAR='[|||||||||-]'
+                VBAR='|||||||||'
                 ;;
         10)
-                VBAR='[||||||||||]'
+                VBAR='||||||||||'
                 ;;
         *)
-                VBAR='[----------]'
+                VBAR='**********'
 esac
 STATE="$VOLUME"
 if [ $STATE == "0" ]; then
     VOL="[muted]"
 else
-    VOL="Vol: $VBAR"
+    VOL="$VBAR"
 fi
 echo -e $VOL
 

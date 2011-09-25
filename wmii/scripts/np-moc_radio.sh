@@ -17,24 +17,28 @@ TITLE=`mocp -i | grep SongTitle | cut -f2 -d ":"`
 
 # Variable VLC  -  local player
 
+# Volume
+VOLUME=$(sh $HOME/.wmii/scripts/vol.sh)
+VOLUMET=$(sh $HOME/.wmii/scripts/vol-bar.sh)
+
 ## Streaming Radio Players
 # Variables Shell-FM - radio
 #IFONLFM=`sh $HOME/scripts/system/check_shell-fm_running-PID.sh`
 if [ -f $HOME/.shell-fm/nowplaying ]; then
    IFONLFM=`sh $HOME/scripts/system/check_shell-fm_running-PID.sh`
    NPLFM=`cat $HOME/.shell-fm/nowplaying`
-   echo "LastFM: $NPLFM " | wmiir create /rbar/anowplaying
+   echo -e "LastFM: $NPLFM | Vol: $VOLUME" | wmiir create /rbar/anowplaying
 else
 # Variables Pianobar - radio
 IFONPB=`sh $HOME/scripts/system/check_pianobar_running-PID.sh`
 NPPB=`cat $HOME/.config/pianobar/nowplaying`
    if [ "$IFONPB" = "On" ]; then
-      echo "Pandora: $NPPB " | wmiir create /rbar/anowplaying
+      echo -e "Pandora: $NPPB | Vol: $VOLUME" | wmiir create /rbar/anowplaying
 #    sleep 10
 #    wmiir remove /rbar/anowplaying
 #else
 elif [ "$STATE" == "State: PLAY" ]; then
-    echo +MOC+ np: $ARTIST - $TITLE | wmiir create /rbar/anowplaying
+    echo -e "+MOC+ np: $ARTIST - $TITLE | Vol: $VOLUME" | wmiir create /rbar/anowplaying
 #    sleep 10
 #    wmiir remove /rbar/anowplaying
 else
