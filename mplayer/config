@@ -2,17 +2,17 @@
 # General setup
 #
 # Audio Out
-ao=alsa:device=Creative
+#ao_driver="alsa" 
+ao="alsa:device=default"
+#ao=alsa:device=Creative
 channels=6
-#ao="alsa:device=default"
-#ao_driver="alsa"
 ao_alsa_mixer="PCM"
 #ao_alsa_mixer="PCM"
 ao_alsa_mixer_channel="PCM"
-ao_alsa_device="Creative"
+#ao_alsa_device="Creative"
 # Audio Codec
-ac=hwac3,hwdts,a52,dts,
-afm=hwac3
+#ac=hwdts,hwac3,a52,
+#afm=hwac3,
 # Soft Volume
 softvol="yes"
 softvol-max="100"
@@ -30,8 +30,8 @@ vo="vdpau"
 #vo="xv"
 #vo="vdpau"
 # Video Codecs
-#vc=ffmpeg12vdpau,ffwmv3vdpau,ffmpeg12vdpau,ffvc1vdpau,
-vc=ffh264vdpau,ffwmv3vdpau,ffmpeg12vdpau,ffvc1vdpau,
+vc=ffmpeg12vdpau,ffwmv3vdpau,ffmpeg12vdpau,ffvc1vdpau,
+#vc=ffh264vdpau,ffwmv3vdpau,ffmpeg12vdpau,ffvc1vdpau,
 #vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 # Video Mode
 #vm="no"
