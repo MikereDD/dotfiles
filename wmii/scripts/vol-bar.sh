@@ -1,8 +1,9 @@
 #!/bin/bash
-# Vol Bar
-# MreDD
+# Simple Volume Bar Script
+# by: MikereDD
 #############
-VOLUME=$(amixer sget 'PCM' | tail -n 1 | awk '{print $5}' | tr -d []%)
+CHANNEL="PCM"
+VOLUME=$(amixer sget "$CHANNEL" | tail -n 1 | awk '{print $5}' | tr -d []%)
 VBARS=$(expr $VOLUME / 10)
 case $VBARS in
         1)
@@ -40,7 +41,7 @@ case $VBARS in
 esac
 STATE="$VOLUME"
 if [ $STATE == "0" ]; then
-    VOL="Muted: $VBAR"
+    VOL="[muted]"
 else
     VOL="Vol: $VBAR"
 fi
