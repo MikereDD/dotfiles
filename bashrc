@@ -68,46 +68,6 @@ fi
 
 alias ssh="TERM=linux ssh"
 
-#
-# Editor
-export EDITOR="vim"
-# Browser
-#export BROWSER="elinks"
-#export BROWSER="/usr/bin/vimprobable2-tabbed"
-#export BROWSER="dwb"
-if [ -n "$DISPLAY" ]; then
-    BROWSER=dwb
-else
-    BROWSER=elinks
-fi
-# Proxy
-ftp_proxy="ftp://192.168.11.1:21"
-http_proxy="http://192.168.11.1:80"
-#
-# Pager
-export PAGER="vimpager"
-# Path's Binary
-export PATH="$PATH:$HOME:$HOME/apps/bin"
-# History
-#export HISTCONTROL="ignoredups"
-#export HISTCONTROL="ignorespace"
-export HISTCONTROL="ignoreboth"
-# CDARGS Custom BASH
-#source /usr/share/cdargs/cdargs-bash.sh
-# SDL Audio
-export SDL_AUDIODRIVER="alsa"
-# ALSA Audio
-export AUDIODEV="plug:dmix"
-# Display
-export DISPLAY=:0.0
-
-# Screen hack
-export SDL_VIDEO_FULLSCREEN_HEAD=1
-#
-#export LC_ALL=
-#export LC_COLLATE="C"
-#export LANG="UTF-8"
-
 # Tweetdeck hack
 alias tweetdeck='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/tweetdeck/tweetdeck.air'
 # Grooveshark hack

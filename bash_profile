@@ -3,7 +3,7 @@
 #
 
 # Keychain lines to help ssh-agent
-eval `keychain --eval --agents ssh id_ecdsa id_rsa id_dsa`
+eval `keychain --eval --agents ssh id_ecdsa id_rsa id_dsa id_xzibition_rsa`
 
 # source keychains
 source ~/.keychain/${HOSTNAME}-sh > /dev/null
@@ -21,14 +21,57 @@ function go {
     unset GO_SHELL_SCRIPT
 }
 
+# Editor
+export EDITOR="vim"
+# Browser
+#export BROWSER="elinks"
+#export BROWSER="/usr/bin/vimprobable2-tabbed"
+#export BROWSER="dwb"
+if [ -n "$DISPLAY" ]; then
+    BROWSER=dwb
+else
+    BROWSER=elinks
+fi
+# Proxy
+ftp_proxy="ftp://192.168.11.1:21"
+http_proxy="http://192.168.11.1:80"
+#
+# Pager
+export PAGER="vimpager"
+# History
+#export HISTCONTROL="ignoredups"
+#export HISTCONTROL="ignorespace"
+export HISTCONTROL="ignoreboth"
+# CDARGS Custom BASH
+#source /usr/share/cdargs/cdargs-bash.sh
+# SDL Audio
+export SDL_AUDIODRIVER="alsa"
+# ALSA Audio
+export AUDIODEV="plug:dmix"
+# Display
+export DISPLAY=:0.0
+
+# Screen hack
+export SDL_VIDEO_FULLSCREEN_HEAD=1
+#
+#export LC_ALL=
+#export LC_COLLATE="C"
+#export LANG="UTF-8"
+
+# Path's Binary
+# PATH=$PATH:/data/myscripts
+# export PATH
+PATH="/usr/local/bin:/usr/local/games:optional/bin:$PATH:$HOME/apps/bin"
+export PATH
+
 #sourcing ~/.bashrc is a good thing
 if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
 
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
-  exec startx
-  # Could use xinit instead of startx
+  exec startx pekwm
+  # Could use xinit instead of startx pekwm
   #exec xinit -- /usr/bin/X -nolisten tcp vt7
 fi
 
