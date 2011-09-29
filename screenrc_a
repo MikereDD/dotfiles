@@ -1,10 +1,9 @@
 #
 # ~/.screenrc
-# M. reDD - mredd -at- 0tue0.com
+# M. reDD  - mredd -at- 0tue0.com
 # http://m-redd.com
 #
 ###############################
-
 # Color table:
 # # 0 Black             .    leave color unchanged
 # # 1 Red               b    blue
@@ -38,8 +37,13 @@ terminfo rxvt* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #name the session
 sessionname a
 
-# This is how one can set a reattach password:
-#password     # "1234"
+# ============================
+# Password
+# ============================
+# password SZnBqiqMtfa6k
+# Do NOT remove the comment if
+# you don't know what this does!
+# (TODO describe the effect - obviously)
 
 # no annoying audible bell, please
 vbell on
@@ -56,6 +60,13 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
 # advertise hardstatus support to $TERMCAP
  termcapinfo  * '' 'hs:ts=\E_:fs=\E\\:ds=\E_\E\\'
 
+# Extend the vt100 desciption by some sequences.
+termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
+terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
+termcapinfo linux C8
+# old rxvt versions also need this
+# termcapinfo rxvt C8
+
 ###
 shell                 bash
 
@@ -63,11 +74,6 @@ shell                 bash
 shell -$SHELL
 
 defscrollback 1000
-
-################
-#
-# xterm tweaks
-#
 
 # tell screen that you term can scroll
 termcapinfo xterm ti@:te@
@@ -105,35 +111,48 @@ bind 'I' login on
 bind 'O' login off
 bind '}' history
 
+# Yet another hack:
+# Prepend/append register [/] to the paste if ^a^] is pressed.
+# This lets me have autoindent mode in vi.
+register [ "\033:se noai\015a"
+register ] "\033:se ai\015a"
+bind ^] paste [.]
+
 ################
 #
 # default windows
 #
 
 # shelltitle '$ | '
+#screen -t shell 0
 screen -t shell 0 
 screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
 #screen -t moc 3 mocp
-screen -t moc user@server.local -p port
-#screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
-screen -t radio user@server.local -p port
+screen -t moc 3 ssh mredd@belial -p 60222
+##screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
+screen -t radio ssh mredd@belial -p 60222
 screen -t torrent 5 rtorrent
-#screen -t iw 6 wicd-curses
-screen -t iw ssh user@server.local -p port
-
-#
+##screen -t iw 6 wicd-curses  
+screen -t iw 6 ssh mredd@belial -p 60222
+screen -t ssh 7
 #
 #
 #  Toggle 'fullscreen' or not.
 #
 bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
+#%{+b kk} %=%{-s} %{.k%-w%{.k}%n %{.w}%t%{.k}%+w%{.} %{+s} %=
+#caption always "%{= W} %{+b}%{w}%n%{= 3}   %=%{-s}%{+b}%{= w}%-Lw%50>%{= m}%n%f%{= r}%{+b}%{= w}%t%+Lw%<%{-}%{= W}%-=%?] %="
+#hardstatus alwayslastline "%{= W}  [%{+b}%{= W}%H%{-}%{= W}]  %{= W}[%{= B}%D,%M '%y - %c%{-}%{= W}] [ %{= G}%l%{= W}] "
 # Backticks
-backtick 1 30 30 sh $HOME/.wmii/scripts/reademailcount.sh
-# Status
-caption always '%{= w} %{w}Load: %{r}%l %= %{r}| %= %{b}%1`'
-hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= w}%-w%{g}%n%{r}`%{g}%t%{-b r}%{= w}%+w %= %{w}%c %{r}- %{w}%m%{r}/%{w}%d%{r}/%{w}%y |%{r}%H%{w}|'  
+backtick 1 30 30 unreademailcount
+#backtick 1 60 60 cat $HOME/.get_mail
+#caption always '%{= .w} Load: %l %= | %= %1`'
+#hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y |%{b}%H%{w}|'  
+caption always '%{= k} %= %{.w}%1` %= '
+hardstatus alwayslastline '%{= k} %{y}|%{b}%H%{y}| %{y}[%{w}%n%{.r}`%{.w}%t%{y}] %{.k}%W %= %{y}[%{.w}%l%{y}] %{g}- %{y}[%{w}%c%{y}] %{g}- %{y}[%{w}%m%{g}/%{w}%d%{g}/%{w}%y%{y}] '
+#hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 # bind = resize =
 # bind + resize +1
 # bind - resize -1
