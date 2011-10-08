@@ -115,7 +115,7 @@ screen -t shell 0
 screen -t edit 1 vim
 screen -t todo 2 calcurse
 chdir $HOME/downloads/incoming/ftp/
-screen -fn -t ftp 3 lftp
+screen -fn -t ftp 3 lftp 
 chdir $HOME/dev
 screen -fn -t dev 4   
 chdir $HOME/
