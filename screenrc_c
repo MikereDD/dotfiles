@@ -36,7 +36,7 @@ altscreen on
 terminfo rxvt* 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 
 #name the session
-sessionname c 
+sessionname belial_c 
 
 # This is how one can set a reattach password:
 # password ODSJQf.4IJN7E    # "1234"
@@ -114,10 +114,11 @@ bind '}' history
 screen -t shell 0 
 screen -t edit 1 vim
 screen -t todo 2 calcurse
+chdir $HOME/downloads/incoming/ftp/
 screen -fn -t ftp 3 lftp
-#screen -t synergy 4 synergyc -f 172.16.128.8 
 chdir $HOME/dev
 screen -fn -t dev 4   
+chdir $HOME/
 
 #
 #
@@ -127,8 +128,10 @@ bind f eval "caption splitonly" "hardstatus ignore"
 bind F eval "caption always"    "hardstatus alwayslastline"
 # Status
 #hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= w}%-w%{g}%n%{r}`%{g}%t%{-b r}%{w}%+w %= %{.w}%c %{r}- %{w}%m%{r}/%{w}%d%{r}/%{w}%y %{r}|%{g}%H%{r}|' 
-hardstatus alwayslastline '%{= k} %= %{g}[%{w}%n%{.r}`%{.w}%t%{g}] %{.k}%W %= '
-caption always '%{= k} %{g}|%{b}%H%{g}| %= %{g}[%{.w}%l%{g}] %{g}- %{g}[%{w}%c%{g}] %{r}- %{g}[%{w}%m%{r}/%{w}%d%{r}/%{w}%y%{g}] '
+#hardstatus alwayslastline '%{= k} %= %{g}[%{w}%n%{.r}`%{.w}%t%{g}] %{.k}%W %= '
+#caption always '%{= k} %{g}|%{b}%H%{g}| %= %{g}[%{.w}%l%{g}] %{g}- %{g}[%{w}%c%{g}] %{r}- %{g}[%{w}%m%{r}/%{w}%d%{r}/%{w}%y%{g}] '
+hardstatus alwayslastline ' %{= k} %{g}|%{b}%H%{g}| %{g}[%{w}%n%{.c}`%{.w}%t%{g}] %{.k}%W %= %{g}[%{.w}%l%{g}] %{c}- %{g}[%{w}%c%{g}] %{c}- %{g}[%{w}%m%{y}/%{w}%d%{y}/%{w}%y%{g}] '
+
 # bind = resize =
 # bind + resize +1
 # bind - resize -1
