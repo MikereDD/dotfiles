@@ -93,9 +93,11 @@ xset s off
 xrdb -merge ~/.Xresources
 # Window Manager #
 # wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
+# Normal Start #
 # until wmii; do 
 #     true 
 # done
+# Network Manager Start #
 until exec ck-launch-session wmii; do 
      true
 done
