@@ -51,6 +51,10 @@ Xft.hintstyle:                    hintslight
 !*color7:  #cccccc
 !*color15: #ffffff
 
+!Technobass - Foreground/Background
+URxvt*foreground: #665c64
+URxvt*background: #121212
+
 !Technobass
 ! -- black
 URxvt*color0: #000000
