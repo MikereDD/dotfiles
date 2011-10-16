@@ -4,89 +4,57 @@
 # http://m-redd.com
 #
 ###############################
-#Font Help
-xset +fp ${HOME}/.fonts
-# SSH
-#eval `/usr/bin/ssh-agent`
-#SSH_ASKPASS=/usr/lib/openssh/x11-ssh-askpass ssh-add < /dev/null
 
-# Misc
-if [ -f $HOME/.Xmodmap ]; then
+# Aliases #
+x='xinit'
+
+# Font #
+xset +fp ${HOME}/.fonts
+
+# Misc #
+if [ -f $HOME/.Xmodmap ]; then                                                                                                                                                                                                                 
     /usr/bin/xmodmap $HOME/.Xmodmap
 fi
 
 [ -f /etc/X11/Xmodmap ] && xmodmap /etc/X11/Xmodmap
 
-# Aliases
-x='xinit'
+# Run Apps #
+autocutsel -fork &
+autocutsel -selection PRIMARY -fork &
+xset m 4 1 &
+xset +fp /usr/share/fonts/local &
+xset fp rehash &
+# xmodmap ~/.Xmodmap &
+# xrdb -load ~/.Xdefaults &
+xrdb -merge ~/.Xresources
+setterm -blank 0 -powersave off -powerdown 0
+xset s off
 
-# Start Window Manager
-case "$1" in
-    awesome)
-# Awesome
-           autocutsel -fork &
-           autocutsel -selection PRIMARY -fork &
-           xrdb -load ~/.Xdefaults &
-           xset m 4 1 &
-           xcompmgr &
-           xbindkeys &
-           sabnzbd &
-           xscreensaver -no-splash &
-           #sh ~/scripts/synergyc start &
-           synergys &
-           numlockx &
-           #noip2 -c ~/.noip2.rc &
-           xset +fp /usr/share/fonts/local &
-           xset fp rehash &
-           xmodmap ~/.Xmodmap &
-           sh /home/mredd/scripts/net/mntsshfs.sh 
-#           sh ~/scripts/net/MultipleDropboxInstances.sh &
-           #pkill -9 g15macro ; g15macro &
-           #devmon 2>&1 > ~/tmp/devmon.log &
-           sleep 1
-           exec ck-launch-session awesome ;;
-    wmfs)
-# WMFS
-           autocutsel -fork &
-           autocutsel -selection PRIMARY -fork &
-           xrdb -load ~/.Xdefaults &
-           xset m 4 1 &
-           xcompmgr &
-           xbindkeys &
-#           sabnzbd &
-           xscreensaver -no-splash &
-#           sh ~/scripts/synergyc start &
-           synergys &
-           numlockx &
-#           noip2 -c ~/.noip2.rc &
-           xset +fp /usr/share/fonts/local &
-           xset fp rehash &
-           sh /home/mredd/scripts/net/mntsshfs.sh 
-           exec ck-launch-session wmfs ;;
-    *)
-# WMii
-           autocutsel -fork &
-           autocutsel -selection PRIMARY -fork &
-           xrdb -load ~/.Xdefaults &
-           xset m 4 1 &
-           xcompmgr &
-           xbindkeys &
-#           sabnzbd &
-           xscreensaver -no-splash &
-#           sh ~/scripts/synergyc start &
-           synergys &
-           numlockx &
-#           noip2 -c ~/.noip2.rc &
-           xset +fp /usr/share/fonts/local &
-           xset fp rehash &
-#           xmodmap ~/.Xmodmap &
-#           sh ~/scripts/net/MultipleDropboxInstances.sh &
-#           pkill -9 g15macro ; g15macro &
-#           devmon 2>&1 > ~/tmp/devmon.log &
-#           sleep 1
-#           wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
-#           until wmii; do true; done
-#           VBoxClient-all &
-            sh /home/mredd/scripts/net/mntsshfs.sh 
-            until exec ck-launch-session wmii; do true; done ;;
-esac
+# Start Applications
+# sh ~/scripts/synergyc start &
+synergys &
+# sabnzbd &
+# xcompmgr &
+xbindkeys &
+xscreensaver -no-splash &
+numlockx &
+# noip2 -c ~/.noip2.rc &
+# pkill -9 g15macro ; g15macro &
+# devmon 2>&1 > ~/tmp/devmon.log &
+# VBoxClient-all &
+
+# Mount Dropbox - Network Shares #
+# multi-dropboxes &
+# zeohn-sshfs mount  &
+
+# WMii Helpers #
+# wistrut $(wmiir read /tag/sel/index | awk '/panel:stalonetray:panel/{print $2}') &
+
+# Start Window Manger #
+# until wmii; do
+#     true
+# done
+# Start Window Manager - Policy Kit #
+until exec ck-launch-session wmii; do
+    true
+done

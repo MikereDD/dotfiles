@@ -552,9 +552,9 @@ function kingbash.fn() {
   READLINE_POINT=`echo "$OUTPUT" | tail -n 1`
   READLINE_LINE=`echo "$OUTPUT" | head -n -1`
   echo -ne "\r\e[2K"; }
-bind -x '"\t":kingbash.fn'
+#bind -x '"\t":kingbash.fn'
 
-##2
+## 2
 #kingbash.gb() {
 #    OUTPUT=$(/usr/bin/kingbash.gambas "$READLINE_LINE" "$READLINE_POINT")
 #    READLINE_POINT=$(echo "$OUTPUT"|tail -n1)

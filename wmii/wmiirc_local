@@ -1,56 +1,40 @@
-# Configuration Variables
+# Configuration Variables #
 MODKEY=Mod4
 UP=k
 DOWN=j
 LEFT=h
 RIGHT=l
 
-# Bars
+# Bars #
 noticetimeout=5
 noticebar=/rbar/!notice
 
-# Colors "<text> <background> <border>"
-export WMII_FOCUSCOLORS="#ffffff #000000 #700d10"
-export WMII_NORMCOLORS="#d9c7d0 #050505 #91686b"
-#export WMII_NORMCOLORS="#f17233 #080b0a #724d30"
-#export WMII_FOCUSCOLORS="#f17233 #080b0a #bfbfbf"
-#export WMII_NORMCOLORS="#e6e8fa #080b0a #ebc79e"
-#export WMII_FOCUSCOLORS="#ebc79e #161e1b #e6e8fa"
-#export WMII_FOCUSCOLORS="#0c92c7 #222222 #c3c3c3"
-#export WMII_NORMCOLORS="#097fb1 #222222 #7e7e7e"
-#export WMII_FOCUSCOLORS="#cfd4d0 #03090b #0ebf6e"
-#export WMII_NORMCOLORS="#aab8bb #000000 #7b0367"
-#export WMII_FOCUSCOLORS="#fefefe #0b0a0a #cccccc"
-#export WMII_NORMCOLORS="#c7c7c7 #000000 #0b8401"
+# Colors # "<text> <background> <border>"
+export WMII_NORMCOLORS="#969696 #121212 #313131"
+export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 
-# Wallpaper
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-889602.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-928033.png"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-104860.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-958895.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_Dark_Knight-The_Joker-wallpaper.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Batman_movies_DC_Comics_Dark_Knight_The_Joker_wallpaper.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Dark_wallpaper.jpg"
-#export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-122975.jpg"
+# Wallpaper #
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/the_walking_dead-wallpaper-mod.png"
 
-# Font
-#export WMII_FONT="xft:Aunchanted:pixelsize=15:antialias=true:bold:hinting=true"
+
+# Font #
+# export WMII_FONT="xft:Aunchanted:pixelsize=15:antialias=true:bold:hinting=true"
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
-#export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
-#export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
-#export WMII_FONT="xft:Pragmata TT:pixelsize=12:antialias=true:bold:hinting=true"
-#export WMII_FONT="xft:Skyhook Mono:pixelsize=12:antialias=true:bold:hinting=true"
-#export WMII_FONT="xft:Lintel:pixelsize=12:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Pragmata TT:pixelsize=12:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Skyhook Mono:pixelsize=12:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Lintel:pixelsize=12:antialias=true:bold:hinting=true"
 
-# Terminal
+# Terminal #
 export WMII_TERM="urxvt -name 'shell'"
 
-# Menu history
+# Menu history #
 hist="$(wmiir namespace)/history"
 histnum=5000
 
-# Column Rules
+# Column Rules #
 wmiir write /colrules <<!
   /gimp/ -> 17+83+41
   /xcalc/ -> 275x350+1638+21
@@ -60,7 +44,7 @@ wmiir write /colrules <<!
   /.*/ -> 62+38 # Golden Ratio
 !
 
-# Tagging Rules
+# Tagging Rules #
 wmiir write /tagrules <<!
     # Apps with system tray icons like to their main windows
     # Give them permission.
@@ -76,25 +60,26 @@ wmiir write /tagrules <<!
     #
     /xcalc/ -> ~
     /root/ -> +s
-    /Gimp.*|Darktable.*/ -> +a
+    /Gimp.*|Darktable.*/ -> ~+a
     /virtualbox.*|Oracle.*|VBE.*/ -> +b
     /code|gedit|leafpad/ -> +c
     /armagetronad/ -> +g
     /Music.Manager.*/ -> ~+m    
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o    
-    /MPlayer|VLC|vlc|Boxee|boxee|huludesktop/ -> ~+v
+    /Boxee|boxee|huludesktop/ -> ~+v
+    /MPlayer|VLC|vlc/ -> ~+i+w
     /filezilla|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +w
     /.*/ -> sel
     /.*/ -> 1
 !
 
-# Status Bar Info
+# Status Bar Info #
 status() {
 echo -n $($HOME/.wmii/scripts/np-video-audio.sh) $($HOME/.wmii/scripts/wifi-eth0.sh) $($HOME/.wmii/scripts/check_weather.sh) $($HOME/.wmii/scripts/uptime.sh) $(sh $HOME/.wmii/scripts/archupdates.sh) $(date +'%R:%S %m/%d/%Y')
 }
 
 local_events() {
-#Virtual Desktop Tagging
+#Virtual Desktop Tagging #
             for i in 0 1 2 3 4 5 6 7 8 9; do
                      cat <<!
 Key $MODKEY-0
@@ -142,7 +127,7 @@ Key $MODKEY-Shift-9
 
 }
 
-# WM Configuration
+# WM Configuration #
 wmiir write /ctl <<!
 font $WMII_FONT
 focuscolors $WMII_FOCUSCOLORS
@@ -151,15 +136,16 @@ grabmod $MODKEY
 border 0
 bar on top
 !
-# set wallpaper
+# Set wallpaper #
 $WMII_BACKGROUND
 
-# Misc
-# apps
+# Misc #
+# progsfile="$(wmiir namespace)/.proglist"
+# Start Apps #
 pkill -9 devmon;devmon 2>&1 > ~/tmp/devmon.log &
-# scripts
-#progsfile="$(wmiir namespace)/.proglist"
-#action weather &
-#action uptime &
-#action status &
+# Start Scripts #
+#
+# action weather &
+# action uptime &
+# action status &
 
