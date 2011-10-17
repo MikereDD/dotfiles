@@ -40,7 +40,9 @@ srate="48000"
 vo=vdpau,xv,
 
 # Video Codecs
-vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+#vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+#vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,
+vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,
 
 # See "mplayer -vfm help" for all available codecs
 # use FFmpeg's libavcodec video codec family
