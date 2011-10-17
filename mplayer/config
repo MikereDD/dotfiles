@@ -5,15 +5,10 @@
 #ao_driver="alsa" 
 ao="alsa:device=default"
 #ao=alsa:device=Creative
-
-channels=6
-
-ao_alsa_mixer="PCM"
 #ao_alsa_mixer="PCM"
-
-ao_alsa_mixer_channel="PCM"
-
+#ao_alsa_mixer_channel="PCM"
 #ao_alsa_device="Creative"
+channels=6
 
 # Audio Codec
 ac=hwdts,hwac3,a52,
@@ -42,11 +37,10 @@ vo=vdpau,xv,
 # Video Codecs
 #vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
 #vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,
-vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,
+vc=xvid,divxds,divx,mpeg4,mpeg4ds,mv9dmo,mvdmo,wmv8,wmv7,wmvadmo,avid,ffi263,ffh263,qt261,3ivXxa,3ivX,amv2,lzo,theora,lzocodec,qth263,cvidvfw,ffsnow,ffdivx,ffmp42,ffmp41,ffwmv1,ffwmv2,ffcvid,ffmdec,ffmpeg2,ffmpeg12,mpeg12,sgi,ffqtrle,ffrpza,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffodivxvdpau,ffodivxcrystalhd,ffh264,ffh264crystalhd,coreavcwindows,vssh264,ffh264vdpau,
 
 # See "mplayer -vfm help" for all available codecs
-# use FFmpeg's libavcodec video codec family
-vfm=ffmpeg,xvid,libmpeg2,raw,
+vfm=ffmpeg,xvid,libmpeg2,raw,hmblck,mpegpes,realvid,
 
 # Video Mode
 #vm="no"
