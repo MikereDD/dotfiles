@@ -11,7 +11,7 @@ ao="alsa:device=default"
 channels=6
 
 # Audio Codec
-ac=hwdts,hwac3,a52,
+ac=hwdts,a52,hwac3,
 afm=hwac3,
 
 # Soft Volume
