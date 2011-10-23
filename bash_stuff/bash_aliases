@@ -89,10 +89,6 @@ alias web="cd $HOME/dls/ && elinks https://encrypted.google.com"
 alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
 
 alias mvnzb="$HOME/scripts/misc/mvnzb.sh"
-#alias mplayeralsa="mplayer -ao alsa "
-alias mplayerlog="mplayer -identify $@> $HOME/.mplayer/mylog.log"
-alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
-alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh" 
 alias radioson="sh $HOME/scripts/audio/radio-switcher.sh"
 
 # urxvt quick aliases
@@ -130,7 +126,7 @@ alias tunetv="sh $HOME/scripts/tv/tune-ivtv.sh"
 alias newplaylists="cd $HOME/Music/;sh $HOME/scripts/rip/audio/genm3u_audioplaylist.sh;$HOME/scripts/rip/audio/newplaylist.sh"
 
 # ABS PKGBUILD aliases
-alias genpkgmd5sum="makepkg -g " # --geninteg   Generate integrity checks for source files
+alias mkpkgg="makepkg -g " # --geninteg   Generate integrity checks for source files
 alias bldpkg="makepkg -cfs " # --clean|--force|--syncdeps Clean up work files after build | Overwrite existing package | Install missing dependencies with pacman
 alias installpkgbld="makepkg -cfsi " # build clean force check deps and install package
 
@@ -369,8 +365,13 @@ alias tronad="/usr/local/bin/armagetronad"
 #alias mediainfohtm="mediainfo --Output=HTML " 
 alias vlcremote="vlc --control lirc "
 alias vlctv="vlc --hdtv-fix --aspect-ratio=16:9 --deinterlace-mode=b --disable-screensaver --control lirc /dev/video1"
+#alias mplayeralsa="mplayer -ao alsa "
+alias mplayerlog="mplayer -identify $@> $HOME/.mplayer/mylog.log"
+alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
+alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh" 
 #alias mplayertv="mplayer /dev/video1 -cache 2000 -panscan 1 -vf yadif=1/3,hqdn3d "
-alias mplayertv="mplayer -vo xv /dev/video1 "
+#alias mplayertv="mplayer -vo xv -ao alsa /dev/video1 "
+alias mplayertv="mplayer -identify $@> $HOME/.mplayer/mylog.log -vo vdpau -ao alsa -cache 2000 -panscan 1 /dev/video1"
 #alias mplayertv="mplayer /dev/video1 "
 #alias mplayerscrnshot="mplayer -vf -ao null "
 alias weechat="weechat-curses"ALIAS
