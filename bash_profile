@@ -28,7 +28,7 @@ export EDITOR="vim"
 #export BROWSER="/usr/bin/vimprobable2-tabbed"
 #export BROWSER="dwb"
 if [ -n "$DISPLAY" ]; then
-    BROWSER=dwb
+    BROWSER=vimperator
 else
     BROWSER=elinks
 fi
@@ -69,10 +69,26 @@ if [ -f ~/.bashrc ]; then
    source ~/.bashrc
 fi
 
+## Start X
 if [[ -z $DISPLAY && $(tty) = /dev/tty1 ]]; then
-  exec startx pekwm
-  # Could use xinit instead of startx pekwm
-  #exec xinit -- /usr/bin/X -nolisten tcp vt7
+#    exec startx
+    exec xinit -- /usr/bin/X -nolisten tcp vt7
 fi
 
+## Start X with TTY1 checking
+#if [[ -z $DISPLAY && ! -e /tmp/.X11-unix/X0 ]] && (( EUID )); then
+#  exec startx
+#fi
+
+## Start X with Prompt to User
+#if [[ -z $DISPLAY && ! -e /tmp/.X11-unix/X0 ]] && (( EUID )); then
+#  while true; do
+#    read -p 'Do you want to start X? (y/n): '
+#    case $REPLY in
+#      [Yy]) exec xinit -- /usr/bin/X -nolisten tcp vt7 ;;
+#      [Nn]) break ;;
+#      *) printf '%s\n' 'Please answer y or n.' ;;
+#    esac
+#  done
+#fi
 

@@ -90,14 +90,27 @@ URxvt*color14: #34E2E2
 URxvt*color15: #e9e9e9
 
 ! URxvt Terminal Options !
-
+! Default Terminal Name !
 URxvt*termName:                  rxvt-unicode-256color
 
-URxvt*font:                      xft:PragmataPro:pixelsize=14:antialias=true:hinting=true
-URxvt*boldFont:                  xft:PragmataPro Bold:pixelsize=15:antialias=true:bold:hinting=true
-URxvt*italicFont:                xft:Inconsolata:size=13:antialias=true:hinting=true
+! Regular Font !
+URxvt*font:                      xft:PragmataPro:pixelsize=12:antialias=true:hinting=true
+!URxvt*font:                      -*-tamsynmod-medium-*-*-*-15-108-100-100-*-*-iso8859-*
+!URxvt*font:                      xft:Tamsynmod:pixelsize=15:antialias=true:hinting=true
+
+! Bold Font !
+!URxvt*boldFont:                  xft:PragmataPro Bold:pixelsize=15:antialias=true:bold:hinting=true
+URxvt*boldFont:                  -*-tamsynmod-bold-*-*-*-15-108-100-100-*-*-iso8859-*
+
+! Italic Font !
+!URxvt*italicFont:                xft:Inconsolata:size=13:antialias=true:hinting=true
+URxvt*italicFont:                -*-tamsynmod-medium-r-normal-*-15-108-100-100-*-*-iso8859-*
+
+! Bold Italic Font !
 URxvt*bolditalicFont:            xft:Inconsolata:size=13:antialias=true:hinting=true
-!
+!URxvt*bolditalicFont:            -*-tamsynmod-bold-r-normal-*-15-108-100-100-c-80-iso88590
+
+! Key Bind Commands !
 !URxvt.keysym.C-0:                command:\033]710;xft:PragmataPro:pixelsize=16:antialias=true:hinting=true\007
 !URxvt.keysym.C-minus:            command:\033]710;xft:PragmataPro:pixelsize=12:antialias=true:hinting=true\007
 !URxvt.keysym.C-underscore:       command:\033]710; xft:Inconsolata:size=13:antialias=true:hinting=true\007

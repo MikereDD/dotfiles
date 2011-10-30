@@ -24,6 +24,7 @@ alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_no
 ##################
 # reset & source bash_profile
 alias resetbash="reset;source $HOME/.bash_profile"
+alias resetXresources="xrdb -merge $HOME/.Xresources"
 
 # ls quick command aliases
 alias ls="ls --color=always"

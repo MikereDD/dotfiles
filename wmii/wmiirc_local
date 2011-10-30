@@ -19,8 +19,11 @@ export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/the_walking_dead-wallpa
 
 
 # Font #
-# export WMII_FONT="xft:Aunchanted:pixelsize=15:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Tamsynmod:size=15:antialias=true:hinting=true"
+# export WMII_FONT="xft:Tamsynmod:pixelsize=10:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Tamsyn Bold:size=10:antialias=true:bold:hinting=true"
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:Aunchanted:pixelsize=15:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:Pragmata TT:pixelsize=12:antialias=true:bold:hinting=true"
