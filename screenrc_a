@@ -133,12 +133,12 @@ screen -t shell 0
 screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
 #screen -t moc 3 mocp
-screen -t moc 3 ssh mredd@belial -p 60222
+screen -t moc 3 ssh belial -p 22
 ##screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
-screen -t radio ssh mredd@belial -p 60222
+screen -t radio ssh belial -p 22
 screen -t torrent 5 rtorrent
 ##screen -t iw 6 wicd-curses  
-screen -t iw 6 ssh mredd@belial -p 60222
+screen -t iw 6 ssh belial -p 22
 screen -t ssh 7
 #
 #
