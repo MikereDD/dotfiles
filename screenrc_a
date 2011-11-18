@@ -17,6 +17,10 @@
 # # 9 transparent       y    yellow          u    underline
 
 # Custom changes #
+# Escape Key
+escape ^Aa # Default escape/command, Control-a
+#escape ^Bb # Instead of Control-a, make the escape/command character be Control-b
+
 # term
 term screen-256color
 #term xterm-256color
@@ -129,12 +133,12 @@ screen -t shell 0
 screen -t irc 1 irssi
 screen -t web 2 elinks https://encrypted.google.com
 #screen -t moc 3 mocp
-screen -t moc 3 ssh user@server -p 22;mocp
-##screen -t radio 4 
-screen -t radio ssh user@server -p 22;radioison
+screen -t moc 3 ssh mredd@belial -p 60222
+##screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
+screen -t radio ssh mredd@belial -p 60222
 screen -t torrent 5 rtorrent
 ##screen -t iw 6 wicd-curses  
-screen -t iw 6 ssh user@server -p 22;wicd-curses
+screen -t iw 6 ssh mredd@belial -p 60222
 screen -t ssh 7
 #
 #
@@ -150,7 +154,7 @@ backtick 1 30 30 unreademailcount
 #backtick 1 60 60 cat $HOME/.get_mail
 #caption always '%{= .w} Load: %l %= | %= %1`'
 #hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y |%{b}%H%{w}|'  
-caption always '%{= k} %= %{y}[%{r}EMAIL%{y}] %{.w}%1` %{y}[%{g}/%{r}EMAIL%{y}] %= '
+caption always '%{= k} %= %{.w}%1` %= '
 hardstatus alwayslastline '%{= k} %{y}|%{b}%H%{y}| %{y}[%{w}%n%{.r}`%{.w}%t%{y}] %{.k}%W %= %{y}[%{.w}%l%{y}] %{g}- %{y}[%{w}%c%{y}] %{g}- %{y}[%{w}%m%{g}/%{w}%d%{g}/%{w}%y%{y}] '
 #hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 # bind = resize =
