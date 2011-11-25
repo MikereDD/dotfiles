@@ -49,6 +49,9 @@ vo=vdpau,xv,
 #x="780" # scale movie to <x> pixels width
 #y="420" # scale movie to <y> pixels height
 
+# Monitor Position
+geometry="2974:21"
+
 # Zoom
 zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
 
@@ -108,7 +111,7 @@ osdlevel="1" # don't display OSD at stratup
 #ontop="1"
 
 # Fullscreen
-fs="yes" # Enlarges movie window to your desktop's size.
+fs="no" # Enlarges movie window to your desktop's size.
 
 #Menu
 #menu=no
