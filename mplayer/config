@@ -113,5 +113,8 @@ osdlevel="1" # don't display OSD at stratup
 # Fullscreen
 fs="yes" # Enlarges movie window to your desktop's size.
 
-#Menu
+# Menu
 #menu=no
+
+# Threads
+threads=5
