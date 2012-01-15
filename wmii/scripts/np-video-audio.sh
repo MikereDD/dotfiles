@@ -45,7 +45,8 @@ elif [ "$IFONPB" = "On" ]; then
       echo -e "Pandora: $NPPB | Vol: $VOLUME" | wmiir create /rbar/anowplaying
 elif [ "$IFONMP" = "On" ]; then
       echo -e "$NPMP | Vol: $VOLUME" | wmiir create /rbar/anowplaying
-elif [ "$STATE" == "State: PLAY" ]; then
+elif [ "$STATE" = "State: PLAY" ]; then
+#elif [ "$IFONMOC" = "On" ];then
     echo -e "+MOC+ np: $ARTIST - $TITLE | Vol: $VOLUME" | wmiir create /rbar/anowplaying
 else
     wmiir remove /rbar/anowplaying
