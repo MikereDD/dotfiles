@@ -15,20 +15,13 @@ export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 
 # Wallpaper #
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/the_walking_dead-wallpaper-mod.png"
-
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/the_walking_dead-wallpaper-mod.png"
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Octopus-Girl.png"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Vampy-wall-1.png"
 
 # Font #
-# export WMII_FONT="xft:Tamsynmod:size=15:antialias=true:hinting=true"
-# export WMII_FONT="xft:Tamsynmod:pixelsize=10:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Tamsyn Bold:size=10:antialias=true:bold:hinting=true"
 export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Aunchanted:pixelsize=15:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Maven Pro:pixelsize=15:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Geo Medium:pixelsize=13:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Pragmata TT:pixelsize=12:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Skyhook Mono:pixelsize=12:antialias=true:bold:hinting=true"
-# export WMII_FONT="xft:Lintel:pixelsize=12:antialias=true:bold:hinting=true"
+# export WMII_FONT="xft:DejaVu Sans:pixelsize=12:antialias=true:bold:hinting=true"
 
 # Terminal #
 export WMII_TERM="urxvt -name 'shell'"
@@ -39,11 +32,12 @@ histnum=5000
 
 # Column Rules #
 wmiir write /colrules <<!
-  /gimp/ -> 17+83+41
+  /gimp|Gimp.*/ -> 17+83+41
   /xcalc/ -> 275x350+1638+21
   /Music Manager.*/ -> 159x18+1755+22
   /wineserver.*/ -> 159x18+1755+22
   /Wine.*/ -> 159x18+1755+22
+#  /MPlayer.*|mplayer|mplayer.*/ -> 1680x1027+1920+0
   /.*/ -> 62+38 # Golden Ratio
 !
 
@@ -54,24 +48,23 @@ wmiir write /tagrules <<!
     /^Pidgin:/ allow=+activate
 
     # MPlayer and VLC don't float by default, but should.
-    /MPlayer|VLC/ floating=on
+    /MPlayer.*|mplayer|VLC/ floating=on
 
     # ROX puts all of its windows in the same group, so they open
     # with the same tags. Disable grouping for ROX Filer.
     /^ROX-Filer:/ group=0
-    #
-    #
+
     /xcalc/ -> ~
-    /root/ -> +s
-    /Gimp.*|Darktable.*/ -> ~+a
-    /virtualbox.*|Oracle.*|VBE.*/ -> +b
-    /code|gedit|leafpad/ -> +c
-    /armagetronad/ -> +g
-    /Music.Manager.*/ -> ~+m    
-    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +o    
-    /Boxee|boxee|huludesktop/ -> ~+v
-    /MPlayer|VLC|vlc/ -> ~+i+w
-    /filezilla|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +w
+    /root/ -> +su
+    /Gimp.*|Darktable.*/ -> ~+art
+    /virtualbox.*|Oracle.*|VBE.*/ -> +build
+    /code|gedit|leafpad/ -> +code
+    /armagetronad/ -> +game
+    /Music.Manager.*/ -> ~+music    
+    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+    /Boxee|boxee|huludesktop/ -> ~+video
+    /MPlayer.*|mplayer|VLC|vlc/ -> ~+code+irc+web
+    /filezilla|Chromium|Opera|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +web
     /.*/ -> sel
     /.*/ -> 1
 !
@@ -86,45 +79,45 @@ local_events() {
             for i in 0 1 2 3 4 5 6 7 8 9; do
                      cat <<!
 Key $MODKEY-0
-              wmiir xwrite /ctl view "s"
+              wmiir xwrite /ctl view "su"
 Key $MODKEY-1
-              wmiir xwrite /ctl view "i"
+              wmiir xwrite /ctl view "irc"
 Key $MODKEY-2
-              wmiir xwrite /ctl view "c"
+              wmiir xwrite /ctl view "code"
 Key $MODKEY-3
-              wmiir xwrite /ctl view "w"
+              wmiir xwrite /ctl view "web"
 Key $MODKEY-4
-              wmiir xwrite /ctl view "o"
+              wmiir xwrite /ctl view "office"
 Key $MODKEY-5
-              wmiir xwrite /ctl view "a"
+              wmiir xwrite /ctl view "art"
 Key $MODKEY-6
-              wmiir xwrite /ctl view "m"
+              wmiir xwrite /ctl view "music"
 Key $MODKEY-7
-              wmiir xwrite /ctl view "v"
+              wmiir xwrite /ctl view "video"
 Key $MODKEY-8
-              wmiir xwrite /ctl view "g"
+              wmiir xwrite /ctl view "game"
 Key $MODKEY-9
-              wmiir xwrite /ctl view "b"
+              wmiir xwrite /ctl view "build"
 Key $MODKEY-Shift-0
-              wmiir xwrite /client/sel/tags "s"
+              wmiir xwrite /client/sel/tags "su"
 Key $MODKEY-Shift-1
-              wmiir xwrite /client/sel/tags "i"
+              wmiir xwrite /client/sel/tags "irc"
 Key $MODKEY-Shift-2
-              wmiir xwrite /client/sel/tags "c"
+              wmiir xwrite /client/sel/tags "code"
 Key $MODKEY-Shift-3
-              wmiir xwrite /client/sel/tags "w"
+              wmiir xwrite /client/sel/tags "web"
 Key $MODKEY-Shift-4
-              wmiir xwrite /client/sel/tags "o"
+              wmiir xwrite /client/sel/tags "office"
 Key $MODKEY-Shift-5
-              wmiir xwrite /client/sel/tags "a"
+              wmiir xwrite /client/sel/tags "art"
 Key $MODKEY-Shift-6
-              wmiir xwrite /client/sel/tags "m"
+              wmiir xwrite /client/sel/tags "music"
 Key $MODKEY-Shift-7
-              wmiir xwrite /client/sel/tags "v"
+              wmiir xwrite /client/sel/tags "video"
 Key $MODKEY-Shift-8
-              wmiir xwrite /client/sel/tags "g"
+              wmiir xwrite /client/sel/tags "game"
 Key $MODKEY-Shift-9
-              wmiir xwrite /client/sel/tags "b"
+              wmiir xwrite /client/sel/tags "build"
 !
               done
 
