@@ -89,6 +89,32 @@ URxvt*color14: #34E2E2
 ! -- bright-white
 URxvt*color15: #e9e9e9
 
+!= sider = ! 
+! Black
+!*color0:                            #1c1c1c
+!*color8:                            #333333
+! Red
+!*color1:                            #B28284
+!*color9:                            #BD8A8C
+! Green
+!*color2:                            #82B284
+!*color10:                           #8ABD8C
+! Yellow
+!*color3:                            #B2B282
+!*color11:                           #BDBD8A
+! Blue
+!*color4:                            #8292B2
+!*color12:                           #8A9BBD
+! Magenta
+!*color5:                            #A082B2
+!*color13:                           #A082B2
+! Cyan
+!*color6:                            #82B2A6
+!*color14:                           #8ABDB0
+! White
+!*color7:                            #B2B2B2
+!*color15:                           #BDBDBD
+
 ! URxvt Terminal Options !
 ! Default Terminal Name !
 URxvt*termName:                  rxvt-unicode-256color
@@ -151,8 +177,9 @@ URxvt*underlineURLs:              true
 URxvt*urlButton:                  2
 URxvt*perl-lib:                   ${HOME}/.urxvt/
 URxvt*perl-ext:                   selection,mark-yank-urls
-URxvt*urlLauncher:                firefox
+!URxvt*urlLauncher:                firefox
 !URxvt*urlLauncher:                dwb
+URxvt*urlLauncher:                chromium
 URxvt*keysym.C-Delete:            perl:matcher
 URxvt*matcher.button:             1
 URxvt*matcher.pattern.1:          \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
@@ -176,8 +203,9 @@ URxvt*tabbed.keysym.M-u:          perl:mark-yank-urls:activate_mark_mode
 URxvt*tabbed.underlineURLs:       true
 URxvt*tabbed.perl-lib:            ${HOME}/.urxvt/
 URxvt*tabbed.perl-ext:            selection,mark-yank-urls
-URxvt*tabbed.urlLauncher:         firefox
+!URxvt*tabbed.urlLauncher:         firefox
 !URxvt*tabbed.urlLauncher:         dwb
+URxvt*tabbed.urlLauncher:         chromium
 
 ! Terminal Cursor !
 
