@@ -131,7 +131,8 @@ else
 "    set t_AF=^[[38;5;%dm
   "colorscheme zellner
   "colorscheme bw
-  colorscheme railscasts
+  "colorscheme railscasts
+  colorscheme solarized
   set background=dark
   set nonu
 endif

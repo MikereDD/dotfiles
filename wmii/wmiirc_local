@@ -10,21 +10,21 @@ noticetimeout=5
 noticebar=/rbar/!notice
 
 # Colors # "<text> <background> <border>"
-export WMII_NORMCOLORS="#969696 #121212 #313131"
-export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
+#export WMII_NORMCOLORS="#969696 #121212 #313131"
+#export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
+export WMII_NORMCOLORS="#657b83 #121212 #073642"
+export WMII_FOCUSCOLORS="#93a1a1 #1e1e1e #585858"
 
 # Wallpaper #
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
-# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/the_walking_dead-wallpaper-mod.png"
-# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Octopus-Girl.png"
 export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Vampy-wall-1.png"
 
 # Font #
-export WMII_FONT="xft:Antipasto:pixelsize=15:antialias=true:bold:hinting=true"
+export WMII_FONT="xft:Antipasto:pixelsize=14:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:DejaVu Sans:pixelsize=12:antialias=true:bold:hinting=true"
 
 # Terminal #
-export WMII_TERM="urxvt -name 'shell'"
+export WMII_TERM="urxvt"
 
 # Menu history #
 hist="$(wmiir namespace)/history"
@@ -37,7 +37,6 @@ wmiir write /colrules <<!
   /Music Manager.*/ -> 159x18+1755+22
   /wineserver.*/ -> 159x18+1755+22
   /Wine.*/ -> 159x18+1755+22
-#  /MPlayer.*|mplayer|mplayer.*/ -> 1680x1027+1920+0
   /.*/ -> 62+38 # Golden Ratio
 !
 
@@ -56,6 +55,7 @@ wmiir write /tagrules <<!
 
     /xcalc/ -> ~
     /root/ -> +su
+    /irc/ -> +irc
     /Gimp.*|Darktable.*/ -> ~+art
     /virtualbox.*|Oracle.*|VBE.*/ -> +build
     /code|gedit|leafpad/ -> +code
@@ -63,7 +63,7 @@ wmiir write /tagrules <<!
     /Music.Manager.*/ -> ~+music    
     /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /Boxee|boxee|huludesktop/ -> ~+video
-    /MPlayer.*|mplayer|VLC|vlc/ -> ~+code+irc+web
+    /MPlayer.*|mplayer|VLC|vlc/ -> ~+irc+web
     /filezilla|Chromium|Opera|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +web
     /.*/ -> sel
     /.*/ -> 1
