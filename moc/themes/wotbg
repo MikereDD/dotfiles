@@ -1,0 +1,58 @@
+## moc theme - http://moc.daper.net/
+# theme: wotbg
+# created on: Mon Jan 16 15:52:35 PST 2012
+# by: MikereDD - http://m-redd.com
+#
+##
+# Dumb Terminal - teh lazy coders...
+# Smaller than Life Projects
+# Main Page: http://dt.tehspork.com
+# Git Repo: https://github.com/dumbterminal/
+##
+#
+background             =	 cyan     default
+frame                  =	 white	black     bold
+#
+window_title           =	 white	default   bold
+#
+directory              =	 cyan	default
+selected_directory     =	 cyan	default   bold
+#
+playlist               =	 cyan	default
+selected_playlist      =	 cyan	default 	bold
+#
+file                   =	 blue	default
+selected_file          =	 grey	default 	bold
+marked_file            =	 white	default	underline
+marked_selected_file   =  grey     default  	bold,underline
+#
+info                   =	 white	default   bold
+selected_info          =  grey     default   bold
+marked_info            =  red      default   bold
+marked_selected_info   =  magenta  default   bold,underline
+#
+title                  =	 white	default   bold	
+state                  =	 grey	default   bold,underline
+
+current_time           =	 cyan	default
+time_left              =	 grey     default   bold
+total_time             =	 white	default
+time_total_frames      =	 red 	default   bold
+#
+sound_parameters       =	 yellow	default   bold
+legend                 =	 green	default   underline	
+disabled               =	 grey	default
+enabled                =	 magenta	default   bold
+#
+empty_mixer_bar        =	 default	default
+filled_mixer_bar       =	 default  black     bold
+empty_time_bar         =	 default	black
+filled_time_bar        =	 default  default   bold
+#
+entry                  =	 white	default
+entry_title            =	 white	default   bold
+#
+status                 =  yellow   default
+error                  =	 red	     default   bold,underline
+message                =  blue	default   bold
+plist_time             =  white	default   bold
