@@ -28,12 +28,12 @@ if [[ -z $( type -p wget ) ]]; then
 fi
 
 # Domain list
-DOMAINLIST="$HOME/.config/dtfreednsupdater/domainlist.txt"
+DOMAINLIST="$HOME/.config/myfreednsupdater/domainlist.txt"
 
 # IP Check
 YOURIP="$(wget -q -O - api.myiptest.com | awk -F"\"" '{print $4}')"
 # Logs directory
-LOGSDIR="$HOME/.config/dtfreednsupdater/logs"
+LOGSDIR="$HOME/.config/myfreednsupdater/logs"
 
 for i in 1 2 3 4 5 6 7 
 do
