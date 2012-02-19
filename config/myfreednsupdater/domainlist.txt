@@ -1,0 +1,7 @@
+example.com        3gyug4u132gku41uc==
+two.example.com    3gyug4u132gku44uc==
+three.example.com  3gyug4u132gku74uc==
+four.example.com   3gyug4u1r2gku74uc==
+five.example.com   3gyug4ufg2gku74uc==
+six.example.com    3gdfg4ufg2gku74uc==
+seven.example.com  3gdfg4ufg2gyt74uc==
