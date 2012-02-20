@@ -5,24 +5,57 @@
 " Version: 1.0 - 01/14/12 23:10:58
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""
+" Settings
+""""""""""""""""""""""""
+" runtime path
+"set runtimepath+=/usr/share/vim
+set runtimepath+=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$HOME/.vim/after
+
+" I do not like the vi-compatible mode.
+set nocompatible 
+
+" Make backspace work as usual.
+set backspace=indent,eol,start
+
+" Allow changing the buffer without saving.
+set hidden 
+
+" Do not place the cursor at the start of the line when using Page up/down.
+set nostartofline
+
+set nrformats=alpha,hex
+
+" Allow the cursor to be positioned where there is no actual character.
+" Visual block mode only.
+set virtualedit=block
+
+""""""""""""""""""""""
+" insert the current datestamp
+"""""""""""""""""""""""
+:nnoremap <F5> "=strftime("Last Modified: %b %d, %X (%Z)")<CR>P
+:inoremap <F5> <C-R>=strftime("Last Modified: %b %d, %X (%Z)")<CR>
 
 """"""""""""""""""""""""
 " 256 Color help when on other systems
 """"""""""""""""""""""""
-if &term =~# '^\(screen\|rxvt\|xterm\)$'
+if &term =~# '^\(screen\|rxvt-unicode-256color\|xterm-256color\)$'
     set t_Co=256
 endif
 
 """"""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
 """"""""""""""""""""""""
-set history=700
+set history=1000
 
 """"""""""""""""""""""""
 " Enable filetype plugin
 """"""""""""""""""""""""
 filetype plugin on
 filetype indent on
+
+" Support all three, in this order
+set fileformats=unix,dos,mac
 
 """"""""""""""""""""""""
 " Set to auto read when a file is changed from the outside
@@ -32,6 +65,8 @@ set autoread
 """"""""""""""""""""""""
 " Backup files
 """"""""""""""""""""""""
+set backup
+set backupcopy=auto
 set backupdir=~/tmp/vim/bkup
 "set nobackup
 "set nowritebackup
@@ -65,6 +100,16 @@ set wrapscan
 """"""""""""""""""""""""
 filetype plugin on
 syntax on
+
+""""""""""""""""""""""""
+" Highlighting
+""""""""""""""""""""""""
+
+""""""""""""""""""""""""
+" Mouse
+" Allow using the mouse everywhere.
+"""""""""""""""""""""""
+set mouse=a
 
 """"""""""""""""""""""""
 " Restore cursor position
@@ -101,8 +146,29 @@ map <leader>u :TMiniBufExplorer<cr>
 """"""""""""""""""""""""""""""
 " Statusline
 """"""""""""""""""""""""""""""
-" Always hide the statusline
+" Always show the statusline
 set laststatus=2
+set statusline=%F%m%r%h%w[%L][%{&ff}]%y[%p%%][%04l,%04v]
+"              | | | | |  |   |      |  |     |    |
+"              | | | | |  |   |      |  |     |    + current 
+"              | | | | |  |   |      |  |     |       column
+"              | | | | |  |   |      |  |     +-- current line
+"              | | | | |  |   |      |  +-- current % into file
+"              | | | | |  |   |      +-- current syntax in 
+"              | | | | |  |   |          square brackets
+"              | | | | |  |   +-- current fileformat
+"              | | | | |  +-- number of lines
+"              | | | | +-- preview flag in square brackets
+"              | | | +-- help flag in square brackets
+"              | | +-- readonly flag in square brackets
+"              | +-- rodified flag in square brackets
+"              +-- full path to file in the buffer
+" }
+
+""""""""""""""""""""""""""""""
+" Powerline
+"""""""""""""""""""""""""""""
+"let g:Powerline_symbols = 'fancy'
 
 """"""""""""""""""""""""""""""
 " Colors and Fonts
@@ -129,13 +195,19 @@ else
     set t_Co=256
 "    set t_AB=^[[48;5;%dm
 "    set t_AF=^[[38;5;%dm
+  set background=dark
   "colorscheme zellner
   "colorscheme bw
-  "colorscheme railscasts
-  colorscheme solarized
-  set background=dark
+  "colorscheme ir_black
+  "colorscheme solarized
+  "colorscheme badwolf
+  colorscheme CapsulaPigmentorum
   set nonu
 endif
+
+" As much as possible of the last line in a window will be displayed. When not
+" included, a last line that doesn't fit is replaced with "@" lines.
+set display=lastline
 
 set encoding=utf8
 try
@@ -198,6 +270,30 @@ nmap <silent> <F10> :NERDTreeToggle<CR>
 "Set No Line Numbers and use Toggle
 set nonu
 nmap <silent> <F6> :set nu!<CR>
+
+" Threshold for reporting number of lines changed.
+set report=0
+
+" Enable the ruler with the format:
+" {buffer number}{modified/readonly flag}: {file type} [current line,
+" current column] {position percentage in file}
+set ruler
+set rulerformat=%25(%n%m%r:\ %Y\ [%l,%v]\ %p%%%)
+
+" Minimal number of screen lines to keep above and below the cursor.
+set scrolloff=3
+
+" Shorter messages.
+set shortmess=as 
+
+" Show (partial) command in status line.
+set showcmd
+
+" Do not redraw while running macros (much faster).
+set lazyredraw 
+
+" What to show when you do :set list.
+set listchars=tab:\|\ ,trail:.,extends:>,precedes:<,eol:$
 
 """"""""""""""""""""""""""""""
 " Text, tab and indent related
@@ -311,3 +407,29 @@ endtry
 
 "Remeber open buffers on close
 "set viminfo^=%
+
+""""""""""""""""""""""""""""""
+" Toggling syntax highlighting
+"""""""""""""""""""""""""""""
+function! ToggleSyntax()
+	if exists("g:syntax_on")
+		syntax off
+	else
+		syntax enable
+	endif
+endfunction
+
+nmap <silent>  ;s  :call ToggleSyntax()<CR>
+
+""""""""""""""""""""""""""""""
+" Creating centered titles
+"""""""""""""""""""""""""""""
+function! CapitalizeCenterAndMoveDown()
+	s/\<./\u&/g   "Built-in substitution capitalizes each word
+	center        "Built-in center command centers entire line
+	+1            "Built-in relative motion (+1 line down)
+endfunction
+
+nmap <silent>  \C  :call CapitalizeCenterAndMoveDown()<CR>
+
+" vim:set spell spl=en ts=4 sw=4 sts=4 sta noet fenc=utf-8 ff=unix:
