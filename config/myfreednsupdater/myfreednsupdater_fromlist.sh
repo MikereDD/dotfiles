@@ -4,6 +4,9 @@
 #  use script to update dynamic-dns from FreeDNS http://freedns.afraid.org/
 # by: Mike Redd
 VER=0.1
+#
+# Last Modified: Feb 19, 04:35:26 PM (PST)
+#
 #            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 #                    Version 2, December 2004
 #
