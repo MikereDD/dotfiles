@@ -3,9 +3,9 @@
 # Simple DNS Updater for FreeDNS
 #  use script to update dynamic-dns from FreeDNS http://freedns.afraid.org/
 # by: Mike Redd
-VER=0.1
+VER=0.2
 #
-# Last Modified: Feb 19, 04:35:26 PM (PST)
+# Last Modified: Feb 25, 02:56:58 AM (PST)
 #
 #            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 #                    Version 2, December 2004
@@ -32,13 +32,16 @@ fi
 
 # Domain list
 DOMAINLIST="$HOME/.config/myfreednsupdater/domainlist.txt"
+# Domain count
+DOMAINCOUNT=$(cat -n $DOMAINLIST | awk '{ print $1 }' | tr "\n" " ")
 
 # IP Check
 YOURIP="$(wget -q -O - api.myiptest.com | awk -F"\"" '{print $4}')"
 # Logs directory
 LOGSDIR="$HOME/.config/myfreednsupdater/logs"
 
-for i in 1 2 3 4 5 6 7 
+#for i in 1 2 3 4 5 6 7 
+for i in $DOMAINCOUNT
 do
 
 HOSTADDY=$(awk NR==$i $DOMAINLIST | awk '{ print $1 }')
