@@ -5,7 +5,7 @@
 # by: Mike Redd
 VER=0.2
 #
-# Last Modified: Feb 25, 02:56:58 AM (PST)
+# Last Modified: Feb 25, 03:17:09 AM (PST)
 #
 #            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE
 #                    Version 2, December 2004
@@ -23,7 +23,12 @@ VER=0.2
 
 
 # Script uses:
-# WGet - http://www.gnu.org/software/wget/
+# bash - http://www.gnu.org/software/bash/
+# host - http://www.isc.org/software/bind/
+# wget - http://www.gnu.org/software/wget/
+# awk  - http://www.gnu.org/directory/GNU/gawk.html
+# cat  - http://www.gnu.org/software/coreutils/manual/html_node/cat-invocation.html
+# tr   - http://www.gnu.org/software/coreutils/manual/html_node/tr-invocation.html
 
 # Checks
 if [[ -z $( type -p wget ) ]]; then
