@@ -1,18 +1,11 @@
 #!/bin/bash
-# ~/.bashrc
-# http://m-redd.com
-# tueGroup
-# Smaller than Life Projects
-# By: MreDD     mredd (at) 0tue0.com
-##################
+# . ~/.bashrc
 
 ###
 # Bash Suff
 # ~/.bash_suff
-## Bash Colors
-if [ -f ~/.bash_stuff/bash_colors ]; then
-    . ~/.bash_stuff/bash_colors
-fi
+##
+
 # Bash Binds
 if [ -f ~/.bash_stuff/bash_binds ]; then
     . ~/.bash_stuff/bash_binds
@@ -26,16 +19,15 @@ fi
 if [ -f ~/.bash_stuff/bash_passwd ]; then
     . ~/.bash_stuff/bash_passwd
 fi
-
+# Bash Complete
+##################
+if [ -f ~/.bash_stuff/bash_complete ]; then
+    . ~/.bash_stuff/bash_complete
+fi
 # Inputrc file - Faster Completion
 if [ -f ~/.inputrc ]; then
     . ~/.inputrc
 fi
-
-# Bash Logout
-#if [ -f ~/.bash_logout ]; then
-#    . ~/.bash_logout
-#fi
 
 #bash completion
 if [ -f /etc/bash_completion ]; then
@@ -46,32 +38,40 @@ fi
 [[ $- != *i* ]] && return
 
 # Term
-if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
-    export TERM='rxvt-unicode-256color'
-elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
-    export TERM='rxvt-unicode'
-elif [ -e /usr/share/terminfo/r/rxvt-256color ]; then
-    export TERM='rxvt-256color'
-elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
-    export TERM='rxvt-color'
-elif [ -e /usr/share/terminfo/r/rxvt ]; then
-    export TERM='rxvt'
-elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
-    export TERM='xterm-256color'
-elif [ -e /usr/share/terminfo/x/xterm-color ]; then
-    export TERM='xterm-color'
-elif [ -e /usr/share/terminfo/x/xterm ]; then
-    export TERM='xterm'
-else
-    TERM='xterm'
-fi
+#if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
+#    export TERM='rxvt-unicode-256color'
+#elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
+#    export TERM='rxvt-unicode'
+#elif [ -e /usr/share/terminfo/r/rxvt-256color ]; then
+#    export TERM='rxvt-256color'
+#elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
+#    export TERM='rxvt-color'
+#elif [ -e /usr/share/terminfo/r/rxvt ]; then
+#    export TERM='rxvt'
+#elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
+#    export TERM='xterm-256color'
+#elif [ -e /usr/share/terminfo/x/xterm-color ]; then
+#    export TERM='xterm-color'
+#elif [ -e /usr/share/terminfo/x/xterm ]; then
+#    export TERM='xterm'
+#else
+#    TERM='xterm'
+#fi
+TERM='rxvt'
 
 alias ssh="TERM=linux ssh"
 
-# Tweetdeck hack
-alias tweetdeck='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/tweetdeck/tweetdeck.air'
-# Grooveshark hack
-alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
+complete -cf sudo
+complete -cf man
+
+# grep color
+##################
+export GREP_COLOR="1;33"
+alias grep='grep --color=auto'
+
+# Dynamic resizing
+##################
+shopt -s checkwinsize
 
 # GIT STATUS MAGIC (START)
 GIT_PS1_SHOWDIRTYSTATE=true
@@ -102,16 +102,15 @@ branch=${BASH_REMATCH[1]}
   fi
 }
 
-#
-##################
+##################################################
 # Fancy PWD display function
-##################
+##################################################
 # The home directory (HOME) is replaced with a ~
 # The last pwdmaxlen characters of the PWD are displayed
 # Leading partial directory names are striped off
 # /home/me/stuff          -> ~/stuff               if USER=me
 # /usr/share/big_dir_name -> ../share/big_dir_name if pwdmaxlen=20
-##################
+##################################################
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
     local pwdmaxlen=25
@@ -127,30 +126,75 @@ bash_prompt_command() {
         NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
     fi
 }
-#screenwm
-#eval screen "exec screenwm init"
 
-#
+bash_prompt() {
+    case $TERM in
+     xterm*|rxvt*)
+         local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]'
+          ;;
+     *)
+         local TITLEBAR=""
+          ;;
+    esac
+    local NONE="\[\033[0m\]"    # unsets color to term's fg color
+
+## Bash Colors
+if [ -f ~/.bash_stuff/bash_colors ]; then
+    . ~/.bash_stuff/bash_colors
+fi
+
+#    # regular colors
+#    local K="\[\033[0;30m\]"    # black
+#    local R="\[\033[0;31m\]"    # red
+#    local G="\[\033[0;32m\]"    # green
+#    local Y="\[\033[0;33m\]"    # yellow
+#    local B="\[\033[0;34m\]"    # blue
+#    local M="\[\033[0;35m\]"    # magenta
+#    local C="\[\033[0;36m\]"    # cyan
+#    local W="\[\033[0;37m\]"    # white
+#    local O="\[\e[0;33m\]"    # orange
+#    local P="\[\e[0;35m\]"    # purple
+#    local LG="\[\e[0;37m\]"   # lightgray
+#    local DG="\[\e[0;90m\]"   # darkgray
+#    local GL="\[\e[0;92m\]"   # lightgreen
+#    local LR="\[\e[0;91m\]"   # lightred
+#    local LP="\[\e[0;95m\]"   # lightpurple
+#    local TQ="\[\e[0;96m\]"   # tourquoise
+#    # emphasized (bolded) colors
+#    local EMK="\[\033[1;30m\]"
+#    local EMR="\[\033[1;31m\]"
+#    local EMG="\[\033[1;32m\]"
+#    local EMY="\[\033[1;33m\]"
+#    local EMB="\[\033[1;34m\]"
+#    local EMM="\[\033[1;35m\]"
+#    local EMC="\[\033[1;36m\]"
+#    local EMW="\[\033[1;37m\]"
+#    local EMO="\[\e[1;43m\]"  # orange
+#    local EMP="\[\e[1;105m\]"  # purple
+#    # background colors
+#    local BGK="\[\033[40m\]"
+#    local BGR="\[\033[41m\]"
+#    local BGG="\[\033[42m\]"
+#    local BGY="\[\033[43m\]"
+#    local BGB="\[\033[44m\]"
+#    local BGM="\[\033[45m\]"
+#    local BGC="\[\033[46m\]"
+#    local BGW="\[\033[47m\]"
+#    local BGO="\[\e[1;43m\]"  # Orange
+#    local BGP="\[\e[1;45m\]"  # Purple
+    local UC=$W                 # user's color
+    [ $UID -eq "0" ] && UC=$R   # root's color
+
+#    PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
+#    PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${TQ}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${TQ}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
+    PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
+#    PS1="\u@\h\[\e[33m\]\W\[\e[0m\] \[\`if [[ \$? = "0" ]]; then echo '\e[32m:)\e[0m'; else echo '\e[31m:(\e[0m' ; fi\`\] \$ "
+#    PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- \[\`if [[ \$? = "0" ]]; then echo '${W}:${TQ}<\e[0m'; else echo '${W}:${R}>\e[0m' ; fi\`\] \${LP}$\e[0m${LG} "
+#    PS1="[\u@\h] [\$(tty | sed -e 's:/dev/::'):\$(ls -1 | wc -l | sed 's: ::g') files:\$(ls -lah | grep -m 1 total | sed 's/total //')b]  \n [\${NEW_PWD}] \n :< "
+    # without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
+    # extra backslash in front of \$ to make bash colorize the prompt
+}
+
 PROMPT_COMMAND=bash_prompt_command
-#PROMPT_COMMAND='RET=$?; if [[ $RET -eq 0 ]]; then echo -ne "\033[0;32m$RET\033[0m ;)"; else echo -ne "\033[0;31m$RET\033[0m ;("; fi; echo -n " "'
-#bash_prompt
-#unset bash_prompt
-
-complete -cf sudo
-complete -cf man
-
-# grep color
-##################
-export GREP_COLOR="1;33"
-alias grep='grep --color=auto'
-
-# Dynamic resizing
-##################
-shopt -s checkwinsize
-
-PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${TQ}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${TQ}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
-#PS1=">\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
-#PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${TQ}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${TQ}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${LG}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-4))f\]\$(date +%H:%M)\[\033[u\]"
-
-#EOF
-##################
+bash_prompt
+unset bash_prompt
