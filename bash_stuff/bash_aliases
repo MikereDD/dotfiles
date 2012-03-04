@@ -76,6 +76,9 @@ alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
 alias :q="exit"
 
+# virtualbox
+alias rebuildvboxkmods="sudo vboxbuild"
+
 # editor('s) quick command aliases
 ## nano
 alias na="nano"
