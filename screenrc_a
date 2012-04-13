@@ -65,9 +65,9 @@ pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
  termcapinfo  * '' 'hs:ts=\E_:fs=\E\\:ds=\E_\E\\'
 
 # Extend the vt100 desciption by some sequences.
-termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
-terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
-termcapinfo linux C8
+#termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
+#terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
+#termcapinfo linux C8
 # old rxvt versions also need this
 # termcapinfo rxvt C8
 
@@ -128,18 +128,12 @@ bind ^] paste [.]
 #
 
 # shelltitle '$ | '
-#screen -t shell 0
 screen -t shell 0 
-screen -t irc 1 irssi
-screen -t web 2 elinks https://encrypted.google.com
-#screen -t moc 3 mocp
-screen -t moc 3 ssh belial -p 22
-##screen -t radio 4 sh $HOME/scripts/audio/radio-switcher.sh
-screen -t radio ssh belial -p 22
-screen -t torrent 5 rtorrent
-##screen -t iw 6 wicd-curses  
-screen -t iw 6 ssh belial -p 22
-screen -t ssh 7
+screen -t irssi 1 irssi
+#screen -t web 2 elinks https://encrypted.google.com
+screen -t rtorrent 2
+screen -t lftp 3 lftp
+screen -t ssh 4 
 #
 #
 #  Toggle 'fullscreen' or not.
@@ -150,12 +144,12 @@ bind F eval "caption always"    "hardstatus alwayslastline"
 #caption always "%{= W} %{+b}%{w}%n%{= 3}   %=%{-s}%{+b}%{= w}%-Lw%50>%{= m}%n%f%{= r}%{+b}%{= w}%t%+Lw%<%{-}%{= W}%-=%?] %="
 #hardstatus alwayslastline "%{= W}  [%{+b}%{= W}%H%{-}%{= W}]  %{= W}[%{= B}%D,%M '%y - %c%{-}%{= W}] [ %{= G}%l%{= W}] "
 # Backticks
-backtick 1 30 30 unreademailcount
+#backtick 1 30 30 unreademailcount
 #backtick 1 60 60 cat $HOME/.get_mail
 #caption always '%{= .w} Load: %l %= | %= %1`'
 #hardstatus alwayslastline '%{= k} %{w}%n%{= 3} %= %{= g}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{g}%+w %= %{w}%c %{g}- %{w}%m%{g}/%{w}%d%{g}/%{w}%y |%{b}%H%{w}|'  
-caption always '%{= k} %= %{.w}%1` %= '
-hardstatus alwayslastline '%{= k} %{y}|%{b}%H%{y}| %{y}[%{w}%n%{.r}`%{.w}%t%{y}] %{.k}%W %= %{y}[%{.w}%l%{y}] %{g}- %{y}[%{w}%c%{y}] %{g}- %{y}[%{w}%m%{g}/%{w}%d%{g}/%{w}%y%{y}] '
+#caption always '%{= k} %= %{y}[%{r}EMAIL%{y}] %{.w}%1` %{y}[%{g}/%{r}EMAIL%{y}] %= '
+hardstatus alwayslastline '%{= k} %{y}|%{b}%H%{y}| %{y}[%{w}%n%{.r}`%{.w}%t%{y}] %{.k}%W %{y}%=[%{.w}%l%{y}] %{g}- %{y}[%{w}%c%{y}] %{g}- %{y}[%{w}%m%{g}/%{w}%d%{g}/%{w}%y%{y}]'
 #hardstatus string '%{= kw}[ %{= kb}%H%{= kw} ][%= %{= kw}%?%-Lw%?%{= kW}%n*%f %t%?%?%{= kw}%?%+Lw%?%?%= ][ %{r}%l%{w} ]%{w}[%{r} %d/%m/%y %C %A %{w}]%{w}'
 # bind = resize =
 # bind + resize +1
