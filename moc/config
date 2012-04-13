@@ -1,4 +1,3 @@
-#MusicDir		= "/home/typezero/Music"
 MusicDir         = "${HOME}/Music"
 #MusicDir = /music/${USER:-Music}
 
@@ -48,16 +47,16 @@ Keymap			= keymap
 
 ASCIILines		= no
 
-Fastdir1  = "/home/typezero/Music/Electro/"
-Fastdir2  = "/home/typezero/Music/Indie/"
-Fastdir3  = "/home/typezero/Music/Punk-Reggae-Ska/"
-Fastdir4  = "/home/typezero/Music/Rock/"
-Fastdir5  = "/home/typezero/Music/HipHop-Rap/"
-Fastdir6  = "/home/typezero/Music/Blues-Jazz-Soul/"
-Fastdir7  = "/home/typezero/Music/Country-Folk/"
-Fastdir8  = "/home/typezero/Music/Classical/"
-Fastdir9  = "/home/typezero/Music/Comedy/"
-Fastdir10 = "/home/typezero/Music/AudioBooks/"
+Fastdir1  = "${MUSICDIR}/Electro/"
+Fastdir2  = "${MUSICDIR}/Indie/"
+Fastdir3  = "${MUSICDIR}/Punk-Reggae-Ska/"
+Fastdir4  = "${MUSICDIR}/Rock/"
+Fastdir5  = "${MUSICDIR}/HipHop-Rap/"
+Fastdir6  = "${MUSICDIR}/Blues-Jazz-Soul/"
+Fastdir7  = "${MUSICDIR}/Country-Folk/"
+Fastdir8  = "${MUSICDIR}/Classical/"
+Fastdir9  = "${MUSICDIR}/Comedy/"
+Fastdir10 = "${MUSICDIR}/AudioBooks/"
 
 ResampleMethod          = SincBestQuality
 
