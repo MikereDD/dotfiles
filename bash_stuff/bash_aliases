@@ -64,8 +64,8 @@ alias un="tar -zxvf"
 alias mountedinfo="df -hT"
 alias ping="ping -c 10 "
 #alias ns="netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 | tail -2"
-alias netstatlisttcpudpips="netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
-alias netstatlistnatips="netstat -nat | awk '{ print $5}' | cut -d: -f1 | sed -e '/^$/d' | uniq"
+#alias netstatlisttcpudpips="netstat -anp |grep 'tcp\|udp' | awk '{print $5}' | cut -d: -f1 | sort | uniq -c | sort -n"
+#alias netstatlistnatips="netstat -nat | awk '{ print $5}' | cut -d: -f1 | sed -e '/^$/d' | uniq"
 alias da='date "+%Y-%m-%d %A    %T %Z"'
 alias c="cal"
 alias thismonth="cal -m $(date +"%m %Y" -d "this month")"
@@ -75,6 +75,8 @@ alias x="xinit"
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
 alias :q="exit"
+# sudo
+alias sudo='sudo '
 
 # virtualbox
 alias rebuildvboxkmods="sudo vboxbuild"
@@ -88,6 +90,12 @@ alias ebrca="vim $HOME/.bash_aliases && source $HOME/.bashrc_aliases"
 alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
 alias vim2html="$HOME/scripts/office/vim2html.sh "
 
+# edit sudo
+#alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
+
+#translator
+alias translate="sh $HOME/bin/tw-translator-helper.sh"
+
 ## gui|text based browser quick commands
 ### elinks
 alias web="cd $HOME/dls/ && elinks https://encrypted.google.com"
@@ -99,7 +107,7 @@ alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
 #alias chromium="chromium-browser"
 
 alias mvnzb="$HOME/scripts/misc/mvnzb.sh"
-alias radioson="sh $HOME/scripts/audio/radio-switcher.sh"
+alias radioswitcher="sh $HOME/scripts/audio/radio-switcher.sh"
 
 # urxvt quick aliases
 alias fmshell="urxvt -name fm"
@@ -136,6 +144,8 @@ alias bldpkg="makepkg -cfs " # --clean|--force|--syncdeps Clean up work files af
 alias installpkgbld="makepkg -cfsi " # build clean force check deps and install package
 
 # Pacman
+# List updates
+alias listupdates="sh ~/scripts/updates/list_archupdates.sh"
 alias asortpkg="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2"
 alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)' #archlinux pkg list if everything OK
 # Remove Pacman Database list, for use when pacman hangs when not in use.
@@ -160,6 +170,8 @@ alias pacqi="pacman -Qi"
 alias pacqs="pacman -Qs"
 # Search local packages
 alias pacqe="pacman -Qe"
+# Search remote repos
+alias pacsl="sudo pacman -Sl"
 # download a package without installing
 alias pacsw="sudo pacman -Sw"
 # pacman search install 1st app found, useful for a direct search fast install
@@ -347,16 +359,18 @@ alias tronad="/usr/local/bin/armagetronad"
 #alias idesktool="$HOME/.idesktop/idesktool"
 #alias mediainfohtm="mediainfo --Output=HTML "
 alias vlcremote="vlc --control lirc "
-alias vlctv="vlc --hdtv-fix --aspect-ratio=16:9 --deinterlace-mode=b --disable-screensaver --control lirc /dev/video1"
+alias vlctv="vlc pvr://dev/video1  --hdtv-fix --aspect-ratio=16:9 --deinterlace-mode=b --disable-screensaver --control lirc"
 #alias mplayeralsa="mplayer -ao alsa "
-alias mplayerlog="mplayer -identify $@> $HOME/.mplayer/mylog.log"
+alias mplayerlog="rm $HOME/.mplayer/mylog.log;mplayer -identify $@> $HOME/.mplayer/mylog.log"
 alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
 alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh"
 #alias mplayertv="mplayer /dev/video1 -cache 2000 -panscan 1 -vf yadif=1/3,hqdn3d "
 #alias mplayertv="mplayer -vo xv -ao alsa /dev/video1 "
-alias mplayertv="mplayer -identify $@> $HOME/.mplayer/mylog.log -vo vdpau -ao alsa -cache 2000 -panscan 1 /dev/video0"
+alias mplayertv="mplayer -identify $@> $HOME/.mplayer/mylog.log -vo vdpau -ao alsa -cache 2000 -panscan 1 /dev/video1"
 #alias mplayertv="mplayer /dev/video1 "
 #alias mplayerscrnshot="mplayer -vf -ao null "
+alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
+alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
 alias weechat="weechat-curses"ALIAS
 # Google MusicManager - Wine
 #alias musicmanager="MusicManager"
@@ -364,6 +378,8 @@ alias weechat="weechat-curses"ALIAS
 alias gmusicmanager="/usr/bin/google-musicmanager"
 # Virtualbox
 alias virtbox="virtualbox &"
+# Gimp
+#alias gimp="gimp-2.7"
 
 # Logitech Cam
 #################

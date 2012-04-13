@@ -1,77 +1,67 @@
 #!/bin/bash
 # . ~/.bashrc
 
+# exit if we're in a script
+[ -z "$PS1" ] && return
+
+#if [ ! -z "$TERMCAP" ] && [ "$TERM" == "screen" ]; then
+#    export TERMCAP=$(echo $TERMCAP | sed -e 's/Co#8/Co#256/g')
+#fi
+
+if [ -f ${HOME}/.termcap ]; then
+    TERMCAP=$(< ${HOME}/.termcap)
+    export TERMCAP
+fi
+
+# Bash shell driver for go (http://code.google.com/p/go-tool/).
+function go {
+    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
+    python2 -m go $*
+    if [ -f $GO_SHELL_SCRIPT ] ; then
+        source $GO_SHELL_SCRIPT
+    fi
+    unset GO_SHELL_SCRIPT
+}
+
+# sudo
+export SUDO_EDITOR="/usr/bin/vim -p -X"
+
 ###
 # Bash Suff
 # ~/.bash_suff
-##
-
 # Bash Binds
-if [ -f ~/.bash_stuff/bash_binds ]; then
-    . ~/.bash_stuff/bash_binds
-fi
+[ -f ~/.bash_stuff/bash_binds ] && source ~/.bash_stuff/bash_binds
 # Bash Aliases
-##################
-if [ -f ~/.bash_stuff/bash_aliases ]; then
-    . ~/.bash_stuff/bash_aliases
-fi
+[ -f ~/.bash_stuff/bash_aliases ] && source ~/.bash_stuff/bash_aliases
 # Bash Passwords
-if [ -f ~/.bash_stuff/bash_passwd ]; then
-    . ~/.bash_stuff/bash_passwd
-fi
+[ -f ~/.bash_stuff/bash_passwd ] && source ~/.bash_stuff/bash_passwd
 # Bash Complete
-##################
-if [ -f ~/.bash_stuff/bash_complete ]; then
-    . ~/.bash_stuff/bash_complete
-fi
+[ -f ~/.bash_stuff/bash_completion ] && source ~/.bash_stuff/bash_completion
 # Inputrc file - Faster Completion
-if [ -f ~/.inputrc ]; then
-    . ~/.inputrc
-fi
-
+[ -f ~/.inputrc ] && source ~/.inputrc
+#bash functions
+[ -f ~/.bash_stuff/bash_functions ] && source ~/.bash_stuff/bash_functions
+#bash_exports
+[ -f ~/.bash_stuff/bash_exports ] && source ~/.bash_stuff/bash_exports
 #bash completion
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+[ -f /etc/bash_completion ] && source /etc/bash_completion
+## Bash Colors�
+[ -f ~/.bash_stuff/bash_colors ] && source ~/.bash_stuff/bash_colors
+# bash_login
+#[ -f ~/.bash_login ] && source ~/.bash_login
+#dir_colors
+#eval `dircolors /etc/DIR_COLORS`
+#eval `dircolors ~/.dir_colors`
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# Term
-#if [ -e /usr/share/terminfo/r/rxvt-unicode-256color ]; then
-#    export TERM='rxvt-unicode-256color'
-#elif [ -e /usr/share/terminfo/r/rxvt-unicode ]; then
-#    export TERM='rxvt-unicode'
-#elif [ -e /usr/share/terminfo/r/rxvt-256color ]; then
-#    export TERM='rxvt-256color'
-#elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
-#    export TERM='rxvt-color'
-#elif [ -e /usr/share/terminfo/r/rxvt ]; then
-#    export TERM='rxvt'
-#elif [ -e /usr/share/terminfo/x/xterm-256color ]; then
-#    export TERM='xterm-256color'
-#elif [ -e /usr/share/terminfo/x/xterm-color ]; then
-#    export TERM='xterm-color'
-#elif [ -e /usr/share/terminfo/x/xterm ]; then
-#    export TERM='xterm'
-#else
-#    TERM='xterm'
-#fi
-TERM='rxvt'
-
 alias ssh="TERM=linux ssh"
-
-complete -cf sudo
-complete -cf man
 
 # grep color
 ##################
 export GREP_COLOR="1;33"
 alias grep='grep --color=auto'
-
-# Dynamic resizing
-##################
-shopt -s checkwinsize
 
 # GIT STATUS MAGIC (START)
 GIT_PS1_SHOWDIRTYSTATE=true
@@ -138,62 +128,33 @@ bash_prompt() {
     esac
     local NONE="\[\033[0m\]"    # unsets color to term's fg color
 
-## Bash Colors
-if [ -f ~/.bash_stuff/bash_colors ]; then
-    . ~/.bash_stuff/bash_colors
-fi
+    # Titlebar
+    case ${TERM} in
+        screen* )
+            local TITLEBAR='\[\033k\w\033\134\]'
+            ;;
+        xterm*  )  
+            local TITLEBAR='\[\033]0;\u@\h: { \w }  \007\]'
+            ;;
+        *       )  
+            local TITLEBAR=''                               
+            ;;
+    esac
 
-#    # regular colors
-#    local K="\[\033[0;30m\]"    # black
-#    local R="\[\033[0;31m\]"    # red
-#    local G="\[\033[0;32m\]"    # green
-#    local Y="\[\033[0;33m\]"    # yellow
-#    local B="\[\033[0;34m\]"    # blue
-#    local M="\[\033[0;35m\]"    # magenta
-#    local C="\[\033[0;36m\]"    # cyan
-#    local W="\[\033[0;37m\]"    # white
-#    local O="\[\e[0;33m\]"    # orange
-#    local P="\[\e[0;35m\]"    # purple
-#    local LG="\[\e[0;37m\]"   # lightgray
-#    local DG="\[\e[0;90m\]"   # darkgray
-#    local GL="\[\e[0;92m\]"   # lightgreen
-#    local LR="\[\e[0;91m\]"   # lightred
-#    local LP="\[\e[0;95m\]"   # lightpurple
-#    local TQ="\[\e[0;96m\]"   # tourquoise
-#    # emphasized (bolded) colors
-#    local EMK="\[\033[1;30m\]"
-#    local EMR="\[\033[1;31m\]"
-#    local EMG="\[\033[1;32m\]"
-#    local EMY="\[\033[1;33m\]"
-#    local EMB="\[\033[1;34m\]"
-#    local EMM="\[\033[1;35m\]"
-#    local EMC="\[\033[1;36m\]"
-#    local EMW="\[\033[1;37m\]"
-#    local EMO="\[\e[1;43m\]"  # orange
-#    local EMP="\[\e[1;105m\]"  # purple
-#    # background colors
-#    local BGK="\[\033[40m\]"
-#    local BGR="\[\033[41m\]"
-#    local BGG="\[\033[42m\]"
-#    local BGY="\[\033[43m\]"
-#    local BGB="\[\033[44m\]"
-#    local BGM="\[\033[45m\]"
-#    local BGC="\[\033[46m\]"
-#    local BGW="\[\033[47m\]"
-#    local BGO="\[\e[1;43m\]"  # Orange
-#    local BGP="\[\e[1;45m\]"  # Purple
-    local UC=$W                 # user's color
-    [ $UID -eq "0" ] && UC=$R   # root's color
+# export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
+#PROMPT_COMMAND='history -a;echo -en "${Y}"$(( `sed -nu "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"${W}/${O}"$((`sed -nu "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t${LP}$(< /proc/loadavg)"'
+#PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n[$SHLVL:\!]~> '
+#export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
+export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
+export PS2="  \[${Y}\]> \[${Y}\]"
 
-#    PS1="$TITLEBAR ${EMK}[${UC}\u${EMK}@${UC}\h ${EMB}\${NEW_PWD}${EMK}]${UC}\\$ ${NONE}"
-#    PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${TQ}\$(tty | sed -e 's:/dev/::')${R}:${LG}\$(ls -1 | wc -l | sed 's: ::g') ${TQ}files${R}:${LG}\$(ls -lah | grep -m 1 total | sed 's/total //')b${P}] \n ${R}+${W}- ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
-    PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
-#    PS1="\u@\h\[\e[33m\]\W\[\e[0m\] \[\`if [[ \$? = "0" ]]; then echo '\e[32m:)\e[0m'; else echo '\e[31m:(\e[0m' ; fi\`\] \$ "
-#    PS1="${P}[${TQ}\u${LP}@${LR}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- \[\`if [[ \$? = "0" ]]; then echo '${W}:${TQ}<\e[0m'; else echo '${W}:${R}>\e[0m' ; fi\`\] \${LP}$\e[0m${LG} "
-#    PS1="[\u@\h] [\$(tty | sed -e 's:/dev/::'):\$(ls -1 | wc -l | sed 's: ::g') files:\$(ls -lah | grep -m 1 total | sed 's/total //')b]  \n [\${NEW_PWD}] \n :< "
-    # without colors: PS1="[\u@\h \${NEW_PWD}]\\$ "
-    # extra backslash in front of \$ to make bash colorize the prompt
 }
+
+# auto startx and logout, security ! 
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+  startx
+  logout
+fi
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
