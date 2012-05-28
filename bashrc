@@ -1,6 +1,11 @@
 #!/bin/bash
 # . ~/.bashrc
 
+export DISPLAY=:0.0
+
+# ssh-gent
+#eval $(ssh-agent)
+
 # exit if we're in a script
 [ -z "$PS1" ] && return
 
@@ -24,7 +29,9 @@ function go {
 }
 
 # sudo
+alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
 export SUDO_EDITOR="/usr/bin/vim -p -X"
+alias sudo="sudo -E"
 
 ###
 # Bash Suff
@@ -151,10 +158,10 @@ export PS2="  \[${Y}\]> \[${Y}\]"
 }
 
 # auto startx and logout, security ! 
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
-  startx
-  logout
-fi
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+#  startx
+#  logout
+#fi
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt

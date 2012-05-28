@@ -1566,13 +1566,13 @@ alias atvrip_w='atv2avi_w'
 
 
 ###### WATCH ANALOG TV
-function atv()
-{
-echo -n "What analog/cable tv channel would you like to watch? (1-99)?:
-"
-read ANALOGSTATION
-sh -c "mplayer -tv driver=v4l2:device=/dev/video1:input=0:norm=ntsc:chanlist=us-cable:channel="$ANALOGSTATION" tv:// & sox -r 48000 -t alsa hw:1,0 -t alsa hw:0,0"
-}
+#function atv()
+#{
+#echo -n "What analog/cable tv channel would you like to watch? (1-99)?:
+#"
+#read ANALOGSTATION
+#sh -c "mplayer -tv driver=v4l2:device=/dev/video1:input=0:norm=ntsc:chanlist=us-cable:channel="$ANALOGSTATION" tv:// & sox -r 48000 -t alsa hw:1,0 -t alsa hw:0,0"
+#}
 
 
 
