@@ -7,14 +7,15 @@
 eval $(ssh-agent)
 
 # Bash_Env
+PATH=$PATH:$HOME/bin
 BASH_ENV="$HOME/.bashrc"
 USERNAME="$(whoami)"
 
 # Sourcing ~/.profile & ~/.bashrc is a good thing
 #profile
-[ -f ~/.profile ] && source $HOME/.profile
+#[ -f ~/.profile ] && source $HOME/.profile
 #bashrc
-[ -f ~/.bashrc ] && source $HOME/.bashrc
+#[ -f ~/.bashrc ] && source $HOME/.bashrc
 
 # auto startx and logout, security !
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
@@ -23,3 +24,5 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
   logout
 fi
 ssh-add
+
+export USERNAME BASH_ENV PATH
