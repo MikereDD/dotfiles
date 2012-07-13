@@ -11,14 +11,15 @@ noticebar=/rbar/!notice
 
 # Colors # "<text> <background> <border>"
 # export WMII_NORMCOLORS="#969696 #121212 #313131"
-# export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 # export WMII_NORMCOLORS="#657b83 #121212 #073642"
-#export WMII_NORMCOLORS="#bababa #101010 #595959"
-export WMII_NORMCOLORS="#bababa #00080a #595959"
-# export WMII_FOCUSCOLORS="#93a1a1 #1e1e1e #585858"
+# export WMII_NORMCOLORS="#bababa #101010 #595959"
+# export WMII_NORMCOLORS="#bababa #00080a #595959"
+export WMII_NORMCOLORS="#c0c0c0 #0c0c0c #216f8a"
+# export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 # export WMII_FOCUSCOLORS="#93a1a1 #121212 #585858"
-#export WMII_FOCUSCOLORS="#f7f7f7 #101010 #818181"
-export WMII_FOCUSCOLORS="#767676 #00080a #595959"
+# export WMII_FOCUSCOLORS="#f7f7f7 #101010 #818181"
+# export WMII_FOCUSCOLORS="#767676 #00080a #595959"
+export WMII_FOCUSCOLORS="#ffffff #0c0c0c #800000"
 
 # Background #
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
@@ -28,18 +29,21 @@ export WMII_FOCUSCOLORS="#767676 #00080a #595959"
 # export WMII_BACKGROUND="feh --bg-scale $HOME/wallpapers/AmiaMiley-wp2.png"
 # export WMII_BACKGROUND="feh --bg-scale $HOME/wallpapers/AmiaMiley-wp2.png"
 # export WMII_BACKGROUND="feh --bg-scale $HOME/wallpapers/AmiaMiley-wp3.png"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Doctors_Eleven_by_Magmakensuke-1920-by-1080-burnt-grey.png"
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Doctors_Eleven_by_Magmakensuke-1920-by-1080-burnt-grey.png"
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-744159.jpg"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Red_Android_Sleeper_Cell_with_Andy-Blue-aka-gradiant.png"
 
 # Font #
 # WMII_FONT='*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*' 
 # export WMII_FONT="xft:Sans-9"
 # export WMII_FONT="xft:Tamsyn Bold:pixelsize=13"
-# export WMII_FONT="xft:Tamzen Bold:pixelsize=13"
+# export WMII_FONT="xft:Tamzen Bold:size=12"
 # export WMII_FONT="xft:abeatbyKai:pixelsize=13"
 # export WMII_FONT="xft:Antipasto:size=11:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:DejaVu Sans:pixelsize=12:antialias=true:bold:hinting=true"
 # export WMII_FONT="xft:Roboto Light:size=8:antialias=true:bold:hinting=true"
 export WMII_FONT="xft:Comfortaa:pixelsize=14:antialias=true:hinting=true"
+# export WMII_FONT="xft:Pigiarniq:pixelsize=14:antialias=true:hinting=true"
 
 # Terminal #
 export WMII_TERM="urxvt"
@@ -71,17 +75,17 @@ wmiir write /tagrules <<!
     # with the same tags. Disable grouping for ROX Filer.
     /^ROX-Filer:/ group=0
 
-    /xcalc/ -> ~
+    /xcalc|nautilus|thunar/ -> ~
     /root/ -> +su
     /irc/ -> +irc
     /Gimp.*|Darktable.*/ -> +art
     /virtualbox.*|Oracle.*|VBE.*/ -> +build
     /code|gedit|leafpad/ -> +code
     /armagetronad/ -> +game
-    /Music.Manager.*/ -> ~+music    
-    /nautilus|thunar|FM shell|LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
+    /Music.Manager.*/ -> ~+music
+    /LibreOffice|libreoffice|apvlv|xchm|mcomix/ -> +office
     /Boxee|boxee|huludesktop/ -> ~+video
-    /MPlayer.*|mplayer|VLC.*|vlc/ -> ~+code+irc+web
+    /MPlayer.*|mplayer|VLC.*|vlc/ -> ~+code+irc+web+art
     /filezilla|Chromium|Opera|FileZilla|firefox|Firefox|Namoroka|Mozilla|Thunderbird|Muttator|dwb|DWB|vimprobable2|uzbl/ -> +web
     /.*/ -> sel
     /.*/ -> 1
