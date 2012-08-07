@@ -1,30 +1,61 @@
 #!/bin/bash
 # ~/.bash_stuff/bash_exports
 
+#EDITOR="vim"
+#PATH=$PATH:$HOME/bin
+#BASH_ENV="$HOME/.bashrc"
+BASH_ENV=~/.bashrc
+USERNAME="$(whoami)"
+
 #PATH
-export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/opt/java/jre/bin:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/.bin
+#export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin
 
 if [ -n "$DISPLAY" ]; then
-    export BROWSER="chromium"
+#    export BROWSER="dwb"
+    BROWSER="dwb"
 else
-    export BROWSER="elinks"
+#    export BROWSER="elinks"
+    BROWSER="elinks"
 fi
 
-export LANG="en_US.UTF-8"
-export LC_ALL=
-export LC_COLLATE="C"
-export TMPDIR="$HOME/tmp"
-export EDITOR="vim"
-export PAGER="vimpager"
-export HISTCONTROL="ignoreboth"
-export HISTIGNORE='history*'
-export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
-export SDL_AUDIODRIVER="alsa"
-export DISPLAY=:0.0
-export SDL_VIDEO_FULLSCREEN_HEAD=1
-export JAVA_HOME="/usr/bin/java"
-export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-export PATH
-export USERNAME BASH_ENV PATH
-export GTK_IM_MODULE=xims
+#export LANG="en_US.UTF-8"
+LANG="en_US.UTF-8"
+#export LC_ALL=
+LC_ALL=
+#export LC_COLLATE="C"
+LC_COLLATE="C"
+#export TMPDIR="$HOME/tmp"
+TMPDIR="$HOME/tmp"
+#export EDITOR="vim"
+EDITOR="vim"
+#export PAGER="vimpager"
+PAGER="vimpager"
+HISTCONTROL="ignoreboth"
+#export HISTCONTROL="ignoreboth"
+HISTCONTROL="ignoreboth"
+#export HISTIGNORE='history*'
+HISTIGNORE='history*'
+#export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
+PROMPT_COMMAND='history -a;echo -en "\e2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";''"'
+#export SDL_AUDIODRIVER="alsa"
+SDL_AUDIODRIVER="alsa"
+#export SDL_VIDEO_FULLSCREEN_HEAD=1
+SDL_VIDEO_FULLSCREEN_HEAD=1
+#export DISPLAY=:0.0
+DISPLAY=:0.0
+if [ -n "$DISPLAY" ]; then
+    #    export BROWSER="dwb"
+        BROWSER="dwb"
+    else
+    #    export BROWSER="elinks"
+        BROWSER="elinks"
+    fi
+#export GTK_IM_MODULE=xims
+GTK_IM_MODULE=xims
+#export JAVA_HOME="/usr/bin/java"
+#export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
+#export USERNAME BASH_ENV PATH
+#export PATH="$PATH:/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin"
+PATH="/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin"
 
+export USERNAME BASH_ENV PATH EDITOR LANG LC_ALL LC_COLLATE TMPDIR EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE

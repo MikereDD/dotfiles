@@ -3,26 +3,26 @@
 # . ~/.bash_profile
 #
 
-# ssh-gent
-eval $(ssh-agent)
-
 # Bash_Env
-PATH=$PATH:$HOME/bin
-BASH_ENV="$HOME/.bashrc"
-USERNAME="$(whoami)"
+#EDITOR="vim"
+#PATH=$PATH:$HOME/bin
+#BASH_ENV="$HOME/.bashrc"
+#USERNAME="$(whoami)"
 
 # Sourcing ~/.profile & ~/.bashrc is a good thing
 #profile
 #[ -f ~/.profile ] && source $HOME/.profile
 #bashrc
-#[ -f ~/.bashrc ] && source $HOME/.bashrc
-
-# auto startx and logout, security !
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
-#  startx
-   exec nohup startx > .xlog & vlock
-  logout
+if [ -f ~/.bashrc ]; then
+   source ~/.bashrc
 fi
-ssh-add
 
-export USERNAME BASH_ENV PATH
+ # auto startx and logout, security !
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+#  startx
+#   exec nohup startx > .xlog & vlock
+#  logout
+#fi
+#ssh-add
+
+#export USERNAME BASH_ENV PATH EDITOR
