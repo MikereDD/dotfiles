@@ -251,93 +251,6 @@ function psg()
 }
 
 
-
-##################################################
-# Sudo stuff					 #
-##################################################
-
-###### Apt-get via sudo
-# An apt-get wrapper function which will run the command via sudo, but will run it normally if you're only downloading source files.
-# function apt-get() { [ "$1" = source ] && (command apt-get "$@";true) || sudo apt-get "$@" }
-
-
-
-# function sudo()
-# {
-#   command="$@"
-#   if [ -z "$command" ]; then
-#     command sudo -s
-#   else
-#      command sudo "$@"
-#   fi
-# }
-
-
-
-###### Wrap sudo to handle aliases and functions
-# (enabled means all 'sudo' in this file need
-# to be removed) (disabled for now by adding
-# a single '#')
-# function sudo()
-# {
-# local c o t parse
-## Parse sudo args
-# OPTIND=1
-# while getopts xVhlLvkKsHPSb:p:c:a:u: t; do
-# if [ "$t" = x ]; then
-# parse=true
-# else
-# o="$o -$t"
-# [ "$OPTARG" ] && o="$o $OPTARG"
-# fi
-# done
-# shift $(( $OPTIND - 1 ))
-## If no arguments are left, it's a simple call to sudo
-# if [ $#  -ge 1 ]; then
-# c="$1";
-# shift;
-# case $(type -t "$c") in
-# "")
-# echo No such command "$c"
-# return 127
-# ;;
-# alias)
-# c="$(type "$c"|sed "s/^.* to \`//;s/.$//")"
-# ;;
-# function)
-# c=$(type "$c"|sed 1d)";\"$c\""
-# ;;
-# *)
-# c="\"$c\""
-# ;;
-# esac
-# if [ -n "$parse" ]; then
-## Quote the rest once, so it gets processed by bash.
-## Done this way so variables can get expanded.
-# while [ -n "$1" ]; do
-# c="$c \"$1\""
-# shift
-# done
-# else
-## Otherwise, quote the arguments. The echo gets an extra
-## space to prevent echo from parsing arguments like -n
-## Note the lovely interactions between " and ' ;-)
-# while [ -n "$1" ]; do
-# c="$c '$(echo " $1"|sed -e "s/^ //" -e "s/'/'\"'\"'/")'"
-# shift
-# done
-# fi
-## Run the command with verbose options
-## echo Executing sudo $o -- bash -x -v -c "$c" >&2
-# command sudo $o bash -xvc "$c"
-# else
-## echo sudo $o >&2
-# command sudo $o
-# fi
-# }
-
-
-
 ###### Sudo for entire line (including pipes and redirects)
 # USAGE: $ sudor your command
 # This command uses a dirty hack with history, so be sure you not turned it off.
@@ -3388,7 +3301,7 @@ function randomwp()
 {
 cat > "/tmp/randomwp.py" <<"End-of-message"
 #!/usr/bin/env python
-BACKGROUND_DIRS = ['/usr/share/backgrounds', '~/Pictures/Backgrounds']
+BACKGROUND_DIRS = ['/usr/share/backgrounds', '~/wallpapers']
 EXTENSIONS = ['jpeg', 'jpg', 'bmp', 'png', 'svg']
 import os, glob, random, itertools, gconf
 files = list(itertools.chain(*[[os.path.join(dirpath, name)
@@ -3870,10 +3783,10 @@ lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ 
 function netinfo()
 {
 echo "--------------- Network Information ---------------"
-/sbin/ifconfig | awk /'inet addr/ {print $2}'
-/sbin/ifconfig | awk /'Bcast/ {print $3}'
-/sbin/ifconfig | awk /'inet addr/ {print $4}'
-/sbin/ifconfig | awk /'HWaddr/ {print $4,$5}'
+/sbin/ifconfig | grep broadcast | awk '{print "inet:",$2}'
+/sbin/ifconfig | grep broadcast | awk '{print "netmask:",$6}'
+/sbin/ifconfig | grep broadcast | awk '{print "broadcast:",$4}'
+/sbin/ifconfig | grep ether | tr -d '\n' | awk '{print "macaddr(s):","eth0:",$2,"wlan0:",$7}'
 myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
 echo "${myip}"
 echo "---------------------------------------------------"
@@ -5002,384 +4915,6 @@ function debremaker()
 function debug_http() { /usr/bin/curl $@ -o /dev/null -w "dns: %{time_namelookup} connect: %{time_connect} pretransfer: %{time_pretransfer} starttransfer: %{time_starttransfer} total: %{time_total}\n" ; }
 
 
-
-##################################################
-# Defragmentation of selected files/folder	 #
-# (use at your own risk) & fragmentation-checking#
-##################################################
-
-function defrag()
-{
-cd "$1"
-read -sn 1 -p "Warning! Pressing enter will defrag the current directory. Close this now if you are in the wrong directory and/or you forgot to type the name of the directory you wish to defrag after \"defrag\": Press any key to continue...
-"
-read -sn 1 -p "I'm serious. It's now or never...: Press any key to continue...
-"
-cat > "/tmp/defrag.sh" <<"End-of-message"
-#!/bin/bash
-# defrag v0.08 by Con Kolivas <kernel@kolivas.org
-# Braindead fs-agnostic defrag to rewrite files in order largest to smallest
-# Run this in the directory you want all the files and subdirectories to be
-# reordered. It will only affect one partition. It works best when run twice.
-# Are you really crazy enough to be using this? It might blow your data
-# into tiny little useless chunks.
-trap 'abort' 1 2 15
-renice 19 $$ > /dev/null
-function abort()
-{
-	echo -e "\nAborting"
-	rm -f tmpfile dirlist
-	exit 1
-}
-function fail()
-{
-	echo -e "\nFailed"
-	abort
-}
-declare -i filesize=0
-declare -i numfiles=0
-# The maximum size of a file we can easily cache in ram
-declare -i maxsize=$((`awk '/MemTotal/ {print $2}' /proc/meminfo`*1024))
-(( maxsize-= `awk '/Mapped/ {print $2}' /proc/meminfo` ))
-(( maxsize/= 2))
-if [[ -a tmpfile || -a dirlist  ]] ; then
-	echo dirlist or tmpfile exists
-	exit 1
-fi
-# Sort in the following order:
-# 1) Depth of directory
-# 2) Size of directory descending
-# 3) Filesize descending
-# I made this crap up. It's completely unvalidated.
-echo "Creating list of files..."
-# stupid script to find max directory depth
-find -xdev -type d -printf "%d\n" | sort -n | uniq > dirlist
-# sort directories in descending size order
-cat dirlist | while read d;
-do
-	find -xdev -type d -mindepth $d -maxdepth $d -printf "\"%p\"\n" | \
-		xargs du -bS --max-depth=0 | \
-		sort -k 1,1nr -k 2 |\
-		cut -f2 >> tmpfile
-	if (( $? )) ; then
-		fail
-	fi
-done
-rm -f dirlist
-# sort files in descending size order
-cat tmpfile | while read d;
-do
-	find "$d" -xdev -type f -maxdepth 1 -printf "%s\t%p\n" | \
-		sort -k 1,1nr | \
-		cut -f2 >> dirlist
-	if (( $? )) ; then
-		fail
-	fi
-done
-rm -f tmpfile
-numfiles=`wc -l dirlist | awk '{print $1}'`
-echo -e "$numfiles files will be reordered\n"
-# copy to temp file, check the file hasn't changed and then overwrite original
-cat dirlist | while read i;
-do
-	(( --numfiles ))
-	if [[ ! -f $i ]]; then
-		continue
-	fi
-	# We could be this paranoid but it would slow it down 1000 times
-	# if [[ `lsof -f -- "$i"` ]]; then
-	# 	echo -e "\n File $i open! Skipping"
-	# 	continue
-	# fi
-	filesize=`find "$i" -printf "%s"`
-	# read the file first to cache it in ram if possible
-	if (( filesize < maxsize ))
-	then
-		echo -e "\r $numfiles files left                                                            \c"
-		cat "$i" > /dev/null
-	else
-		echo -e "\r $numfiles files left - Reordering large file sized $filesize ...                \c"
-	fi
-	datestamp=`find "$i" -printf "%s"`
-	cp -a -f "$i" tmpfile
-	if (( $? )) ; then
-		fail
-	fi
-	# check the file hasn't been altered since we copied it
-	if [[ `find "$i" -printf "%s"` != $datestamp ]] ; then
-		continue
-	fi
-	mv -f tmpfile "$i"
-	if (( $? )) ; then
-		fail
-	fi
-done
-echo -e "\nSucceeded"
-rm -f dirlist
-End-of-message
-chmod +x "/tmp/defrag.sh"
-sudo "/tmp/defrag.sh" "$1"
-read -sn 1 -p "When you are finished, press any key to continue...
-"
-rm "/tmp/defrag.sh"
-}
-
-
-
-###### if run this in your $HOME directory, you will have to change permissions back
-function defrag2()
-{
-cd "$1"
-read -sn 1 -p "Warning! Pressing enter will defrag the current directory. Close this now if you are in the wrong directory and/or you forgot to type the name of the directory you wish to defrag after \"defrag\": Press any key to continue...
-"
-read -sn 1 -p "I'm serious. It's now or never...: Press any key to continue...
-"
-cat > "/tmp/defrag2.sh" <<"End-of-message"
-#!/bin/bash
-# Creator:	private_lock
-# Recursively descend in a folder-structure and recreate every folder on ascending, to ensure it is
-# sorted (check with 'ls -lU'). This will defrag the FAT32 file-system but not touch the files.
-# count some statistics
-directories=0
-invalid=0
-unreadable=0
-# the latest modification date of a file within the given directory
-function getMaxDate {
-    # read the output of ls (one file per line, sorted for descending modification time)
-    ls -1t "$1" | while read line; do
-        # "return value" is piped through standard out
-        echo "-d $(stat -c %y "$1"/"$line")"
-        # stop after first line
-        return
-    done
-}
-# expect a single directory as argument
-function rewrite {
-    # get canonical path
-    local canonical="$(readlink -f "$1")"
-    if [[ ! -d "$1" || -h "$1" ]]; then
-        echo "Skipping symbolic link \"$1\" -> \"$canonical\"!"
-        let invalid+=1
-        return
-    fi
-    if [[ ! -d "$1" || -h "$1" ]]; then
-        echo \"$canonical\" is not a valid directory!
-        let invalid+=1
-        return
-    fi
-    cd "$canonical"
-    if [[ $? != 0 ]]; then
-        echo Cannot change to directory \"$canonical\"! Skipping ...
-        let unreadable+=1
-        return
-    fi
-    echo $canonical
-    let directories+=1
-    local isEmpty=true
-    # recursive descend
-    for d in *; do
-        if [[ -d "$d" ]]; then
-            rewrite "$d"
-        fi
-        let isEmpty=false
-    done
-    # ascend to parent of canonical (But don't ascend blindly)
-    cd "$canonical"/..
-    if [[ $isEmpty == true ]]; then
-        # no need to recreate an empty directory, as it's zero entries are always sorted
-        return
-    fi
-    # check for an empty temporary directory-name
-    local tempdir="$canonical".bak
-    if [[ -e "$tempdir" ]]; then
-        # echo $tempdir exits
-        local counter=1
-        while [[ -e "$tempdir$counter" ]]; do
-            # echo ${tempdir}${counter} exits
-            let counter+=1
-        done
-        tempdir="${tempdir}${counter}"
-    fi
-    # TODO check file-system boundaries (don't move across)
-    # rename the current directory
-    mv "$canonical" "$tempdir"
-    # create a new directory
-    mkdir "$canonical"
-    # move all the content from the old to the new directory
-    # The whole script is build around the side-effect of mv to sort the entries.
-    mv "$tempdir"/* "$canonical"
-    # check, that the old directory is really empty
-    if [[ "$(ls -A "$tempdir")" ]]; then
-        echo ERROR: "$tempdir" is not empty!
-        exit -2
-    fi
-    # restore permissions
-    chmod --reference="$tempdir" "$canonical"
-    # delete the old directory
-    rmdir "$tempdir"
-    # update the timestamp of the new directory
-    # start off with today
-    local maxDate=$(date)
-    # evaluate the latest modification time of a file within this directory
-    # empty directories would be set to now
-    touch "$(getMaxDate "$canonical")" "$canonical"
-}
-# check commandline for help option
-for a in "$@"; do
-    if [[ ${a} = "-?" || ${a} = "-h"  || ${a} = "--help" ]]; then
-        echo -e "\nUsage: folderSort [-?|-h|--help] [directories]\n"
-        exit -1
-    fi
-done
-# start processing the directories
-if [[ "$#" -eq 0 ]]; then
-    # no commandline argument was given -> work on the current directory
-    rewrite .
-else
-    for a in "$@"; do
-        rewrite ${a}
-    done
-fi
-echo Processed a total of $directories directories!
-if [[ $invalid > 0 ]]; then
-    echo Found $invalid invalid directories!
-fi
-if [[ $unreadable > 0 ]]; then
-    echo Found $unreadable directories, that could not be changed into!
-fi
-exit $(($invalid + $unreadable))
-End-of-message
-chmod +x "/tmp/defrag2.sh"
-sudo "/tmp/defrag2.sh" "$1"
-read -sn 1 -p "When you are finished, press any key to continue...
-"
-rm "/tmp/defrag2.sh"
-}
-
-
-
-###### fragmentation check (basic check, which will generate a percentage of fragmentation)
-function fragcheck()
-{
-cd "$1"
-read -sn 1 -p "Warning! Pressing enter will do a search for fragmentation in the current directory. Close this now if you are in the wrong directory and/or you forgot to type the name of the directory you wish to do a fragcheck after \"fragcheck\": Press any key to continue...
-"
-cat > "/tmp/fragcheck.pl" <<"End-of-message"
-#!/usr/bin/perl -w
-# Original creator: _droop_
-# Updated by: as
-# Updated again by: user11
-# this script search for frag on a fs
-use strict;
-# number of files
-my $files = 0;
-# number of fragment
-my $fragments = 0;
-# number of fragmented files
-my $fragfiles = 0;
-my $verbose;
-if ($ARGV[0] eq '-v') { shift @ARGV; $verbose++; }
-open (REPORT, "find " . $ARGV[0] . " -xdev -type f -print0 | xargs -0 filefrag |");
-while (defined (my $res = <REPORT>)) {
-        if ($res =~ m/.*:\s+(\d+) extents? found$/) {
-                my $fragment = $1;
-                $fragments += $fragment;
-                if ($fragment > 1) {
-                        $fragfiles++;
-                }
-                $files++;
-        } else {
-                print ("Failed to parse: $res\n");
-        }
-}
-close (REPORT);
-if ($verbose) {
-   print "Total files:      $files\n";
-   print "Fragmented files: $fragfiles\n";
-   print "Fragments:        $fragments\n";
-}
-sub round($$) {
-   my $v = shift; # value
-   my $p = shift; # rouding divisor (1 for '123', 10 for '123.4', 100 for '123.45')
-   return int($v * $p) / $p;
-}
-print ( $fragfiles / $files * 100 . "% non contiguous files, " . $fragments / $files . " average fragments.\n");
-End-of-message
-chmod +x "/tmp/fragcheck.pl"
-sudo "/tmp/fragcheck.pl" "$1"
-read -sn 1 -p "When you are finished, press any key to continue...
-"
-rm "/tmp/fragcheck.pl"
-}
-
-
-
-###### will generate a percentage for fragmentation and several other things: takes longer than first one
-function fragcheck2()
-{
-cd "$1"
-read -sn 1 -p "Warning! Pressing enter will do a search for fragmentation in the current directory. Close this now if you are in the wrong directory and/or you forgot to type the name of the directory you wish to do a fragcheck after \"fragcheck\": Press any key to continue...
-"
-cat > "/tmp/fragcheck2.pl" <<"End-of-message"
-#! /usr/bin/perl -w
-#  Original creator: _droop_
-#  Updated by: as
-#  Updated again by: c07
-use strict;
-@ARGV >= 1 && @ARGV <= 2 or die "usage: $0 <dir> [<block size in KB>]";
-$/= "\0";
-my ($files, $blocks, $fragments, $frag, $fragblocks, $multi, $empty)= (0) x 7;
-my $dir= shift;
-my $blocksize= (shift || 4) + 0;
-print qq|scanning "$dir", using block size $blocksize KB ...\n|;
-open my $find, "-|", "find", $dir, qw"-xdev -type f -print0";
-while ( my $file= <$find> ) {
-  { open my $fh, "-|", "filefrag", $file; $_= <$fh> }
-  /:\s+(\d+) extents? found/ or (print qq|"$_"?\n|), next;
-  my $n= $1 + 0;
-  { open my $fh, "-|", "ls", "-sk", $file; $_= <$fh> }
-  /^(\d+)\s/ or (print qq|"$_" (ls)?\n|), next;
-  my $s= $1 / $blocksize;
-  ++$files;
-  $s or ++$empty, next;
-  $blocks += $s;
-  $fragments += $n;
-  ++$frag, $fragblocks += $s if $n > 1;
-  ++$multi if $s > 1;
-}
-my $single= $files - $multi - $empty;
-my $nonfrag= $files - $frag - $empty;
-if ( ! $files ) { print "no files\n" }
-else {
-  printf "$files files, $frag (%.3f %%) fragmented\n", 100 * $frag / $files;
-  if ( ! $multi ) { print "no multi-block files\n" }
-  else {
-    printf "$multi multi-block files, %.3f %% fragmented\n",
-      100 * $frag / $multi;
-  }
-  print "$blocks blocks, $fragments fragments, $empty empty files\n";
-  if ( $fragments ) {
-    printf "average %.3f fragments per file, %.3f blocks per fragment,\n",
-      $fragments / $files, $blocks / $fragments;
-    if ( $multi ) {
-      printf "%.3f fragments per multi-block file, %.3f blocks each,\n",
-        ($fragments - $single) / $multi,
-        ($blocks - $single) / ($fragments - $single);
-      if ( $frag ) {
-        printf "%.3f fragments per fragmented file, %.3f blocks each\n",
-        ($fragments - $nonfrag) / $frag,
-        $fragblocks / ($fragments - $nonfrag);
-} } } }
-End-of-message
-chmod +x "/tmp/fragcheck2.pl"
-sudo "/tmp/fragcheck2.pl" "$1"
-read -sn 1 -p "When you are finished, press any key to continue...
-"
-rm "/tmp/fragcheck2.pl"
-}
-
-
-
 ##################################################
 # Delete function				 #
 ##################################################
@@ -5537,6 +5072,65 @@ function doc() {
 }
 
 
+# view doc
+docview ()
+{
+  if [ -f $1 ] ; then
+      case $1 in
+          *.pdf)       xpdf $1    ;;
+          *.ps)        oowriter $1    ;;
+          *.odt)       oowriter $1     ;;
+          *.txt)       leafpad $1       ;;
+          *.doc)       oowriter $1      ;;
+          *)           echo "don't know how to extract '$1'..." ;;
+      esac
+  else
+      echo "'$1' is not a valid file!"
+  fi
+}
+
+
+# to-do helper
+todo() {
+   test -f $HOME/.todo || touch $HOME/.todo
+   if test $# = 0
+   then
+           cat $HOME/.todo
+   elif test $1 = -l
+   then
+           cat -n $HOME/.todo
+   elif test $1 = -c
+   then
+           > $HOME/.todo
+   elif test $1 = -r
+   then
+           cat -n $HOME/.todo
+           echo -ne "----------------------------\nType a number to remove: "
+           read NUMBER
+           sed -ie ${NUMBER}d $HOME/.todo
+   else
+           echo $@ >> $HOME/.todo
+   fi
+}
+
+# note taker
+note ()
+{
+       #if file doesn't exist, create it
+       [ -f $HOME/.notes ] || touch $HOME/.notes
+       #no arguments, print file
+       if [ $# = 0 ]
+       then
+               cat $HOME/.notes
+       #clear file
+       elif [ $1 = -c ]
+       then
+               > $HOME/.notes
+       #add all arguments to file
+       else
+               echo "$@" >> $HOME/.notes
+       fi
+}
 
 ##################################################
 # Lists unique IPs currently connected to 	 #
@@ -5834,34 +5428,34 @@ function exchange()
 # Extract - extract most common compression	 #
 # types						 #
 ##################################################
-
-function extract() {
-  local e=0 i c
-  for i; do
-    if [[ -f $i && -r $i ]]; then
-        c=''
-        case $i in
-          *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
-                 c='bsdtar xvf' ;;
-          *.7z)  c='7z x'       ;;
-          *.Z)   c='uncompress' ;;
-          *.bz2) c='bunzip2'    ;;
-          *.exe) c='cabextract' ;;
-          *.gz)  c='gunzip'     ;;
-          *.rar) c='unrar x'    ;;
-          *.xz)  c='unxz'       ;;
-          *.zip) c='unzip'      ;;
-          *)     echo "$0: cannot extract \`$i': Unrecognized file extension" >&2; e=1 ;;
-        esac
-        [[ $c ]] && command $c "$i"
-    else
-        echo "$0: cannot extract \`$i': File is unreadable" >&2; e=2
-    fi
-  done
-  return $e
+extract() {
+ local e=0 i c
+ for i; do
+   if [ -f $i && -r $i ]; then
+       c=
+       case $i in
+         *.tar.bz2) c='tar xjf'    ;;
+         *.tar.gz)  c='tar xzf'    ;;
+         *.bz2)     c='bunzip2'    ;;
+         *.gz)      c='gunzip'     ;;
+         *.tar)     c='tar xf'     ;;
+         *.tbz2)    c='tar xjf'    ;;
+         *.tgz)     c='tar xzf'    ;;
+         *.7z)      c='7z x'       ;;
+         *.Z)       c='uncompress' ;;
+         *.exe)     c='cabextract' ;;
+         *.rar)     c='unrar x'    ;;
+         *.xz)      c='unxz'       ;;
+         *.zip)     c='unzip'      ;;
+         *)     echo "$0: cannot extract \`$i': Unrecognized file extension" >&2; e=1 ;;
+       esac
+       [ $c ] && command $c "$i"
+   else
+       echo "$0: cannot extract \`$i': File is unreadable" >&2; e=2
+   fi
+ done
+ return $e
 }
-
-
 
 ##################################################
 # CIA world fact book				 #

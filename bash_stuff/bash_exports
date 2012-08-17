@@ -10,14 +10,6 @@ USERNAME="$(whoami)"
 #PATH
 #export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin
 
-if [ -n "$DISPLAY" ]; then
-#    export BROWSER="dwb"
-    BROWSER="dwb"
-else
-#    export BROWSER="elinks"
-    BROWSER="elinks"
-fi
-
 #export LANG="en_US.UTF-8"
 LANG="en_US.UTF-8"
 #export LC_ALL=
