@@ -60,52 +60,55 @@ alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;
 export SUDO_EDITOR="/usr/bin/vim -p -X"
 alias sudo="sudo -E"
 
-###
-# Bash Suff
-# ~/.bash_suff
-# Bash Binds
-if [ -f ~/.bash_stuff/bash_binds ]; then
-    source ~/.bash_stuff/bash_binds
+###               ###
+# Bash Suff - START #
+# ~/.bash_suff      #
+###               ###
+#Bash Android
+if [ -f ~/.bash_stuff/bash_android ]; then
+    source ~/.bash_stuff/bash_android
 fi
 # Bash Aliases
 if [ -f ~/.bash_stuff/bash_aliases ]; then
     source ~/.bash_stuff/bash_aliases
 fi
-# Bash Passwords
-if [ -f ~/.bash_stuff/bash_passwd ]; then
-    source ~/.bash_stuff/bash_passwd
+# Bash Binds
+if [ -f ~/.bash_stuff/bash_binds ]; then
+    source ~/.bash_stuff/bash_binds
 fi
-# Bash Complete
-#[ -f ~/.bash_stuff/bash_completion ] && source ~/.bash_stuff/bash_completion
-# Inputrc file - Faster Completion
-if [ -f ~/.inputrc ]; then
-    source ~/.inputrc
-fi
-#bash functions
-if [ -f ~/.bash_stuff/bash_functions ]; then
-    source ~/.bash_stuff/bash_functions
-fi
-#bash_exports
-if [ -f ~/.bash_stuff/bash_exports ]; then
-    source ~/.bash_stuff/bash_exports
-fi
-#bash completion
-#[ -f /etc/bash_completion ] && source /etc/bash_completion
-if [ -f /etc/bash_completion ]; then
- . /etc/bash_completion
-fi
-## Bash Colors�
+# Bash Colors
 if [ -f ~/.bash_stuff/bash_colors ]; then
     source ~/.bash_stuff/bash_colors
 fi
-# bash_login
-#[ -f ~/.bash_login ] && source ~/.bash_login
-#dir_colors
-if [ -f ~/.dir_colors ];then
+# Bash Completion
+if [ -f ~/.bash_stuff/bash_completion ]; then
+    source ~/.bash_stuff/bash_completion
+fi
+# Dir Colors
+if [ -f ~/.dir_colors ]; then
     eval `dircolors -b ~/.dir_colors`
 else
     eval `dircolors -b /etc/DIR_COLORS`
 fi
+# Bash Exports
+if [ -f ~/.bash_stuff/bash_exports ]; then
+    source ~/.bash_stuff/bash_exports
+fi
+# Bash Functions
+if [ -f ~/.bash_stuff/bash_functions ]; then
+    source ~/.bash_stuff/bash_functions
+fi
+# Bash Input 
+if [ -f ~/.inputrc ]; then
+    source ~/.inputrc
+fi
+# Bash SSH/FTP/SMB
+if [ -f ~/.bash_stuff/bash_sfs ]; then
+    source ~/.bash_stuff/bash_sfs
+fi
+###              ###
+# END - Bash Stuff #
+###              ###
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
