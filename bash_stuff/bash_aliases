@@ -46,6 +46,8 @@ alias lsg="ls --color=always | grep $@"
 #alias lsal="ls++ -al"
 #alias lsA="ls++ -A"
 #alias lsAl="ls++ -Al"
+alias listdira="ls -la | grep "^d" && ls -la | grep "^-" && ls -la | grep "^l""
+alias listdirb="ls -la | grep "^d" && ls -la | grep -v "^d""
 
 # modified commands
 alias diff='colordiff'              # requires colordiff package
@@ -71,7 +73,7 @@ alias umntdbcrypt="fusermount -u $HOME/Dropbox-typo/TiBu/"
 # safety features
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'                    # 'rm -i' prompts for every file
+alias rm='rm -i' # 'rm -i' prompts for every file
 alias ln='ln -i'
 alias chown='chown --preserve-root'
 alias chmod='chmod --preserve-root'
@@ -90,6 +92,12 @@ alias openports='netstat --all --numeric --programs --inet --inet6'
 alias pg='ps -Af | grep $1' 
 alias psax="ps ax --forest"
 alias psuax="ps aux --forest"
+alias psauf="ps -auxf"
+alias pseo="ps -eo pcpu,pid,user,args | sort -k 1 -r"
+alias pseo2txt="ps -eo pid,pcpu,comm | awk '{if ($2 > 4) print }' >> ~/.ps_eo_test.txt"
+alias cpuusage="iostat -c"
+alias cpuusagedelay="iostat -tc 2"
+alias cpuALL="mpstat -P ALL"
 alias home="cd ~"
 alias un="tar -zxvf"
 alias mountedinfo="df -hT"
@@ -124,6 +132,7 @@ fi
 
 # ssh keys
 #alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_rsa .ssh/id_ecdsa) && ssh'
+alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_ecdsa .ssh/id_rsa .ssh/id_dsa) &&'
 
 # virtualbox
 alias rebuildvboxkmods="sudo vboxbuild"
@@ -149,7 +158,7 @@ alias web="cd $HOME/dls/ && elinks https://encrypted.google.com"
 ### uzbl
 #alias uzblweb="$HOME/.config/uzbl/scripts/uzbl-tabbed & "
 ### vimprobable2
-alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
+#alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
 # chromium
 #alias chromium="chromium-browser"
 
@@ -165,7 +174,7 @@ alias fmshell="urxvt -name fm"
 alias sitegrab="sh $HOME/apps/bin/dtsitegrab/dtsitegrab "
 
 # system quick aliases
-alias firewall="sudo /etc/rc.d/dtfirewall"
+alias firewall="sudo /usr/local/etc/DTfw/dtfw"
 alias killrepeat="/usr/bin/xset r on"
 
 #sound
@@ -183,8 +192,7 @@ alias mountiso="mount -t iso9660 -o loop=/dev/loop0"
 alias tunetv="sh $HOME/scripts/tv/tune-ivtv.sh"
 alias newplaylists="cd $HOME/Music/;sh $HOME/scripts/rip/audio/genm3u_audioplaylist.sh;$HOME/scripts/rip/audio/newplaylist.sh"
 
-# Android
-alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
+# Screenshot
 
 # ABS PKGBUILD aliases
 alias mkpkgg="makepkg -g " # --geninteg   Generate integrity checks for source files
@@ -291,10 +299,12 @@ alias gitbl="git branch -l"
 alias gitbr="git branch -r"
 alias gits="git status"
 alias gitd="git diff"
+alias gitadd="git add "
 alias gitca="git commit -a"
 alias gitpo="git push origin "
 alias gitpom="git push origin master"
 alias gitpostable="git push origin stable"
+alias gitpojb="git push origin jb"
 alias gitpotest="git push origin testing"
 alias gitpodebug="git push origin debugging"
 alias gitco="git checkout "
@@ -304,6 +314,8 @@ alias gitp="git pull "
 alias gitx="gitx"
 alias gitmm="git merge master"
 alias gitcb="git-create-branch"
+alias gitfetchups="git fetch upstream"
+alias gitaupstream="git remote add upstream"
 
 # gc      => git checkout master
 # gc bugs => git checkout bugs
@@ -328,14 +340,15 @@ ghclone ()
 
 # Screen Aliases
 #############
-alias a_screen="screen -c $HOME/.screenrc_a"
+#alias a_screen="screen -c $HOME/.screenrc_a"
 alias c_screen="screen -c $HOME/.screenrc_c"
-alias fm_screen="screen -c $HOME/.screenrc_f"
+#alias fm_screen="screen -c $HOME/.screenrc_f"
 alias su_screen="screen -c $HOME/.screenrc_su"
+alias apk_screen="screen -c $HOME/.screenrc_apk"
 alias scrnna="screen -dr a"
-alias scrnb="screen -dr c"
+alias scrnc="screen -dr c"
 alias scrnsu="screen -dr su"
-alias scrnf="screen -dr f"
+#alias scrnf="screen -dr f"
 
 # Slackware Tools
 #############
@@ -414,7 +427,7 @@ alias mplayertv="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.m
 
 # Pandora
 alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
-
+alias np="sh ~/bin/nowplaying"
 # LastFM
 alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
 
@@ -430,7 +443,7 @@ alias virtbox="virtualbox &"
 #alias gimp="gimp-2.7"
 # Logitech Cam
 #################
-alias c310cam="guvcview -d /dev/video1"
+alias guvcview="guvcview -d /dev/video1"
 
 # Office
 ##################
@@ -501,6 +514,11 @@ alias wallpaperflcl=-"feh --bg-center $HOME/images/wallpaper/1440-900-FLCL-bw-2.
 # Grooveshark hack
 alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
 
+# Android
+alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
+alias android-buildenv="source ~/android/.prep_files/env.sh"
+alias screenabuild="screen -c ~/android/.prep_files/.screenrc_android"
+
 # Apps with Wine
 ##################
 #alias gchrome="wine /opt/windows/Google/chrome/chrome.exe"
@@ -508,94 +526,8 @@ alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/g
 # calculator
 calc() { echo "scale=3;$@" | bc -l ; }
 
-# easy extraction
-extract() {
- local e=0 i c
- for i; do
-   if [ -f $i && -r $i ]; then
-       c=
-       case $i in
-         *.tar.bz2) c='tar xjf'    ;;
-         *.tar.gz)  c='tar xzf'    ;;
-         *.bz2)     c='bunzip2'    ;;
-         *.gz)      c='gunzip'     ;;
-         *.tar)     c='tar xf'     ;;
-         *.tbz2)    c='tar xjf'    ;;
-         *.tgz)     c='tar xzf'    ;;
-         *.7z)      c='7z x'       ;;
-         *.Z)       c='uncompress' ;;
-         *.exe)     c='cabextract' ;;
-         *.rar)     c='unrar x'    ;;
-         *.xz)      c='unxz'       ;;
-         *.zip)     c='unzip'      ;;
-         *)     echo "$0: cannot extract \`$i': Unrecognized file extension" >&2; e=1 ;;
-       esac
-       [ $c ] && command $c "$i"
-   else
-       echo "$0: cannot extract \`$i': File is unreadable" >&2; e=2
-   fi
- done
- return $e
-}
-
-# to-do helper
-todo() {
-   test -f $HOME/.todo || touch $HOME/.todo
-   if test $# = 0
-   then
-           cat $HOME/.todo
-   elif test $1 = -l
-   then
-           cat -n $HOME/.todo
-   elif test $1 = -c
-   then
-           > $HOME/.todo
-   elif test $1 = -r
-   then
-           cat -n $HOME/.todo
-           echo -ne "----------------------------\nType a number to remove: "
-           read NUMBER
-           sed -ie ${NUMBER}d $HOME/.todo
-   else
-           echo $@ >> $HOME/.todo
-   fi
-}
-
-# note taker
-note ()
-{
-       #if file doesn't exist, create it
-       [ -f $HOME/.notes ] || touch $HOME/.notes
-       #no arguments, print file
-       if [ $# = 0 ]
-       then
-               cat $HOME/.notes
-       #clear file
-       elif [ $1 = -c ]
-       then
-               > $HOME/.notes
-       #add all arguments to file
-       else
-               echo "$@" >> $HOME/.notes
-       fi
-}
-
-# view doc
-docview ()
-{
-  if [ -f $1 ] ; then
-      case $1 in
-          *.pdf)       xpdf $1    ;;
-          *.ps)        oowriter $1    ;;
-          *.odt)       oowriter $1     ;;
-          *.txt)       leafpad $1       ;;
-          *.doc)       oowriter $1      ;;
-          *)           echo "don't know how to extract '$1'..." ;;
-      esac
-  else
-      echo "'$1' is not a valid file!"
-  fi
-}
+# Dropbox
+alias dburl="dropbox puburl"
 
 #####################
 ##   End Aliases   ##

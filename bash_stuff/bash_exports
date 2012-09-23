@@ -1,12 +1,9 @@
 #!/bin/bash
 # ~/.bash_stuff/bash_exports
-
-#EDITOR="vim"
-#PATH=$PATH:$HOME/bin
-#BASH_ENV="$HOME/.bashrc"
+# ENV
 BASH_ENV=~/.bashrc
+#USER
 USERNAME="$(whoami)"
-
 #PATH
 #export PATH=/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin
 
@@ -34,20 +31,21 @@ SDL_AUDIODRIVER="alsa"
 #export SDL_VIDEO_FULLSCREEN_HEAD=1
 SDL_VIDEO_FULLSCREEN_HEAD=1
 #export DISPLAY=:0.0
-DISPLAY=:0.0
-if [ -n "$DISPLAY" ]; then
-    #    export BROWSER="dwb"
-        BROWSER="dwb"
-    else
-    #    export BROWSER="elinks"
-        BROWSER="elinks"
-    fi
+#DISPLAY=:0.0
+#if [ -n "$DISPLAY" ]; then
+#    #    export BROWSER="dwb"
+#        BROWSER="dwb"
+#    else
+#    #    export BROWSER="elinks"
+#        BROWSER="elinks"
+#    fi
 #export GTK_IM_MODULE=xims
 GTK_IM_MODULE=xims
-#export JAVA_HOME="/usr/bin/java"
-#export _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel"
-#export USERNAME BASH_ENV PATH
-#export PATH="$PATH:/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin"
-PATH="/bin:/usr/bin:/sbin:/usr/sbin:/opt/android-sdk/tools/:/opt/android-sdk/platform-tools/:/opt/kde/bin:/usr/bin/perlbin/site:/usr/bin/perlbin/vendor:/usr/bin/perlbin/core:/opt/qt/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:/usr/local/bin:$HOME/bin"
 
-export USERNAME BASH_ENV PATH EDITOR LANG LC_ALL LC_COLLATE TMPDIR EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE
+# CCACHE
+#USE_CCACHE=1
+#CCACHE_DIR=~/android/.ccache
+
+export PATH=${PATH}:$HOME/bin
+export USERNAME BASH_ENV TMPDIR PATH EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD BROWSER GTK_IM_MODULE
+

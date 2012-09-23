@@ -1,10 +1,34 @@
 #!/bin/bash
 # . ~/.bashrc
 
-export DISPLAY=:0.0
 
-# ssh-gent
-#eval $(ssh-agent)
+#### Android Build Environment Needs ####
+## java-jdk
+export J2SDKDIR=/opt/java6
+export PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
+export JAVA_HOME=/opt/java6
+export DERBY_HOME=/opt/java6/db
+
+## java-jre
+export PATH=$PATH:/opt/java6/jre/bin
+export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
+
+## android sdk
+export ANDROID_HOME=/opt/android-sdk
+export ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
+export ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:/opt/android-sdk/platform-tools
+
+## android ndk
+export PATH=$PATH:/opt/android-ndk
+export ANDROID_NDK=/opt/android-ndk
+
+## CCACHE
+export USE_CCACHE=1
+export CCACHE_DIR=~/android/.ccache
+
+#### End Needs ####
 
 # exit if we're in a script
 [ -z "$PS1" ] && return
@@ -17,6 +41,9 @@ if [ -f ${HOME}/.termcap ]; then
     TERMCAP=$(< ${HOME}/.termcap)
     export TERMCAP
 fi
+
+function sshlog () { \ssh $@ 2>&1 | tee -a ~/.ssh/.logs/$(date +%Y%m%d).log; }
+alias ssh="sshlog"
 
 # Bash shell driver for go (http://code.google.com/p/go-tool/).
 function go {
@@ -37,28 +64,48 @@ alias sudo="sudo -E"
 # Bash Suff
 # ~/.bash_suff
 # Bash Binds
-[ -f ~/.bash_stuff/bash_binds ] && source ~/.bash_stuff/bash_binds
+if [ -f ~/.bash_stuff/bash_binds ]; then
+    source ~/.bash_stuff/bash_binds
+fi
 # Bash Aliases
-[ -f ~/.bash_stuff/bash_aliases ] && source ~/.bash_stuff/bash_aliases
+if [ -f ~/.bash_stuff/bash_aliases ]; then
+    source ~/.bash_stuff/bash_aliases
+fi
 # Bash Passwords
-[ -f ~/.bash_stuff/bash_passwd ] && source ~/.bash_stuff/bash_passwd
+if [ -f ~/.bash_stuff/bash_passwd ]; then
+    source ~/.bash_stuff/bash_passwd
+fi
 # Bash Complete
-[ -f ~/.bash_stuff/bash_completion ] && source ~/.bash_stuff/bash_completion
+#[ -f ~/.bash_stuff/bash_completion ] && source ~/.bash_stuff/bash_completion
 # Inputrc file - Faster Completion
-[ -f ~/.inputrc ] && source ~/.inputrc
+if [ -f ~/.inputrc ]; then
+    source ~/.inputrc
+fi
 #bash functions
-[ -f ~/.bash_stuff/bash_functions ] && source ~/.bash_stuff/bash_functions
+if [ -f ~/.bash_stuff/bash_functions ]; then
+    source ~/.bash_stuff/bash_functions
+fi
 #bash_exports
-[ -f ~/.bash_stuff/bash_exports ] && source ~/.bash_stuff/bash_exports
+if [ -f ~/.bash_stuff/bash_exports ]; then
+    source ~/.bash_stuff/bash_exports
+fi
 #bash completion
-[ -f /etc/bash_completion ] && source /etc/bash_completion
+#[ -f /etc/bash_completion ] && source /etc/bash_completion
+if [ -f /etc/bash_completion ]; then
+ . /etc/bash_completion
+fi
 ## Bash Colors�
-[ -f ~/.bash_stuff/bash_colors ] && source ~/.bash_stuff/bash_colors
+if [ -f ~/.bash_stuff/bash_colors ]; then
+    source ~/.bash_stuff/bash_colors
+fi
 # bash_login
 #[ -f ~/.bash_login ] && source ~/.bash_login
 #dir_colors
-#eval `dircolors /etc/DIR_COLORS`
-#eval `dircolors ~/.dir_colors`
+if [ -f ~/.dir_colors ];then
+    eval `dircolors -b ~/.dir_colors`
+else
+    eval `dircolors -b /etc/DIR_COLORS`
+fi
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -69,35 +116,6 @@ alias ssh="TERM=linux ssh"
 ##################
 export GREP_COLOR="1;33"
 alias grep='grep --color=auto'
-
-# GIT STATUS MAGIC (START)
-GIT_PS1_SHOWDIRTYSTATE=true
-function parse_git_branch {
- 
-  git rev-parse --git-dir &> /dev/null
-  git_status="$(git status 2> /dev/null)"
-  branch_pattern="^# On branch ([^${IFS}]*)"
-  remote_pattern="# Your branch is (.*) of"
-  diverge_pattern="# Your branch and (.*) have diverged"
-  if [[ ! ${git_status}} =~ "working directory clean" ]]; then
-state="${R}\u26a1"
-  fi
-  # add an else if or two here if you want to get more specific
-  if [[ ${git_status} =~ ${remote_pattern} ]]; then
-if [[ ${BASH_REMATCH[1]} == "ahead" ]]; then
-remote="${Y}\u2191"
-    else
-remote="${Y}\u2193"
-    fi
-fi
-if [[ ${git_status} =~ ${diverge_pattern} ]]; then
-remote="${Y}\u2195"
-  fi
-if [[ ${git_status} =~ ${branch_pattern} ]]; then
-branch=${BASH_REMATCH[1]}
-    echo -e "${LG}\u2794(${branch})${remote}${state}"
-  fi
-}
 
 ##################################################
 # Fancy PWD display function
@@ -147,13 +165,17 @@ bash_prompt() {
             local TITLEBAR=''                               
             ;;
     esac
-
+# PS - OLD
 # export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
 #PROMPT_COMMAND='history -a;echo -en "${Y}"$(( `sed -nu "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"${W}/${O}"$((`sed -nu "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t${LP}$(< /proc/loadavg)"'
 #PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n[$SHLVL:\!]~> '
 #export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
-export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
-export PS2="  \[${Y}\]> \[${Y}\]"
+#export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
+# git prompt
+source ~/.git-prompt.sh
+# PS
+PS1='\[\e[0;95m\][\[\e[0;96m\]\u\[\033[0;31m\]@\[\e[0;37m\]\h \[\033[0;36m\]\W$(__git_ps1 " (%s)")\[\e[0;95m\]] \n \[\033[0;37m\]-->\[\e[0;95m\]\$\[\033[0m\] '
+PS2="  \[${Y}\]> \[${Y}\]"
 
 }
 
