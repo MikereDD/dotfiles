@@ -106,9 +106,9 @@ fi
 if [ -f ~/.bash_stuff/bash_sfs ]; then
     source ~/.bash_stuff/bash_sfs
 fi
-###              ###
+###
 # END - Bash Stuff #
-###              ###
+###
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -168,17 +168,14 @@ bash_prompt() {
             local TITLEBAR=''                               
             ;;
     esac
-# PS - OLD
-# export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
-#PROMPT_COMMAND='history -a;echo -en "${Y}"$(( `sed -nu "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"${W}/${O}"$((`sed -nu "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t${LP}$(< /proc/loadavg)"'
-#PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n[$SHLVL:\!]~> '
-#export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} ${TQ}\[\033[s\]\[\033[1;\$((COLUMNS-18))f\]\$(date +'%R:%S %m/%d/%Y')\[\033[u\]"
-#export PS1="${P}[${C}\u${LP}@${TQ}\h${P}] ${R}+${W}-${R}+ ${P}[${LG}\${NEW_PWD}${P}] ${W}-${R}+ \n ${R}+${W}- ${LR}:${TQ}<${TR} "
-# git prompt
-source ~/.git-prompt.sh
-# PS
-PS1='\[\e[0;95m\][\[\e[0;96m\]\u\[\033[0;31m\]@\[\e[0;37m\]\h \[\033[0;36m\]\W$(__git_ps1 " (%s)")\[\e[0;95m\]] \n \[\033[0;37m\]-->\[\e[0;95m\]\$\[\033[0m\] '
-PS2="  \[${Y}\]> \[${Y}\]"
+
+# Bash Prompt
+if [ -f ~/.bash_stuff/bash_prompt ]; then
+    source ~/.bash_stuff/bash_prompt
+else
+    source ~/.git-prompt.sh
+    PS1="${R}[${LG}\\u${R}@${LG}\h ${TQ}\\W${R}] \n ${TR}\\$ "
+fi
 
 }
 
