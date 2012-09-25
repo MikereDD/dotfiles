@@ -2486,7 +2486,7 @@ rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00
 ##################################################
 
 function aurget() {
-  local DIR=$HOME/Packages
+  local DIR=$HOME/abs/dlpkgs
   cd $DIR && wget http://aur.archlinux.org/packages/${1}/${1}.tar.gz
   ls -l
 }
@@ -2559,9 +2559,9 @@ function wwwrc()
 
 function backup_bashfiles()
 {
-  ARCHIVE="$HOME/bash_dotfiles_$(date +%Y%m%d_%H%M%S).tar.gz";
+  ARCHIVE="$HOME/backups/bash_files/bash_dotfiles_$(date +%Y%m%d_%H%M%S).tar.gz";
   cd ~
-  tar -czvf $ARCHIVE .bash_profile .bashrc .bash_functions .bash_aliases .bash_prompt
+  tar -czvf $ARCHIVE .synergy.conf .xsession .xmodmaprc .xinitrc .xbindkeysrc .wgetrc .screenrc .screenrc_c .esmtprc .msmtprc .Xmodmap .Xresources .asoundrc .dir_colors .inputrc .profile .bash_profile .bashrc .bash_stuff/*
   echo "All backed up in $ARCHIVE";
 }
 
