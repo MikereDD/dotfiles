@@ -1,0 +1,15 @@
+#!/bin/bash
+# . ~/.bash_stuff/alias_files/office
+
+# Office
+##################
+alias openpdf="apvlv "
+alias massotf2ttf="$HOME/scripts/mass-otf2ttf.sh"
+#alias oowriter="/usr/bin/soffice -writer"
+#alias oocalc="/usr/bin/soffice -calc"
+#alias ooimpress="/usr/bin/soffice -impress"
+#alias oodraw="/usr/bin/soffice -draw"
+#alias oomath="/usr/bin/soffice -math"
+#alias oobase="/usr/bin/soffice -base"
+#alias ooprintadmin="sudo /usr/bin/spadmin"
+

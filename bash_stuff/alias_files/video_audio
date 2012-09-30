@@ -1,0 +1,92 @@
+#!/bin/bash
+# . ~/.bash_stuff/alias_files/video_audio
+
+# Alias"s to control hardware
+#############
+alias dvdo="eject /dev/sr0"
+alias dvdc="eject -t /dev/sr0"
+#alias dvd0o="eject /dev/dvd0"
+#alias dvd0c="eject -t /dev/dvd0"
+
+# DVD Backup - Rip
+#############
+alias dvdbkupinfo="dvdbackup -I -i /dev/sr0"
+alias dvdbkupmain="dvdbackup -F -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup"
+alias dvdbkupall="dvdbackup -M -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup"
+alias dvdbkuptitleset="dvdbackup -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup -T "
+alias dvdbkuptitle="dvdbackup -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup -t "
+alias dvdbkupchapterfrom="dvdbackup -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup -S "
+alias dvdbkupchapterto="dvdbackup -i /dev/sr0 -o $HOME/Rip/dvd/dvdbackup -e "
+alias catinfo="cat *.info"
+#
+alias mountiso="mount -t iso9660 -o loop=/dev/loop0"
+alias tunetv="sh $HOME/scripts/tv/tune-ivtv.sh"
+alias newplaylists="cd $HOME/Music/;sh $HOME/scripts/rip/audio/genm3u_audioplaylist.sh;$HOME/scripts/rip/audio/newplaylist.sh"
+
+#Create DVD
+#############
+alias videots-to-iso="$HOME/scripts/misc/video-to-iso.sh "
+
+# rip
+alias DvDre="sh $HOME/apps/dvdre/scripts/dvdre.sh"
+alias BRenc="sh $HOME/apps/BRencoder.sh"
+
+# volume control
+alias voldwn="sh $HOME/scripts/audio/vol-control.sh volalldwn"
+alias volup="sh $HOME/scripts/audio/vol-control.sh volallup"
+
+# Gimp
+#alias gimp="gimp-2.7"
+# Logitech Cam
+#################
+alias guvcview="guvcview -d /dev/video1"
+
+# VLC
+alias vlcremote="vlc --control lirc "
+alias vlctv="vlc pvr://dev/video0  --hdtv-fix --aspect-ratio=16:9 --deinterlace-mode=b --disable-screensaver --control lirc"
+# MPlayer
+alias mplayerlog="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.mplayer/nowplaying.log"
+#alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
+alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh"
+#alias mplayertv="mplayer /dev/video1 -cache 2000 -panscan 1 -vf yadif=1/3,hqdn3d "
+alias mplayertv="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.mplayer/nowplaying.log -cache 2000 -panscan 1 /dev/video0"
+
+# Pandora
+alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
+alias np="sh ~/bin/nowplaying"
+# LastFM
+alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
+
+# Google MusicManager - Wine
+#alias musicmanager="MusicManager"
+# Google MusicManager - Linux
+alias gmusicmanager="/usr/bin/google-musicmanager"
+
+# Audio
+alias storealsa="sudo alsactl -f /var/lib/alsa/asound.state store"
+alias restorealsa="sudo alsactl -f /var/lib/alsa/asound.state restore"
+alias aac2mp3="sh $HOME/scripts/rip/audio/aac2mp3.sh "
+alias cleanmp3="sh $HOME/scripts/rip/audio/cleanmp3.sh "
+alias m4a2mp3="sh $HOME/scripts/rip/audio/m4a2mp3.sh "
+alias m4a2wav="sh $HOME/scripts/rip/audio/m4a2wav.sh "
+alias m4a2ogg="sh $HOME/scripts/rip/audio/m4a2ogg.sh "
+alias mp32wav="sh $HOME/scripts/rip/audio/mp32wav.sh "
+alias mp32ogg="sh $HOME/scripts/rip/audio/mp32ogg.sh "
+alias ogg2mp3="sh $HOME/scripts/rip/audio/ogg2mp3.pl "
+alias tagm4a2mp3="sh $HOME/scripts/rip/audio/tagm4a2mp3.sh "
+alias wav2mp3="sh $HOME/scripts/rip/audio/wav2mp3.sh "
+alias wav2ogg="sh $HOME/scripts/rip/audio/wav2ogg.sh "
+alias wma2mp3="sh $HOME/scripts/rip/audio/wma2mp3.sh"
+alias wma2wav="sh $HOME/scripts/rip/audio/wma2wav.sh "
+alias rmm4a="sh $HOME/scripts/rip/audio/rmm4a.sh "
+alias rmwav="sh $HOME/scripts/rip/audio/rmwav.sh "
+alias rmogg="sh $HOME/scripts/rip/audio/rmogg.sh "
+alias cd_rip="sh $HOME/scripts/rip/audio/cd_rip.sh "
+alias genm3u="sh $HOME/scripts/rip/audio/genm3u.sh "
+alias mvm3uplayfolder="sh $HOME/scripts/rip/audio/mvm3uplayfolder.sh "
+
+# Grooveshark hack
+alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/grooveshark-desktop/grooveshark-desktop.air'
+
+alias radioswitcher="sh $HOME/scripts/audio/radio-switcher.sh"
+alias runmocp="urxvt -name moc -pixmap $HOME/wallpapers/music-white-headphones.jpg -fg 252525 -pr cyan -pr2 black -fn 'xft:Envy Code R:antialias=true:hinting=true:pixelsize=11' +is +bc +uc -iconic -fade 60 -fadecolor black -tint black -sh 0 -e mocp"
