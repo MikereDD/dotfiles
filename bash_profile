@@ -2,6 +2,9 @@
 #
 # . ~/.bash_profile
 #
+[[ -f ~/.profile ]] && . ~/.profile
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Bash_Env
 #EDITOR="vim"
@@ -9,15 +12,7 @@
 #BASH_ENV="$HOME/.bashrc"
 #USERNAME="$(whoami)"
 
-# Sourcing ~/.profile & ~/.bashrc is a good thing
-#profile
-#[ -f ~/.profile ] && source $HOME/.profile
-#bashrc
-if [ -f ~/.bashrc ]; then
-   source ~/.bashrc
-fi
-
- # auto startx and logout, security !
+# auto startx and logout, security !
 #if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
 #  startx
 #   exec nohup startx > .xlog & vlock

@@ -6,7 +6,3 @@
 
 # NOTE: Only add PATH and other non-interactive var settings here
 
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-export PATH=/opt/local/lib/postgresql90/bin:$PATH
-export PATH=/opt/local/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH
-export MANPATH=$PATH:/opt/local/share/man

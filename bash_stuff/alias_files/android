@@ -2,7 +2,7 @@
 # . ~/.bash_stuff/alias_files/android
 # Android
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
-alias android-buildenv="source ~/android/.prep_files/env.sh"
+#alias android-buildenv="source ~/android/.prep_files/env.sh"
 alias screenabuild="screen -c ~/android/.prep_files/.screenrc_android"
 
 # Build Scripts

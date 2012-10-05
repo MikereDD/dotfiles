@@ -4,25 +4,25 @@
 
 #### Android Build Environment Needs ####
 ## java-jdk
-export J2SDKDIR=/opt/java6
-export PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
-export JAVA_HOME=/opt/java6
-export DERBY_HOME=/opt/java6/db
+#export J2SDKDIR=/opt/java6
+#export PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
+#export JAVA_HOME=/opt/java6
+#export DERBY_HOME=/opt/java6/db
 
 ## java-jre
-export PATH=$PATH:/opt/java6/jre/bin
-export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
+#export PATH=$PATH:/opt/java6/jre/bin
+#export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
 
 ## android sdk
-export ANDROID_HOME=/opt/android-sdk
-export ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
-export ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:/opt/android-sdk/platform-tools
+#export ANDROID_HOME=/opt/android-sdk
+#export ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
+#export ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
+#export PATH=$PATH:$ANDROID_HOME/tools
+#export PATH=$PATH:/opt/android-sdk/platform-tools
 
 ## android ndk
-export PATH=$PATH:/opt/android-ndk
-export ANDROID_NDK=/opt/android-ndk
+#export PATH=$PATH:/opt/android-ndk
+#export ANDROID_NDK=/opt/android-ndk
 
 ## CCACHE
 export USE_CCACHE=1
@@ -65,9 +65,9 @@ alias sudo="sudo -E"
 # ~/.bash_suff      #
 ###               ###
 #Bash Android
-if [ -f ~/.bash_stuff/bash_android ]; then
-    source ~/.bash_stuff/bash_android
-fi
+#if [ -f ~/.bash_stuff/alias_files/android ]; then
+#    source ~/.bash_stuff/alias_files/android
+#fi
 # Bash Aliases
 if [ -f ~/.bash_stuff/bash_aliases ]; then
     source ~/.bash_stuff/bash_aliases
