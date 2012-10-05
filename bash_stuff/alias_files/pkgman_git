@@ -1,1 +1,155 @@
-/home/typezero/.bash_stuff/alias_files/pkgman_git
+#!/bin/bash
+# . ~/.bash_stuff/alias_files/pkgman_git
+
+# Slackware Tools
+#############
+#alias pkgtool="sudo /sbin/pkgtool "
+#alias slaptget="sudo /usr/sbin/slapt-get "
+#alias makepkg="sudo /sbin/makepkg "
+#alias installpkg="sudo /sbin/installpkg "
+#alias removepkg="sudo /sbin/removepkg "
+#alias explodepkg="sudo /sbin/explodepkg "
+#alias upgradepkg="sudo /sbin/upgradepkg "
+#alias slackbuild
+#alias buildinstall="chmod a+x *.SlackBuild ;sudo ./*.SlackBuild;installpkg /tmp/*.tgz;sudo rm /tmp/*.tgz"
+
+# ABS PKGBUILD aliases
+alias mkpkgg="makepkg -g " # --geninteg   Generate integrity checks for source files
+alias bldpkg="makepkg -cfs " # --clean|--force|--syncdeps Clean up work files after build | Overwrite existing package | Install missing dependencies with pacman
+alias installpkgbld="makepkg -cfsi " # build clean force check deps and install package
+
+# Pacman
+# List updates
+alias listupdates="sh ~/scripts/updates/list_archupdates.sh"
+alias asortpkg="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2"
+alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)' #archlinux pkg list if everything OK
+alias rmpacmandblck="sudo rm /var/lib/pacman/db.lck" # Remove Pacman Database list, for use when pacman hangs when not in use. 
+alias pmSyu="sudo pacman -Syu"                      # sudo pacman -Syu by typing pacup (sudo must be installed and configured first)
+alias pmSy="sudo pacman -Sy"                        # sudo pacman -Sy by typing pacsy
+alias pmS="sudo pacman -S"                          # sudo pacman -S by typing pac
+alias pmR="sudo pacman -R"                          # sudo pacman -R - remove package and check against its dependencies
+alias pmRd="sudo pacman -Rd"                        # sudo pacman -Rd - force remove app without checking dependencies
+alias pmU="sudo pacman -U"                          # sudo pacman -U by typing pac
+alias pmSi="pacman -Si"                             # Display information about a given package in the repositories
+alias pmQi="pacman -Qi"                             # Display information about a given package in the local database
+alias pmQs="pacman -Qs"                             # Search for package(s) in the local database
+alias pmQe="pacman -Qe"                             # Search local packages
+alias pmSl="sudo pacman -Sl"                        # Search remote repos
+alias pmSw="sudo pacman -Sw"                        # download a package without installing
+alias pmQqm="pacman -Qqm"                            # '[l]ist [l]ocal'   - list all packages which were locally installed (e.g. AUR packages)
+alias pmQdt="pacman -Qdt"                            # '[l]ist [o]rphans' - list all packages which are orphaned
+alias pmQo="pacman -Qo"                              # '[o]wner'          - determine which package owns a given file
+alias pmQl="pacman -Ql"                              # '[f]iles'          - list all files installed by a given package
+alias pmSc="pacman -Sc"                              # '[c]lean cache'    - delete all not currently installed package files
+alias mpfci="makepkg -fci"                            # '[m]ake'           - make package from PKGBUILD file in current directory
+#alias pacai=`echo -e $(sudo pacman -Sy $(pacman -Sy $@|head -1|cut -f2 -d "/"|awk '{print $1}')) # pacman search install 1st app found, useful for a direct search fast install
+##
+alias pmAI="pacmanappinstaller"
+pacmanappinstaller() {
+    echo -e "Preparing to install $(pacman -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
+     -e "sudo pacman -Sy $(pacman -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
+     -e "Your requested app $(pacman -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}') ... is now installed.." \
+     -e "Enjoy.. remember you can always uninstall it.."
+}
+# colorized pacman output with pacs alias:
+alias pmfind="pacmansearch"
+pacmansearch() {
+   echo -e "$(pacman -Ss "$@" | sed \
+     -e 's#^installed/.*#\\033[1;31m&\\033[0;37m#g' \
+     -e 's#^core/.*#\\033[1;31m&\\033[0;37m#g' \
+     -e 's#^extra/.*#\\033[0;32m&\\033[0;37m#g' \
+     -e 's#^community/.*#\\033[1;35m&\\033[0;37m#g' \
+     -e 's#^.*/.* [0-9].*#\\033[0;36m&\\033[0;37m#g' ) \
+     \033[0m"
+}
+
+pmcl() {
+    repoz=`grep -v '^\[options\]' /etc/pacman.conf | grep '^\[.*\]' | sed -e 's/^\[\([^]]*\)\]$/\1/g'`
+    repo=''
+    if [[ -z $1 ]]; then
+        echo -e "invalid parameter: use a repo or 'all' for all\nrepos available:"
+        for rep in $repoz; do  echo -n "  ${rep}";  done
+        echo ""
+        return
+    elif [[ $1 != 'all' ]]; then repo=$1; fi
+
+    local CL='\\e[';  local RS='\\e[0;0m'
+
+    echo -e "$(pacman -Sl ${repo} | sed "
+    /\[installed\]$/s,.*,${CL}0;33m&${RS},
+    ")"
+}
+
+# Yaourt aliases
+alias yS="yaourt -S"
+alias ySy="yaourt -Sy"
+alias yR="yaourt -R"
+alias yRd="yaourt -Rd"
+alias yU="yaourt -U"
+alias ySi="yaourt -Si"
+alias yQi="yaourt -Qi"
+alias yQs="yaourt -Qs"
+alias yQe="yaourt -Qe"
+alias ySw="yaourt -Sw"
+#alias yaourtai="yaourt -Sy $(yaourt -Ss $@|head -1|cut -f2 -d "/"|awk '{print $1}')"
+# colorized pacman output with pacs alias:
+alias yai="yaourtappinstaller"
+yaourtappinstaller() {
+    echo -e "Preparing to install $(yaourt -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
+    -e "yaourt -Sy $(yaourt -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
+    -e "Your requested app $(yaourt -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}') ... is now installed.." \
+    -e "Enjoy.. remember you can always uninstall it.."
+}
+alias yfind="yaourtsearch"
+yaourtsearch() {
+   echo -e "$(yaourt -Ss "$@" | sed \
+     -e 's#^installed/.*#\\033[1;31m&\\033[0;37m#g' \
+     -e 's#^core/.*#\\033[1;31m&\\033[0;37m#g' \
+     -e 's#^extra/.*#\\033[0;32m&\\033[0;37m#g' \
+     -e 's#^community/.*#\\033[1;35m&\\033[0;37m#g' \
+     -e 's#^.*/.* [0-9].*#\\033[0;36m&\\033[0;37m#g' ) \
+     \033[0m"
+}
+
+# Git Aliases
+alias g="git"
+alias gb="git branch -a -v"
+alias gba="git branch -a"
+alias gbl="git branch -l"
+alias gbr="git branch -r"
+alias gs="git status"
+alias gdiff="git diff"
+alias gadd="git add "
+alias gca="git commit -a"
+alias gpo="git push origin "
+alias gco="git checkout "
+alias gclo="git clone "
+alias gp="git pull "
+alias gm="git merge"
+alias gcb="git-create-branch"
+alias grv="git remote -v"
+alias gaups="git remote add upstream"
+alias gfups="git fetch upstream"
+alias gbva="git branch -va"
+alias gmupsjb="git merge upstream/jb"
+
+# gco      => git checkout master
+# gcb bugs => git checkout bugs
+function gco {
+  if [ -z "$1" ]; then
+      git checkout master
+  else
+      git checkout $1
+  fi
+}
+
+ghclone ()
+{
+    gh_url=${1:-`pbpaste`};
+    co_dir=${HOME}/Code/sources/$(echo $gh_url | sed -e 's/^git:\/\/github.com\///; s/\//-/; s/\.git$//');
+    if [ -d $co_dir ]; then
+        cd $co_dir && git pull origin master;
+    else
+        git clone "${gh_url}" "${co_dir}" && cd "${co_dir}";
+    fi
+}

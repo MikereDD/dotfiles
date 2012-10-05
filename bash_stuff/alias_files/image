@@ -1,1 +1,23 @@
-/home/typezero/.bash_stuff/alias_files/image
+#!/bin/bash
+# . ~/.bash_stuff/alias_files/image
+
+# Screenshot
+##################
+alias snapscreen="sh $HOME/scripts/image/scrotsnap.sh "
+alias snapdelay="sh $HOME/scripts/image/scrotdelay.sh "
+alias dragscrot="sh $HOME/scripts/image/dragscrot.sh "
+alias infosshot="perl $HOME/scripts/image/info.pl"
+
+# Wallpapers
+##################
+alias wallpaperzim="feh --bg-center $HOME/images/wallpapers/invader-zim2.png"
+alias wallpaperhobbes="feh --bg-center $HOME/images/wallpapers/Calvin-Hobbes.jpg"
+alias wallpapercanti="feh --bg-center $HOME/images/wallpapers/Canti.png"
+alias wallpaperflcl=-"feh --bg-center $HOME/images/wallpaper/1440-900-FLCL-bw-2.png"
+
+# Image"
+alias imageshackup="$HOME/scripts/imageshackup.sh"
+#alias idesktool="$HOME/.idesktop/idesktool"
+#alias mediainfohtm="mediainfo --Output=HTML "
+
+alias scan="scanimage -L"

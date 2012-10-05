@@ -1,1 +1,238 @@
-/home/typezero/.bash_stuff/bash_aliases
+#!/bin/bash
+# . ~/.bash_stuff/bash_aliases
+
+## sysinfo
+alias sysinfoarchlogo="sh $HOME/scripts/system/sysinfo.sh"
+alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
+#alias ssinfo="sh $HOME/scripts/system/ssinfo.sh"
+
+## :)
+alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
+
+# reset & source bash_profile
+alias resetbash="reset;source $HOME/.bash_profile"
+alias resetX="xrdb -merge $HOME/.Xresources"
+
+# ls commands
+alias ls='ls -hF --color=auto'
+alias lr='ls -R'                    # recursive ls
+alias ll='ls -l'
+alias la='ll -A'
+alias lx='ll -BX'                   # sort by extension
+alias lz='ll -rS'                   # sort by size
+alias lt='ll -rt'                   # sort by date
+alias lm='la | more'
+alias ls="ls --color=always"
+alias lsl="ls -l --color=always"
+alias lsal="ls -al --color=always"
+alias lsA="ls -A --color=always"
+alias lsAl="ls -Al --color=always"
+alias lsg="ls --color=always | grep $@"
+alias llee='tree --dirsfirst -ChFupDaLg 1'
+#alias ls="ls++ "
+#alias lsl="ls++ -l"
+#alias lsal="ls++ -al"
+#alias lsA="ls++ -A"
+#alias lsAl="ls++ -Al"
+alias listdira="ls -la | grep "^d" && ls -la | grep "^-" && ls -la | grep "^l""
+alias listdirb="ls -la | grep "^d" && ls -la | grep -v "^d""
+
+# cd commands
+alias ~='cd ~'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+## modified commands
+alias a="ack -ia"
+alias b="bundle exec"
+alias diff='colordiff'              # requires colordiff package
+alias grep='grep --color=auto'
+alias more='less'
+alias mkdir='mkdir -p -v'
+alias ping='ping -c 5'
+alias grep='GREP_COLOR="1;37;45" LANG=C grep --color=auto'
+alias h="history"
+alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias ip="curl -s http://checkip.dyndns.com/ | sed 's/[^0-9\.]//g'"
+alias localip="ipconfig getifaddr en1"
+alias mp="mvim -p"
+alias rkt="racket -il xrepl"
+alias da='date "+%A, %B %d, %Y [%T]"'
+alias dat='date "+%Y-%m-%d %A    %T %Z"'
+alias c="cal"
+alias thismonth="cal -m $(date +"%m %Y" -d "this month")"
+alias upT="uptime"
+alias exi="clear;exit"
+alias x="xinit"
+alias reboot="sudo reboot"
+alias shutdown="sudo shutdown -h now"
+alias :q="exit"
+## sudo
+#alias sudo='sudo '
+# privileged access
+if [ $UID -ne 0 ]; then
+    alias sudo='sudo '
+    alias scat='sudo cat'
+    alias svim='sudo vim'
+    alias sroot='sudo su'
+    alias sreboot='sudo reboot'
+    alias shalt='sudo halt'
+    alias supdate='sudo pacman -Su'
+    alias snetcfg='sudo netcfg2'
+fi
+
+
+## ssh
+#alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_rsa .ssh/id_ecdsa) && ssh'
+alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet .ssh/id_ecdsa .ssh/id_rsa .ssh/id_dsa) &&'
+
+## du, df
+alias d="du -h -d=1"
+#alias du1='du --max-depth=1'
+alias df="df -h"
+alias df='df -h'
+alias du='du -c -h'
+#alias duh="du -h --max-depth=1 $1 | sort -n -r"
+alias mountedinfo="df -hT"
+
+## encrypt
+alias mntdbcrypt="encfs $HOME/.typ0dboxs/ $HOME/Dropbox-typo/TiBu/"
+alias umntdbcrypt="fusermount -u $HOME/Dropbox-typo/TiBu/"
+
+## safety features
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -i' # 'rm -i' prompts for every file
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+
+# clear commands
+alias clr="clear"
+alias clrls="clear; ls --color=auto"
+
+# join multiple lines with space inbetween
+alias joinmultilines='tr "\\n" " "'
+
+# ps commands
+alias hist='history | grep $1'      # requires an argument
+alias openports='netstat --all --numeric --programs --inet --inet6'
+alias pg='ps -Af | grep $1'
+alias psax="ps ax --forest"
+alias psuax="ps aux --forest"
+alias psauf="ps -auxf"
+alias pseo="ps -eo pcpu,pid,user,args | sort -k 1 -r"
+alias pseo2txt="ps -eo pid,pcpu,comm | awk '{if ($2 > 4) print }' >> ~/.ps_eo_test.txt"
+# iostat, mpstat commands
+alias cpuusage="iostat -c"
+alias cpuusagedelay="iostat -tc 2"
+alias cpuALL="mpstat -P ALL"
+
+## editor('s)
+# nano
+alias na="nano -w"
+# vi(m)
+alias view="vim -p -R"
+alias vp="vim -p"
+alias ebrc="vim $HOME/.bashrc && source $HOME/.bashrc"
+alias ebrca="vim $HOME/.bash_aliases && source $HOME/.bashrc_aliases"
+alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
+alias vim2html="$HOME/scripts/office/vim2html.sh "
+# edit sudo
+#alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
+
+## translator
+alias translate="sh $HOME/bin/tw-translator-helper.sh"
+
+## browser
+# elinks
+alias web="cd $HOME/dls/ && elinks https://encrypted.google.com"
+# uzbl
+#alias uzblweb="$HOME/.config/uzbl/scripts/uzbl-tabbed & "
+# vimprobable2
+#alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
+# chromium
+#alias chromium="chromium-browser"
+
+## security
+alias firewall="sudo /usr/local/etc/DTfw/dtfw"
+alias killrepeat="/usr/bin/xset r on"
+
+## find
+#alias findfs50="find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'"
+
+## archive
+alias munrar="$HOME/scripts/archive/unrar.sh"
+alias urarpl="perl ~/scripts/archive/unrar.pl"
+#alias massunrar="for name in `find . -iname \*.rar`; do unrar x $name; done"
+alias un="tar -zxvf"
+alias prepair="par2repair *.par2"
+alias szipaa="sh ~/scripts/archive/7zip-AA.sh"
+alias szipmh="sh ~/scripts/archive/7z-multihelp.sh"
+alias sitegrab="sh $HOME/apps/bin/dtsitegrab/dtsitegrab "
+
+
+
+## screen
+#alias a_screen="screen -c $HOME/.screenrc_a"
+alias c_screen="screen -c $HOME/.screenrc_c"
+#alias fm_screen="screen -c $HOME/.screenrc_f"
+alias su_screen="screen -c $HOME/.screenrc_su"
+alias apk_screen="screen -c $HOME/.screenrc_apk"
+alias scrnna="screen -dr a"
+alias scrnc="screen -dr c"
+alias scrnsu="screen -dr su"
+#alias scrnf="screen -dr f"
+
+#chmod
+#############
+alias 755="find . -type d -exec chmod 755 {} \;"
+alias 644="find . -type f -exec chmod 644 {} \;"
+alias 664="find . -type f -exec chmod 664 {} \;"
+alias 775="find . -type f -exec chmod 775 {} \;"
+alias chmoddir="find . -type d -exec chmod $@ {} \;"
+alias chmodfile="find . -type d -exec chmod $@ {} \;"
+
+
+# Vbox
+alias virtbox="virtualbox &"
+alias rebuildvboxkmods="sudo vboxbuild"
+
+# calculator
+calc() { echo "scale=3;$@" | bc -l ; }
+
+## dropbox
+alias dburl="dropbox puburl"
+
+## alias files broken down
+if [ -f ~/.bash_stuff/alias_files/android ]; then
+    source ~/.bash_stuff/alias_files/android
+fi
+
+if [ -f ~/.bash_stuff/alias_files/image ]; then
+    source ~/.bash_stuff/alias_files/image
+fi
+
+if [ -f ~/.bash_stuff/alias_files/irc ]; then
+    source ~/.bash_stuff/alias_files/irc
+fi
+
+if [ -f ~/.bash_stuff/alias_files/misc ]; then
+    source ~/.bash_stuff/alias_files/misc
+fi
+
+if [ -f ~/.bash_stuff/alias_files/office ]; then
+    source ~/.bash_stuff/alias_files/office
+fi
+
+if [ -f ~/.bash_stuff/alias_files/pkgman_git ]; then
+    source ~/.bash_stuff/alias_files/pkgman_git
+fi
+
+if [ -f ~/.bash_stuff/alias_files/video_audio ]; then
+    source ~/.bash_stuff/alias_files/video_audio
+fi
+
+####
