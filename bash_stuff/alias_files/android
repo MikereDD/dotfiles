@@ -1,15 +1,1 @@
-#!/bin/bash
-# . ~/.bash_stuff/alias_files/android
-# Android
-alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
-alias android-buildenv="source ~/android/.prep_files/env.sh"
-alias screenabuild="screen -c ~/android/.prep_files/.screenrc_android"
-
-# Build Scripts
-alias buildaokpjb="sh /mnt/d/android/scripts/build_rom-aokp_jb.sh"
-alias buildparadigm="sh /mnt/d/android/scripts/build_rom-bamf_paradigm.sh"
-
-# make commands
-alias makefulltorolog="make -j12 otapackage 2>&1 | tee toro-build.log"
-alias makeakaromtorolog="make -j12 otapackage 2>&1 | tee akarom-toro-build.log"
-alias makeakaromgrouperlog="make -j12 otapackage 2>&1 | tee akarom-grouper-build.log"
+/home/typezero/.bash_stuff/alias_files/android
