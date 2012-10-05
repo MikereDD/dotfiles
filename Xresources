@@ -17,7 +17,7 @@ Xft.hintstyle:  hintslight
 Xft.lcdfilter:  lcddefault
 ! }}}
 
-
+! ***** Colors ***** ! {{{
 *background:             #000708
 *foreground:             #bababa
 !*fading:                 40
@@ -103,7 +103,8 @@ URxvt*underlineURLs:              true
 URxvt*urlButton:                  2
 URxvt*perl-lib:                   ${HOME}/.urxvt/
 URxvt*perl-ext:                   selection,mark-yank-urls
-URxvt*urlLauncher:                chromium
+!URxvt*urlLauncher:                chromium
+URxvt*urlLauncher:                dwb
 URxvt.keysym.C-Delete:            perl:matcher:last
 URxvt.keysym.M-Delete:            perl:matcher:list
 URxvt*matcher.button:             1
@@ -129,8 +130,8 @@ URxvt*tabbed.underlineURLs:       true
 URxvt*tabbed.perl-lib:            ${HOME}/.urxvt/
 URxvt*tabbed.perl-ext:            selection,mark-yank-urls
 !URxvt*tabbed.urlLauncher:         firefox
-!URxvt*tabbed.urlLauncher:         dwb
-URxvt*tabbed.urlLauncher:         chromium!
+URxvt*tabbed.urlLauncher:         dwb
+!URxvt*tabbed.urlLauncher:         chromium
 
 URxvt*cursorColor:                #485e6c
 URxvt*cursorColor2:               #c0672d
@@ -182,7 +183,7 @@ x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
 ! }}}
 
-! ***** Xpdf ***** {{{
+! ***** Xpdf ***** ! {{{
 xpdf*enableFreetype:              yes
 xpdf*antialias:                   yes
 xpdf*foreground:                  white
@@ -190,11 +191,11 @@ xpdf*background:                  black
 xpdf*urlCommand:                  firefox %s
 ! }}}
 
-! ***** Xcalc ***** ! {{{
-xcalc*geometry:                         275x350+1638+21
-xcalc*ti.background:                   #222222
-xcalc*ti.bevel.borderColor:            #000000
-xcalc*ti.bevel.borderWidth:            1
+! ***** xcalc.***** ! {{{
+xcalc.geometry:                        200x250+1668+21
+xcalc.ti.background:                   #222222
+xcalc.ti.bevel.borderColor:            #000000
+xcalc.ti.bevel.borderWidth:            1
 xcalc.ti.bevel.background:             #121212
 xcalc.ti.bevel.screen.background:      #000000
 xcalc.ti.bevel.screen.DEG.background:  #000000
@@ -212,7 +213,7 @@ xcalc.ti.bevel.screen.M.background:    #000000
 xcalc.ti.bevel.screen.M.foreground:    LightSeaGreen
 xcalc.ti.bevel.screen.P.background:    #000000
 xcalc.ti.bevel.screen.P.foreground:    Yellow
-xcalc*ti.Command.borderColor: #000000
+xcalc.ti.Command.borderColor: #000000
 xcalc.ti.Command.foreground:  #b4b4b4
 xcalc.ti.Command.background:  #313131
 xcalc.ti.button5.background:  #70030b
@@ -220,7 +221,7 @@ xcalc.ti.button19.background: #611161
 xcalc.ti.button18.background: #611161
 xcalc.ti.button20.background: #611111
 !uncomment to change label on division button
-!xcalc.ti.button20.label:      /
+xcalc.ti.button20.label:      /
 xcalc.ti.button25.background: #1d1e22
 xcalc.ti.button30.background: #833333
 xcalc.ti.button35.background: #944444
@@ -237,8 +238,8 @@ xcalc.ti.button34.background: #444484
 xcalc.ti.button37.background: #555595
 xcalc.ti.button38.background: #555595
 xcalc.ti.button39.background: #555595
-XCalc*Cursor:                 hand2
-XCalc*ShapeStyle:             rectangle
-! }}} 
+xcalc.Cursor:                 hand2
+xcalc.ShapeStyle:             rectangle
+! }}}
 
 ! vim:foldmethod=marker foldmarker={{{,}}}
