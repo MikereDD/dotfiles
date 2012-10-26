@@ -14,13 +14,14 @@ noticebar=/rbar/!notice
 # export WMII_NORMCOLORS="#657b83 #121212 #073642"
 # export WMII_NORMCOLORS="#bababa #101010 #595959"
 # export WMII_NORMCOLORS="#bababa #00080a #595959"
-export WMII_NORMCOLORS="#c0c0c0 #0c0c0c #216f8a"
+# export WMII_NORMCOLORS="#c0c0c0 #0c0c0c #216f8a"
+export WMII_NORMCOLORS="#555555 #151515 #333333"
 # export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 # export WMII_FOCUSCOLORS="#93a1a1 #121212 #585858"
 # export WMII_FOCUSCOLORS="#f7f7f7 #101010 #818181"
 # export WMII_FOCUSCOLORS="#767676 #00080a #595959"
-export WMII_FOCUSCOLORS="#ffffff #0c0c0c #800000"
-
+# export WMII_FOCUSCOLORS="#ffffff #0c0c0c #800000"
+export WMII_FOCUSCOLORS="#d2d2d2 #151515 #444444"
 # Background #
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Vampy-wall-1.png"
@@ -31,7 +32,8 @@ export WMII_FOCUSCOLORS="#ffffff #0c0c0c #800000"
 # export WMII_BACKGROUND="feh --bg-scale $HOME/wallpapers/AmiaMiley-wp3.png"
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Doctors_Eleven_by_Magmakensuke-1920-by-1080-burnt-grey.png"
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-744159.jpg"
-export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Red_Android_Sleeper_Cell_with_Andy-Blue-aka-gradiant.png"
+# export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Red_Android_Sleeper_Cell_with_Andy-Blue-aka-gradiant.png"
+export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/tube-darkgray.png"
 
 # Font #
 # WMII_FONT='*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*' 
@@ -93,7 +95,7 @@ wmiir write /tagrules <<!
 
 # Status Bar Info #
 status() {
-echo -n $($HOME/.wmii/scripts/np-video-audio.sh) $($HOME/.wmii/scripts/wifi-eth0.sh) $($HOME/.wmii/scripts/check_weather.sh) $($HOME/.wmii/scripts/uptime.sh) $(sh $HOME/.wmii/scripts/archupdates.sh) $(date +'%R:%S %m/%d/%Y')
+echo -n $($HOME/.wmii/scripts/wifi-eth0.sh) $($HOME/.wmii/scripts/check_weather.sh) $($HOME/.wmii/scripts/uptime.sh) $(sh $HOME/.wmii/scripts/archupdates.sh) $(date +'%R:%S %m/%d/%Y')
 }
 
 local_events() {

@@ -80,14 +80,16 @@ Xft.lcdfilter:  lcddefault
 !!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 
 !#define S_base03        #002b36
-#define S_base03        #000708
+!#define S_base03        #000708
+#define S_base03        #151515
 #define S_base02        #073642
-#define S_base01        #586e75
-#define S_base00        #657b83
-#define S_base0         #839496
+#define S_base01        #497e62
+#define S_base00        #8d9d6e
+!#define S_base0         #839496
+#define S_base0         #999999
 #define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
+#define S_base2         #999999
+#define S_base3         #d2d2d2
 #define S_yellow        #b58900
 #define S_orange        #cb4b16
 #define S_red           #dc322f
@@ -194,12 +196,18 @@ URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.launcher.2: vim +$2 $1
 
 URxvt*tabbed.autohide:            yes
-URxvt*tabbar-fg:                  124
-URxvt*tabbar-bg:                  232
-URxvt*tab-fg:                     51
-URxvt*tab-bg:                     233
-URxvt*title-fg:                   124
-URxvt*title-bg:                   232
+!URxvt*tabbar-fg:                  124
+!URxvt*tabbar-bg:                  232
+URxvt*tabbar-fg:                  #999999
+URxvt*tabbar-bg:                  #151515
+!URxvt*tab-fg:                     51
+!URxvt*tab-bg:                     233
+URxvt*tab-fg:                     #d2d2d2
+URxvt*tab-bg:                     #151515
+!URxvt*title-fg:                   124
+!URxvt*title-bg:                   232
+URxvt*title-fg:                   #999999
+URxvt*title-bg:                   #151515
 URxvt*tabbed.secondaryScroll:     true
 URxvt*tabbed.matcher.button:      2
 !URxvt*tabbed.perl-ext-common:     default,matcher,clipboard
