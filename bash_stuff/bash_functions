@@ -4623,7 +4623,7 @@ function findlocation() { place=`echo $1 | sed 's/ /%20/g'` ; curl -s "http://ma
 
 ###### Google search (example: google dog)
 function google() {
-firefox "http://www.google.com/search?&num=100&q=${@}" &
+dwb "http://www.google.com/search?&num=100&q=${@}" &
 }
 
 

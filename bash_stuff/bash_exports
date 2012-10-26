@@ -5,12 +5,12 @@
 # ~/.bash_stuff/bash_exports
 
 # BASH_ENV
-BASH_ENV=~/.bashrc
+BASH_ENV="~/.bashrc"
 # USER
-USERNAME=$(whoami)
+USERNAME="$(whoami)"
 
 # LANG
-LANG=en_US.UTF-8
+LANG="en_US.UTF-8"
 
 # LC_ALL
 LC_ALL=
@@ -19,41 +19,41 @@ LC_ALL=
 LC_COLLATE="C"
 
 # TMPDIR
-TMPDIR=~/tmp
+TMPDIR="~/tmp"
 
 # EDITOR
-EDITOR=vim
+EDITOR="vim"
 
 # PAGER
-PAGER=vimpager
+PAGER="vimpager"
 
 # HISTCONTROL
-HISTCONTROL=ignoreboth
+HISTCONTROL="ignoreboth"
 
 # HISTIGNORE
-HISTIGNORE=history*
+HISTIGNORE="history*"
 
 # PROMPT_COMMAND
 PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
 
 # SDL_AUDIODRIVER
-SDL_AUDIODRIVER=alsa
+SDL_AUDIODRIVER="alsa"
 
 # SDL_VIDEO_FULLSCREEN_HEAD
-SDL_VIDEO_FULLSCREEN_HEAD=1
+SDL_VIDEO_FULLSCREEN_HEAD="1"
 
 # DISPLAY
-#DISPLAY=:0.0
-#if [ -n "$DISPLAY" ]; then
-#    #    export BROWSER="dwb"
-#        BROWSER="dwb"
-#    else
-#    #    export BROWSER="elinks"
-#        BROWSER="elinks"
-#    fi
+DISPLAY=:0.0
+if [ -n "$DISPLAY" ]; then
+#    export BROWSER="dwb"
+    BROWSER="dwb"
+else
+#    export BROWSER="elinks"
+    BROWSER="elinks"
+fi
 
 # GTK_IM_MODULE
-GTK_IM_MODULE=xims
+GTK_IM_MODULE="xims"
 
 #### START ANDROID NEEDS ####
 
@@ -68,7 +68,7 @@ GTK_IM_MODULE=xims
 #export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
 
 # ANDROID_JAVA_HOME
-ANDROID_JAVA_HOME=$JAVA_HOME
+ANDROID_JAVA_HOME="$JAVA_HOME"
 
 # ANDROID_SDK
 #export ANDROID_HOME=/opt/android-sdk
@@ -82,13 +82,13 @@ ANDROID_JAVA_HOME=$JAVA_HOME
 #export ANDROID_NDK=/opt/android-ndk
 
 # CCACHE
-export USE_CCACHE=1
-export CCACHE_DIR=~/android/.ccache
+export USE_CCACHE="1"
+export CCACHE_DIR="~/android/.ccache"
 
 #### END ANDROID NEEDS ####
 
 # EXPORT PATH
-export PATH=${PATH}:$HOME/bin
+export PATH="${PATH}:$HOME/bin"
 
 # EXPORT ALL
 export USERNAME BASH_ENV TMPDIR PATH EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD BROWSER GTK_IM_MODULE ANDROID_JAVA_HOME CCACHE

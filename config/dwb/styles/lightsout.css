@@ -1,0 +1,32 @@
+*  {
+     color: #999999 !important;
+     text-decoration: none !important;
+     text-shadow: none !important;
+     background: #151515 !important;
+     border-color: #333333 !important;
+   }
+        
+a,
+a *  {
+       color: #889599 !important;
+       text-decoration: none !important;
+     }
+
+a:hover,
+a:hover *  {
+             color: #000000 !important;
+             text-decoration: none !important;
+           }
+
+a:visited,
+a:visited *  {
+               color: #884488 !important;
+               text-decoration: none !important;
+             }
+
+a:visited:hover,
+a:visited:hover *  {
+                     color: #55AAAA !important;
+                     text-decoration: none !important;
+                   }
+
