@@ -13,6 +13,9 @@
 #alias slackbuild
 #alias buildinstall="chmod a+x *.SlackBuild ;sudo ./*.SlackBuild;installpkg /tmp/*.tgz;sudo rm /tmp/*.tgz"
 
+# Backup and use reflector to create a new mirror list
+alias newmirrorlist="CNTY="United States" && sudo mv /etc/pacman.d/mirrorlist.$(date +'%d-%m-%Y').bak && sudo reflector -l 5 -c "$CNTY" --sort rate --save /etc/pacman.d/mirrorlist"
+
 # ABS PKGBUILD aliases
 alias mkpkgg="makepkg -g " # --geninteg   Generate integrity checks for source files
 alias bldpkg="makepkg -cfs " # --clean|--force|--syncdeps Clean up work files after build | Overwrite existing package | Install missing dependencies with pacman
@@ -113,7 +116,7 @@ yaourtsearch() {
 
 # Git Aliases
 alias g="git"
-alias gb="git branch -a -v"
+alias gbav="git branch -a -v"
 alias gba="git branch -a"
 alias gbl="git branch -l"
 alias gbr="git branch -r"
@@ -132,6 +135,7 @@ alias gaups="git remote add upstream"
 alias gfups="git fetch upstream"
 alias gbva="git branch -va"
 alias gmupsjb="git merge upstream/jb"
+alias gmupsm="git merge upstream/master"
 
 # gco      => git checkout master
 # gcb bugs => git checkout bugs
