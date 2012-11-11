@@ -195,7 +195,7 @@ alias 775="find . -type f -exec chmod 775 {} \;"
 alias chmoddir="find . -type d -exec chmod $@ {} \;"
 alias chmodfile="find . -type d -exec chmod $@ {} \;"
 alias grpdirrw="find . -type d -exec chmod ugo+rwx {} \;"
-alias grpfilerw="find . -type d -exec chmod ugo+rw {} \;"
+alias grpfilerw="find . -type f -exec chmod ugo+rw {} \;"
 
 # Vbox
 alias virtbox="virtualbox &"

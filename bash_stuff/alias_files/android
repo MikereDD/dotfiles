@@ -3,8 +3,7 @@
 # Android
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
 #alias android-buildenv="source ~/android/.prep_files/env.sh"
-alias screenabuild="screen -c ~/android/.prep_files/.screenrc_android"
-
+alias screenabuild="screen -c ~/.screenrc_android"
 # Build Scripts
 alias buildaokpjb="sh /mnt/d/android/scripts/build_rom-aokp_jb.sh"
 alias buildparadigm="sh /mnt/d/android/scripts/build_rom-bamf_paradigm.sh"
