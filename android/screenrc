@@ -1,7 +1,7 @@
 shell $SHELL
 shelltitle '$ | bash'  # search | name for dynamic window titles
 altscreen on
-sessionname screen
+sessionname android
 term screen-256color
 
 encoding UTF-8
@@ -16,12 +16,14 @@ defflow off  # will force screen to process ^S/^Q
 deflogin on             # Log new screen windows in utmp.
 defbce "on" 
 
-idle 360 eval "screen nice -n 19 /usr/bin/cmatrix" "idle 360000 pow_detach"
+#idle 360 eval "screen nice -n 19 /usr/bin/cmatrix" "idle 360000 pow_detach"
+idle 360 eval "screen nice -n 19 /usr/bin/cmatrixreloaded" "idle 360000 pow_detach" 
+
 
 hardcopy_append on 
-hardcopydir ~/.backups/.screen
-bufferfile ~/.backups/.screen/buffer
-logfile ~/.backups/.screen/screen_%y-%m-%d_%n
+hardcopydir ~/.backups/.screen/build
+bufferfile ~/.backups/.screen/build/buffer
+logfile ~/.backups/.screen/build/screen_%y-%m-%d_%n
 
 zombie cr # don't kill window after the process died
 silencewait 4
@@ -99,7 +101,7 @@ terminfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
 #caption always "%{cK}$LOGNAME %{bK}(%d %M %Y, %c) %{-}%{bW} %-w%{bW}%50>%{= wb}%n%f %t%{-}%+w%< %{-}" 
 #hardstatus alwayslastline 
 #hardstatus string '%{= k}%{g}[ %{G}%H %{g}][%= %{= k}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W}%c %{g}]'
-hardstatus alwayslastline "%{= k}%{d}(%{..w}$LOGNAME%{d}) %{= d}%-w%{.w}%n%{r}`%{w}%t%{-b r}%{d}%+w %= %{w}%c %{d}- %{w}%m%{d}/%{w}%d%{d}/%{w}%y |%{.d}%H%{w}|"
+hardstatus alwayslastline "%{= k}%{d}(%{..w}$LOGNAME%{d}) %{= d}%-w%{.w}%n%{b .r}`%{w}%t%{-b r}%{d}%+w %= %{w}%c %{d}- %{w}%m%{d}/%{w}%d%{d}/%{w}%y |%{.d}%H%{w}|"
 
 # default windows
 # # L - LOGGING
@@ -110,10 +112,25 @@ hardstatus alwayslastline "%{= k}%{d}(%{..w}$LOGNAME%{d}) %{= d}%-w%{.w}%n%{r}`%
 # # A - resize
 # # h - scrol lines
 #
-screen -t local 0
-#screen -t 'LOG' -h 0   1 nice -n 19 sh -c 'read -n1 -t1000000 -p "[ LOG ]" && exec sudo nice tail -n 60 -s 10 -f /var/log/everything.log | ccze -A'
-#screen -t 'MEM' -h 0   2 nice -n 19 sh -c 'read -n1 -t1000000 -p "[ MEM ]" && sleep 4 && tput civis; CLS=$`tput clear`; trap "tput cnorm; exit 0" 1 2 3; while :; do free -olt && sleep 2 && echo $CLS; done;'
-#screen -t 'NET' -h 0   3 nice -n 19 sh -c 'read -n1 -t1000000 -p "[ NET ]" && while :; do /bin/netstat --numeric-ports -a -e --tcp |sort --key=4 && sleep 5; done;'
+# sources environment-specific apps
+#source "$SCREEN_CONF_DIR/$SCREEN_CONF"
+
+chdir  '/home/typezero/'
+screen -fn -t local 0
+chdir '/home/typezero/android/custom_builds/'
+screen -fn -t roms 1
+chdir '/home/typezero/android/system/'
+screen -fn -t myaosp 2
+#chdir '/home/typezero/android/kitchen/dsixda-Android-Kitchen/'
+#screen -fn -t dsixdakitchen 3
+#chdir '/home/typezero/android/swordkitchen/'
+#screen -fn -t swordkitchen 4
+chdir  '/home/typezero/android/mod/apk-dev/'
+screen -fn -t apkdev 3
+chdir  '/home/typezero/android/mod/'
+screen -fn -t mod 4
+chdir  '/home/typezero/android/git/'
+screen -fn -t git 5
 
 # bindkey [@var{opts}] [@var{string} [@var{cmd} @var{args}]]
 #
@@ -184,8 +201,7 @@ bindkey -k F6 select 4
 bindkey -k F7 select 5
 bindkey -k F8 select 6
 bindkey -k F9 select 7
-#bindkey -k FA select 20
+#bindkey -k F10 select 8
 
+# vim: tw=78 ts=3 sw=3 et nowrap ft=screen paste nonumber nofoldenable 
 
-
-# vim: tw=78 ts=3 sw=3 et nowrap ft=screen paste nonumber nofoldenable

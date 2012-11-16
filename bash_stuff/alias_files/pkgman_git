@@ -17,35 +17,35 @@
 alias newmirrorlist='CNTY="United States" && sudo mv /etc/pacman.d/mirrorlist.$(date +'%d-%m-%Y').bak && sudo reflector -l 5 -c "$CNTY" --sort rate --save /etc/pacman.d/mirrorlist'
 
 # ABS PKGBUILD aliases
-alias mkpkgg="makepkg -g " # --geninteg   Generate integrity checks for source files
-alias bldpkg="makepkg -cfs " # --clean|--force|--syncdeps Clean up work files after build | Overwrite existing package | Install missing dependencies with pacman
-alias installpkgbld="makepkg -cfsi " # build clean force check deps and install package
+alias mkpkgg="makepkg -g "
+alias bldpkg="makepkg -cfs "
+alias installpkgbld="makepkg -cfsi "
 
 # Pacman
 # List updates
 alias listupdates="sh ~/scripts/updates/list_archupdates.sh"
 alias asortpkg="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2"
-alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)' #archlinux pkg list if everything OK
-alias rmpacmandblck="sudo rm /var/lib/pacman/db.lck" # Remove Pacman Database list, for use when pacman hangs when not in use. 
-alias pmSyu="sudo pacman -Syu"                      # sudo pacman -Syu by typing pacup (sudo must be installed and configured first)
-alias pmSy="sudo pacman -Sy"                        # sudo pacman -Sy by typing pacsy
-alias pmS="sudo pacman -S"                          # sudo pacman -S by typing pac
-alias pmR="sudo pacman -R"                          # sudo pacman -R - remove package and check against its dependencies
-alias pmRd="sudo pacman -Rd"                        # sudo pacman -Rd - force remove app without checking dependencies
-alias pmU="sudo pacman -U"                          # sudo pacman -U by typing pac
-alias pmSi="pacman -Si"                             # Display information about a given package in the repositories
-alias pmQi="pacman -Qi"                             # Display information about a given package in the local database
-alias pmQs="pacman -Qs"                             # Search for package(s) in the local database
-alias pmQe="pacman -Qe"                             # Search local packages
-alias pmSl="sudo pacman -Sl"                        # Search remote repos
-alias pmSw="sudo pacman -Sw"                        # download a package without installing
-alias pmQqm="pacman -Qqm"                            # '[l]ist [l]ocal'   - list all packages which were locally installed (e.g. AUR packages)
-alias pmQdt="pacman -Qdt"                            # '[l]ist [o]rphans' - list all packages which are orphaned
-alias pmQo="pacman -Qo"                              # '[o]wner'          - determine which package owns a given file
-alias pmQl="pacman -Ql"                              # '[f]iles'          - list all files installed by a given package
-alias pmSc="pacman -Sc"                              # '[c]lean cache'    - delete all not currently installed package files
-alias mpfci="makepkg -fci"                            # '[m]ake'           - make package from PKGBUILD file in current directory
-#alias pacai=`echo -e $(sudo pacman -Sy $(pacman -Sy $@|head -1|cut -f2 -d "/"|awk '{print $1}')) # pacman search install 1st app found, useful for a direct search fast install
+alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)'
+alias rmpacmandblck="sudo rm /var/lib/pacman/db.lck"
+alias pmSyu="sudo pacman -Syu"
+alias pmSy="sudo pacman -Sy"
+alias pmS="sudo pacman -S"
+alias pmR="sudo pacman -R"
+alias pmRd="sudo pacman -Rd"
+alias pmU="sudo pacman -U"
+alias pmSi="pacman -Si"
+alias pmQi="pacman -Qi"
+alias pmQs="pacman -Qs"
+alias pmQe="pacman -Qe"
+alias pmSl="sudo pacman -Sl"
+alias pmSw="sudo pacman -Sw"
+alias pmQqm="pacman -Qqm"
+alias pmQdt="pacman -Qdt"
+alias pmQo="pacman -Qo"
+alias pmQl="pacman -Ql"
+alias pmSc="pacman -Sc"
+alias mpfci="makepkg -fci"
+#alias pacai=`echo -e $(sudo pacman -Sy $(pacman -Sy $@|head -1|cut -f2 -d "/"|awk '{print $1}'))`
 ##
 alias pmAI="pacmanappinstaller"
 pacmanappinstaller() {
@@ -94,6 +94,7 @@ alias yQi="yaourt -Qi"
 alias yQs="yaourt -Qs"
 alias yQe="yaourt -Qe"
 alias ySw="yaourt -Sw"
+alias yG="yaourt -G"
 #alias yaourtai="yaourt -Sy $(yaourt -Ss $@|head -1|cut -f2 -d "/"|awk '{print $1}')"
 # colorized pacman output with pacs alias:
 alias yai="yaourtappinstaller"

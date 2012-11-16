@@ -1,14 +1,25 @@
-#!/bin/bash
+#!/bin/bash -
 # . ~/.bash_stuff/alias_files/android
-# Android
+
+# android
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
 #alias android-buildenv="source ~/android/.prep_files/env.sh"
-alias screenabuild="screen -c ~/.screenrc_android"
-# Build Scripts
-alias buildaokpjb="sh /mnt/d/android/scripts/build_rom-aokp_jb.sh"
-alias buildparadigm="sh /mnt/d/android/scripts/build_rom-bamf_paradigm.sh"
+alias screenbuild="screen -c ~/android/.screenrc"
+
+# build scripts
+alias buildraum="sh ~/android/scripts/build/build_raum.sh"
+alias buildaokpjb="sh ~/android/scripts/build/build_rom-aokp_jb.sh"
+alias buildparadigm="sh ~/android/scripts/build/build_rom-bamf_paradigm.sh"
 
 # make commands
-alias makefulltorolog="make -j12 otapackage 2>&1 | tee toro-build.log"
-alias makeakaromtorolog="make -j12 otapackage 2>&1 | tee akarom-toro-build.log"
-alias makeakaromgrouperlog="make -j12 otapackage 2>&1 | tee akarom-grouper-build.log"
+alias maketoronlog="make -j12 otapackage 2>&1 | tee toro-build.log"
+alias makeraumtnlog="make -j12 otapackage 2>&1 | tee raum-toro-build.log"
+alias makeraumgnlog="make -j12 otapackage 2>&1 | tee raum-grouper-build.log"
+
+# tcp/ip
+alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
+
+# repo commands
+alias reposj1="repo sync -j1"
+alias reposfj1="repo sync -f -j1"
+

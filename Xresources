@@ -200,10 +200,10 @@ xpdf*urlCommand:                  firefox %s
 ! ***** xcalc.***** ! {{{
 xcalc.geometry:                        200x250+1668+21
 xcalc.ti.background:                   #151515
-xcalc.ti.bevel.borderColor:            #333333
+xcalc.ti.bevel.borderColor:            #555555
 xcalc.ti.bevel.borderWidth:            1
-xcalc.ti.bevel.background:             #151515
-xcalc.ti.bevel.screen.background:      #191919
+xcalc.ti.bevel.background:             #191919
+xcalc.ti.bevel.screen.background:      #151515
 xcalc.ti.bevel.screen.DEG.background:  #151515
 xcalc.ti.bevel.screen.DEG.foreground:  #999999
 xcalc.ti.bevel.screen.GRAD.background: #151515
@@ -211,7 +211,7 @@ xcalc.ti.bevel.screen.GRAD.foreground: #999999
 xcalc.ti.bevel.screen.RAD.background:  #151515
 xcalc.ti.bevel.screen.RAD.foreground:  #999999
 xcalc.ti.bevel.screen.INV.background:  #151515
-xcalc.ti.bevel.screen.INV.foreground:  #3d2b2b
+xcalc.ti.bevel.screen.INV.foreground:  #999999
 xcalc.ti.bevel.screen.LCD.background:  #151515
 xcalc.ti.bevel.screen.LCD.foreground:  #999999
 xcalc.ti.bevel.screen.LCD.shadowWidth: 0
@@ -219,19 +219,19 @@ xcalc.ti.bevel.screen.M.background:    #151515
 xcalc.ti.bevel.screen.M.foreground:    #999999
 xcalc.ti.bevel.screen.P.background:    #151515
 xcalc.ti.bevel.screen.P.foreground:    #3b3d2b
-xcalc.ti.Command.borderColor: #333333
+xcalc.ti.Command.borderColor: #555555
 xcalc.ti.Command.foreground:  #999999
 xcalc.ti.Command.background:  #121212
 xcalc.ti.button5.background:  #3d1c1c
-xcalc.ti.button19.background: #0d0d0d
-xcalc.ti.button18.background: #0d0d0d
-xcalc.ti.button20.background: #0d0d0d
+xcalc.ti.button19.background: #151515
+xcalc.ti.button18.background: #151515
+xcalc.ti.button20.background: #151515
 !uncomment to change label on division button
 xcalc.ti.button20.label:      /
-xcalc.ti.button25.background: #0d0d0d
-xcalc.ti.button30.background: #0d0d0d
-xcalc.ti.button35.background: #0d0d0d
-xcalc.ti.button40.background: #0d0d0d
+xcalc.ti.button25.background: #151515
+xcalc.ti.button30.background: #151515
+xcalc.ti.button35.background: #151515
+xcalc.ti.button40.background: #151515
 xcalc.ti.button22.background: #161616
 xcalc.ti.button23.background: #161616
 xcalc.ti.button24.background: #161616
@@ -242,10 +242,10 @@ xcalc.ti.button32.background: #161616
 xcalc.ti.button33.background: #161616
 xcalc.ti.button34.background: #161616
 xcalc.ti.button37.background: #161616
-xcalc.ti.button38.background: #0d0d0d
-xcalc.ti.button39.background: #0d0d0d
-xcalc.Cursor:                 hand2
-xcalc.ShapeStyle:             rectangle
+xcalc.ti.button38.background: #151515
+xcalc.ti.button39.background: #151515
+xcalc.Cursor:                 hand1
+xcalc.ShapeStyle:             circle
 ! }}}
 
 ! vim:foldmethod=marker foldmarker={{{,}}}
