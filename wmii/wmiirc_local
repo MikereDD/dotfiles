@@ -15,13 +15,16 @@ noticebar=/rbar/!notice
 # export WMII_NORMCOLORS="#bababa #101010 #595959"
 # export WMII_NORMCOLORS="#bababa #00080a #595959"
 # export WMII_NORMCOLORS="#c0c0c0 #0c0c0c #216f8a"
-export WMII_NORMCOLORS="#555555 #151515 #333333"
+# export WMII_NORMCOLORS="#555555 #151515 #333333"
+export WMII_NORMCOLORS="#d2d2d2 #151515 #333333"
 # export WMII_FOCUSCOLORS="#b4b4b4 #1e1e1e #424242"
 # export WMII_FOCUSCOLORS="#93a1a1 #121212 #585858"
 # export WMII_FOCUSCOLORS="#f7f7f7 #101010 #818181"
 # export WMII_FOCUSCOLORS="#767676 #00080a #595959"
 # export WMII_FOCUSCOLORS="#ffffff #0c0c0c #800000"
-export WMII_FOCUSCOLORS="#d2d2d2 #151515 #444444"
+# export WMII_FOCUSCOLORS="#d2d2d2 #151515 #444444"
+export WMII_FOCUSCOLORS="#626262 #151515 #121212"
+
 # Background #
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/wallpaper-507655.jpg"
 # export WMII_BACKGROUND="feh --bg-center $HOME/wallpapers/Vampy-wall-1.png"
