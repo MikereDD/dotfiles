@@ -22,6 +22,10 @@ set $mod Mod4
 # font pango:DejaVu Sans Mono 10
 font pango:Comfortaa 9
 
+set $resize_step    100
+set $screenL        HDMI-0
+set $screenR        DVI-I-1
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -82,7 +86,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#bindsym $mod+d focus ichild
 
 # switch to workspace
 bindsym $mod+1 workspace web
@@ -145,12 +149,13 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         output HDMI-0
+        output DVI-I-1
         status_command i3status --config ~/.i3/i3status.conf
         position top
         mode hide
         modifier Mod4
         workspace_buttons yes
-        tray_output primary
+        tray_output DVI-I-
 
         font pango:Dina 8
 
@@ -185,8 +190,6 @@ client.urgent           #2f343a #900000 #a2a2a2 #900000
 hide_edge_borders none
 #new_window 1pixel
 #
-
-
 # Client specific
 # Start urxvt -name irc
 assign [class="^URxvt$" instance="^irc$"] → irc
@@ -197,4 +200,14 @@ assign [class="^URxvt$" instance="^code$"] → cd*
 assign [class="^URxvt$" instance="^edit$"] → cd*
 assign [class="^URxvt$" instance="^vim$"] → cd*
 
-feh --bg-scale ~/wallpapers/theArchtrix.png &
+assign [class="^URxvt$" instance="^build$" → buildi
+
+assign [class="^dwb"] → web
+assign [class="^Thunderbird$"] → wed
+assign [class="^Firefox$"] → web
+assign [class="^Gimp$"] → art
+assign [class="^gedit$"] → cd*
+
+
+# Lock
+bindsym $mod+w exec "/bin/bash --login -c 'sleep 0.5; xtrlock; exit 0'"
