@@ -1,0 +1,17 @@
+* { color: #d2d2d2 !important; background: none !important; background-color: #101116 !important; border-color: #999999 !important }
+
+a:link { color: #333333 !important }
+
+a:visited { color: #999999 !important }
+
+a:hover { color: #d2d2d2 !important }
+
+a:active { color: #626262f !important }
+
+input[type=button], input[type=submit], input[type=reset]  { color: ButtonText !important; background-color: ButtonFace !important; border-color: ButtonHighlight ButtonShadow ButtonShadow ButtonHighlight !important }
+
+input[type=text], input[type=password], input[type=file] { color: WindowText !important; background-color: Window !important }
+
+}
+
+

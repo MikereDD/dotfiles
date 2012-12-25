@@ -42,12 +42,12 @@ popup_during_fullscreen ignore
 
 # Colors {{{
 # class                 border  backgr. text    indicator
-client.background #151515
-#statusline #d2d2d2
-client.focused          #121212 #151515 #d2d2d2 #2e9ef4
-client.focused_inactive #151515 #121212 #999999 #484e50
-client.unfocused        #333333 #151515 #626262 #292d2e
-client.urgent           #2f343a #900000 #a2a2a2 #900000
+client.background #181e31
+#statusline
+client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
+client.focused_inactive #181e31 #101116 #999999 #484e50
+client.unfocused        #181e31 #101116 #515152 #292d2e
+client.urgent           #700000 #900000 #d2d2d2 #ffffff
 # }}}
 
 # binds {{{
@@ -251,12 +251,12 @@ bar {
         font xft:Dina 8
 
 colors {
-        background #151515
-
-        focused_workspace  #121212 #151515 #d2d2d2
-        active_workspace   #151515 #121212 #999999
-        inactive_workspace #333333 #151515 #626262
-        urgent_workspace   #2f343a #900000 #a2a2a2
+        background #191f2d
+        # class            border  backgr  text    indicator
+        focused_workspace  #181e31 #101116 #d2d2d2
+        active_workspace   #181e31 #101116 #999999
+        inactive_workspace #181e31 #101116 #515152
+        urgent_workspace   #900000 #757a83 #ffffff
     }
 
 }

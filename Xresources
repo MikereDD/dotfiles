@@ -18,8 +18,8 @@ Xft.lcdfilter:  lcddefault
 ! }}}
 
 ! ***** Colors ***** ! {{{
-*background:             #151515
-*foreground:             #999999
+*background:             #101116
+*foreground:             #d2d2d2
 *fading:                 40
 *fadeColor:              #191919
 *cursorColor:            #d2d2d2
