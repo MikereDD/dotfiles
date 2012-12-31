@@ -1,0 +1,68 @@
+[user]
+        name = Mike Redd
+        email = *@*
+[core]
+        editor = $EDITOR
+        pager = $PAGER
+        excludesfile = /home/typezero/.gitignore_global
+        whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+[sendemail]
+        smtpencryption = tls
+        smtpserver = smtp.gmail.com
+        smtpuser = *@*
+        smtpserverport = 587
+[color]
+        ui = auto
+        #diff = auto
+        #status = auto
+        #branch = auto
+        interactive = auto
+        pager = true
+[color "status"]
+        added = yellow
+        changed = green
+        untracked = cyan
+[pager]
+        diff =
+        external =
+[diff]
+        tool = vimdiff
+[merge]
+	tool = diffconflicts
+[difftool]
+        prompt = false
+[alias]
+        gba = branch -a
+        gbav = branch -a -v
+        gbl = branch -l
+        gbr = branch -r
+        gs = status -s -b
+        gdiff = diff
+        gadd = add
+        gca = commit -a
+        gcm = commit -m
+        gpo = push origin
+        gco = checkout
+        gclo = clone
+        gp = pull
+        gm = merge
+        gcb = git-create-branch
+        grv = remote -v
+        graus = remote add upstream
+        gf = fetch
+        gwc = whatchanged
+        glg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        gdd = diff --color-words
+        gdc = diff --cached
+        gbb = branch -vv
+        gbc = branch --contains
+        gf = fetch --all --tags
+        gr = rebase
+        gre = reset --hard @{upstream}
+        gshort = rev-parse --short
+        gmnf = merge --no-ff
+        gvdm = git mergetool -t vimdiff
+[mergetool "diffconflicts"]
+	cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+	keepBackup = false

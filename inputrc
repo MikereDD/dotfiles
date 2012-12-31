@@ -6,6 +6,7 @@
 #"\e[A":history-search-backward
 #"\e[B":history-search-forward
 
-set show-all-if-ambiguous on
+#set show-all-if-ambiguous on
+set show-all-if-unmodified on
 set echo-control-characters off
 

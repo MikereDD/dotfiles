@@ -1,6 +1,56 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
 # . ~/.bashrc
+#
 
+
+### START BASH_STUFF ###
+
+if [ -f /etc/bash.bashrc ]; then
+    source /etc/bash.bashrc
+fi
+
+if [ -d /etc/bash_completion.d/ ]; then
+    source /etc/bash_completion.d/*
+fi
+
+if [ -f ~/.bash_stuff/bash_exports ]; then
+    source ~/.bash_stuff/bash_exports
+fi
+
+if [ -f ~/.bash_stuff/bash_functions ]; then
+    source ~/.bash_stuff/bash_functions
+fi
+
+if [ -f ~/.bash_stuff/bash_completion ]; then
+    source ~/.bash_stuff/bash_completion
+fi
+
+if [ -f ~/.bash_stuff/bash_binds ]; then
+    source ~/.bash_stuff/bash_binds
+fi
+
+if [ -f ~/.bash_stuff/bash_aliases ]; then
+    source ~/.bash_stuff/bash_aliases
+fi
+
+if [ -f ~/.bash_stuff/bash_colors ]; then
+    source ~/.bash_stuff/bash_colors
+fi
+
+if [ -f ~/.bash_stuff/bash_sfs ]; then
+    source ~/.bash_stuff/bash_sfs
+fi
+
+if [ -f ~/.inputrc ]; then
+    source ~/.inputrc
+fi
+
+if [ -f ~/.dir_colors ]; then
+    eval `dircolors -b ~/.dir_colors`
+fi
+
+### END SOURCE BASH_STUFF ###
 
 #### Android Build Environment Needs ####
 ## java-jdk
@@ -59,56 +109,6 @@ function go {
 alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
 export SUDO_EDITOR="/usr/bin/vim -p -X"
 alias sudo="sudo -E"
-
-###               ###
-# Bash Suff - START #
-# ~/.bash_suff      #
-###               ###
-#Bash Android
-#if [ -f ~/.bash_stuff/alias_files/android ]; then
-#    source ~/.bash_stuff/alias_files/android
-#fi
-# Bash Aliases
-if [ -f ~/.bash_stuff/bash_aliases ]; then
-    source ~/.bash_stuff/bash_aliases
-fi
-# Bash Binds
-if [ -f ~/.bash_stuff/bash_binds ]; then
-    source ~/.bash_stuff/bash_binds
-fi
-# Bash Colors
-if [ -f ~/.bash_stuff/bash_colors ]; then
-    source ~/.bash_stuff/bash_colors
-fi
-# Bash Completion
-if [ -f ~/.bash_stuff/bash_completion ]; then
-    source ~/.bash_stuff/bash_completion
-fi
-# Dir Colors
-if [ -f ~/.dir_colors ]; then
-    eval `dircolors -b ~/.dir_colors`
-else
-    eval `dircolors -b /etc/DIR_COLORS`
-fi
-# Bash Exports
-if [ -f ~/.bash_stuff/bash_exports ]; then
-    source ~/.bash_stuff/bash_exports
-fi
-# Bash Functions
-if [ -f ~/.bash_stuff/bash_functions ]; then
-    source ~/.bash_stuff/bash_functions
-fi
-# Bash Input 
-if [ -f ~/.inputrc ]; then
-    source ~/.inputrc
-fi
-# Bash SSH/FTP/SMB
-if [ -f ~/.bash_stuff/bash_sfs ]; then
-    source ~/.bash_stuff/bash_sfs
-fi
-###
-# END - Bash Stuff #
-###
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return

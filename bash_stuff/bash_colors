@@ -1,7 +1,8 @@
-#!/bin/bash
-# Bash Colors
+#!/usr/bin/env bash
+#
 # ~/.bash_stuff/bash_colors
 #
+
 
     TR='\[\033[0m\]'      # Text Reset
     # regular colors

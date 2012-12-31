@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # ~/.bash_stuff/bash_functions
 #
-############
+
 
 [ -f ~/.bash_stuff/bash_colors ] && source $HOME/.bash_stuff/bash_colors
 
@@ -187,10 +187,10 @@ function apath()
 # important file using > instead of >> ^^	 #
 ##################################################
 
-function append() {
-        lastarg="${!#}"
-        echo "${@:1:$(($#-1))}" >> "$lastarg"
-}
+#function append() {
+#        lastarg="${!#}"
+#        echo "${@:1:$(($#-1))}" >> "$lastarg"
+#}
 
 
 
@@ -4621,12 +4621,29 @@ function findlocation() { place=`echo $1 | sed 's/ /%20/g'` ; curl -s "http://ma
 
 
 
-###### Google search (example: google dog)
-function google() {
-dwb "http://www.google.com/search?&num=100&q=${@}" &
+###### Web search (example: google dog)
+function encode() {
+echo -n $@ | perl -pe's/([^-_.~A-Za-z0-9])/sprintf("%%%02X", ord($1))/seg';
+} 
+#function google() {
+#dwb "http://www.google.com/search?&num=100&q=${@}" &
+#}
+
+function sgoogle() {
+dwb "http://www.google.com/search?hl=en#q="`encode $@`"" ;
 }
-
-
+function syahoo() {
+dwb "http://search.yahoo.com/search?p="`encode $@`"" ;
+}
+function sbing() {
+dwb "http://www.bing.com/search?q="`encode $@`"" ;
+}
+function samazon() {
+dwb "http://www.amazon.com/s/ref=nb_ss?field-keywords="`encode $@`"" ;
+}
+function swiki() {
+dwb "http://en.wikipedia.org/w/index.php?search="`encode $@`"" ;
+}
 
 ###### translate a word using Google
 # usage: translate <phrase> <output-language>
@@ -5681,7 +5698,7 @@ function ffa() { (($# < 2)) && { echo "usage: ffa pat1 pat2 [...]" >&2; return 1
 
 ###### used to set environmental variables from list of alternatives depending on what's installed (uses bash setting 'export BROWSER' above)
 # it returns the first program found in the list
-# Usage:	export BROWSER=$(find_alternatives chromium-browser google-chrome opera firefox firefox-bin iceweasel konqueror w3m lynx)
+# Usage:	export BROWSER=$(find_alternatives debchromium-browser google-chrome opera firefox elinks w3m lynx)
 function find_alternatives() { for i;do which "$i" >/dev/null && { echo "$i"; return 0;};done;return 1; }
 
 
@@ -9581,21 +9598,21 @@ function torswitch() {
 ##################################################
 
 ###### will not overwrite files that have the same name
-function trashit()
-{   local trash_dir=$HOME/.Trash
-    for file in "$@" ; do
-        if [[ -d $file ]] ; then
-            local already_trashed=$trash_dir/`basename $file`
-            if [[ -n `/bin/ls -d $already_trashed*` ]] ; then
-                local count=`/bin/ls -d $already_trashed* | /usr/bin/wc -l`
-                count=$((++count))
-                /bin/mv --verbose "$file" "$trash_dir/$file$count"
-                continue
-            fi
-        fi
-        /bin/mv --verbose --backup=numbered "$file" $HOME/.Trash
-    done
-}
+#function trashit()
+#{   local trash_dir=$HOME/.Trash
+#    for file in "$@" ; do
+#        if [[ -d $file ]] ; then
+#            local already_trashed=$trash_dir/`basename $file`
+#            if [[ -n `/bin/ls -d $already_trashed*` ]] ; then
+#                local count=`/bin/ls -d $already_trashed* | /usr/bin/wc -l`
+#                count=$((++count))
+#                /bin/mv --verbose "$file" "$trash_dir/$file$count"
+#                continue
+#            fi
+#        fi
+#        /bin/mv --verbose --backup=numbered "$file" $HOME/.Trash
+#    done
+#}
 
 
 

@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #
 # . ~/.bash_profile
 #
+
 [[ -f ~/.profile ]] && . ~/.profile
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
+
+[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
 
 # Bash_Env
 #EDITOR="vim"
@@ -14,9 +17,9 @@
 
 # auto startx and logout, security !
 #if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
-#  startx
-#   exec nohup startx > .xlog & vlock
-#  logout
+# startx
+# exec nohup startx > .xlog & vlock
+# logout
 #fi
 #ssh-add
 

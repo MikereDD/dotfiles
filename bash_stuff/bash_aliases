@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
 # . ~/.bash_stuff/bash_aliases
+#
 
 ## sysinfo
 alias sysinfoarchlogo="sh $HOME/scripts/system/sysinfo.sh"
@@ -177,10 +179,10 @@ alias sitegrab="sh $HOME/apps/bin/dtsitegrab/dtsitegrab "
 
 ## screen
 #alias a_screen="screen -c $HOME/.screenrc_a"
-alias c_screen="screen -c $HOME/.screenrc_c"
-#alias fm_screen="screen -c $HOME/.screenrc_f"
-alias su_screen="screen -c $HOME/.screenrc_su"
-alias apk_screen="screen -c $HOME/.screenrc_apk"
+#alias codescrn="screen -c $HOME/.screenrc_c"
+#alias fmscrn="screen -c $HOME/.screenrc_f"
+alias suscrn="screen -c $HOME/.screenrc_su"
+alias apkscrn="screen -c $HOME/.screenrc_apk"
 alias scrnna="screen -dr a"
 alias scrnc="screen -dr c"
 alias scrnsu="screen -dr su"
@@ -208,6 +210,7 @@ calc() { echo "scale=3;$@" | bc -l ; }
 alias dburl="dropbox puburl"
 
 ## alias files broken down
+
 if [ -f ~/.bash_stuff/alias_files/android ]; then
     source ~/.bash_stuff/alias_files/android
 fi

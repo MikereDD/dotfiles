@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/usr/bin/bash
+#
+# ~/.bash_stuff/bash_completions
+#
+
 #=========================================================================
 # PROGRAMMABLE COMPLETION - ONLY SINCE BASH-2.04
 # Most are taken from the bash 2.05 documentation and from Ian McDonald's
@@ -8,7 +12,7 @@
 
 ulimit -S -c 0          # Don't want any coredumps.
 set -o notify
-set -o noclobber
+#set -o noclobber
 set -o ignoreeof
 #set -o nounset
 #set -o xtrace          # Useful for debuging.

@@ -1,0 +1,164 @@
+## Archives ignores ##
+######################
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+
+#packing-only formats
+*.iso
+*.tar
+
+#package management formats
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+
+## CVS ignores ##
+#################
+/CVS/*
+*/CVS/*
+.cvsignore
+
+## Linux ignores ##
+###################
+.*
+!.gitignore
+*~
+
+## Mercurial ignores ##
+#######################
+/.hg/*
+*/.hg/*
+.hgignore
+
+## Nano ignores ##
+##################
+# For projects using nanoc (http://nanoc.stoneship.org/)
+# Default location for output, needs to match output_dir's value found in config.yaml
+output/
+# Temporary file directory
+tmp/
+
+## SVN ignores ##
+#################
+.svn/
+
+## Tags ignores ##
+#################
+# Ignore tags created by etags and ctags
+TAGS
+!TAGS/
+tags
+!tags/
+
+## VirtualENV ignores ##
+########################
+# Virtualenv
+# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
+.Python
+[Bb]in
+[Ii]nclude
+[Ll]ib
+[Ss]cripts
+
+## Vim ignores ##
+#################
+.*.sw[a-z]
+*.un~
+Session.vim
+.netrwhist
+
+## Local ignores ##
+##################
+.ICEauthority
+.gtk-bookmarks
+.msmtprc
+.mysql_history
+.OGStudio
+.netrc
+.rnd
+.VirtualBox
+.Xauthority
+.viminfo
+.adobe/
+.android/
+.bash_history
+.bash_stuff/bash_sfs
+.cache/
+.claws-mail/
+.config/
+.dbshell
+.dbus/
+.dropbox/
+.dropbox-*/
+.easytag/
+.easytag/
+.fontconfig/
+.fonts/
+.gconf/
+.gconfd/
+.gem/
+.gimp-2.7
+.gimp-2.8/
+.gtk-2.0/
+.gnupg/
+.gstreamer-0.10/
+.gtk-2.0/
+.histfile
+.i3/
+.icedtea/
+.irssi/
+.java/
+.lftp/bookmarks
+.links/
+.local/
+.macromedia/
+.moc/
+.mozilla/
+.muttator
+.netrc
+.opera/
+.spamassassin
+.srecode/
+.ssh/
+.subversion
+.surf/
+.thumbnails/
+.thunderbird/
+.vim/.netrwhist
+.vimperator/
+.vimshell/
+.wicd/
+.wine/
+.wmii/
+Books/
+Documents/
+Downloads/
+Dropbox/
+Mail
+Movies/
+Music/
+News
+Pictures
+TV/
+VirtualBox VMs
+Wallpapers/
+Ydisk
+documents/
+downloads/
+images/
+mindterm
+p/work/*
+quicklisp.lisp
+sent
