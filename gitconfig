@@ -32,36 +32,36 @@
 [difftool]
         prompt = false
 [alias]
-        gba = branch -a
-        gbav = branch -a -v
-        gbl = branch -l
-        gbr = branch -r
-        gs = status -s -b
-        gdiff = diff
-        gadd = add
-        gca = commit -a
-        gcm = commit -m
-        gpo = push origin
-        gco = checkout
-        gclo = clone
-        gp = pull
-        gm = merge
-        gcb = git-create-branch
-        grv = remote -v
-        graus = remote add upstream
-        gf = fetch
-        gwc = whatchanged
-        glg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-        gdd = diff --color-words
-        gdc = diff --cached
-        gbb = branch -vv
-        gbc = branch --contains
-        gf = fetch --all --tags
-        gr = rebase
-        gre = reset --hard @{upstream}
-        gshort = rev-parse --short
-        gmnf = merge --no-ff
-        gvdm = git mergetool -t vimdiff
+        ba = branch -a
+        bav = branch -a -v
+        bl = branch -l
+        br = branch -r
+        s = status -s -b
+        diff = diff
+        add = add
+        ca = commit -a
+        cm = commit -m
+        po = push origin
+        co = checkout
+        clo = clone
+        p = pull
+        m = merge
+        cb = git-create-branch
+        rv = remote -v
+        raus = remote add upstream
+        f = fetch
+        wc = whatchanged
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        dd = diff --color-words
+        dc = diff --cached
+        bb = branch -vv
+        bc = branch --contains
+        f = fetch --all --tags
+        r = rebase
+        re = reset --hard @{upstream}
+        short = rev-parse --short
+        mnf = merge --no-ff
+        vdm = git mergetool -t vimdiff
 [mergetool "diffconflicts"]
 	cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = true
