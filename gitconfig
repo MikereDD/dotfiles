@@ -61,7 +61,7 @@
         re = reset --hard @{upstream}
         short = rev-parse --short
         mnf = merge --no-ff
-        vdm = git mergetool -t vimdiff
+        vdm = mergetool -t vimdiff
 [mergetool "diffconflicts"]
 	cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
 	trustExitCode = true
