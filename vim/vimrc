@@ -1,11 +1,8 @@
 " .vimrc
-" Author: Steve Losh <steve@stevelosh.com>
-" Source: http://bitbucket.org/sjl/dotfiles/src/tip/vim/
+" Author: Mike Redd <mikeredd@mobileinfern.us>
+" Source: https://github.com/MikereDD/home/tree/master/vim
 "
-" This file changes a lot.  I'll try to document pieces of it whenever I have
-" a few minutes to kill.
-
-" Modified by: Mike Redd <typezero@mobileinfern.us>
+" Most of the file is taken from Steve Losh's vim/vimrc
 
 " Preamble ---------------------------------------------------------------- {{{
 
@@ -18,39 +15,43 @@ set nocompatible
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 
-set encoding=utf-8
-set modelines=0
+"setlocal fileformat=unix
 set autoindent
-set showmode
-set showcmd
-set hidden
-set visualbell
-set ttyfast
-set ruler
+set autoread
+set autowrite
 set backspace=indent,eol,start
-set nonumber
-set norelativenumber
-set laststatus=2
+set colorcolumn=+1
+set dictionary=/usr/share/dict/words
+set encoding=utf-8
+set fileformat=unix
+set fileformats=unix,dos
+set fillchars=diff:⣿,vert:│
+set hidden
 set history=1000
-set undofile
-set undoreload=10000
+set laststatus=2
+set lazyredraw
+set linebreak
 set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
-set shell=/bin/bash\ --login
-set lazyredraw
 set matchtime=3
+set modelines=0
+set modifiable
+set nonumber
+set norelativenumber
+set notitle
+set ruler
+set shell=/bin/bash\ --login
+set shiftround
 set showbreak=↪
+set showcmd
+set showmode
+set spellfile=~/.vim/custom-dictionary.utf-8.add
 set splitbelow
 set splitright
-set fillchars=diff:⣿,vert:│
-set autowrite
-set autoread
-set shiftround
-set notitle
-set linebreak
-set dictionary=/usr/share/dict/words
-set spellfile=~/.vim/custom-dictionary.utf-8.add
-set colorcolumn=+1
+set ttyfast
+set undofile
+set undoreload=10000
+set visualbell
 
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
@@ -73,6 +74,9 @@ au FocusLost * :silent! wall
 
 " Resize splits when the window is resized
 au VimResized * :wincmd =
+
+" Leave the editor with Ctrl-q (KDE): Write all changed buffers and exit Vim
+nnoremap  <C-q>    :wqall<CR>
 
 " Cursorline {{{
 " Only show cursorline in the current window and in normal mode.
@@ -125,7 +129,7 @@ set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
 set wildignore+=*.spl                            " compiled spelling word lists
 set wildignore+=*.sw?                            " Vim swap files
 set wildignore+=*.DS_Store                       " OSX bullshit
-
+set wildignore+=*.bak,*.e,*~
 set wildignore+=*.luac                           " Lua byte code
 
 set wildignore+=migrations                       " Django migrations
@@ -180,15 +184,16 @@ let maplocalleader = "\\"
 " }}}
 " Color scheme {{{
 
+set t_Co=256
 syntax on
 set background=dark
 let g:badwolf_html_link_underline = 0
-colorscheme darkZ
+colorscheme badwolf
 
 " Reload the colorscheme whenever we write the file.
-augroup color_darkZ_dev
+augroup color_badwolf_dev
     au!
-    au BufWritePost darkZ.vim color darkZ
+    au BufWritePost badwolg.vim color badwolf
 augroup END
 
 " Highlight VCS conflict markers
@@ -219,10 +224,10 @@ iabbrev lsad ಥ_ಥ
 iabbrev lhap ಥ‿ಥ
 iabbrev lmis ಠ‿ಠ
 
-iabbrev mtp@ typezero@mobileinfern.us
+iabbrev mrbi@ mikeredd@mobileinfern.us
 iabbrev vrcf `~/.vimrc` file
 
-iabbrev pcf Participatory Culture Foundation
+"iabbrev qwe bla bl bla
 inoremap <c-l> <c-k>l*
 
 " }}}
@@ -235,7 +240,10 @@ inoremap # X<BS>#
 nnoremap K :q<cr>
 
 " Toggle line numbers
-nnoremap <leader>n :setlocal number!<cr>
+"nmap <F1> to set unset Line Numbers
+"Set No Line Numbers and use Toggle
+set nonu
+nmap <silent> <F1> :set nu!<CR>
 
 " Front and center
 " Use :sus for the rare times I want to actually background Vim.
@@ -277,8 +285,8 @@ nnoremap <leader>w mz:%s/\s\+$//<cr>:let @/=''<cr>`z
 " vnoremap <leader>G :w !gist -p -t %:e \| pbcopy<cr>
 " vnoremap <leader>UG :w !gist -p \| pbcopy<cr>
 
-" Send visual selection to paste.stevelosh.com
-vnoremap <c-p> :w !curl -sF 'sprunge=<-' 'http://paste.stevelosh.com' \| tr -d '\n ' \| pbcopy && open `pbpaste`<cr>
+" Send visual selection to paste
+"vnoremap <c-p> :w !curl -sF 'sprunge=<-' 'http://paste' \| tr -d '\n ' \| pbcopy && open `pbpaste`<cr>
 
 " Insert the directory of the current buffer in command line mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -385,6 +393,31 @@ nnoremap _js :set ft=javascript<CR>
 nnoremap _cw :set ft=confluencewiki<CR>
 nnoremap _pd :set ft=python.django<CR>
 nnoremap _d  :set ft=diff<CR>
+
+" Disable one diff window during a three-way diff allowing you to cut out the
+" noise of a three-way diff and focus on just the changes between two versions
+" at a time. Inspired by Steve Losh's Splice
+function! DiffToggle(window)
+    " Save the cursor position and turn on diff for all windows
+    let l:save_cursor = getpos('.')
+    windo :diffthis
+
+    " Turn off diff for the specified window (but keep scrollbind) and move
+    " the cursor to the left-most diff window
+    exe a:window . "wincmd w"
+    diffoff
+    set scrollbind
+    set cursorbind
+    exe a:window . "wincmd " . (a:window == 1 ? "l" : "h")
+
+    " Update the diff and restore the cursor position
+    diffupdate
+    call setpos('.', l:save_cursor)
+endfunction
+" Toggle diff view on the left, center, or right windows
+nmap <silent> <leader>dl :call DiffToggle(1)<cr>
+nmap <silent> <leader>dc :call DiffToggle(2)<cr>
+nmap <silent> <leader>dr :call DiffToggle(3)<cr>
 
 " }}}
 " Insert Mode Completion {{{
@@ -834,17 +867,6 @@ augroup ft_mercurial
 augroup END
 
 " }}}
-" Mutt {{{
-
-augroup ft_muttrc
-    au!
-
-    au BufRead,BufNewFile *.muttrc set ft=muttrc
-
-    au FileType muttrc setlocal foldmethod=marker foldmarker={{{,}}}
-augroup END
-
-" }}}
 " Nginx {{{
 
 augroup ft_nginx
@@ -866,15 +888,6 @@ augroup ft_org
 
     au Filetype org nmap <buffer> Q vahjgq
     au Filetype org setlocal nolist
-augroup END
-
-" }}}
-" Pentadactyl {{{
-
-augroup ft_pentadactyl
-    au!
-    au BufNewFile,BufRead .pentadactylrc set filetype=pentadactyl
-    au BufNewFile,BufRead ~/Library/Caches/TemporaryItems/pentadactyl-*.tmp set nolist wrap linebreak columns=100 colorcolumn=0
 augroup END
 
 " }}}
@@ -927,30 +940,11 @@ augroup ft_rest
 augroup END
 
 " }}}
-" Riemann Config Files {{{
-
-augroup ft_riemann
-    au!
-
-    au BufNewFile,BufRead riemann.config set filetype=clojure
-    au BufNewFile,BufRead riemann.config nnoremap <buffer> <localleader>= mzgg=G`z
-augroup END
-
-" }}}
 " Ruby {{{
 
 augroup ft_ruby
     au!
     au Filetype ruby setlocal foldmethod=syntax
-augroup END
-
-" }}}
-" stevelosh.com Blog Entries {{{
-
-augroup ft_steveloshcom
-    au!
-    au BufRead,BufNewFile */stevelosh/content/blog/20*/*/*.html set ft=markdown spell
-    au BufRead,BufNewFile */stevelosh/content/projects/*.html set ft=markdown spell
 augroup END
 
 " }}}
@@ -976,17 +970,6 @@ augroup END
 
 " }}}
 " Plugin settings --------------------------------------------------------- {{{
-" Line Numbers {{{
-
-"nmap <F1> to set unset Line Numbers
-"Set No Line Numbers and use Toggle
-set nonu
-"
-""
-nmap <silent> <F1> :set nu!<CR>
-
-" }}}
-
 " Ack {{{
 
 nnoremap <leader>a :Ack!<space>
@@ -1102,16 +1085,6 @@ nnoremap <leader>H :Gbrowse<cr>
 vnoremap <leader>H :Gbrowse<cr>
 
 " }}}
-" Gundo {{{
-
-nnoremap <F5> :GundoToggle<CR>
-
-let g:gundo_debug = 1
-let g:gundo_preview_bottom = 1
-let g:gundo_tree_statusline = "Gundo"
-let g:gundo_preview_statusline = "Gundo Preview"
-
-" }}}
 " Haskellmode {{{
 
 let g:haddock_browser = "open"
@@ -1174,17 +1147,6 @@ let NERDTreeWinSize = 15 " window size, default=31.
 "let NERDTreeDirArrows =
 let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 " }}}
-" Easy Tree {{{
-let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
-let g:easytree_show_line_numbers = 0 " disable showing line numbers
-let g:easytree_show_hidden_files = 0
-let g:easytree_highlight_cursor_line = 1
-"let g:easytree_ignore_dirs = ['.git']
-"let g:easytree_ignore_files = ['*.swp', '*~']
-let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
-"let g:easytree_hijack_netrw = 1 " replace netrw with easytree
-" nnoremap <F11> :EasyTree<CR>
-" }}}
 " OrgMode {{{
 
 let g:org_plugins = ['ShowHide', '|', 'Navigator', 'EditStructure', '|', 'Todo', 'Date', 'Misc']
@@ -1196,6 +1158,9 @@ let g:org_debug = 1
 " }}}
 " Powerline {{{
 
+set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 let g:Powerline_symbols = 'fancy'
 let g:Powerline_cache_enabled = 1
 " let g:Powerline_colorscheme = 'badwolf'
@@ -1443,9 +1408,6 @@ endfunction
 " }}}
 
 " }}}
-" Mini-plugins ------------------------------------------------------------ {{{
-" Stuff that should probably be broken out into plugins, but hasn't proved to be
-" worth the time to do so just yet.
 
 " Synstack {{{
 
@@ -1503,124 +1465,6 @@ endfunction " }}}
 
 nmap <silent> <f3> :ErrorsToggle<cr>
 nmap <silent> <f4> :QFixToggle<cr>
-
-" }}}
-" Nyan! {{{
-
-function! NyanMe() " {{{
-    hi NyanFur             guifg=#BBBBBB
-    hi NyanPoptartEdge     guifg=#ffd0ac
-    hi NyanPoptartFrosting guifg=#fd3699 guibg=#fe98ff
-    hi NyanRainbow1        guifg=#6831f8
-    hi NyanRainbow2        guifg=#0099fc
-    hi NyanRainbow3        guifg=#3cfa04
-    hi NyanRainbow4        guifg=#fdfe00
-    hi NyanRainbow5        guifg=#fc9d00
-    hi NyanRainbow6        guifg=#fe0000
-
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl None
-    echo ""
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanFur
-    echon "╰"
-    echohl NyanPoptartEdge
-    echon "⟨"
-    echohl NyanPoptartFrosting
-    echon "⣮⣯⡿"
-    echohl NyanPoptartEdge
-    echon "⟩"
-    echohl NyanFur
-    echon "⩾^ω^⩽"
-    echohl None
-    echo ""
-
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl NyanRainbow1
-    echon "≈"
-    echohl NyanRainbow2
-    echon "≋"
-    echohl NyanRainbow3
-    echon "≈"
-    echohl NyanRainbow4
-    echon "≋"
-    echohl NyanRainbow5
-    echon "≈"
-    echohl NyanRainbow6
-    echon "≋"
-    echohl None
-    echon " "
-    echohl NyanFur
-    echon "”   ‟"
-    echohl None
-
-    sleep 1
-    redraw
-    echo " "
-    echo " "
-    echo "Noms?"
-    redraw
-endfunction " }}}
-command! NyanMe call NyanMe()
 
 " }}}
 " Hg {{{
@@ -1776,12 +1620,12 @@ if has('gui_running')
     set guicursor+=v:block-vCursor-blinkon0
     set guicursor+=i-ci:ver20-iCursor
 
-    if has("gui_macvim")
+    if has("gui_gvim")
         " Full screen means FULL screen
         set fuoptions=maxvert,maxhorz
 
         " Use the normal HIG movements, except for M-Up/Down
-        let macvim_skip_cmd_opt_movement = 1
+        let gvim_skip_cmd_opt_movement = 1
         no   <D-Left>       <Home>
         no!  <D-Left>       <Home>
         no   <M-Left>       <C-Left>
@@ -1803,11 +1647,11 @@ if has('gui_running')
         imap <M-BS>         <C-w>
         inoremap <D-BS>     <esc>my0c`y
     else
-        " Non-MacVim GUI, like Gvim
+        " Non-gVim GUI, like Gvim
     end
 else
     " Console Vim
-    " For me, this means iTerm2, possibly through tmux
+    " For me, this means urxvt, possibly through screen
 
     " Mouse support
     set mouse=a
