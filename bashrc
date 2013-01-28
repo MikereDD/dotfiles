@@ -50,6 +50,12 @@ if [ -f ~/.dir_colors ]; then
     eval `dircolors -b ~/.dir_colors`
 fi
 
+if [ -f ~/.dmenurc ]; then
+    source ~/.dmenurc
+else
+    DMENU="dmenu"
+fi
+
 ### END SOURCE BASH_STUFF ###
 
 #### Android Build Environment Needs ####

@@ -9,6 +9,7 @@
 
 [[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
 
+eval $(ssh-agent)
 # Bash_Env
 #EDITOR="vim"
 #PATH=$PATH:$HOME/bin
@@ -24,3 +25,6 @@
 #ssh-add
 
 #export USERNAME BASH_ENV PATH EDITOR
+
+alias startx='startx &> ~/.Xlog'
+#[[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
