@@ -1,7 +1,7 @@
 #!/bin/bash - 
 #===============================================================================
 #
-FILE=unpacker_tvrenamer.sh
+#          FILE: unpacker_tvrenamer.sh
 # 
 #         USAGE: ./unpacker_tvrenamer.sh
 # 
@@ -15,8 +15,7 @@ FILE=unpacker_tvrenamer.sh
 #  ORGANIZATION: Dumb Terminal Team
 #       CREATED: 2013-02-02 03:29:05 PST -08:00
 #      REVISION: 2013-02-02 16:45:27 PST -08:00
-#
-VER=0.1c
+#       VERSION: 0.1c
 #===============================================================================
 
 # variables
