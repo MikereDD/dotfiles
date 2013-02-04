@@ -1,0 +1,191 @@
+#!/bin/bash - 
+#===============================================================================
+#
+FILE=unpacker_tvrenamer.sh
+# 
+#         USAGE: ./unpacker_tvrenamer.sh
+# 
+#   DESCRIPTION: recursive unpack zip/rar files and rename them with tvnamer
+# 
+#       OPTIONS: ---
+#  REQUIREMENTS: bash, unrar, unzip, 7z, tvnamer
+#          BUGS: ---
+#         NOTES: this script is called from iftv_sortit.sh
+#        AUTHOR: Mike Redd (MR), mikeredd@mobileinfern.us
+#  ORGANIZATION: Dumb Terminal Team
+#       CREATED: 2013-02-02 03:29:05 PST -08:00
+#      REVISION: 2013-02-02 16:45:27 PST -08:00
+#
+VER=0.1c
+#===============================================================================
+
+# variables
+# lockfile
+LOCKFILE="${0}.lock"
+# path to your sort folder ie: completed downloads
+SORTDIR="/home/typezero/downloads/incoming/nzb/sort/tv"
+# path to directory where unpacked files are renamed with tvnamer
+RENAMEDIR=""$SORTDIR"/rename"
+# temp directory for logs containing extracted file name
+TMPLOG=""$DOWNLOAD"/tmp/extracted.log"
+# path to your tvnamer config # Default path is ~/.tvnamer.json
+CONFIG="/home/typezero/.tvnamer.json"
+# how the date/time is echoed to the shell
+DATE="$(date +"%d/%m/%Y %R:%S PST [%:z] $(date -u +'%d/%m/%Y %R:%S UTC')")"
+
+# binaries
+# 7z - p7zip
+P7ZIP="`which 7z`"
+# unrar
+UNRAR="`which unrar`"
+# unzip
+UNZIP="`which unzip`"
+# tvnamer
+TVNAMER="`which tvnamer`"
+
+# create tmp directory to work in
+if [ ! -d "$RENAMEDIR" ]; then
+    echo "creating rename and tmp for the script to work in"
+    echo "directories are always created inside your to-sort directory"
+    echo " creating rename and tmp directory now."
+    mkdir -p $SORTDIR/{rename/,tmp/}
+fi
+
+# sanity checks binaries quit if not found
+
+
+# enter working directory
+cd $SORTDIR
+echo -e "started: "$DATE""
+echo -e "as: $(whoami)"
+
+# sanity check for lockfile create/quit if not found/found
+if [ -f "$LOCKFILE" ]; then
+    echo "existing job running"
+    exit 0
+fi
+echo "creating lock file"
+touch "$LOCKFILE"
+OLD_IFS="$IFS"
+IFS=$'\n'
+# start search for rar archives
+echo
+echo -e "searching for rar files in "$SORTDIR""
+echo
+ARCHIVES=$(find . -type f -name '*.rar')
+for f in $ARCHIVES; do
+    CURDIR="${f%/*}"
+    # check for multipart rar files part001 part002 etc.
+    PARTCHECK=$(expr "$f" : '.*\([Pp][Aa][Rr][Tt][0-9]\+\.[Rr][Aa][Rr]\)')
+    echo -e "processing: "$f""
+         if [ "$PARTCHECK" ]; then
+             echo "multipart rar archive"
+             PART1=$(expr "$f" : '.*\([Pp][Aa][Rr][Tt]0\+1\.[Rr][Aa][Rr]\)')
+             if [ "$PART1" ]; then
+                 # create log of extracted file to call later
+                 echo "creating file.log of extracted file"
+                 nice -n 19 "$P7ZIP" l -slt "$f" | grep "Path = " | tail -1 | awk '{ print $3 }' 2>&1 | tee "$TMPLOG"
+                 # unpack archive into directory rename
+                 echo "extracting multipart rar archive"
+                 nice -n 19 "$UNRAR" x -o+ "$f" "$RENAMEDIR"
+                  # remove the directory after sucessful unpack
+                  if [ "$?" == "0" ]; then
+                       if [ "$SORTDIR" != "$CURDIR" ]; then
+                           echo "removing "$CURDIR""
+                           nice -n 19 rm -fR "$CURDIR"
+                           echo "extraction successful"
+                           # rename extracted file with tvnamer using the file.log made from 7z
+                           # tvnamer can sort/move files depending on your config settings
+                           # this will most likely change eventually
+                           echo "renaming file with tvnamer"
+                           nice -n 19 "$TVNAMER" -c "$CONFIG" "$RENAMEDIR"/$(cat "$TMPLOG")
+                           echo "file renamed"
+                       fi
+                   else
+                       # unsuccessful unpack, i plan to dump the output to a file(s) later
+                       # maybe add par2 help ie: par2 r/par2repair
+                       echo "...!!!whoops extraction failed!!!..."
+                   fi
+               else
+                   # skip
+                   echo "skipping rar archive part"
+               fi
+           else
+               # create log of extracted file to call later
+               echo "creating file.log of extracted file"
+               nice -n 19 "$P7ZIP" l -slt "$f" | grep "Path = " | tail -1 | awk '{ print $3 }' 2>&1 | tee "$TMPLOG"
+               # unpack archive into the directory rename
+               echo "extracting rar archive"
+               nice -n 19 "$UNRAR" x -o+ "$f" "$RENAMEDIR"
+               # remove the directory after successful unpack
+               if [ "$?" == "0" ]; then
+                   if [ "$SORTDIR" != "$CURDIR" ]; then
+                       echo removing "$CURDIR"
+                       nice -n 19 rm -fR "$CURDIR"
+                       echo "extraction successful"
+                       # rename extracted file with tvnamer using the file.log made from 7z
+                       # tvnamer can sort/move files depending on your config settings
+                       # this will most likely change eventually
+                       echo "renaming file with tvnamer"
+                       nice -n 19 "$TVNAMER" -c "$CONFIG"  "$RENAMEDIR"/$(cat "$TMPLOG")
+                       echo "file renamed"
+                   fi
+               else
+                   # unsuccess unpack, i plan to dump the output to a file(s) later
+                   # maybe add par2 help ie: par2 r/par2repair 
+                   echo "...!!!whoops extraction failed!!!..."
+                fi
+         fi
+     echo
+     echo "finished with rar archive(s)"
+     echo
+ done
+# start search for zip archives
+echo -e "searching for zips in $PWD"
+ARCHIVES=$(find . -type f -name '*.zip')
+     for f in $ARCHIVES; do
+         CURDIR="${f%/*}"
+         # create log of extracted file to call later
+         nice -n 19 "$P7ZIP" l -slt "$f" | grep "Path = " | tail -1 | awk '{ print $3 }' 2>&1 | tee "$TMPLOG"
+         # unpack archive into the directory rename
+         nice -n 19 "$UNZIP" -o "$f" -d "$RENAMEDIR"
+         # rename extracted file with tvnamer using the file.log made from 7z
+         # tvnamer can sort/move files depending on your config settings
+         # this will most likely change eventually
+         echo "renaming file with tvnamer"
+         nice -n 19 "$TVNAMER" -c "$CONFIG"  "$RENAMEDIR"/$(cat "$TMPLOG")
+         echo "file renamed"
+         # remove file.log made with 7z
+         nice -n 19 rm "$TMPLOG"
+            if [ "$?" == "0" ]; then
+                if [ "$SORTDIR" != "$CURDIR" ]; then
+                    echo -e "removing $CURDIR"
+                    # remove the directory after successful unpack
+                    nice -n 19 rm -fR "$CURDIR"
+                    echo "extraction successful"
+                    echo
+                    echo "renaming file with tvnamer"
+                    nice -n 19 "$TVNAMER" -c "$CONFIG"  "$RENAMEDIR"/$(cat "$TMPLOG")
+                    echo "file renamed"
+                    # remove file.log made with 7z
+                    echo
+                    echo -e "removing $TMPLOG"
+                    nice -n 19 rm "$TMPLOG"
+                fi
+            else
+                # unsuccess unpack, i plan to dump the output to a file(s) later
+                # maybe add par2 help ie: par2 r/par2repair
+                echo "...!!!whoops extraction failed!!!..."
+            fi
+            echo
+            echo "finished with zip archive(s)"
+            echo
+        done
+# remove lock file
+IFS="$OLD_IFS"
+echo "removing lock file"
+rm "$LOCKFILE"
+echo -e "ok: $(whoami)"
+echo "we are done..."
+echo -e "finished: "$DATE""
+
