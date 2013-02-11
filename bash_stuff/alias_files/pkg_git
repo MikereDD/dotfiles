@@ -1,5 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+#
 # . ~/.bash_stuff/alias_files/pkgman_git
+#
 
 # Slackware Tools
 #############
@@ -16,10 +18,19 @@
 # Backup and use reflector to create a new mirror list
 alias newmirrorlist='CNTY="United States" && sudo mv /etc/pacman.d/mirrorlist.$(date +'%d-%m-%Y').bak && sudo reflector -l 5 -c "$CNTY" --sort rate --save /etc/pacman.d/mirrorlist'
 
+# backup installed pkglist
+alias bkuppkglst="comm -23 <(pacman -Qeq|sort) <(pacman -Qmq|sort) > ~/documents/_backups/list/pkglist-$(date +%Y%d%m).txt"
+# re-install apps from list
+alias freshreinstall='pacman -S $(< ~/documents/_backups/list/pkglist.txt)'
+
 # ABS PKGBUILD aliases
 alias mkpkgg="makepkg -g "
-alias bldpkg="makepkg -cfs "
-alias installpkgbld="makepkg -cfsi "
+alias mkpkg="makepkg -cfs "
+alias mkpkgi="makepkg -cfsi "
+
+# local repo
+alias genrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
+alias addpkgrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
 
 # Pacman
 # List updates
@@ -29,6 +40,7 @@ alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)'
 alias rmpacmandblck="sudo rm /var/lib/pacman/db.lck"
 alias pmSyu="sudo pacman -Syu"
 alias pmSy="sudo pacman -Sy"
+alias pmSyy="sudo pacman -Syy"
 alias pmS="sudo pacman -S"
 alias pmR="sudo pacman -R"
 alias pmRd="sudo pacman -Rd"
@@ -84,17 +96,18 @@ pmcl() {
 }
 
 # Yaourt aliases
-alias yS="yaourt -S"
-alias ySy="yaourt -Sy"
-alias yR="yaourt -R"
-alias yRd="yaourt -Rd"
-alias yU="yaourt -U"
-alias ySi="yaourt -Si"
-alias yQi="yaourt -Qi"
-alias yQs="yaourt -Qs"
-alias yQe="yaourt -Qe"
-alias ySw="yaourt -Sw"
-alias yG="yaourt -G"
+alias yS="yaourt -S"        # Sync
+alias ySy="yaourt -Sy"      # Refesh, Resync
+alias ySyua="yaourt -Syua"  # Sync database, upgrade packages, search the AUR
+alias ySb="yaourt -Sb"      # build and export package, its sources to a directory: yaourt -Sb --export <dir> <package>
+alias yR="yaourt -R"        # remove pkg
+alias yRd="yaourt -Rd"      # remove pkg and deps+check
+alias ySi="yaourt -Si"      # search regex with info
+alias yQi="yaourt -Qi"      # view package information (-ii for backup files)
+alias yQe="yaourt -Qe"      # list packages explicitly installed [filter]
+alias yG="yaourt -G"        # fetch pkg
+alias yB="yaourt -B"        # backup database
+
 #alias yaourtai="yaourt -Sy $(yaourt -Ss $@|head -1|cut -f2 -d "/"|awk '{print $1}')"
 # colorized pacman output with pacs alias:
 alias yai="yaourtappinstaller"
@@ -116,27 +129,33 @@ yaourtsearch() {
 }
 
 # Git Aliases
+## MOVED TO GITCONFIG ##
 alias g="git"
-#alias gbav="git branch -a -v"
-#alias gba="git branch -a"
-#alias gbl="git branch -l"
-#alias gbr="git branch -r"
-#alias gs="git status"
-#alias gdiff="git diff"
-#alias gadd="git add "
-#alias gca="git commit -a"
-#alias gpo="git push origin "
-#alias gco="git checkout "
-#alias gclo="git clone "
-#alias gp="git pull "
-#alias gm="git merge"
-#alias gcb="git-create-branch"
-#alias grv="git remote -v"
-#alias gaups="git remote add upstream"
-#alias gfups="git fetch upstream"
-#alias gbva="git branch -va"
-#alias gmupsjb="git merge upstream/jb"
-#alias gmupsm="git merge upstream/master"
+alias gbav="git branch -a -v"
+alias gba="git branch -a"
+alias gbl="git branch -l"
+alias gbr="git branch -r"
+alias gs="git status"
+alias gdiff="git diff"
+alias gadd="git add "
+alias gca="git commit -a"
+alias gpo="git push origin "
+alias gco="git checkout "
+alias gclo="git clone "
+alias gp="git pull "
+alias gm="git merge"
+alias gcb="git-create-branch"
+alias grv="git remote -v"
+alias gaups="git remote add upstream"
+alias gfups="git fetch upstream"
+alias gbva="git branch -va"
+alias gmupsjb="git merge upstream/jb"
+alias gmupsjb-mr1="git merge upstream/jb-mr1"
+alias gmupsm="git merge upstream/master"
+
+# mergetool vimdiff
+alias vimdiffmerge="git mergetool -t vimdiff"
+###################################
 
 # gco      => git checkout master
 # gcb bugs => git checkout bugs
@@ -158,3 +177,6 @@ ghclone ()
         git clone "${gh_url}" "${co_dir}" && cd "${co_dir}";
     fi
 }
+
+# Repo
+alias repo="~/bin/repo"

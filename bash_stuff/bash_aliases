@@ -210,32 +210,13 @@ calc() { echo "scale=3;$@" | bc -l ; }
 alias dburl="dropbox puburl"
 
 ## alias files broken down
-
-if [ -f ~/.bash_stuff/alias_files/android ]; then
+if [ -d ~/.bash_stuff/alias_files/ ]; then
     source ~/.bash_stuff/alias_files/android
-fi
-
-if [ -f ~/.bash_stuff/alias_files/image ]; then
     source ~/.bash_stuff/alias_files/image
-fi
-
-if [ -f ~/.bash_stuff/alias_files/irc ]; then
     source ~/.bash_stuff/alias_files/irc
-fi
-
-if [ -f ~/.bash_stuff/alias_files/misc ]; then
     source ~/.bash_stuff/alias_files/misc
-fi
-
-if [ -f ~/.bash_stuff/alias_files/office ]; then
     source ~/.bash_stuff/alias_files/office
-fi
-
-if [ -f ~/.bash_stuff/alias_files/pkgman_git ]; then
-    source ~/.bash_stuff/alias_files/pkgman_git
-fi
-
-if [ -f ~/.bash_stuff/alias_files/video_audio ]; then
+    source ~/.bash_stuff/alias_files/pkg_git
     source ~/.bash_stuff/alias_files/video_audio
 fi
 

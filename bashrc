@@ -2,89 +2,54 @@
 #
 # . ~/.bashrc
 #
+# Mike Redd <mredd -at- 0tue0 -dot- com>
+# 
 
-
-### START BASH_STUFF ###
-
+# source system and or user files
+# bashrc - system
 if [ -f /etc/bash.bashrc ]; then
-    source /etc/bash.bashrc
+      . /etc/bash.bashrc
 fi
 
+# bash-completion - system
 if [ -d /etc/bash_completion.d/ ]; then
     source /etc/bash_completion.d/*
 fi
 
-if [ -f ~/.bash_stuff/bash_exports ]; then
+# bash_stuff - my bash files
+if [ -d ~/.bash_stuff/ ]; then
+    source ~/.bash_stuff/bash_aliases
+    source ~/.bash_stuff/bash_binds
+    source ~/.bash_stuff/bash_colors
+    source ~/.bash_stuff/bash_completion
     source ~/.bash_stuff/bash_exports
-fi
-
-if [ -f ~/.bash_stuff/bash_functions ]; then
     source ~/.bash_stuff/bash_functions
 fi
 
-if [ -f ~/.bash_stuff/bash_completion ]; then
-    source ~/.bash_stuff/bash_completion
-fi
-
-if [ -f ~/.bash_stuff/bash_binds ]; then
-    source ~/.bash_stuff/bash_binds
-fi
-
-if [ -f ~/.bash_stuff/bash_aliases ]; then
-    source ~/.bash_stuff/bash_aliases
-fi
-
-if [ -f ~/.bash_stuff/bash_colors ]; then
-    source ~/.bash_stuff/bash_colors
-fi
-
+# ssh, ftp, etc, - my file
 if [ -f ~/.bash_stuff/bash_sfs ]; then
     source ~/.bash_stuff/bash_sfs
 fi
 
+# bash_prompt - my prompt ie: PS1
+## moved to end
+
+# inputrc - my inputrc
 if [ -f ~/.inputrc ]; then
     source ~/.inputrc
 fi
 
+# colors - my dir_colors
 if [ -f ~/.dir_colors ]; then
     eval `dircolors -b ~/.dir_colors`
 fi
 
+# dmenu - my demnu
 if [ -f ~/.dmenurc ]; then
     source ~/.dmenurc
 else
     DMENU="dmenu"
 fi
-
-### END SOURCE BASH_STUFF ###
-
-#### Android Build Environment Needs ####
-## java-jdk
-#export J2SDKDIR=/opt/java6
-#export PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
-#export JAVA_HOME=/opt/java6
-#export DERBY_HOME=/opt/java6/db
-
-## java-jre
-#export PATH=$PATH:/opt/java6/jre/bin
-#export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
-
-## android sdk
-#export ANDROID_HOME=/opt/android-sdk
-#export ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
-#export ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
-#export PATH=$PATH:$ANDROID_HOME/tools
-#export PATH=$PATH:/opt/android-sdk/platform-tools
-
-## android ndk
-#export PATH=$PATH:/opt/android-ndk
-#export ANDROID_NDK=/opt/android-ndk
-
-## CCACHE
-export USE_CCACHE=1
-export CCACHE_DIR=~/android/.ccache
-
-#### End Needs ####
 
 # exit if we're in a script
 [ -z "$PS1" ] && return
@@ -100,16 +65,6 @@ fi
 
 function sshlog () { \ssh $@ 2>&1 | tee -a ~/.ssh/.logs/$(date +%Y%m%d).log; }
 alias ssh="sshlog"
-
-# Bash shell driver for go (http://code.google.com/p/go-tool/).
-function go {
-    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
-    python2 -m go $*
-    if [ -f $GO_SHELL_SCRIPT ] ; then
-        source $GO_SHELL_SCRIPT
-    fi
-    unset GO_SHELL_SCRIPT
-}
 
 # sudo
 alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
@@ -185,12 +140,7 @@ fi
 
 }
 
-# auto startx and logout, security ! 
-#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
-#  startx
-#  logout
-#fi
-
+# DO NOT REMOVE #
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
