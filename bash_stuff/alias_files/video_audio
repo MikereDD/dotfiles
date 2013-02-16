@@ -1,6 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # . ~/.bash_stuff/alias_files/video_audio
-
+#
 # Alias"s to control hardware
 #############
 alias dvdo="eject /dev/sr0"
@@ -45,17 +45,26 @@ alias guvcview="guvcview -d /dev/video1"
 alias vlcremote="vlc --control lirc "
 alias vlctv="vlc pvr://dev/video0  --hdtv-fix --aspect-ratio=16:9 --deinterlace-mode=b --disable-screensaver --control lirc"
 # MPlayer
-alias mplayerlog="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.mplayer/nowplaying.log"
+#alias mplayerlog="if [ -f $HOME/.mplayer/nowplaying.log ]; then rm -rf $HOME/.mplayer/nowplaying.log ;fi ;mplayer -identify $@> $HOME/.mplayer/nowplaying.log"
 #alias mplayerfb="mplayer -vo fbdev -fbmode qvga -vm -ac mad "
 alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh"
 #alias mplayertv="mplayer /dev/video1 -cache 2000 -panscan 1 -vf yadif=1/3,hqdn3d "
 alias mplayertv="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.mplayer/nowplaying.log -cache 2000 -panscan 1 /dev/video0"
 
 # Pandora
+alias nppbfly='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/.*on//g')"'
 alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
 alias np="sh ~/bin/nowplaying"
 # LastFM
 alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
+
+# TVNamer
+alias tvnamer="tvnamer -c ~/.tvnamer.json"
+
+# sabnzbd
+alias sabnon="/bin/sh /usr/bin/sabnzbd -f /home/typezero/.sabnzbd/sabnzbd.ini &"
+# nzbget
+alias nzbgon="nzbget -c ~/.config/nzbget/nzbget.conf -s"
 
 # Google MusicManager - Wine
 #alias musicmanager="MusicManager"

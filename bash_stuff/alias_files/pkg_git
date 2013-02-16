@@ -27,39 +27,43 @@ alias freshreinstall='pacman -S $(< ~/documents/_backups/list/pkglist.txt)'
 alias mkpkgg="makepkg -g "
 alias mkpkg="makepkg -cfs "
 alias mkpkgi="makepkg -cfsi "
+alias mkpkgsign="makepkg --sign --key $(awk '{ print $0 }' ~/.config/keys/gpg_pkg.txt) -cfs"
 
 # local repo
 alias genrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
+alias genreposign="repo-add -s -k $(awk '{ print $0 }') /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
 alias addpkgrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
+alias addpkgreposign="repo-add -s -k $(awk '{ print $0 }') /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
 
 # Pacman
 # List updates
+alias pm='PACMAN=/usr/bin/pacman; [ -f /usr/bin/pacman-color ] && PACMAN=/usr/bin/pacman-color; $PACMAN $@'
 alias listupdates="sh ~/scripts/updates/list_archupdates.sh"
 alias asortpkg="LC_ALL=C pacman -Qi | sed -n '/^Name[^:]*: \(.*\)/{s//\1 /;x};/^Installed[^:]*: \(.*\)/{s//\1/;H;x;s/\n//;p}' | sort -nk2"
 alias alpkg='comm -23 <(pacman -Qeq) <(pacman -Qmq)'
 alias rmpacmandblck="sudo rm /var/lib/pacman/db.lck"
-alias pmSyu="sudo pacman -Syu"
-alias pmSy="sudo pacman -Sy"
-alias pmSyy="sudo pacman -Syy"
-alias pmS="sudo pacman -S"
-alias pmR="sudo pacman -R"
-alias pmRd="sudo pacman -Rd"
-alias pmU="sudo pacman -U"
-alias pmSi="pacman -Si"
-alias pmQi="pacman -Qi"
-alias pmQs="pacman -Qs"
-alias pmQe="pacman -Qe"
-alias pmSl="sudo pacman -Sl"
-alias pmSw="sudo pacman -Sw"
-alias pmQqm="pacman -Qqm"
-alias pmQdt="pacman -Qdt"
-alias pmQo="pacman -Qo"
-alias pmQl="pacman -Ql"
-alias pmSc="pacman -Sc"
+alias ${pm}Syu="sudo pacman -Syu"
+alias ${pm}Sy="sudo pacman -Sy"
+alias ${pm}Syy="sudo pacman -Syy"
+alias ${pm}S="sudo pacman -S"
+alias ${pm}R="sudo pacman -R"
+alias ${pm}Rd="sudo pacman -Rd"
+alias ${pm}U="sudo pacman -U"
+alias ${pm}Si="pacman -Si"
+alias ${pm}Qi="pacman -Qi"
+alias ${pm}Qs="pacman -Qs"
+alias ${pm}Qe="pacman -Qe"
+alias ${pm}Sl="sudo pacman -Sl"
+alias ${pm}Sw="sudo pacman -Sw"
+alias ${pm}Qqm="pacman -Qqm"
+alias ${pm}Qdt="pacman -Qdt"
+alias ${pm}Qo="pacman -Qo"
+alias ${pm}Ql="pacman -Ql"
+alias ${pm}Sc="pacman -Sc"
 alias mpfci="makepkg -fci"
 #alias pacai=`echo -e $(sudo pacman -Sy $(pacman -Sy $@|head -1|cut -f2 -d "/"|awk '{print $1}'))`
 ##
-alias pmAI="pacmanappinstaller"
+alias ${pm}AI="pacmanappinstaller"
 pacmanappinstaller() {
     echo -e "Preparing to install $(pacman -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
      -e "sudo pacman -Sy $(pacman -Ss "$@" | head -1 | cut -f2 -d '/' | awk '{print $1}')" \
@@ -67,7 +71,7 @@ pacmanappinstaller() {
      -e "Enjoy.. remember you can always uninstall it.."
 }
 # colorized pacman output with pacs alias:
-alias pmfind="pacmansearch"
+alias ${pm}find="pacmansearch"
 pacmansearch() {
    echo -e "$(pacman -Ss "$@" | sed \
      -e 's#^installed/.*#\\033[1;31m&\\033[0;37m#g' \

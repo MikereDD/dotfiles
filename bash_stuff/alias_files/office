@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # . ~/.bash_stuff/alias_files/office
 
 # Office
