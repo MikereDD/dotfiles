@@ -31,9 +31,9 @@ alias mkpkgsign="makepkg --sign --key $(awk '{ print $0 }' ~/.config/keys/gpg_pk
 
 # local repo
 alias genrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
-alias genreposign="repo-add -s -k $(awk '{ print $0 }') /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
+alias genreposign="repo-add -s -k $(awk '{ print $0 }' ~/.config/keys/gpg_pkg.txt) /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/*.pkg.tar.xz"
 alias addpkgrepo="repo-add /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.repo.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
-alias addpkgreposign="repo-add -s -k $(awk '{ print $0 }') /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
+alias addpkgreposign="repo-add -s -k $(awk '{ print $0 }' ~/.config/keys/gpg_pkg.txt) /mnt/b/builddirs/abs/_local_repo/x86_64/seraphiel.db.tar.gz /mnt/b/builddirs/abs/_local_repo/x86_64/$1"
 
 # Pacman
 # List updates
