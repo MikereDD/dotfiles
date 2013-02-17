@@ -58,7 +58,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run
+bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb black -nf grey -sb black -sf red
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -233,6 +233,9 @@ for_window [class="URxvt"] border 1pixel
 # dirty hack to set tabbed container layout
 for_window [class="(?i)firefox"] layout tabbed
 for_window [class="(?i)thunderbird"] layout tabbed
+for_window [class="(?i)chromium"] layout tabbed
+for_window [class="(?i)opera"] layout tabbed
+for_window [class="(?i)dwb"] layout tabbed
 # }}}
 
 # bar {{{
@@ -244,9 +247,9 @@ bar {
         status_command i3status --config ~/.i3/i3status.conf
         position top
         mode hide
-        modifier $alt
+        modifier mod2
         workspace_buttons yes
-        tray_output primary
+        tray_output HDMI-0
 
         font xft:Dina 8
 
