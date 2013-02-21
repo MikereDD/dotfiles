@@ -35,8 +35,7 @@ HISTCONTROL="ignoreboth"
 HISTIGNORE="history*"
 
 # PROMPT_COMMAND
-PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";'
-
+#export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";
 # SDL_AUDIODRIVER
 SDL_AUDIODRIVER="alsa"
 
@@ -88,15 +87,25 @@ ANDROID_JAVA_HOME="$JAVA_HOME"
 #PATH=$PATH:/opt/android-ndk
 #ANDROID_NDK=/opt/android-ndk
 
+# ARM
+ARM_ROOT=/opt/android-ndk
+ARM_INC=$ARM_ROOT/platforms/android-9/arch-arm/usr/include/
+ARM_LIB=$ARM_ROOT/platforms/android-9/arch-arm/usr/lib/
+ARM_TOOL=$ARM_ROOT/toolchains/arm-linux-androideabi-4.7/prebuilt/linux-x86
+ARM_LIBO=$ARM_TOOL/lib/gcc/arm-linux-androideabi/4.7/
+ARM_PRE=arm-eabi
+
 # CCACHE
-export USE_CCACHE="1"
-export CCACHE_DIR="~/android/.ccache"
+USE_CCACHE="1"
+CCACHE_DIR="/home/typezero/android/.ccache"
 
 #### END ANDROID NEEDS ####
 
-# EXPORT PATH
-export PATH="${PATH}:$HOME/bin"
-
 # EXPORT ALL
-export BASH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME ANDROID_JAVA_HOME USE_CCACHE CCACHE_DIR
+export BASH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME ANDROID_JAVA_HOME USE_CCACHE CCACHE_DIR ARM_ROOT ARM_INC ARM_LIB ARM_TOOL ARM_LIBO ARM_PRE
+
+# PATH
+export PATH="${PATH}:${PATH}:$HOME/bin"
+export PATH=$ARM_TOOL/bin:$PATH
+export PATH=$ARM_TOOL/arm-eabi/bin:$PATH
 
