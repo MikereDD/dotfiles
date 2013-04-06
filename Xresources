@@ -21,13 +21,13 @@ Xft.lcdfilter:  lcddefault
 *background:             #101116
 *foreground:             #d2d2d2
 *fading:                 40
-*fadeColor:              #191919
+*fadeColor:              #101119
 *cursorColor:            #d2d2d2
 *pointerColorBackground: #191919
 *pointerColorForeground: #d2d2d2
 !
 ! black dark/light
-*color0:                #151515
+*color0:                #101116
 *color8:                #191919
 !
 ! red dark/light
@@ -35,8 +35,8 @@ Xft.lcdfilter:  lcddefault
 *color9:                #d75f00
 !
 ! green dark/light
-*color2:                #005f00
-*color10:               #00ff00
+*color2:                #d2d2d2
+*color10:               #d2d2d2
 !
 ! yellow dark/light
 *color3:                #87d700
@@ -55,7 +55,7 @@ Xft.lcdfilter:  lcddefault
 *color14:               #4aeff1
 !
 ! white dark/light
-*color7:                #999999
+*color7:                #d2d2d2
 *color15:               #d2d2d2
 ! }}}
 
@@ -81,70 +81,85 @@ URxvt*bolditalicFont:          xft:PragmataPro:bold:italic:pixelsize=13:antialia
 !URxvt*tintColor: #00050a
 !URxvt*shading: 10
 
-URxvt*geometry:                   80x40
-URxvt*borderless:                 true
-URxvt*internalBorder:             0
-URxvt*depth:                      32
-URxvt*saveLines:                  1500
-URxvt*visualBell:                 true
-URxvt*scrollWithBuffer:           false
-URxvt*scrollTtyOutput:            false
-URxvt*jumpScroll:                 true
-URxvt*scrollBar:                  false
-URxvt*scrollstyle:                rxvt
-URxvt*loginShell:                 no
-URxvt*cutchars:                   BACKSLASH '"'&()*,;<=>?@[]{|}
-URxvt*print-pipe:                 cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
-URxvt*perl-ext-common:            default,matcher,clipboard,keyboard-select,tabbedex
-URxvt*keysym.M-u:                 perl:mark-yank-urls:activate_mark_mode
-URxvt*keysym.M-Escape:            perl:keyboard-select:activate
-URxvt*keysym:M-s:                 perl:keyboard-select:search
-URxvt*underlineURLs:              true
-URxvt*urlButton:                  2
-URxvt*perl-lib:                   ${HOME}/.urxvt/
-URxvt*perl-ext:                   selection,mark-yank-urls
-!URxvt*urlLauncher:                chromium
-URxvt*urlLauncher:                dwb
+URxvt.geometry:                   80x40
+URxvt.borderless:                 true
+URxvt.internalBorder:             0
+URxvt.depth:                      32
+URxvt.saveLines:                  1500
+URxvt.visualBell:                 true
+URxvt.scrollWithBuffer:           false
+URxvt.scrollTtyOutput:            false
+URxvt.jumpScroll:                 true
+URxvt.scrollBar:                  false
+URxvt.scrollstyle:                rxvt
+URxvt.loginShell:                 no
+URxvt.cutchars:                   BACKSLASH '"'&()*,;<=>?@[]{|}
+URxvt.print-pipe:                 cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt.perl-ext-common:            default,matcher,clipboard,keyboard-select,tabbedex
+!URxvt.keysym.M-u:                 perl:mark-yank-urls:activate_mark_mode
+URxvt.keysym.M-u:                 perl:url-select:select_next
+URxvt.keysym.M-Escape:            perl:keyboard-select:activate
+URxvt.keysym:M-s:                 perl:keyboard-select:search
+URxvt.keysym.M-c:                 perl:clipboard:copy
+URxvt.keysym.M-v:                 perl:clipboard:paste
+URxvt.keysym.M-C-v:               perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd:          xsel -ib
+URxvt.clipboard.pastecmd:         xsel -ob
+!URxvt.clipboard.copycmd:          xclip -i -selection clipboard
+!URxvt.clipboard.pastecmd:         xclip -o -selection clipboard
+URxvt.url-select.autocopy:        true
+URxvt.url-select.underline:       true
+URxvt.url-select.button:          2
+URxvt.url-select.launcher:        dwb
+URxvt.perl-lib:                   ${HOME}/.urxvt/perl/
+URxvt.perl-ext:                   selection,mark-yank-urls
 URxvt.keysym.C-Delete:            perl:matcher:last
 URxvt.keysym.M-Delete:            perl:matcher:list
-URxvt*matcher.button:             1
+URxvt.matcher.button:             1
 !URxvt.matcher.pattern.1:  \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
 !URxvt.matcher.pattern.2:  \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt*matcher.pattern.1: \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt*matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.pattern.1: \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.pattern.2: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.launcher.2: vim +$2 $1
 
-URxvt*tabbed.autohide:            yes
-!URxvt*tabbar-fg:                  124
-!URxvt*tabbar-bg:                  232
-URxvt*tabbar-fg:                  #999999
-URxvt*tabbar-bg:                  #151515
-!URxvt*tab-fg:                     51
-!URxvt*tab-bg:                     233
-URxvt*tab-fg:                     #d2d2d2
-URxvt*tab-bg:                     #151515
-!URxvt*title-fg:                   124
-!URxvt*title-bg:                   232
-URxvt*title-fg:                   #999999
-URxvt*title-bg:                   #151515
-URxvt*tabbed.secondaryScroll:     true
-URxvt*tabbed.matcher.button:      2
-!URxvt*tabbed.perl-ext-common:     default,matcher,clipboard
-URxvt*tabbed.perl-ext-common:     default,matcher,clipboard,keyboard-select,tabbedex
-URxvt*tabbed.keysym.M-u:          perl:mark-yank-urls:activate_mark_mode
-URxvt*tabbed.underlineURLs:       true
-URxvt*tabbed.perl-lib:            ${HOME}/.urxvt/
-URxvt*tabbed.perl-ext:            selection,mark-yank-urls
-!URxvt*tabbed.urlLauncher:         firefox
-URxvt*tabbed.urlLauncher:         dwb
-!URxvt*tabbed.urlLauncher:         chromium
-
-URxvt*cursorColor:                #485e6c
-URxvt*cursorColor2:               #c0672d
-URxvt*colorBD:                    #ffffff
-URxvt*colorIT:                    #bbbbbb
-URxvt*colorUL:                    #999999
-URxvt*underlineColor:             #006e85
+URxvt.tabbed.autohide:             yes
+!URxvt.tabbar-fg:                   124
+!URxvt.tabbar-bg:                   232
+URxvt.tabbar-fg:                   #d2d2d2
+URxvt.tabbar-bg:                   #101116
+!URxvt.tab-fg:                      51
+!URxvt.tab-bg:                      233
+URxvt.tab-fg:                      #d2d2d2
+URxvt.tab-bg:                      #101116
+!URxvt.title-fg:                    124
+!URxvt.title-bg:                    232
+URxvt.title-fg:                    #d2d2d2
+URxvt.title-bg:                    #101116
+URxvt.tabbed.secondaryScroll:      true
+URxvt.tabbed.matcher.button:       2
+URxvt.tabbed.perl-ext-common:      default,matcher,clipboard,keyboard-select,tabbedex
+URxvt.tabbed.keysym.M-u:           perl:url-select:select_next
+URxvt.tabbed.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.tabbed.keysym:M-s:           perl:keyboard-select:search
+URxvt.tabbed.keysym.M-c:           perl:clipboard:copy
+URxvt.tabbed.keysym.M-v:           perl:clipboard:paste
+URxvt.tabbed.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.tabbed.clipboard.copycmd:    xsel -ib
+URxvt.tabbed.clipboard.pastecmd:   xsel -ob
+!URxvt.clipboard.copycmd:           xclip -i -selection clipboard
+!URxvt.clipboard.pastecmd:          xclip -o -selection clipboard
+URxvt.tabbed.url-select.autocopy:  true
+URxvt.tabbed.url-select.underline: true
+URxvt.tabbed.url-select.button:    2
+URxvt.tabbed.url-select.launcher:  dwb
+URxvt.tabbed.perl-lib:             ${HOME}/.urxvt/perl/
+URxvt.tabbed.perl-ext:             selection,mark-yank-urls
+URxvt.cursorColor:                 #485e6c
+URxvt.cursorColor2:                #c0672d
+URxvt.colorBD:                     #ffffff
+URxvt.colorIT:                     #bbbbbb
+URxvt.colorUL:                     #d2d2d2
+URxvt.underlineColor:              #006e85
 
 ! }}}
 
@@ -199,51 +214,52 @@ xpdf*urlCommand:                  firefox %s
 
 ! ***** xcalc.***** ! {{{
 xcalc.geometry:                        200x250+1668+21
-xcalc.ti.background:                   #151515
-xcalc.ti.bevel.borderColor:            #555555
+xcalc.ti.background:                   #101116
+xcalc.ti.bevel.borderColor:            #262835
 xcalc.ti.bevel.borderWidth:            1
 xcalc.ti.bevel.background:             #191919
-xcalc.ti.bevel.screen.background:      #151515
-xcalc.ti.bevel.screen.DEG.background:  #151515
-xcalc.ti.bevel.screen.DEG.foreground:  #999999
-xcalc.ti.bevel.screen.GRAD.background: #151515
-xcalc.ti.bevel.screen.GRAD.foreground: #999999
-xcalc.ti.bevel.screen.RAD.background:  #151515
-xcalc.ti.bevel.screen.RAD.foreground:  #999999
-xcalc.ti.bevel.screen.INV.background:  #151515
-xcalc.ti.bevel.screen.INV.foreground:  #999999
-xcalc.ti.bevel.screen.LCD.background:  #151515
-xcalc.ti.bevel.screen.LCD.foreground:  #999999
+xcalc.ti.bevel.screen.background:      #101116
+xcalc.ti.bevel.screen.DEG.background:  #101116
+xcalc.ti.bevel.screen.DEG.foreground:  #d2d2d2
+xcalc.ti.bevel.screen.GRAD.background: #101116
+xcalc.ti.bevel.screen.GRAD.foreground: #d2d2d2
+xcalc.ti.bevel.screen.RAD.background:  #101116
+xcalc.ti.bevel.screen.RAD.foreground:  #d2d2d2
+xcalc.ti.bevel.screen.INV.background:  #101116
+xcalc.ti.bevel.screen.INV.foreground:  #d2d2d2
+xcalc.ti.bevel.screen.LCD.background:  #101116
+xcalc.ti.bevel.screen.LCD.foreground:  #d2d2d2
 xcalc.ti.bevel.screen.LCD.shadowWidth: 0
-xcalc.ti.bevel.screen.M.background:    #151515
-xcalc.ti.bevel.screen.M.foreground:    #999999
-xcalc.ti.bevel.screen.P.background:    #151515
+xcalc.ti.bevel.screen.M.background:    #101116
+xcalc.ti.bevel.screen.M.foreground:    #d2d2d2
+xcalc.ti.bevel.screen.P.background:    #101116
 xcalc.ti.bevel.screen.P.foreground:    #3b3d2b
-xcalc.ti.Command.borderColor: #555555
-xcalc.ti.Command.foreground:  #999999
-xcalc.ti.Command.background:  #121212
-xcalc.ti.button5.background:  #3d1c1c
-xcalc.ti.button19.background: #151515
-xcalc.ti.button18.background: #151515
-xcalc.ti.button20.background: #151515
+xcalc.ti.Command.borderColor: #262835
+xcalc.ti.Command.foreground:  #d2d2d2
+xcalc.ti.Command.background:  #100116
+xcalc.ti.button5.background:  #190a0a
+xcalc.ti.button19.background: #101116
+xcalc.ti.button18.background: #101116
+xcalc.ti.button20.background: #101116
 !uncomment to change label on division button
 xcalc.ti.button20.label:      /
-xcalc.ti.button25.background: #151515
-xcalc.ti.button30.background: #151515
-xcalc.ti.button35.background: #151515
-xcalc.ti.button40.background: #151515
-xcalc.ti.button22.background: #161616
-xcalc.ti.button23.background: #161616
-xcalc.ti.button24.background: #161616
-xcalc.ti.button27.background: #161616
-xcalc.ti.button28.background: #161616
-xcalc.ti.button29.background: #161616
-xcalc.ti.button32.background: #161616
-xcalc.ti.button33.background: #161616
-xcalc.ti.button34.background: #161616
-xcalc.ti.button37.background: #161616
-xcalc.ti.button38.background: #151515
-xcalc.ti.button39.background: #151515
+xcalc.ti.button25.background: #181e31
+xcalc.ti.button25.foreground: #121217
+xcalc.ti.button30.background: #181e31
+xcalc.ti.button35.background: #181e31
+xcalc.ti.button40.background: #181e31
+xcalc.ti.button22.background: #101110
+xcalc.ti.button23.background: #101110
+xcalc.ti.button24.background: #101110
+xcalc.ti.button27.background: #101110
+xcalc.ti.button28.background: #101110
+xcalc.ti.button29.background: #101110
+xcalc.ti.button32.background: #101110
+xcalc.ti.button33.background: #101110
+xcalc.ti.button34.background: #101110
+xcalc.ti.button37.background: #101110
+xcalc.ti.button38.background: #181e31
+xcalc.ti.button39.background: #181e31
 xcalc.Cursor:                 hand1
 xcalc.ShapeStyle:             circle
 ! }}}
