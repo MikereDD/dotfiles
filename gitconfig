@@ -43,7 +43,7 @@
         cm = commit -m
         po = push origin
         co = checkout
-        cp = cherrypick
+        cp = cherry-pick
         clo = clone
         p = pull
         m = merge
