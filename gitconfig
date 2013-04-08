@@ -28,7 +28,7 @@
 [diff]
         tool = vimdiff
 [merge]
-	tool = diffconflicts
+        tool = diffconflicts
 [difftool]
         prompt = false
 [alias]
@@ -43,6 +43,7 @@
         cm = commit -m
         po = push origin
         co = checkout
+        cp = cherrypick
         clo = clone
         p = pull
         m = merge
@@ -62,7 +63,10 @@
         short = rev-parse --short
         mnf = merge --no-ff
         vdm = mergetool -t vimdiff
+        graph = log --graph --oneline --decorate
 [mergetool "diffconflicts"]
-	cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
-	trustExitCode = true
-	keepBackup = false
+        cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
+        trustExitCode = true
+        keepBackup = false
+[push]
+        default = current 
