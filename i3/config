@@ -42,12 +42,17 @@ popup_during_fullscreen ignore
 
 # Colors {{{
 # class                 border  backgr. text    indicator
-client.background #181e31
+#client.background       #181e31
+client.background       #060606
 #statusline
-client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
-client.focused_inactive #181e31 #101116 #999999 #484e50
-client.unfocused        #181e31 #101116 #515152 #292d2e
-client.urgent           #700000 #900000 #d2d2d2 #ffffff
+#client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
+client.focused          #090909 #060606 #666666} #969696
+#client.focused_inactive #181e31 #101116 #999999 #484e50
+client.focused_inactive #1e1e1e #060606 #333333 #444444
+#client.unfocused        #181e31 #101116 #515152 #292d2e
+client.unfocused        #0e0e0e #090909 #222222 #222222
+#client.urgent           #700000 #900000 #d2d2d2 #ffffff
+client.urgent           #330909 #000000 #ffffff #330909
 # }}}
 
 # binds {{{
@@ -58,7 +63,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb black -nf grey -sb black -sf red
+bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#666666" -sb "#060606" -sf "#330909"
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -247,19 +252,24 @@ bar {
         status_command i3status --config ~/.i3/i3status.conf
         position top
         mode hide
-        modifier mod2
+        modifier mod1
         workspace_buttons yes
         tray_output HDMI-0
 
         font xft:Dina 8
 
 colors {
-        background #191f2d
+        #background        #191f2d
+        background         #060606
         # class            border  backgr  text    indicator
-        focused_workspace  #181e31 #101116 #d2d2d2
-        active_workspace   #181e31 #101116 #999999
-        inactive_workspace #181e31 #101116 #515152
-        urgent_workspace   #900000 #757a83 #ffffff
+        #focused_workspace  #181e31 #101116 #d2d2d2
+        focused_workspace  #090909 #060606 #666666 #969696
+        #active_workspace   #181e31 #101116 #999999
+        active_workspace   #1e1e1e #060606 #333333 #444444
+        #inactive_workspace #181e31 #101116 #515152
+        inactive_workspace #0e0e0e #090909 #222222 #222222
+        #urgent_workspace   #900000 #757a83 #ffffff
+        urgent_workspace   #330909 #000000 #ffffff #330909
     }
 
 }

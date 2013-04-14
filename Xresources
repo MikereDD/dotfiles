@@ -18,45 +18,50 @@ Xft.lcdfilter:  lcddefault
 ! }}}
 
 ! ***** Colors ***** ! {{{
-*background:             #101116
-*foreground:             #d2d2d2
+!*background:             #101116
+*background:             #060606
+!*foreground:             #d2d2d2
+*foreground:             #999999
 *fading:                 40
-*fadeColor:              #101119
+!*fadeColor:              #101119
+*fadeColor:              #030303
 *cursorColor:            #d2d2d2
-*pointerColorBackground: #191919
-*pointerColorForeground: #d2d2d2
+!*pointerColorBackground: #191919
+*pointerColorBackground: #060606
+!*pointerColorForeground: #d2d2d2
+*pointerColorForeground: #999999
 !
 ! black dark/light
-*color0:                #101116
-*color8:                #191919
+*color0:                #000000
+*color8:                #030303
 !
 ! red dark/light
-*color1:                #5f0000
-*color9:                #d75f00
+*color1:                #8B0000
+*color9:                #CD5C5C
 !
 ! green dark/light
-*color2:                #d2d2d2
-*color10:               #d2d2d2
+*color2:                #008000
+*color10:               #90EE90
 !
 ! yellow dark/light
-*color3:                #87d700
-*color11:               #87ff5f
+*color3:                #FFFF00
+*color11:               #FFFFE0
 !
 ! blue dark/light
-*color4:                #000080
-*color12:               #8fd8d8
+*color4:                #00008B
+*color12:               #ADD8E6
 !
 ! magenta dark/light
-*color5:                #ff00ff
-*color13:               #ff77fd
+*color5:                #8B008B
+*color13:               #FF00FF
 !
 !!! cyan dark/light
-*color6:                #00ffff
-*color14:               #4aeff1
+*color6:                #00FFFF
+*color14:               #E0FFFF
 !
 ! white dark/light
-*color7:                #d2d2d2
-*color15:               #d2d2d2
+*color7:                #F5F5F5
+*color15:               #FAEBD7
 ! }}}
 
 ! ***** URxvt General Preferences ***** ! {{{
@@ -125,16 +130,16 @@ URxvt.matcher.launcher.2: vim +$2 $1
 URxvt.tabbed.autohide:             yes
 !URxvt.tabbar-fg:                   124
 !URxvt.tabbar-bg:                   232
-URxvt.tabbar-fg:                   #d2d2d2
-URxvt.tabbar-bg:                   #101116
+URxvt.tabbar-fg:                   #999999
+URxvt.tabbar-bg:                   #060606
 !URxvt.tab-fg:                      51
 !URxvt.tab-bg:                      233
-URxvt.tab-fg:                      #d2d2d2
-URxvt.tab-bg:                      #101116
+URxvt.tab-fg:                      #999999
+URxvt.tab-bg:                      #060606
 !URxvt.title-fg:                    124
 !URxvt.title-bg:                    232
-URxvt.title-fg:                    #d2d2d2
-URxvt.title-bg:                    #101116
+URxvt.title-fg:                    #999999
+URxvt.title-bg:                    #060606
 URxvt.tabbed.secondaryScroll:      true
 URxvt.tabbed.matcher.button:       2
 URxvt.tabbed.perl-ext-common:      default,matcher,clipboard,keyboard-select,tabbedex
@@ -172,21 +177,21 @@ xscreensaver.Dialog.buttonFont:         -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.Dialog.dateFont:           -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.passwd.passwdFont:         -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
 !general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #006e85
-xscreensaver.Dialog.background:         #191717
-xscreensaver.Dialog.topShadowColor:     #434343
-xscreensaver.Dialog.bottomShadowColor:  #424242
-xscreensaver.Dialog.Button.foreground:  #276b47
-xscreensaver.Dialog.Button.background:  #191717
+xscreensaver.Dialog.foreground:         #999999
+xscreensaver.Dialog.background:         #060606
+xscreensaver.Dialog.topShadowColor:     #020202
+xscreensaver.Dialog.bottomShadowColor:  #090909
+xscreensaver.Dialog.Button.foreground:  #999999
+xscreensaver.Dialog.Button.background:  #080808
 !username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #006e85
-xscreensaver.Dialog.text.background:    #191717
+xscreensaver.Dialog.text.foreground:    #999999
+xscreensaver.Dialog.text.background:    #060606
 xscreensaver.Dialog.internalBorderWidth:24
 xscreensaver.Dialog.borderWidth:        20
 xscreensaver.Dialog.shadowThickness:    2
 !timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #276b47
-xscreensaver.passwd.thermometer.background:  #191717
+xscreensaver.passwd.thermometer.foreground:  #999999
+xscreensaver.passwd.thermometer.background:  #060606
 xscreensaver.passwd.thermometer.width:       8
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver.dateFormat:                %I:%M%P %a %b %d, %Y
@@ -194,12 +199,12 @@ xscreensaver.dateFormat:                %I:%M%P %a %b %d, %Y
 
 ! ****** X11 SSH AskPass ****** ! {{{
 x11-ssh-askpass*font:                   -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-x11-ssh-askpass*background:             #191717
-x11-ssh-askpass*foreground:             #276b47
-x11-ssh-askpass.Button*background:      #000000
-x11-ssh-askpass.Indicator*foreground:   #ff9900
-x11-ssh-askpass.Indicator*background:   #FFFFFF
-x11-ssh-askpass*topShadowColor:         #006e85
+x11-ssh-askpass*background:             #060606
+x11-ssh-askpass*foreground:             #999999
+x11-ssh-askpass.Button*background:      #090909
+x11-ssh-askpass.Indicator*foreground:   #999999
+x11-ssh-askpass.Indicator*background:   #030303
+x11-ssh-askpass*topShadowColor:         #090909
 x11-ssh-askpass*bottomShadowColor:      #000000
 x11-ssh-askpass.*borderWidth:           1
 ! }}}
@@ -209,45 +214,45 @@ xpdf*enableFreetype:              yes
 xpdf*antialias:                   yes
 xpdf*foreground:                  white
 xpdf*background:                  black
-xpdf*urlCommand:                  firefox %s
+xpdf*urlCommand:                  dwb %s
 ! }}}
 
 ! ***** xcalc.***** ! {{{
 xcalc.geometry:                        200x250+1668+21
-xcalc.ti.background:                   #101116
-xcalc.ti.bevel.borderColor:            #262835
+xcalc.ti.background:                   #060606
+xcalc.ti.bevel.borderColor:            #3e3e3e
 xcalc.ti.bevel.borderWidth:            1
 xcalc.ti.bevel.background:             #191919
-xcalc.ti.bevel.screen.background:      #101116
-xcalc.ti.bevel.screen.DEG.background:  #101116
-xcalc.ti.bevel.screen.DEG.foreground:  #d2d2d2
-xcalc.ti.bevel.screen.GRAD.background: #101116
-xcalc.ti.bevel.screen.GRAD.foreground: #d2d2d2
-xcalc.ti.bevel.screen.RAD.background:  #101116
-xcalc.ti.bevel.screen.RAD.foreground:  #d2d2d2
-xcalc.ti.bevel.screen.INV.background:  #101116
-xcalc.ti.bevel.screen.INV.foreground:  #d2d2d2
-xcalc.ti.bevel.screen.LCD.background:  #101116
-xcalc.ti.bevel.screen.LCD.foreground:  #d2d2d2
+xcalc.ti.bevel.screen.background:      #060606
+xcalc.ti.bevel.screen.DEG.background:  #060606
+xcalc.ti.bevel.screen.DEG.foreground:  #999999
+xcalc.ti.bevel.screen.GRAD.background: #060606
+xcalc.ti.bevel.screen.GRAD.foreground: #999999
+xcalc.ti.bevel.screen.RAD.background:  #060606
+xcalc.ti.bevel.screen.RAD.foreground:  #999999
+xcalc.ti.bevel.screen.INV.background:  #060606
+xcalc.ti.bevel.screen.INV.foreground:  #999999
+xcalc.ti.bevel.screen.LCD.background:  #060606
+xcalc.ti.bevel.screen.LCD.foreground:  #999999
 xcalc.ti.bevel.screen.LCD.shadowWidth: 0
-xcalc.ti.bevel.screen.M.background:    #101116
-xcalc.ti.bevel.screen.M.foreground:    #d2d2d2
-xcalc.ti.bevel.screen.P.background:    #101116
-xcalc.ti.bevel.screen.P.foreground:    #3b3d2b
-xcalc.ti.Command.borderColor: #262835
-xcalc.ti.Command.foreground:  #d2d2d2
-xcalc.ti.Command.background:  #100116
-xcalc.ti.button5.background:  #190a0a
-xcalc.ti.button19.background: #101116
-xcalc.ti.button18.background: #101116
-xcalc.ti.button20.background: #101116
+xcalc.ti.bevel.screen.M.background:    #060606
+xcalc.ti.bevel.screen.M.foreground:    #999999
+xcalc.ti.bevel.screen.P.background:    #060606
+xcalc.ti.bevel.screen.P.foreground:    #999999
+xcalc.ti.Command.borderColor: #3e3e3e
+xcalc.ti.Command.foreground:  #999999
+xcalc.ti.Command.background:  #090909
+xcalc.ti.button5.background:  #070707
+xcalc.ti.button19.background: #060606
+xcalc.ti.button18.background: #060606
+xcalc.ti.button20.background: #060606
 !uncomment to change label on division button
 xcalc.ti.button20.label:      /
-xcalc.ti.button25.background: #181e31
-xcalc.ti.button25.foreground: #121217
-xcalc.ti.button30.background: #181e31
-xcalc.ti.button35.background: #181e31
-xcalc.ti.button40.background: #181e31
+xcalc.ti.button25.background: #111111
+xcalc.ti.button25.foreground: #999999
+xcalc.ti.button30.background: #111111
+xcalc.ti.button35.background: #111111
+xcalc.ti.button40.background: #111111
 xcalc.ti.button22.background: #101110
 xcalc.ti.button23.background: #101110
 xcalc.ti.button24.background: #101110
@@ -258,8 +263,8 @@ xcalc.ti.button32.background: #101110
 xcalc.ti.button33.background: #101110
 xcalc.ti.button34.background: #101110
 xcalc.ti.button37.background: #101110
-xcalc.ti.button38.background: #181e31
-xcalc.ti.button39.background: #181e31
+xcalc.ti.button38.background: #111111
+xcalc.ti.button39.background: #111111
 xcalc.Cursor:                 hand1
 xcalc.ShapeStyle:             circle
 ! }}}
