@@ -46,11 +46,11 @@ popup_during_fullscreen ignore
 client.background       #060606
 #statusline
 #client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
-client.focused          #090909 #060606 #666666} #969696
+client.focused          #090909 #101010 #666666} #969696
 #client.focused_inactive #181e31 #101116 #999999 #484e50
 client.focused_inactive #1e1e1e #060606 #333333 #444444
 #client.unfocused        #181e31 #101116 #515152 #292d2e
-client.unfocused        #0e0e0e #090909 #222222 #222222
+client.unfocused        #0e0e0e #060606 #222222 #222222
 #client.urgent           #700000 #900000 #d2d2d2 #ffffff
 client.urgent           #330909 #000000 #ffffff #330909
 # }}}
