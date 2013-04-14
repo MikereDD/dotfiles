@@ -1,0 +1,10 @@
+#!/bin/bash
+# simple script to make use of mplayers identify command.
+# useful for catching and printing info such as
+# `now playing`
+
+if [ -f ~/.mplayer/nowplaying.log ]; then
+   rm -rf ~/.mplayer/nowplaying.log
+fi
+
+aoss mplayer -identify $@> $HOME/.mplayer/nowplaying.log
