@@ -100,7 +100,7 @@ URxvt.scrollstyle:                rxvt
 URxvt.loginShell:                 no
 URxvt.cutchars:                   BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt.print-pipe:                 cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
-URxvt.perl-ext-common:            default,matcher,clipboard,keyboard-select,tabbedex
+URxvt.perl-ext-common:            default,matcher,clipboard,keyboard-select,tabbedex,url-select
 !URxvt.keysym.M-u:                 perl:mark-yank-urls:activate_mark_mode
 URxvt.keysym.M-u:                 perl:url-select:select_next
 URxvt.keysym.M-Escape:            perl:keyboard-select:activate
