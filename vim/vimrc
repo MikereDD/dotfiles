@@ -1,4 +1,5 @@
 " .vimrc
+"===================================================================================
 " Author: Mike Redd <mikeredd@mobileinfern.us>
 " Source: https://github.com/MikereDD/home/tree/master/vim
 "
@@ -6,10 +7,58 @@
 
 " Preamble ---------------------------------------------------------------- {{{
 
-filetype off
-call pathogen#infect()
-filetype plugin indent on
 set nocompatible
+filetype off
+"call pathogen#infect()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-git'
+Bundle 'Lokaltog/vim-easymotion' 
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'} 
+Bundle 'gmarik/sudo-gui.vim' 
+Bundle 'gmarik/vim-markdown' 
+Bundle 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
+Bundle 'git://github.com/tomtom/tlib_vim.git'
+Bundle 'rbonvall/snipmate-snippets-bib'
+Bundle 'garbas/vim-snipmate' 
+Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rake'
+Bundle 'vim-scripts/Vim-R-plugin'
+Bundle 'ervandew/screen'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'git.zip'
+Bundle 'git://git.wincent.com/command-t.git'
+Bundle 'Raimondi/delimitMate'
+Bundle 'kevinw/pyflakes-vim'
+Bundle 'kevinw/pyflakes'
+Bundle 'ap/vim-css-color'
+Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+Bundle 'robhudson/snipmate_for_django'
+Bundle 'tpope/vim-vividchalk'
+Bundle 'tpope/vim-pastie'
+Bundle 'vim-scripts/taglist.vim'
+Bundle 'vim-scripts/Pydiction'
+Bundle 'vim-scripts/confluencewiki.vim'
+Bundle 'vim-scripts/undotree.vim'
+Bundle 'vim-scripts/unicode.vim'
+Bundle 'vim-scripts/vimcat'
+Bundle 'vim-scripts/awk.vim'
+Bundle 'vim-scripts/awk-support.vim'
+Bundle 'vim-scripts/darkgit.vim'
+Bundle 'vim-scripts/YankRing.vim'
+Bundle 'git://github.com/vim-scripts/dbext.vim.git'
+Bundle 'git://github.com/godlygeek/tabular.git'
+Bundle 'tangledhelix/vim-octopress'
+Bundle 'scrooloose/nerdtree'
+Bundle 'git://github.com/sjl/badwolf.git'
+Bundle 'git://github.com/sjl/splice.vim.git'
+Bundle 'git://github.com/sjl/vim-orgmode.git'
+Bundle 'git://github.com/sjl/syntastic.git'
+Bundle 'git://github.com/xolox/vim-shell.git'
+Bundle 'vim-scripts/bash-support.vim'
+filetype plugin indent on
 
 " }}}
 " Basic options ----------------------------------------------------------- {{{
@@ -17,6 +66,8 @@ set nocompatible
 set encoding=utf-8
 set modelines=0
 set autoindent
+set sts=4
+set smartindent
 set showmode
 set showcmd
 set hidden
@@ -50,6 +101,7 @@ set linebreak
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set colorcolumn=+1
+set gfn=PragmataPro:12
 
 " Don't try to highlight lines longer than 800 characters.
 set synmaxcol=800
@@ -158,6 +210,7 @@ set tabstop=8
 set shiftwidth=4
 set softtabstop=4
 set expandtab
+set smarttab
 set wrap
 set textwidth=120
 set formatoptions=qrn1
@@ -510,8 +563,8 @@ noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
 runtime macros/matchit.vim
 map <tab> %
-unmap [%
-unmap ]%
+"unmap [%
+"unmap ]%
 
 " Made D behave
 nnoremap D d$
@@ -881,7 +934,7 @@ augroup ft_javascript
     au!
 
     au FileType javascript setlocal foldmethod=marker
-   au FileType javascript setlocal foldmarker={,}
+    au FileType javascript setlocal foldmarker={,}
     au FileType javascript call MakeSpacelessBufferIabbrev('clog', 'console.log();<left><left>')
 
     " Make {<cr> insert a pair of brackets in such a way that the cursor is correctly
@@ -1086,37 +1139,50 @@ nmap <Leader>x <Plug>ToggleAutoCloseMappings
 " }}}
 " Bash Support {{{
 " vim bash-suuport
-"let g:BASH_GlobalTemplateFile      '/usr/share/vim/vimfiles/bash-support/templates/Templates'
-"let g:BASH_LocalTemplateFile       '/home/typezero/.vim/bash-support/templates/Templates'
-"let g:BASH_TemplateOverriddenMsg   'yes'
-"let g:BASH_Ctrl_j                  'on'
-"let g:BASH_CodeSnippets            '/home/typezero/.vim/bash-support/codesnippets'
-"let g:BASH_LoadMenus               'yes'
-"let g:BASH_CreateMenusDelayed      'no'
-"let g:BASH_Dictionary_File         $HOME."/.vim/bash-support/wordlists/bash.list"
-"let g:BASH_Root                    'B&ash.'
-"let g:BASH_MenuHeader              'yes'
-"let g:BASH_GuiSnippetBrowser       'gui'
-"let g:BASH_GuiTemplateBrowser      'gui'
-"let 
-"let g:BASH_OutputGvim              'vim'   (Linux/U**X)
-"let                                'xterm' (Windows)
-"let g:BASH_XtermDefaults           '-fa courier -fs 12 -geometry 80x24'
-"let g:BASH_Debugger                'term'
-"let g:BASH_LineEndCommColDefault   49
-"let g:BASH_SyntaxCheckOptionsGlob  ''
-"let g:BASH_Printheader             '%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N'
-"let g:BASH_InsertFileHeader        'yes'
-"let g:BASH_BASH                    $SHELL         (Linux/U**X)
-"let                                'bash.exe'     (Windows)
-"let g:BASH_Man                     'man'          (Linux/U**X)
-"let                                'man.exe'      (Windows)
-"let g:BASH_MapLeader               '\'
-"let g:BASH_Errorformat             '%f:\ line\ %l:\ %m'
-"let g:BASH_AlsoBash                ''
+"let g:BASH_GlobalTemplateFile      root_dir.'/usr/share/vim/vimfiles/bash-support/templates/Templates'
+let g:BASH_LocalTemplateFile       = '/home/typezero/.vim/bash-support/templates/Templates'
+let g:BASH_TemplateOverriddenMsg   = 'no'
+let g:BASH_Ctrl_j                  = 'on'
+let g:BASH_CodeSnippets            = '$HOME/.vim/bundle/bash-support.vim/bash-support/codesnippets'
+let g:BASH_LoadMenus               = 'yes'
+let g:BASH_CreateMenusDelayed      = 'no'
+let g:BASH_Dictionary_File         = '$HOME/.vim/bundle/bash-support.vim/bash-support/wordlists/bash.list'
+"let g:BASH_Root                    = 'B&ash.'
+"let g:BASH_MenuHeader              = 'yes'
+"let g:BASH_GuiSnippetBrowser       = 'gui'
+"let g:BASH_GuiTemplateBrowser      = 'gui'
+
+"let g:BASH_OutputGvim              = 'vim'   (Linux/U**X)
+"                                   = 'xterm' (Windows)
+"let g:BASH_XtermDefaults           = '-fa courier -fs 12 -geometry 80x24'
+"let g:BASH_Debugger                = 'term'
+"let g:BASH_LineEndCommColDefault   = 49
+"let g:BASH_SyntaxCheckOptionsGlob  = ''
+"let g:BASH_Printheader             = '%<%f%h%m%<  %=%{strftime('%x %X')}     Page %N'
+let g:BASH_InsertFileHeader        = 'yes'
+let g:BASH_BASH                    = '$SHELL'   "     (Linux/U**X)
+"                                   = 'bash.exe' "     (Windows)
+let g:BASH_Man                     = 'man'      "     (Linux/U**X)
+"                                   = 'man.exe'  "     (Windows)
+"let g:BASH_MapLeader               = '\'
+"let g:BASH_Errorformat             = '%f:\ line\ %l:\ %m'
+"let g:BASH_AlsoBash                = ''
 "
-"let g:BASH_Errorformat    = '%f:\ xyz\ %l:\ %m'
-" }}}
+"let g:BASH_Errorformat             = '%f:\ xyz\ %l:\ %m'
+let g:BASH_AUTHOR                  = 'Mike Redd'
+let g:BASH_AUTHORREF               = 'MikereDD'
+let g:BASH_EMAIL                   = 'mredd@0tue0.com'
+let g:BASH_COMPANY                 = 'Dumb Terminal, Inc.'
+let g:BASH_ORGANIZATION            = 'Dumb Terminal Team'
+let g:BASH_COPYRIGHT               = 'Copyright (c) |YEAR|, |AUTHOR|'
+let g:BASH_DATE                    = '%m-%d'
+let g:BASH_TIME                    = '%H:%M %Z %:z'
+let g:BASH_YEAR                    = '%Y'
+let g:BASH_CREATED                 = '|YEAR|-|DATE| |TIME|'
+let g:BASH_REVISION                = '|YEAR|-|DATE| |TIME|'
+let g:BASH_VERSION                 = '0-1a'
+"
+"  }}}
 " Clam {{{
 
 nnoremap ! :Clam<space>
