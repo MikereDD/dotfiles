@@ -1,0 +1,32 @@
+§
+§ =============================================================
+§ ========== USER MACROS ======================================
+§ =============================================================
+§
+|AUTHOR|        = 'Mike Redd' 
+|AUTHORREF|     = 'MikereDD' 
+|EMAIL|         = 'mredd@0tue0.com' 
+|COMPANY|       = 'Dumb Terminal, Inc.' 
+|LICENSE|       = 
+|ORGANIZATION|  = 'Dumb Terminal Team'
+|PROJECT|       = 
+|COPYRIGHT|     = 'Copyright (c) |YEAR|, |AUTHOR|' 
+|BASENAME|      = 
+|FILENAME|      = 
+|PATH|          = 
+|SUFFIX|        = 
+|DATE|          = '%m-%d' 
+|TIME|          = '%H:%M %Z %:z' 
+|YEAR|          = '%Y'
+|CREATED|       = '|YEAR|-|DATE| |TIME|'
+|REVISION|      = '|YEAR|-|DATE| |TIME|'
+|VERSION|       = '0.1a'
+§
+§ =============================================================
+§ ========== FILE INCLUDES ====================================
+§ =============================================================
+§
+|includefile| = bash.comments.template
+|includefile| = bash.statements.template
+|includefile| = bash.paramsub.template
+§

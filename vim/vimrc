@@ -563,8 +563,8 @@ noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
 runtime macros/matchit.vim
 map <tab> %
-"unmap [%
-"unmap ]%
+unmap [%
+unmap ]%
 
 " Made D behave
 nnoremap D d$
