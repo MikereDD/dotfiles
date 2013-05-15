@@ -1,0 +1,16 @@
+#---------------------------------------------------------------
+# file:     ~/.tmux/dev
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
+#---------------------------------------------------------------
+
+# session initialization
+new -s DEV -n dev irssi
+neww -n myaosp/croms
+splitw -h -d
+neww -n vim/vifm vim
+splitw -h -d
+neww bash
+selectw -t 1
+
+

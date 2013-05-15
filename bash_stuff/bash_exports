@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
-#
-# ~/.bash_stuff/bash_exports
-#
+#--------------------------------------------
+# file:     ~/.bash_stuff/bash_exports
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
 
 # BASH_ENV
 BASH_ENV="~/.bashrc"
@@ -61,6 +63,9 @@ IRC_CLIENT="irssi"
 # ZShaolin
 ZHOME="~/dev/git/zshaolin"
 
+# Google Go compiler
+GOPATH="~/go"
+
 #### START ANDROID NEEDS ####
 
 # JAVA_JDK
@@ -76,7 +81,7 @@ ZHOME="~/dev/git/zshaolin"
 # ANDROID_JAVA_HOME
 ANDROID_JAVA_HOME="$JAVA_HOME"
 
-# ANDROID_SDK
+# ANDROID_SDKi
 #ANDROID_HOME=/opt/android-sdk
 #ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
 #ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
@@ -101,11 +106,15 @@ CCACHE_DIR="/home/typezero/android/.ccache"
 
 #### END ANDROID NEEDS ####
 
+#### Python Powerline ####
+
+PYTHONPATH=/usr/lib/python3.3/site-packages/
+
+#### End Powerline ######
+
+#PATH=$PATH:$HOME/bin:$HOME/Scripts
 # EXPORT ALL
-export BASH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME ANDROID_JAVA_HOME USE_CCACHE CCACHE_DIR ARM_ROOT ARM_INC ARM_LIB ARM_TOOL ARM_LIBO ARM_PRE
+export BASH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME GOPATH ANDROID_JAVA_HOME USE_CCACHE CCACHE_DIR ARM_ROOT ARM_INC ARM_LIB ARM_TOOL ARM_LIBO ARM_PRE PYTHONPATH PATH
 
 # PATH
-export PATH="${PATH}:${PATH}:$HOME/bin"
-export PATH=$ARM_TOOL/bin:$PATH
-export PATH=$ARM_TOOL/arm-eabi/bin:$PATH
-
+PATH="${PATH}:/home/typezero/bin:/home/typezero/Scripts:/home/typezero/.gem/ruby/2.0.0/bin"

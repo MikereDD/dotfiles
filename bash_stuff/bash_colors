@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-#
-# ~/.bash_stuff/bash_colors
-#
-
+#--------------------------------------------
+# file:     ~/.bash_stuff/bash_colors
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
+# 
 
     TR='\[\033[0m\]'      # Text Reset
     # regular colors
@@ -49,3 +51,6 @@
 
     UC=$W                 # user's color
     [ $UID -eq '0' ] && UC=$R   # root's color
+
+
+# vim: set filetype=bash:

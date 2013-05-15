@@ -1,7 +1,9 @@
-#!/usr/bin/bash
-#
-# ~/.bash_stuff/bash_completions
-#
+#!/usr/bin/env bash
+#--------------------------------------------
+# file:     ~/.bash_stuff/bash_completion
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
 
 #=========================================================================
 # PROGRAMMABLE COMPLETION - ONLY SINCE BASH-2.04
@@ -18,6 +20,7 @@ set -o ignoreeof
 #set -o xtrace          # Useful for debuging.
 
 # Enable options:
+shopt -s autocd
 shopt -s cdspell
 shopt -s cdable_vars
 shopt -s checkhash
@@ -26,7 +29,13 @@ shopt -s sourcepath
 shopt -s no_empty_cmd_completion
 shopt -s cmdhist
 shopt -s histappend histreedit histverify
+shopt -s dotglob
+shopt -s expand_aliases
 shopt -s extglob        # Necessary for programmable completion.
+shopt -s globstar
+shopt -s progcomp
+shopt -s hostcomplete
+shopt -s nocaseglob
 
 # Disable options:
 shopt -u mailwarn
@@ -101,3 +110,4 @@ complete -W "$(echo `cat ~/.bash_history | egrep '^ssh ' | sort | uniq | sed 's/
 #######################################################
 #######################################################
 
+# vim: set filetype=bash:

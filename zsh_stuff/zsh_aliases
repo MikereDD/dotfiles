@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #--------------------------------------------
-# file:     ~/.bash_stuff/bash_aliases 
+# file:     ~/.zsh_stuff/zsh_aliases 
 # author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #--------------------------------------------
@@ -13,8 +13,8 @@ alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
 ## :)
 alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
 
-# reset & source bash_profile
-alias resetbash="reset;source $HOME/.bash_profile"
+# reset & source zsh_profile
+alias resetzsh="reset;source $HOME/.zsh_profile"
 alias resetX="xrdb -merge $HOME/.Xresources"
 
 # ls commands
@@ -52,7 +52,7 @@ if [ -d "$1" ]; then
         cd "$1"
         ls
         else
-        echo "bash: cl: '$1': Directory not found"
+        echo "zsh: cl: '$1': Directory not found"
 fi
 }
 
@@ -145,12 +145,12 @@ alias na="nano -w"
 # vi(m)
 alias view="vim -p -R"
 alias vp="vim -p"
-alias ebrc="vim $HOME/.bashrc && source $HOME/.bashrc"
-alias ebrca="vim $HOME/.bash_aliases && source $HOME/.bashrc_aliases"
-alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
+alias ezrc="vim $HOME/.zshrc && source $HOME/.zshrc"
+alias ezrca="vim $HOME/.zsh_aliases && source $HOME/.zshrc_aliases"
+alias ezrcas="vim $HOME/.zsh_aliases_ssh-ftp && source $HOME/.zshrc_aliases_ssh-ftp"
 alias vim2html="$HOME/scripts/office/vim2html.sh "
 # edit sudo
-#alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
+#alias visudo="sudo zsh -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
 
 ## translator
 alias translate="sh ~/bin/tw-translator-helper.sh"
@@ -184,13 +184,6 @@ alias sitegrab="sh ~/apps/bin/dtsitegrab/dtsitegrab "
 
 
 
-## screen
-alias suscrn="screen -c $HOME/.screenrc_su"
-alias apkscrn="screen -c $HOME/.screenrc_apk"
-alias scrnna="screen -dr a"
-alias scrnc="screen -dr c"
-alias scrnsu="screen -dr su"
-
 # tmux
 alias tmux="tmux -f ~/.tmux.conf"
 
@@ -216,16 +209,19 @@ calc() { echo "scale=3;$@" | bc -l ; }
 alias dburl="dropbox puburl"
 
 ## alias files broken down
-if [ -d ~/.bash_stuff/alias_files/ ]; then
-    source ~/.bash_stuff/alias_files/android
-    source ~/.bash_stuff/alias_files/image
-    source ~/.bash_stuff/alias_files/irc
-    source ~/.bash_stuff/alias_files/misc
-    source ~/.bash_stuff/alias_files/office
-    source ~/.bash_stuff/alias_files/pkg_git
-    source ~/.bash_stuff/alias_files/video_audio
-fi
+[[ -f ~/.zsh_stuff/alias_extras/android ]] && . ~/.zsh_stuff/alias_extras/android
+[[ -f ~/.zsh_stuff/alias_extras/pkg_git ]] && . ~/.zsh_stuff/alias_extras/pkg_git
+[[ -f ~/.zsh_stuff/alias_extras/video_audio ]] && . ~/.zsh_stuff/alias_extras/video_audio
+#if [ -d ~/.zsh_stuff/alias_files/ ]; then 
+#    source ~/.zsh_stuff/alias_files/android
+#    source ~/.zsh_stuff/alias_files/image
+#    source ~/.zsh_stuff/alias_files/irc
+#    source ~/.zsh_stuff/alias_files/misc
+#    source ~/.zsh_stuff/alias_files/office
+#    source ~/.zsh_stuff/alias_files/pkg_git
+#    source ~/.zsh_stuff/alias_files/video_audio
+#fi
 
 ####
 
-# vim: set filetype=bash:
+# vim: set filetype=zsh:
