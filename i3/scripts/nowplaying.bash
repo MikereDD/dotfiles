@@ -1,5 +1,10 @@
 #!/bin/bash
-#
+#---------------------------------------------
+# file:     ~/.i3/scripts/nowplaying.bash
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#---------------------------------------------
+
 # Volume
 VOLUME=$(sh $HOME/.wmii/scripts/vol.sh)
 VOLUMET=$(sh $HOME/.wmii/scripts/vol-bar.sh)
