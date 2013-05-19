@@ -249,7 +249,8 @@ for_window [class="(?i)dwb"] layout tabbed
 bar {
         output HDMI-0
         output DVI-I-1
-        status_command i3status --config ~/.i3/i3status.conf
+#        status_command i3status --config ~/.i3/i3status.conf
+        status_command ~/.i3/scripts/my_i3status.sh | i3status
         position top
         mode hide
         modifier mod1
