@@ -9,13 +9,6 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
-# Bash_Env
-export EDITOR="vim"
-export GIT_EDITOR="vim"
-#PATH=$PATH:$HOME/bin
-#BASH_ENV="$HOME/.bashrc"
-#USERNAME="$(whoami)"
-
 # auto startx and logout, security !
 if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
  startx
@@ -32,3 +25,5 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     eval `ssh-agent -s`
     ssh-add
 fi
+
+# vim: set filetype=bash:

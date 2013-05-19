@@ -32,20 +32,8 @@ fi
 [[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_completion
 [[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
 [[ -f ~/.bash_stuff/bash_functions ]] && . ~/.bash_stuff/bash_functions
-#if [ -d ~/.bash_stuff/ ]; then
-#    source ~/.bash_stuff/bash_aliases
-#    source ~/.bash_stuff/bash_binds
-#    source ~/.bash_stuff/bash_colors
-#    source ~/.bash_stuff/bash_completion
-#    source ~/.bash_stuff/bash_exports
-#    source ~/.bash_stuff/bash_functions
-#fi
-
-# ssh, ftp, etc, - my file
 [[ -f ~/.bash_stuff/bash_sfs ]] && . ~/.bash_stuff/bash_sfs
-# inputrc - my inputrc
 [[ -f ~/.inputrc ]] && . ~/.inputrc
-# colors - my dir_colors
 [[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors`
 # dmenu - my demnu
 if [ -f ~/.dmenurc ]; then
@@ -87,3 +75,15 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 export PYTHONPATH=/usr/lib/python3.3/site-packages/
+
+# Bash shell driver for go (http://code.google.com/p/go-tool/).
+function gotl {
+    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
+    python2 -m go $*
+    if [ -f $GO_SHELL_SCRIPT ] ; then
+        source $GO_SHELL_SCRIPT
+    fi
+    unset GO_SHELL_SCRIPT
+}
+
+# vim: set filetype=bash:

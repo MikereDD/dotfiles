@@ -44,6 +44,12 @@ SDL_AUDIODRIVER="alsa"
 # SDL_VIDEO_FULLSCREEN_HEAD
 SDL_VIDEO_FULLSCREEN_HEAD="1"
 
+# VDPAU No Overlay, helper for empty video windows in screenshots
+VDPAU_NVIDIA_NO_OVERLAY=1
+
+# VAAPI No Overlay, helper for empty video windows in screenshots
+VAAPI_NVIDIA_NO_OVERLAY=1
+
 # DISPLAY
 DISPLAY=:0.0
 if [ -n "$DISPLAY" ]; then

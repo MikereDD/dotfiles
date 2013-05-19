@@ -9,17 +9,19 @@
 case "$-" in *i*) if [ -r ~/.bashrc ]; then . ~/.bashrc; fi;; esac
 
 # setup environment
-export LESS=FX
+export LESS="FX"
 export LC_ALL=
 export LC_COLLATE="C"
-export EDITOR=vim
-export FCEDIT=vim
-export VISUAL=$EDITOR
+export EDITOR="vim"
+export FCEDIT="vim"
+export GIT_EDITOR="vim"
+export VISUAL="$EDITOR"
 export SUDO_EDITOR="/usr/bin/vim"
-export BROWSER=/usr/bin/dwb
+export BROWSER="/usr/bin/dwb"
 #export http_proxy="http://127.0.0.1:8118"
 #export https_proxy="http://127.0.0.1:8118"
-
+#BASH_ENV="$HOME/.bashrc"
+#USERNAME="$(whoami)"    
 # export other directories to PATH
 PATH=$PATH:/home/typezero/Scripts:/home/typezero/bin:/usr/lib/surfraw/
 
@@ -35,3 +37,5 @@ if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
 elif [[ $(tty) = /dev/tty2 ]]; then
     tmux -f $HOME/.tmux/conf new -s secured
 fi
+
+# vim: set filetype=bash:
