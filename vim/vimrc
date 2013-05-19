@@ -58,6 +58,8 @@ Bundle 'git://github.com/sjl/vim-orgmode.git'
 Bundle 'git://github.com/sjl/syntastic.git'
 Bundle 'git://github.com/xolox/vim-shell.git'
 Bundle 'vim-scripts/bash-support.vim'
+Bundle 'git://github.com/kien/rainbow_parentheses.vim.git'
+Bundle 'git://github.com/Lokaltog/vim-powerline.git'
 filetype plugin indent on
 
 " }}}
@@ -81,6 +83,7 @@ set laststatus=2
 set fileformat=unix
 set fileformats=unix,dos
 set fillchars=diff:⣿,vert:│
+set fillchars+=stl:\ ,stlnc:\
 set history=50
 set undofile
 set undoreload=10000
@@ -92,7 +95,6 @@ set matchtime=3
 set showbreak=↪
 set splitbelow
 set splitright
-set fillchars=diff:⣿,vert:│
 set autowrite
 set autoread
 set shiftround
@@ -1295,7 +1297,7 @@ nnoremap <leader>L :LinediffReset<cr>
 " }}}
 " Lisp (built-in) {{{
 
-let g:lisp_rainbow = 1
+"let g:lisp_rainbow = 1
 
 " }}}
 " Makegreen {{{
@@ -1980,7 +1982,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 if has('gui_running')
     " GUI Vim
 
-    set guifont=Menlo\ Regular\ for\ Powerline:h12
+    set guifont=PragmataPro\ Regular\ for\ Powerline:h11
 
     " Remove all the UI cruft
     set go-=T
