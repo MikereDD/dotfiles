@@ -237,11 +237,11 @@ for_window [title="code"] border none
 for_window [class="URxvt"] border 1pixel
 
 # dirty hack to set tabbed container layout
-for_window [class="(?i)firefox"] layout tabbed
-for_window [class="(?i)thunderbird"] layout tabbed
-for_window [class="(?i)chromium"] layout tabbed
-for_window [class="(?i)opera"] layout tabbed
-for_window [class="(?i)dwb"] layout tabbed
+for_window [class="(?i)firefox"] layout tabbed border none
+for_window [class="(?i)thunderbird"] layout tabbed border none
+for_window [class="(?i)chromium"] layout tabbed border none
+for_window [class="(?i)opera"] layout tabbed border none
+for_window [class="(?i)dwb"] layout tabbed border none
 # }}}
 
 # bar {{{
