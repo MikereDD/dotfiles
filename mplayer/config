@@ -1,75 +1,144 @@
-[default]
-# General setup
 #
-# Audio Out
-#ao="alsa:device=hw=Creative"
-#ao="alsa:device=default"
-ao=alsa
-#ao=pulse
-channels=6
-#channels=8
+# MPlayer configuration file
+#
+# Configuration files are read system-wide from /usr/local/etc/mplayer.conf
+# and per-user from ~/.mplayer/config, where per-user settings override
+# system-wide settings, all of which are overrriden by the command line.
+#
+# The configuration file settings are the same as the command line
+# options without the preceding '-'.
+#
+# See the CONFIGURATION FILES section in the man page
+# for a detailed description of the syntax.
+#
+# Profiles should be placed at the bottom of the configuration file to ensure
+# that settings wanted as defaults are not restricted to specific profiles.
 
-# Audio Codec
-#ac=hwdts,a52,hwac3,
-#afm=hwac3,
-#ac=faad,liba52,mpg123,hwdts,a52,hwac3,
-ac=faad,ffmpeg,hwdts,a52,hwac3,
-afm=ffmpeg,hwac3,
+
+##################
+# video settings #
+##################
+
+# Specify default video driver (see -vo help for a list).
+#vo=xv
+
+# Use OpenGL video by default
+#vo=gl
+vo=gl,vx,vaapi,vdpau,ffmpeg
+
+# Start in fullscreen mode by default.
+fs=no
+
+# Change to a different videomode when going fullscreen.
+vm=yes
+
+# Override the autodetected color depth, may need 'vm=yes' as well.
+bpp=0
+
+# Enable software scaling (powerful CPU needed) for video output
+# drivers that do not support hardware scaling.
+zoom=yes
+
+# standard monitor size, with square pixels
+#monitoraspect=4:3
+
+# Use this for a widescreen monitor, non-square pixels.
+#monitoraspect=16:9
+
+# Keep the player window on top of all other windows.
+#ontop=yes
+
+# Monitor Position
+geometry="2875:25"
+
+# Zoom
+zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
+
+##################
+# audio settings #
+##################
+
+# Specify default audio driver (see -ao help for a list).
+#ao=alsa
+ao="alsa:device=hw=Creative"
+channels=6
 
 # Soft Volume
 softvol="yes"
 softvol-max="600"
 
-# Audio Volume Normalize
-af="volnorm"
-# Equalizer
-#equalizer=11:11:10:5:0:-12:0:5:12:12
-
+# Specify the mixer device.
 mixer=hw:Creative
-# Mixer Channel
 mixer-channel="PCM"
-#mixer-channel="Master"
+#mixer = /dev/mixer
+
+# Resample the sound to 44100Hz with the lavcresample audio filter.
+#af=lavcresample=44100
+af="volnorm"
 
 # Sample Rate
-srate="48000"
+srate="96000"
 
-# Very very little console output
-#really-quiet="1"
+# Ajust volume differences. *
+a52drc=1
 
-# Video Codecs
-vc=ffmpeg,xvid,ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
-# See "mplayer -vfm help" for all available codecs
-vfm=ffmpeg,xvid,libmpeg2,raw,hmblck,mpegpes,theora,realvid,
+# Fix A/V sync problems. *
+mc=0.2
+autosync=30
 
-# Video Mode
-#vm="no"
 
-# Video Output
-#vo=vaapi,vdpau,xv,
-vo=vaapi,
-va=vaapi,
+# Output audio to S/PDIF
+#ao=alsa:device=spdif
+#ac=hwac3,hwdts,hwmpa,
 
-# Used by drivers: dga2, x11, sdl
-#x="780" # scale movie to <x> pixels width
-#y="420" # scale movie to <y> pixels height
 
-# Monitor Position
-geometry="2974:21"
+##################
+# other settings #
+##################
 
-# Zoom
-zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
+# Pretend to be Window Media Player.
+# Fixes playback when playlist and media file use the same URL.
+#user-agent=NSPlayer/4.1.0.3856
 
-# Audio Channel
-#aid="1"
+# Pretend to be Quicktime
+# Fixes playback for apple.com/trailers redirects
+#user-agent="QuickTime"
 
-# Subtitle Set
-#sid="0"
+# Pretend to be Realplayer SP
+# Fixes playback for some video streaming sites
+#user-agent=RMA/1.0
 
-# Display
-double="yes" # double buffering(recommended for subtitles)
-#monitoraspect="16:9" # Use for a widescreen laptop so keeps 4:3 content from stretching
-framedrop="1" # For slow machines
+# Pretend to be Winamp
+# Fixes playback of some NSV streams
+#user-agent="Winamp NSV Player/5.12 (ultravox/2.0)"
+
+# Drop frames to preserve audio/video sync.
+framedrop = yes
 hardframedrop="0" # Make sure hard frame drop is off but can turn on easily now
+
+# Resample the font alphamap.
+# 0     plain white fonts
+# 0.75  very narrow black outline (default)
+# 1     narrow black outline
+# 10    bold black outline
+ffactor = 0.75
+
+# cache settings
+#
+# Use 8MB input cache by default.
+cache = 8192
+#
+# Prefill 20% of the cache before starting playback.
+cache-min = 20.0
+#
+# Prefill 50% of the cache before restarting playback after the cache emptied.
+cache-seek-min = 50
+
+# DVD: Display English subtitles if available.
+slang = en
+
+# DVD: Play English audio tracks if available.
+alang = en
 
 # Subtitle Code
 # Set this if you haven't copied your preferred font to ~/.mplayer/subfont.ttf
@@ -92,8 +161,8 @@ utf8=yes
 autoq=100
 
 #vf="denoise3d,pp"
-#vf="pp=de,hqdn3d"
-vf="pp=lb,hqdn3d"
+vf="pp=de,hqdn3d"
+#vf="pp=lb,hqdn3d"
 
 # Screensaver Off
 #stop-xscreensaver="yes" # Doesn't seem to work anymore
@@ -102,44 +171,25 @@ heartbeat-cmd="xscreensaver-command -deactivate &"
 # Screenshot
 vf-add="screenshot" # S key will screenshot
 
-# DVD Subtitle Language
-slang="en,eng,es" # DVD : display english or spanish subtitles if available
+############
+# Profiles #
+############
 
-# DVD Audio Language
-alang="en" # DVD : play english or spanish audio tracks if available
+# The options declared as part of profiles override global default settings,
+# but only take effect when the profile is active.
 
-# OnScreen Display
-osdlevel="1" # don't display OSD at stratup
-
-#always keep mplayer on top
-#ontop="1"
-
-# Fullscreen
-fs="yes" # Enlarges movie window to your desktop's size.
-
-# Cache
-cache=600
-
-# Menu
-#menu=no
-
-# Threads
-threads=7
-
-#[ivtv]
-
-#pvr=abitrate=192:vbitrate=2200000:vpeak=2600000:fmt=dvd:aspect=1:arate=32000
-#tv=normid=10:device=/dev/video0
-#vf=crop=704:464:16:6
+[protocol.dvdnav]
+vc=ffmpeg12,
+mouse-movements=yes
+#nocache=yes
 
 
-#[ivtv]
-#tv=normid=10:device=/dev/video0:width=720:height=480
-#pvr=abitrate=192:vbitrate=2200000:vpeak=2600000:fmt=dvd:aspect=1:arate=32000
-#of=mpeg=1
-#mpegopts=format=dvd
-#ofps=30000/1001
-#ovc=copy=1
-#oac=copy=1
-#vf=harddup=1
+[vo.vdpau]
+vc=ffmpeg12vdpau,ffwmv3vdpau,ffvc1vdpau,ffh264vdpau,ffodivxvdpau,
+# Most video filters do not work with vdpau hardware decoding.
+vf-clr=yes
 
+
+
+# You can also include other configuration files.
+#include = /path/to/the/file/you/want/to/include
