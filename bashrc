@@ -5,21 +5,24 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #---------------------------------------------
 
+# support path for Plex HomeTheater/MediaServer
+export XBMC_HOME=/usr/share/XBMC
+# force ssh to keycheck
 alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet ~/.ssh/id_?sa*) && ssh'
 
 # GPG Key
 export GPGKEY=
 
 # If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ $- != *i* ]] && return
 
-## source files
-# Bash Prompt
-if [ -f ~/.bash_stuff/bash_prompt ]; then
-    . ~/.bash_stuff/bash_prompt
-else
-    source ~/.git-prompt.sh
-    PS1="[\u@\h \W] \n \$ "
+# source /etc/bash.bashrc
+[[ -f /etc/bash.bashrc ]] && . /etc/bash.bashrc
+# source /etc/bash_completion.d/
+if [ -d /etc/bash_completion.d/ ]; then
+    for f in /etc/bash_completion.d/*; do
+        . $f
+    done
 fi
 
 # pkgfile
@@ -35,6 +38,7 @@ fi
 [[ -f ~/.bash_stuff/bash_sfs ]] && . ~/.bash_stuff/bash_sfs
 [[ -f ~/.inputrc ]] && . ~/.inputrc
 [[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors`
+[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
 # dmenu - my demnu
 if [ -f ~/.dmenurc ]; then
     source ~/.dmenurc
@@ -74,10 +78,10 @@ if [ "$TERM" = "linux" ]; then
     clear # bring us back to default input colours
 fi
 
-export PYTHONPATH=/usr/lib/python3.3/site-packages/
+#export PYTHONPATH=/usr/lib/python3.3/site-packages/
 
 # Bash shell driver for go (http://code.google.com/p/go-tool/).
-function gotl {
+function gcd {
     export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
     python2 -m go $*
     if [ -f $GO_SHELL_SCRIPT ] ; then
@@ -85,5 +89,65 @@ function gotl {
     fi
     unset GO_SHELL_SCRIPT
 }
+
+bash_prompt_command() {
+    # How many characters of the $PWD should be kept
+    local pwdmaxlen=25
+    # Indicate that there has been dir truncation
+    local trunc_symbol=".."
+    local dir=${PWD##*/}
+    pwdmaxlen=$(( ( pwdmaxlen < ${#dir} ) ? ${#dir} : pwdmaxlen ))
+    NEW_PWD=${PWD/#$HOME/\~}
+    local pwdoffset=$(( ${#NEW_PWD} - pwdmaxlen ))
+    if [ ${pwdoffset} -gt "0" ]
+    then
+        NEW_PWD=${NEW_PWD:$pwdoffset:$pwdmaxlen}
+        NEW_PWD=${trunc_symbol}/${NEW_PWD#*/}
+    fi
+}
+
+bash_prompt() {
+    case $TERM in
+     xterm*|rxvt*)
+         local TITLEBAR='\[\033]0;\u:${NEW_PWD}\007\]'
+          ;;
+     *)
+         local TITLEBAR=""
+          ;;
+    esac
+    local NONE="\[\033[0m\]"    # unsets color to term's fg color
+
+    # Titlebar
+    case ${TERM} in
+        screen* )
+            local TITLEBAR='\[\033k\w\033\134\]'
+            ;;
+        xterm*  )
+            local TITLEBAR='\[\033]0;\u@\h: { \w }  \007\]'
+            ;;
+        *       )
+            local TITLEBAR=''
+            ;;
+    esac
+
+# Bash Prompt
+if [ -f ~/.bash_stuff/bash_prompt ]; then
+    source ~/.bash_stuff/bash_prompt
+else
+    source ~/.git-prompt.sh
+    PS1="${R}[${LG}\\u${R}@${LG}\h ${TQ}\\W${R}] \n ${TR}\\$ "
+fi
+
+}
+
+# auto startx and logout, security !
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+#  startx
+#  logout
+#fi
+
+PROMPT_COMMAND=bash_prompt_command
+bash_prompt
+unset bash_prompt
 
 # vim: set filetype=bash:
