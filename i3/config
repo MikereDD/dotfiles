@@ -216,7 +216,7 @@ assign [class="(?i)virtualbox"] → sim
 assign [class="(?i)zeohn"] → soc
 assign [class="(?i)code"] → cd*
 assign [class="(?i)gedit"] → cd*
-assign [class="(?i)gimp"] → img
+assign [class="(?i)GIMP"] → img; border 1pixel
 assign [class="(?i)inkscape"] → img
 assign [class="(?i)darktable"] → img
 assign [class="(?i)XMBC Media Center"] → soc
@@ -225,9 +225,9 @@ assign [class="(?i)plexhometheater"] → soc
 # floating
 for_window [class="(?i)nvidia-settings"] floating enable
 for_window [class="(?i)mirage"] floating enable
-for_window [class="(?i)vlc"] floating enable; border none
-for_window [class="(?i)mplayer"] floating enable; border none
-for_window [class="(?i)mplayer2"] floating enable; border none
+for_window [class="(?i)vlc"] floating enable border none
+for_window [class="(?i)mplayer"] floating enable border none
+for_window [class="(?i)mplayer2"] floating enable border none
 for_window [class="(?i)virtualbox"] floating enable
 
 # layout per app
@@ -235,16 +235,17 @@ for_window [title="zeohn"] border none
 for_window [class="URxvt"] border none
 for_window [title="code"] border none
 for_window [class="URxvt"] border none
-for_window [title="(?i)GIMP"] floating disable; border none
+for_window [title="(?i)GIMP"] floating disable
 for_window [title="GIMP Startup"] → img
-for_window [window_role="gimp-toolbox"] → img; floating enable; resize shrink right 28px or 28 ppt
+for_window [window_role="gimp-toolbox"] → img floating enable resize shrink right 28px or 28 ppt
+for_window [window_role="GIMP Message"] → img floating enable resize shrink right 32px or 32 ppt
 
 # dirty hack to set tabbed container layout
-for_window [class="(?i)firefox"] layout tabbed; border none
-for_window [class="(?i)thunderbird"] layout tabbed; border none
-for_window [class="(?i)chromium"] layout tabbed; border none
-for_window [class="(?i)opera"] layout tabbed; border none
-for_window [class="(?i)dwb"] layout tabbed; border none
+for_window [class="(?i)firefox"] layout tabbed border none
+for_window [class="(?i)thunderbird"] layout tabbed border none
+for_window [class="(?i)chromium"] layout tabbed border none
+for_window [class="(?i)opera"] layout tabbed border none
+for_window [class="(?i)dwb"] layout tabbed border none
 # }}}
 
 # bar {{{
