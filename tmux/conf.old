@@ -236,8 +236,8 @@ set -g pane-active-border-bg colour233
 set -g set-titles-string "tmux:#I [ #W ]"
 
 # initialize sessions
-bind S source-file ~/.tmux/androdev
-bind I source-file ~/.tmux/editirc
+bind S source-file ~/.tmux/dev
+bind I source-file ~/.tmux/edit
 
 # environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"

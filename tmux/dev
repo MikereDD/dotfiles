@@ -1,11 +1,10 @@
 #---------------------------------------------------------------
-# file:     ~/.tmux/editirc
+# file:     ~/.tmux/dev
 # author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
 #---------------------------------------------------------------
 
 # session initialization
-new -s VimIrc -n edit/fm/irc 'vim'
-splitw -h 'vifm'
-splitw -v 'irssi'
-selectw -t irc
+new -s dev -n aosp/pax 'cd ~/android/platform'
+splitw -h -p 50 'paxssh'
+selectw -t dev
