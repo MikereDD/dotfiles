@@ -216,7 +216,7 @@ assign [class="(?i)virtualbox"] → sim
 assign [class="(?i)zeohn"] → soc
 assign [class="(?i)code"] → cd*
 assign [class="(?i)gedit"] → cd*
-assign [class="(?i)GIMP"] → img
+assign [class="(?i)Gimp"] → img
 assign [class="(?i)inkscape"] → img
 assign [class="(?i)darktable"] → img
 assign [class="(?i)XMBC Media Center"] → soc
@@ -235,10 +235,10 @@ for_window [title="zeohn"] border none
 for_window [class="URxvt"] border none
 for_window [title="code"] border none
 for_window [class="URxvt"] border none
-for_window [title="(?i)GIMP"] floating disable 
-for_window [title="GIMP Startup"] → img
-for_window [window_role="gimp-toolbox"] → img floating enable resize shrink right 28px or 28 ppt
-for_window [window_role="GIMP Message"] → img floating enable resize shrink right 32px or 32 ppt
+for_window [instance="gimp"] floating enable resize shrink right 28px or 28 ppt
+for_window [title="GNU Image Manipulation Program"] floating disable border none
+for_window [window_role="gimp-toolbox"] floating enable resize shrink right 28px or 28 ppt
+for_window [window_role="GIMP Message"] floating enable resize shrink right 32px or 32 ppt
 
 # dirty hack to set tabbed container layout
 for_window [class="(?i)firefox"] layout tabbed border none
