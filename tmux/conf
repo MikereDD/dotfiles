@@ -35,10 +35,10 @@ set -g base-index 0
 # instructs tmux to expect UTF-8 sequences
 setw -g utf8 on
 
-# tell tmux to use 256 colour terminal
+# Use the screen's 256color TERM by default.
 set -g default-terminal "screen-256color"
 
-# xterm-style function key sequences
+# Translate keycodes to xterm keycodes!
 setw -g xterm-keys on
 
 # control automatic window renaming
@@ -55,7 +55,7 @@ setw -g remain-on-exit on
 
 # Key bindings 
 # reload settings
-bind-key R source-file ~/.tmux/conf
+bind-key R source-file ~/.tmux.conf
 
 # detach client
 bind-key d detach
@@ -112,6 +112,16 @@ setw -g mode-keys vi
 
 # enable mouse selection in copy mode
 setw -g mode-mouse on
+bind ` copy-mode
+unbind [
+unbind p
+bind p paste-buffer
+bind -t vi-copy H start-of-line
+bind -t vi-copy L end-of-line
+bind -t vi-copy v begin-selection
+bind -t vi-copy y copy-selection
+bind -t vi-copy Escape cancel
+bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
 
 # list all paste buffers (default key is '#')
 bind-key b list-buffers
@@ -226,15 +236,15 @@ set -g pane-active-border-bg colour233
 set -g set-titles-string "tmux:#I [ #W ]"
 
 # initialize sessions
-bind S source-file ~/.tmux/basic
-bind I source-file ~/.tmux/dev
+bind S source-file ~/.tmux/dev
+bind I source-file ~/.tmux/edit
 
 # environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
 
 # statusbar --------------------------------------------------------------
-set -g window-status-format "#I:#W"
-set -g window-status-current-format "#I:#W"
+#set -g window-status-format "#I:#W"
+#set -g window-status-current-format "#I:#W"
 
 set -g status-keys vi
 bind-key -t vi-edit Up history-up
@@ -246,6 +256,79 @@ set -g status-right centre # center align window list
 # Statusbar starting in X or not
 #if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
 #if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
+
+# Tab-like window switching. Uses the same keys mainstream terminals would use
+# such as Ctrl-[Shift]-PGUP/PGDN, and adds Ctrl-INS to make a window along with
+# Ctrl-DEL to close a window. If your terminal already has these hotkeys, it
+# will eat the keycode before tmux gets it anyway. Having this here allows
+# users of simple terminals to get native-feeling "tabs" through tmux.
+bind -n C-PPage prev
+bind -n C-NPage next
+bind -n C-S-PPage swap-window -t -1
+bind -n C-S-NPage swap-window -t +1
+
+bind -n C-IC new-window
+bind -n C-S-IC new-window
+bind -n C-DC confirm-before -p "Are you sure you want to unlinkw -k to close this window?" "unlink-window -k"
+bind -n C-S-DC unlink-window -k
+
+bind -n M-1 select-window -t 1
+bind -n M-2 select-window -t 2
+bind -n M-3 select-window -t 3
+bind -n M-4 select-window -t 4
+bind -n M-5 select-window -t 5
+bind -n M-6 select-window -t 6
+bind -n M-7 select-window -t 7
+bind -n M-8 select-window -t 8
+bind -n M-9 select-window -t 9
+bind -n M-0 select-window -t 10
+
+
+# Only resize windows to the size of the smallest attached viewer of the window,
+# rather than the smallest attached viewer of the entire session. Without this,
+# a small terminal viewing a different window of a given session will result in
+# the other window the small terminal is not looking at also being resized.
+setw -g aggressive-resize on
+
+# Get rid of the timer for escape sequences so "ESC" in vim works as expected.
+# Without this, pressing ESC and immediately hitting an arrow key will result
+# in the cursor moving without entering command mode at all; essentially
+# ignoring the escape.
+set -s escape-time 0
+
+# Status on top (1.7+ feature, patch required for 1.6)
+set -g status-position top
+
+# Allow the status bar to be
+#set -g status-bg default
+#set -g status-fg white
+## Forced by tmux to use ignorant british spelling of color.
+#set -g status-left "#[bg=colour8,bold] #(echo \"\$USER\")@#h "
+#set -g status-left-length 20
+#set -g status-right ""
+#
+#setw -g window-status-format "#[fg=colour8,bold]#I#[fg=colour8]:#[fg=colour4][#[default,fg=colour4]#W#[bold]] "
+#setw -g window-status-current-format "#[fg=colour7,bold]#I#[fg=colour8]:#[fg=colour4][#[fg=colour6]#W#[fg=colour4,bold]] "
+
+# Activity
+setw -g monitor-activity on
+set -g visual-activity off
+
+setw -g alternate-screen on
+
+set -g mouse-utf8 on
+
+set -g mouse-resize-pane off
+set -g mouse-select-pane off
+# With this option on, you must hold shift when selecting text with the mouse.
+set -g mouse-select-window off
+
+# present a menu of URLs to open from the visible pane. sweet.
+bind-key U capture-pane \; save-buffer /tmp/tmux-buffer \; split-window -l 10 "urlview /tmp/tmux-buffer"
+
+# numbering starts at 1
+set -g base-index 1
+set -g pane-base-index 1
 
 #powerline
 source $HOME/.config/powerline/bindings/tmux/powerline.conf
