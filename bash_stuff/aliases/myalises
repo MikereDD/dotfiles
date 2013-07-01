@@ -18,7 +18,7 @@ alias resetbash="reset;source $HOME/.bash_profile"
 alias resetX="xrdb -merge $HOME/.Xresources"
 
 # ls commands
-alias ls='ls -hF --color=auto'
+#alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
 alias la='ll -A'
@@ -26,7 +26,7 @@ alias lx='ll -BX'                   # sort by extension
 alias lz='ll -rS'                   # sort by size
 alias lt='ll -rt'                   # sort by date
 alias lm='la | more'
-alias ls="ls --color=always"
+#alias ls="ls --color=always"
 alias lsl="ls -l --color=always"
 alias lsal="ls -al --color=always"
 alias lsA="ls -A --color=always"
@@ -216,15 +216,15 @@ calc() { echo "scale=3;$@" | bc -l ; }
 alias dburl="dropbox puburl"
 
 ## alias files broken down
-if [ -d ~/.bash_stuff/alias_files/ ]; then
-    source ~/.bash_stuff/alias_files/android
-    source ~/.bash_stuff/alias_files/image
-    source ~/.bash_stuff/alias_files/irc
-    source ~/.bash_stuff/alias_files/misc
-    source ~/.bash_stuff/alias_files/office
-    source ~/.bash_stuff/alias_files/pkg_git
-    source ~/.bash_stuff/alias_files/video_audio
-fi
+#if [ -d ~/.bash_stuff/aliases/ ]; then
+#    source ~/.bash_stuff/aliases/android
+#    source ~/.bash_stuff/aliases/image
+#    source ~/.bash_stuff/aliases/irc
+#    source ~/.bash_stuff/aliases/misc
+#    source ~/.bash_stuff/aliases/office
+#    source ~/.bash_stuff/aliases/pkg_git
+#    source ~/.bash_stuff/aliases/video_audio
+#fi
 
 ####
 

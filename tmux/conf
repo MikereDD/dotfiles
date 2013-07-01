@@ -1,10 +1,10 @@
 #---------------------------------------------------------------
-# file:     ~/.tmux/conf                         
-# author:   Mike Redd - http://m-redd.com/    
+# file:     ~/.tmux/conf
+# author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:fdm=indent:fdn=1:ft=conf:
 #---------------------------------------------------------------
 
-# Global settings 
+# Global settings
 
 # Set prefix key to Ctrl-a
 unbind-key C-b
@@ -53,9 +53,13 @@ set -g set-titles on
 # don't close windows. just deactivate them. use respawn-window to reactivate.
 setw -g remain-on-exit on
 
-# Key bindings 
+# restart panes/windows marked with remain-on-exit
+bind C-r respawn-pane
+bind R respawn-window
+
+# Key bindings
 # reload settings
-bind-key R source-file ~/.tmux.conf
+#bind-key R source-file ~/.tmux.conf
 
 # detach client
 bind-key d detach
@@ -252,6 +256,9 @@ bind-key -t vi-edit Down history-down
 
 #set -g status-interval 1
 set -g status-right centre # center align window list
+
+# wemux userlist
+set -g status-right "#(wemux status_users)"
 
 # Statusbar starting in X or not
 #if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/office
+#----------------------------------------------
+# file:     ~/.bash_stuff/aliases/office
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#----------------------------------------------
 
 # Office
 ##################
@@ -13,3 +17,5 @@ alias massotf2ttf="$HOME/scripts/mass-otf2ttf.sh"
 #alias oobase="/usr/bin/soffice -base"
 #alias ooprintadmin="sudo /usr/bin/spadmin"
 
+
+# vim: set filetype=bash:

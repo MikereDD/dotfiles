@@ -28,17 +28,24 @@ fi
 # pkgfile
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && . /usr/share/doc/pkgfile/command-not-found.bash
 # bash_stuff - my bash files
-[[ -f ~/.bash_stuff/bash_aliases ]] && . ~/.bash_stuff/bash_aliases
-[[ -f ~/.bash_stuff/bash_binds ]] && . ~/.bash_stuff/bash_binds
-[[ -f ~/.bash_stuff/bash_colors ]] && . ~/.bash_stuff/bash_colors
-[[ -f ~/.bash_stuff/bash_completion ]] && . ~/.bash_stuff/bash_completion
-[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_completion
-[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
-[[ -f ~/.bash_stuff/bash_functions ]] && . ~/.bash_stuff/bash_functions
-[[ -f ~/.bash_stuff/bash_sfs ]] && . ~/.bash_stuff/bash_sfs
-[[ -f ~/.inputrc ]] && . ~/.inputrc
-[[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors`
-[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
+# source ~/.bash_stuff/aliases/
+if [ -d ~/.bash_stuff/aliases/ ]; then
+    for f in ~/.bash_stuff/aliases/*; do
+        . $f
+    done
+fi
+
+#[[ -f ~/.bash_stuff/aliases/aliases ]] && . ~/.bash_stuff/bash_aliases
+#[[ -f ~/.bash_stuff/bash_binds ]] && . ~/.bash_stuff/bash_binds
+#[[ -f ~/.bash_stuff/bash_colors ]] && . ~/.bash_stuff/bash_colors
+#[[ -f ~/.bash_stuff/bash_completion ]] && . ~/.bash_stuff/bash_completion
+#[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_completion
+#[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
+#[[ -f ~/.bash_stuff/bash_functions ]] && . ~/.bash_stuff/bash_functions
+#[[ -f ~/.bash_stuff/bash_sfs ]] && . ~/.bash_stuff/bash_sfs
+#[[ -f ~/.inputrc ]] && . ~/.inputrc
+#[[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors`
+#[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
 # dmenu - my demnu
 if [ -f ~/.dmenurc ]; then
     source ~/.dmenurc
@@ -77,8 +84,6 @@ if [ "$TERM" = "linux" ]; then
     echo -en "\e]PFc0c0c0" #white
     clear # bring us back to default input colours
 fi
-
-#export PYTHONPATH=/usr/lib/python3.3/site-packages/
 
 # Bash shell driver for go (http://code.google.com/p/go-tool/).
 function gcd {
@@ -131,8 +136,8 @@ bash_prompt() {
     esac
 
 # Bash Prompt
-if [ -f ~/.bash_stuff/bash_prompt ]; then
-    source ~/.bash_stuff/bash_prompt
+if [ -f ~/.bash_stuff/prompt ]; then
+    source ~/.bash_stuff/prompt
 else
     source ~/.git-prompt.sh
     PS1="${R}[${LG}\\u${R}@${LG}\h ${TQ}\\W${R}] \n ${TR}\\$ "
@@ -149,5 +154,8 @@ fi
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
+
+# Crosstool
+#export PATH=${PATH}:${HOME}/tools/toolchains/crosstool-ng-linaro
 
 # vim: set filetype=bash:

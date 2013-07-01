@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/video_audio
-#
+#--------------------------------------------------
+# file:     ~/.bash_stuff/aliases/video_audio
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------------
+
 # Alias"s to control hardware
 #############
 alias dvdo="eject /dev/sr0"
@@ -99,3 +103,5 @@ alias grooveshark-desktop='export GNOME_DESKTOP_SESSION_ID=1 && adobe-air /opt/g
 
 alias radioswitcher="sh $HOME/scripts/audio/radio-switcher.sh"
 alias runmocp="urxvt -name moc -pixmap $HOME/wallpapers/music-white-headphones.jpg -fg 252525 -pr cyan -pr2 black -fn 'xft:Envy Code R:antialias=true:hinting=true:pixelsize=11' +is +bc +uc -iconic -fade 60 -fadecolor black -tint black -sh 0 -e mocp"
+
+# vim: set filetype=bash:

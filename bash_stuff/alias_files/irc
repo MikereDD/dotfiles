@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/irc
-
-# Fifo Nicklist Irssi
-##################
-#alias irsii="aterm -name aterm -title irssi -g 112x65+215+32 &"
-#alias userlist="aterm -name aterm -title Ulist -g 17x30+1255+255 &"
-#alias nicklist="cat $HOME/.irssi/nicklistfifo"
-

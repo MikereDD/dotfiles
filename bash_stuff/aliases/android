@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/android
+#----------------------------------------------
+# file:     ~/.bash_stuff/aliases/android
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#----------------------------------------------
 
 # android
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
@@ -23,3 +27,8 @@ alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
 alias reposj1="repo sync -j1"
 alias reposfj1="repo sync -f -j1"
 
+alias fetchlmanifest="curl -L -o .repo/local_manifest.xml -O -L https://raw.github.com/pax10/local_manifest/rb/local_manifest.xml"
+
+alias pyfix="source ~/android/.prep_files/android_prep"
+
+# vim: set filetype=bash:

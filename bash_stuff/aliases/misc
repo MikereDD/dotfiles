@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/misc
+#----------------------------------------------
+# file:     ~/.bash_stuff/aliases/misc
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#----------------------------------------------
 
 # Fortune-mod - Quotes Tools
 alias tbbtf-modmaker="sh $HOME/scripts/quote-tools/tbbt.f-mod-maker.sh"
@@ -13,3 +17,12 @@ alias forcowsay="${R}fortune | ${B}cowsay"
 #alias leftconky="sh $HOME/scripts/left-conky.sh"
 #alias conky-1="sh $HOME/scripts/conky-scripts/conky-new.sh"
 #alias nzbgrab="hellanzb.py enqueuenewzbin "
+
+# dropbox
+alias dboxOn="dropbox start"
+alias dboxOff="dropbox stop"
+alias dboxLs="dropbox ls"
+alias dboxStat="dropbox status"
+
+
+# vim: set filetype=bash:

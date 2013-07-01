@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-# . ~/.bash_stuff/alias_files/image
+#----------------------------------------------
+# file:     ~/.bash_stuff/aliases/image
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#----------------------------------------------
 
 # Screenshot
 ##################
@@ -21,3 +25,6 @@ alias imageshackup="$HOME/scripts/imageshackup.sh"
 #alias mediainfohtm="mediainfo --Output=HTML "
 
 alias scan="scanimage -L"
+
+
+# vim: set filetype=bash:
