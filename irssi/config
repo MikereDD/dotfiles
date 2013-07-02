@@ -1,0 +1,574 @@
+#--------------------------------------------
+# file:     ~/.irssi/config
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=conf:
+#--------------------------------------------
+
+### networks/servers/channels
+### {{{
+
+servers = (
+  ### {{{
+  {
+    address = "irc.bbses.*";
+    chatnet = "bbs";
+    port = "6669";
+    password = "";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "no";
+  },
+  {
+    address = "127.0.0.1";
+    chatnet = "bitlbee";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "no";
+    no_proxy = "yes";
+  }
+);
+### }}}
+
+### server commands
+### {{{
+
+chatnets = {
+  gamesurge = {
+    type = "IRC";
+    autosendcmd = "";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "5";
+    max_whois = "4";
+  };
+  freenode = {
+    type = "IRC";
+    autosendcmd = "";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "5";
+    max_whois = "4";
+  };
+  bbs = {
+    type = "IRC";
+    autosendcmd = "/msg NickServ identify ***;wait 2000;/msg HostServ on";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "5";
+    max_whois = "4";
+  };
+  bitlbee = {
+    type = "IRC";
+    autosendcmd = "/msg root identify ***;wait 2000";
+    max_kicks = "4";
+    max_modes = "3";
+    max_msgs = "5";
+    max_whois = "4";
+  };
+  #### }}}
+};
+
+logs = {
+
+  ### {{{
+  ### bbs    #bbs {{{
+
+  "~/.irssi/irclogs/bbs/bbs/bbs-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = ( { type = "target"; name = "#bbs"; server = "bbs"; } );
+  };
+
+  ### }}}
+  ### bbs    #pyrrhous {{{
+
+  "~/.irssi/irclogs/bbs/pyrrhous/pyrrhous-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = ( { type = "target"; name = "#pyrrhous"; server = "bbs"; } );
+  };
+  ### }}}
+  ### bbs    #d.t {{{
+
+  "~/.irssi/irclogs/bbs/d.t/d.t-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = ( { type = "target"; name = "#d.t"; server = "bbs"; } );
+  };
+
+  ### }}}
+  ### bitlbee     &bitlbee {{{
+
+  "~/.irssi/irclogs/bitlbee/bitlbee/bitlbee-%Y-%m-%d" = {
+    auto_open = "yes";
+    level = "ALL";
+    items = (
+      { type = "target"; name = "&bitlbee"; server = "localhost"; }
+    );
+  };
+
+  ### }}}
+  ### }}}
+
+};
+
+### join channels
+### {{{
+
+channels = (
+  { name = "&bitlbee"; chatnet = "bitlbee"; autojoin = "yes"; },
+  { name = "#bbs"; chatnet = "bbs"; autojoin = "yes"; },
+  { name = "#pyrrhous"; chatnet = "bbs"; autojoin = "yes"; },
+  { name = "#d.t"; chatnet = "bbs"; autojoin = "yes"; },
+  { name = "#erg"; chatnet = "bbs"; autojoin = "yes"; },
+  { name = "#twitter_m_redd"; chatnet = "bitlbee"; autojoin = "yes"; },
+  { name = "#localhost"; chatnet = "bbs"; },
+  ### }}}
+);
+
+### aliases
+### {{{
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J ($V) - http://irssi.org/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_query off;set autoclose_windows off;set reuse_unused_windows on;save";
+  EXEMPTLIST = "mode $C +e";
+  ATAG = "WINDOW SERVER";
+  UNSET = "set -clear";
+  RESET = "set -default";
+  wm = "window move";
+  wj = "join -window";
+  wingoto = "window goto";
+  ADDALLCHANNELS = "script exec foreach my \\$channel (Irssi::channels()) { Irssi::command(\"channel add -auto \\$channel->{name} \\$channel->{server}->{tag} \\$channel->{key}\")\\;}";
+  thedate = "exec - -o date";
+  myuptime = "exec - -o ~/scripts/system/uptime.sh";
+  google = "say http://www.google.com/search?hl=en&q=$0&btnG=Google+Search";
+  fortune = "exec - -o fortune -s";
+  forcow = "exec - -o fortune | cowthink -f ren";
+  figlet = "exec - -o figlet -d ~/.figfonts/  -f";
+  authsurge = "^msg AuthServ@Services.GameSurge.net auth *** ***";
+  authbbses = "^msg NickServ identify ***";
+  awayall = "away -all Go Away & Give My Pillow Back!";
+  weather = "exec - -o ~/scripts/misc/myweather.sh";
+  bbses = "connect bbses";
+  ":p" = "exec -o echo \\\":þ\\\"";
+  "::p" = "exec -o echo \\\":Þ\\\"";
+  mocp = "exec mocp -G";
+  mocn = "exec mocp -f";
+  mocr = "exec mocp -r";
+  mocs = "exec mocp -s";
+  nowplay = "^exec -o cat $HOME/.nowplaying";
+  tweet = "/msg *twitter tweet ";
+  tunetv = "exec sh $HOME/scripts/tv/tune-ivtv.sh";
+  ns = "quote ns $0-";
+  cs = "quote cs $0-";
+  punch = "/me punches $0 in the vagina;";
+  MySysPrint = "/exec -o sh ~/scripts/system/mysysinfo.sh";
+  snapscreen = "/exec -o echo \"Say Cheese for Screenshot\" & sh ~/scripts/image/scrotsnap.sh";
+  backall = "/away -all";
+  timedate = "/exec -o echo \"$(date +'%R:%S %m/%d/%Y')\"";
+  tehtime = "exec - -o echo -e \"my time: `date +'%R:%S %Z'`\"";
+  banlist = "^mode #bbs +b";
+  identbitlbee = "/msg root identify ***";
+  ### }}}
+  vm_add = "/^eval /^statusbar prompt add -after input -alightment right vim_mode ; /^statusbar prompt add -after input -alignment right vim_windows";
+  vm_del = "/^eval /^statusbar prompt remove vim_mode ; /^statusbar prompt remove vim_windows";
+};
+
+### statusbar
+### {{{
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if it's argument isn't
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isn't empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    topicbarstart = "{topicsbstart}";
+    topicbarend = "{topicsbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    time = "{sb $Z}";
+    user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    window = "{sb $winref:$tag/$itemname{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]itemname}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = " Irssi v$J - http://www.irssi.org";
+
+    # all of these treated specially, they're only displayed when needed
+    lag = "{sb Lag: %m$0-%n}";
+    act = "{sb Act: $0-}";
+    more = "%k%3-- more --%n";
+  };
+
+  # there's two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+      disabled = "no";
+
+      # window, root
+      type = "window";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "1";
+      # active, inactive, always
+      visible = "active";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+        vim_mode = { };
+        vim_windows = { };
+      };
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+      ### }}}
+    };
+
+    # we treat input line as yet another statusbar :) It's possible to
+    # add other items before or after the input line item.
+
+    ### topicbar
+    ### {{{
+
+    topic = {
+      type = "root";
+      placement = "top";
+      position = "1";
+      visible = "always";
+      items = {
+        topicbarstart = { priority = "100"; };
+        topic = { };
+        topic_empty = { };
+        topicbarend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    items = { };
+    barstart = { };
+    prompt = {
+      items = {
+        uberprompt = { priority = "-1"; };
+        input = { priority = "10"; };
+        vim_windows = { alignment = "right"; };
+      };
+      position = "100";
+    };
+    awl_0 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+  };
+  awl_1 = { };
+};
+barend = { };
+
+### }}}
+
+### settings
+### {{{
+
+settings = {
+  core = {
+    real_name = "Mike Redd";
+    user_name = "MreDD";
+    nick = "MikereDD";
+    timestamp_format = "%H:%M:%S";
+    awaylog_file = "~/.irssi/irclogs/away.log";
+    recode_fallback = "utf-8";
+    recode_out_default_charset = "utf-8";
+    resolve_reverse_lookup = "yes";
+    log_day_changed = "= --- Day changed %a %Y-%m-%b";
+    cmdchars = "/";
+    resolve_prefer_ipv6 = "yes";
+    hostname = "";
+    awaylog_level = "MSGS HILIGHT";
+    use_proxy = "yes";
+    proxy_address = "irc.bbses.*";
+    proxy_port = "9110";
+    proxy_password = "***:***";
+    proxy_string = "";
+    proxy_string_after = "conn %s %d";
+  };
+  "irc/core" = {
+    alternate_nick = "MikereDD_ reDD_";
+    part_message = "(fart)";
+    skip_motd = "yes";
+    join_auto_chans_on_invite = "no";
+  };
+  "fe-common/core" = {
+    term_charset = "utf-8";
+    autolog = "yes";
+    autolog_path = "~/.irssi/irclogs/%Y/$tag/$0.%m-%d.log";
+    hilight_nick_matches = "yes";
+    names_max_width = "0";
+    beep_when_away = "no";
+    emphasis_replace = "yes";
+    reuse_unused_windows = "yes";
+    emphasis_multiword = "yes";
+    beep_when_window_active = "no";
+    beep_msg_level = "";
+    bell_beeps = "no";
+    show_quit_once = "show_own_nickchange_once";
+    use_msgs_window = "window_autochange";
+    theme = "colors/lightsout";
+    hilight_act_color = "%G";
+    activity_hide_targets = "= ##bbs #pyrrhous #erg #d.t &bitlbee";
+    hilight_color = "= %R";
+    autoclose_query = "86400";
+    autolog_level = "ALL -CRAP -CLIENTCRAP -CTCPS";
+  };
+  "fe-text" = {
+    actlist_sort = "refnum";
+    colors = "yes";
+    term_force_colors = "yes";
+    paste_verify_line_count = "3";
+    lag_min_show = "2sec";
+    autostick_split_windows = "yes";
+  };
+  "irc/dcc" = {
+    dcc_upload_path = "~";
+    dcc_download_path = "~/.irssi/dcc";
+    dcc_file_create_mode = "0";
+    dcc_send_replace_space_with_underscore = "yes";
+    dcc_autorename = "no";
+    dcc_autoresume = "no";
+    dcc_timeout = "5min";
+    dcc_autoget = "no";
+    dcc_own_ip = "seraphiel.*.*";
+    dcc_port = "41844 41895";
+    dcc_mirc_ctcp = "yes";
+    dcc_autoaccept_lowports = "yes";
+  };
+  "fe-common/irc" = { hide_netsplit_quits = "no"; };
+  proxy = {
+    irssiproxy_password = "";
+    irssiproxy_ports = "";
+    irssiproxy_bind = "";
+  };
+  "perl/core/scripts" = {
+    #awl_display_key = "$Q%K|%n$H$C$S";
+    #awl_block = "-15";
+    awl_block = "-12";
+
+    trackbar_style = "%B";
+    awl_display_nokey_active = "%k%2[$N:$C]%n";
+    awl_display_key = "$Q%K|%n$H$C$S";
+    awl_display_nokey = "[$N]$H$C$S";
+
+    #nicklist
+    nicklist_width = "22";
+    nicklist_automode = "fifo";
+
+    awl_columns = "1";
+    chansort_autosort = "yes";
+    awl_prefer_name = "yes";
+    tmux_away_active = "yes";
+    nicklist_height = "48";
+    autovoice_channels = "";
+    awl_display_key_active = "$Q%K|%n$H$C$S %n$S";
+    vim_mode_cmd_seq = "j";
+    uberprompt_load_hook = "/^vm_add";
+    autovoice_channels = "";
+    awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
+  };
+};
+### }}}
+
+### ignores/hilights
+### {{{
+
+ignores = (
+  #{
+  #level = "JOINS PARTS QUITS KICKS NICKS";
+  #channels = ( );
+  #network = "efnet, freenode, quakenet, bitlbee";
+  #},
+  {
+    #level = "JOINS PARTS QUITS MODES";
+    level = "PARTS";
+    channels = ( "&bitlbee", "#twitter_M_reDD" );
+    network = "bitlbee";
+  },
+  {
+    level = "NOTICES SNOTES";
+    channels = ( "#bbs", "#pyrrhous", "#d.t", "#archlinux" );
+    network = "bbs";
+  }
+);
+hilights = (
+  { text = "MikereDD"; color = "%M"; nick = "yes"; word = "yes"; },
+  { text = "MreDD"; color = "%M"; nick = "yes"; word = "yes"; },
+  ### }}}
+);
+
+### keyboard
+### {{{
+
+keyboard = (
+  { key = "meta-d"; id = "command"; data = "nicklist scroll +10"; },
+  { key = "meta-u"; id = "command"; data = "nicklist scroll -10"; },
+  { key = "meta-m"; id = "command"; data = "mark"; },
+  { },
+  { key = "meta-[M"; id = "command"; data = "mouse_xterm "; },
+  ### }}}
+);
+
+### windows
+### {{{
+
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = { name = "hilite"; };
+  3 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "&bitlbee";
+        tag = "bitlbee";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitter_m_redd";
+        tag = "bitlbee";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#bbs";
+        tag = "bbs";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#d.t";
+        tag = "bbs";
+      }
+    );
+  };
+  7 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#erg";
+        tag = "bbs";
+      }
+    );
+  };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#pyrrhous";
+        tag = "bbs";
+      }
+    );
+  };
+  9 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "root";
+        tag = "bitlbee";
+      }
+    );
+  };
+};
+mainwindows = { 4 = { first_line = "1"; lines = "68"; }; };
+### }}}
