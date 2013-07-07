@@ -320,8 +320,7 @@ statusbar = {
         topicbarend = { priority = "100"; alignment = "right"; };
       };
     };
-    items = { };
-    barstart = { };
+    #    barstart = { };
     prompt = {
       items = {
         uberprompt = { priority = "-1"; };
@@ -337,10 +336,26 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
-  awl_1 = { };
+  awl_0 = { };
+  #    awl_1 = {
+  #      items = {
+  #        barstart = { priority = "100"; };
+  #        awl_1 = { };
+  #        barend = { priority = "100"; alignment = "right"; };
+  #      };
+  #    };
+  #  };
+  #  awl_1 = { };
 };
-barend = { };
+#barend = { };
 
 ### }}}
 
@@ -394,7 +409,7 @@ settings = {
     hilight_act_color = "%G";
     activity_hide_targets = "= ##bbs #pyrrhous #erg #d.t &bitlbee";
     hilight_color = "= %R";
-    autoclose_query = "86400";
+    autoclose_query = "0";
     autolog_level = "ALL -CRAP -CLIENTCRAP -CTCPS";
   };
   "fe-text" = {
@@ -436,20 +451,20 @@ settings = {
     awl_display_nokey = "[$N]$H$C$S";
 
     #nicklist
-    nicklist_width = "22";
-    nicklist_automode = "fifo";
+    #    nicklist_width = "22";
+    #    nicklist_automode = "fifo";
 
     awl_columns = "1";
     chansort_autosort = "yes";
     awl_prefer_name = "yes";
     tmux_away_active = "yes";
-    nicklist_height = "48";
-    autovoice_channels = "";
+    #    nicklist_height = "48";
+    autovoice_channels = "#bbs , #d.t , #pyrrhous";
     awl_display_key_active = "$Q%K|%n$H$C$S %n$S";
     vim_mode_cmd_seq = "j";
     uberprompt_load_hook = "/^vm_add";
-    autovoice_channels = "";
-    awl_display_key_active = "$Q%K|$N%n $H%U$C%n$S";
+    uberprompt_unload_hook = "/^vm_del";
+    uberprompt_format = "[$vim_cmd_mode] $*$uber]";
   };
 };
 ### }}}
@@ -504,32 +519,12 @@ windows = {
       {
         type = "CHANNEL";
         chat_type = "IRC";
-        name = "&bitlbee";
-        tag = "bitlbee";
-      }
-    );
-  };
-  4 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
-        name = "#twitter_m_redd";
-        tag = "bitlbee";
-      }
-    );
-  };
-  5 = {
-    items = (
-      {
-        type = "CHANNEL";
-        chat_type = "IRC";
         name = "#bbs";
         tag = "bbs";
       }
     );
   };
-  6 = {
+  4 = {
     items = (
       {
         type = "CHANNEL";
@@ -539,7 +534,7 @@ windows = {
       }
     );
   };
-  7 = {
+  5 = {
     items = (
       {
         type = "CHANNEL";
@@ -549,7 +544,7 @@ windows = {
       }
     );
   };
-  8 = {
+  6 = {
     items = (
       {
         type = "CHANNEL";
@@ -559,16 +554,26 @@ windows = {
       }
     );
   };
-  9 = {
+  7 = {
     items = (
       {
-        type = "QUERY";
+        type = "CHANNEL";
         chat_type = "IRC";
-        name = "root";
+        name = "&bitlbee";
+        tag = "bitlbee";
+      }
+    );
+  };
+  8 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#twitter_m_redd";
         tag = "bitlbee";
       }
     );
   };
 };
-mainwindows = { 4 = { first_line = "1"; lines = "68"; }; };
+mainwindows = { 1 = { first_line = "1"; lines = "32"; }; };
 ### }}}

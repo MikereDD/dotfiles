@@ -15,14 +15,14 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-git'
-Bundle 'Lokaltog/vim-easymotion' 
-Bundle 'rstacruz/sparkup', {'rtp': 'vim/'} 
-Bundle 'gmarik/sudo-gui.vim' 
-Bundle 'gmarik/vim-markdown' 
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+Bundle 'gmarik/sudo-gui.vim'
+Bundle 'gmarik/vim-markdown'
 Bundle 'git://github.com/MarcWeber/vim-addon-mw-utils.git'
 Bundle 'git://github.com/tomtom/tlib_vim.git'
 Bundle 'rbonvall/snipmate-snippets-bib'
-Bundle 'garbas/vim-snipmate' 
+Bundle 'garbas/vim-snipmate'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-rake'
 Bundle 'vim-scripts/Vim-R-plugin'
@@ -60,6 +60,7 @@ Bundle 'git://github.com/xolox/vim-shell.git'
 Bundle 'vim-scripts/bash-support.vim'
 Bundle 'git://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'git://github.com/Lokaltog/vim-powerline.git'
+Bundle 'git://github.com/bronson/vim-trailing-whitespace.git'
 filetype plugin indent on
 
 " }}}
@@ -80,7 +81,7 @@ set backspace=indent,eol,start
 set nonumber
 set norelativenumber
 set laststatus=2
-set fileformat=unix
+"set fileformat=unix
 set fileformats=unix,dos
 set fillchars=diff:⣿,vert:│
 set fillchars+=stl:\ ,stlnc:\
@@ -99,7 +100,10 @@ set autowrite
 set autoread
 set shiftround
 set title
+set wrap
 set linebreak
+" note trailing space at end of next line
+set showbreak=>\ \ \
 set dictionary=/usr/share/dict/words
 set spellfile=~/.vim/custom-dictionary.utf-8.add
 set colorcolumn=+1
@@ -148,6 +152,8 @@ augroup END
 
 " }}}
 " Trailing whitespace {{{
+" F5 to delete trailing white spaces
+" nnoremap <F5> :%s/\s\+$//<cr>
 " Save {{{
 
 " augroup its2012justfuckingsavealready

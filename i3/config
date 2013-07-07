@@ -43,16 +43,21 @@ popup_during_fullscreen ignore
 # Colors {{{
 # class                 border  backgr. text    indicator
 #client.background       #181e31
-client.background       #060606
+#client.background       #060606
+client.background       #161616
 #statusline
 #client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
-client.focused          #090909 #101010 #999999 #969696
+#client.focused          #090909 #101010 #999999 #969696
+client.focused          #262626 #121212 #d0d0d0 #969696
 #client.focused_inactive #181e31 #101116 #666666 #484e50
-client.focused_inactive #1e1e1e #060606 #333333 #444444
+#client.focused_inactive #1e1e1e #060606 #333333 #444444
+client.focused_inactive  #080808 #161616 #303030 #444444
 #client.unfocused        #181e31 #101116 #515152 #292d2e
-client.unfocused        #0e0e0e #060606 #222222 #222222
+#client.unfocused        #0e0e0e #060606 #222222 #222222
+client.unfocused        #1c1c1c #161616 #262626 #222222
 #client.urgent           #700000 #900000 #d2d2d2 #ffffff
-client.urgent           #330909 #000000 #ffffff #330909
+#client.urgent           #330909 #000000 #ffffff #330909
+client.urgent           #ffd77ff #080808 #eeeeee #ff0000
 # }}}
 
 # binds {{{
@@ -63,7 +68,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#666666" -sb "#060606" -sf "#330909"
+bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#121212" -nf "#585858" -sb "#161616" -sf "#eeeeee"
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -268,17 +273,23 @@ bar {
 
 colors {
         #background         #191f2d
-        background         #060606
-        statusline         #999999
+        #background         #060606
+        background         #161616
+        #statusline         #999999
+        statusline         #b2b2b2
         # class            border  backgr  text    indicator
         #focused_workspace  #181e31 #101116 #d2d2d2
-        focused_workspace  #090909 #060606 #d2d2d2 #969696
+        #focused_workspace  #090909 #060606 #d2d2d2 #969696
+        focused_workspace  #262626 #121212 #d0d0d0 #969696
         #active_workspace   #181e31 #101116 #999999
-        active_workspace   #1e1e1e #060606 #999999 #444444
+        #active_workspace   #1e1e1e #060606 #999999 #444444
+        active_workspace   #080808 #161616 #303030 #444444
         #inactive_workspace #181e31 #101116 #515152
-        inactive_workspace #0e0e0e #090909 #666666 #222222
+        #inactive_workspace #0e0e0e #090909 #666666 #222222
+        inactive_workspace #1c1c1c #161616 #262626 #222222
         #urgent_workspace   #900000 #757a83 #ffffff
-        urgent_workspace   #330909 #000000 #ffffff #330909
+        #urgent_workspace   #330909 #000000 #ffffff #330909
+        urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
     }
 
 }
