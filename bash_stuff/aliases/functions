@@ -63,7 +63,7 @@ goto() { [ -d "$1" ] && cd "$1" || cd "$(dirname "$1")"; }
 # External IP
 wmip(){ printf "External IP: %s\n" $(curl -s  http://ifconfig.me/) ;}
 
-# SSH Keys 
+# SSH Keys
 keys() { eval $(ssh-agent) && ssh-add ~/.ssh/id_?sa* ;}
 
 # attach tmux to existing session
@@ -76,26 +76,26 @@ zones() { ls /usr/share/zoneinfo/"$1" ;}
 # Nice mount output
 nmount() { (echo "DEVICE PATH TYPE FLAGS" && mount | awk '$2=$4="";1') | column -t; }
 
-# Print man pages 
+# Print man pages
 manp() { man -t "$@" | lpr -pPrinter; }
 
 # Create pdf of man page - requires ghostscript and mimeinfo
 manpdf() { man -t "$@" | ps2pdf - ~/tmp/manpdf_$1.pdf && zathura ~/tmp/manpdf_$1.pdf ;}
 
 ### Simple notes ###
-n() { 
+n() {
   local arg files=()
-  for arg; do 
+  for arg; do
       files+=( ~/".notes/$arg" )
   done
-  ${EDITOR:-vim} "${files[@]}" 
+  ${EDITOR:-vim} "${files[@]}"
 }
 
 nls() {
-  tree -CR --noreport $HOME/.notes | awk '{ 
-    if (NF==1) print $1; 
-    else if (NF==2) print $2; 
-    else if (NF==3) printf "  %s\n", $3 
+  tree -CR --noreport $HOME/.notes | awk '{
+    if (NF==1) print $1;
+    else if (NF==2) print $2;
+    else if (NF==3) printf "  %s\n", $3
     }'
 }
 
@@ -105,4 +105,1773 @@ _notes() {
   [[ -e ${files[0]} ]] && COMPREPLY=( "${files[@]##~/.notes/}" )
 }
 complete -o default -F _notes n
+
+# Add a function you've declared to functions file in ~/.bash_stuff
+function addfunction() { declare -f $1 >> ~/.bash_stuff/aliases/functions ; }
+
+# Text Alignment
+## center text in console with simple pipe like
+function align_center() { l="$(cat -)"; s=$(echo -e "$l"| wc -L); echo "$l" | while read l;do j=$(((s-${#l})/2));echo "$(while ((--j>0)); do printf " ";done;)$l";done;} #; ls --color=none / | center
+
+##right-align text in console using pipe like ( command | right )
+function align_right() { l="$(cat -)"; [ -n "$1" ] && s=$1 || s=$(echo -e "$l"| wc -L); echo "$l" | while read l;do j=$(((s-${#l})));echo "$(while ((j-->0)); do printf " ";done;)$l";done;} #; ls --color=none / | right 150
+
+# Show all strings (ASCII & Unicode) in a file
+function allStrings() { cat "$1" | tr -d "\0" | strings ; }
+
+# Temporarily add to PATH
+function apath()
+{
+    if [ $# -lt 1 ] || [ $# -gt 2 ]; then
+        echo "Temporarily add to PATH"
+        echo "usage: apath [dir]"
+    else
+        PATH=$1:$PATH
+    fi
+}
+
+# Function you want after you've overwritten some
+## important file using > instead of >> ^^
+function append() {
+        lastarg="${!#}"
+        echo "${@:1:$(($#-1))}" >> "$lastarg"
+}
+
+# Common commands piped through grep
+function aptg()         # debian specific.
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "search debian package list"
+        echo "usage: aptg [program/keyword]"
+    else
+        apt-cache search $1 | sort | less
+    fi
+}
+
+# Grep by paragraph instead of by line
+function grepp() { [ $# -eq 1 ] && perl -00ne "print if /$1/i" || perl -00ne "print if /$1/i" < "$2";}
+
+
+
+function hgg()
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "search bash history"
+        echo "usage: mg [search pattern]"
+    else
+        history | grep -i $1 | grep -v hg
+    fi
+}
+
+
+
+function lsofg()
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "grep lsof"
+        echo "usage: losfg [port/program/whatever]"
+    else
+        lsof | grep -i $1 | less
+    fi
+}
+
+
+
+function psg()
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "grep running processes"
+        echo "usage: psg [process]"
+    else
+        ps aux | grep USER | grep -v grep
+        ps aux | grep -i $1 | grep -v grep
+    fi
+}
+
+# Arch-wiki-docs simple search
+function archwikisearch() {
+    # old version
+    # cd /usr/share/doc/arch-wiki/html/
+    # grep -i "$1" index.html | sed 's/.*HREF=.\(.*\.html\).*/\1/g' | xargs opera -newpage
+    cd /usr/share/doc/arch-wiki/html/
+    for i in $(grep -li $1 *)
+    do
+        STRING=`grep -m1 -o 'wgTitle = "[[:print:]]\+"' $i`
+        LEN=${#STRING}
+        let LEN=LEN-12
+        STRING=${STRING:11:LEN}
+        LOCATION="/usr/share/doc/arch-wiki/html/$i"
+        echo -e " \E[33m$STRING   \E[37m$LOCATION"
+    done
+}
+
+# Convert binaries
+## copyright 2007 - 2010 Christopher Bratusek
+function bin2all() {
+    if [[ $1 ]]; then
+        echo "binary $1 = octal $(bin2oct $1)"
+        echo "binary $1 = decimal $(bin2dec $1)"
+        echo "binary $1 = hexadecimal $(bin2hex $1)"
+        echo "binary $1 = base32 $(bin2b32 $1)"
+        echo "binary $1 = base64 $(bin2b64 $1)"
+        echo "binary $1 = ascii $(bin2asc $1)"
+    fi
+}
+
+
+
+function bin2asc() {
+    if [[ $1 ]]; then
+        echo -e "\0$(printf %o $((2#$1)))"
+    fi
+}
+
+
+
+function bin2b64() {
+    if [[ $1 ]]; then
+        echo "obase=64 ; ibase=2 ; $1" | bc
+    fi
+}
+
+
+
+function bin2b32() {
+    if [[ $1 ]]; then
+        echo "obase=32 ; ibase=2 ; $1 " | bc
+    fi
+}
+
+
+
+function bin2dec() {
+    if [[ $1 ]]; then
+        echo $((2#$1))
+    fi
+}
+
+
+
+function bin2hex() {
+    if [[ $1 ]]; then
+        echo "obase=16 ; ibase=2 ; $1" | bc
+    fi
+}
+
+
+
+function bin2oct() {
+    if [[ $1 ]]; then
+        echo "obase=8 ; ibase=2 ; $1" | bc
+    fi
+}
+
+# Simple Calculator to 4 decimals
+function calc() {
+echo "scale=4; $1" | bc
+}
+
+# Temperature Conversion
+## Copyright 2007 - 2010 Christopher Bratusek
+function cel2fah() {
+
+  if [[ $1 ]]; then
+    echo "scale=2; $1 * 1.8  + 32" | bc
+  fi
+
+}
+
+
+
+function cel2kel() {
+
+  if [[ $1 ]]; then
+    echo "scale=2; $1 + 237.15" | bc
+  fi
+
+}
+
+
+
+function fah2cel() {
+
+  if [[ $1 ]]; then
+    echo "scale=2 ; ( $1 - 32  ) / 1.8" | bc
+  fi
+
+}
+
+
+
+function fah2kel() {
+
+  if [[ $1 ]]; then
+    echo "scale=2; ( $1 + 459.67 ) / 1.8 " | bc
+  fi
+
+}
+
+
+
+function kel2cel() {
+
+  if [[ $1 ]]; then
+    echo "scale=2; $1 - 273.15" | bc
+  fi
+
+}
+
+
+
+function kel2fah() {
+
+  if [[ $1 ]]; then
+    echo "scale=2; $1 * 1.8 - 459,67" | bc
+  fi
+
+}
+
+# Output an ASCII character given its decimal equivalent
+function chr() { printf \\$(($1/64*100+$1%64/8*10+$1%8)); }
+
+# Ruler that stretches across the terminal
+function ruler() { for s in '....^....|' '1234567890'; do w=${#s}; str=$( for (( i=1; $i<=$(( ($COLUMNS + $w) / $w )) ; i=$i+1 )); do echo -n $s; done ); str=$(echo $str | cut -c -$COLUMNS) ; echo $str; done; }
+
+# Convert seconds to minutes, hours, days, and etc.
+## inputs a number of seconds, outputs a string like "2 minutes, 1 second"
+## $1: number of seconds
+function sec2all()
+{
+    local millennia=$((0))
+    local centuries=$((0))
+    local years=$((0))
+    local days=$((0))
+    local hour=$((0))
+    local mins=$((0))
+    local secs=$1
+    local text=""
+    # convert seconds to days, hours, etc
+    millennia=$((secs / 31536000000))
+    secs=$((secs % 31536000000))
+    centuries=$((secs / 3153600000))
+    secs=$((secs % 3153600000))
+    years=$((secs / 31536000))
+    secs=$((secs % 31536000))
+    days=$((secs / 86400))
+    secs=$((secs % 86400))
+    hour=$((secs / 3600))
+    secs=$((secs % 3600))
+    mins=$((secs / 60))
+    secs=$((secs % 60))
+    # build full string from unit strings
+    text="$text$(seconds-convert-part $millennia "millennia")"
+    text="$text$(seconds-convert-part $centuries "century")"
+    text="$text$(seconds-convert-part $years "year")"
+    text="$text$(seconds-convert-part $days "day")"
+    text="$text$(seconds-convert-part $hour "hour")"
+    text="$text$(seconds-convert-part $mins "minute")"
+    text="$text$(seconds-convert-part $secs "second")"
+    # trim leading and trailing whitespace
+    text=${text## }
+    text=${text%% }
+    # special case for zero seconds
+    if [ "$text" == "" ]; then
+        text="0 seconds"
+    fi
+    # echo output for the caller
+    echo ${text}
+}
+
+# Formats a time unit into a string
+## $1: integer count of units: 0, 6, etc
+## $2: unit name: "hour", "minute", etc
+function seconds-convert-part()
+{
+    local unit=$1
+    local name=$2
+    if [ $unit -ge 2 ]; then
+        echo " ${unit} ${name}s"
+    elif [ $unit -ge 1 ]; then
+        echo " ${unit} ${name}"
+    else
+        echo ""
+    fi
+}
+
+# Ask
+function ask()
+{
+    echo -n "$@" '[y/n] ' ; read ans
+    case "$ans" in
+        y*|Y*) return 0 ;;
+        *) return 1 ;;
+    esac
+}
+
+# Escape potential tarbombs
+function atb() { l=$(tar tf $1); if [ $(echo "$l" | wc -l) -eq $(echo "$l" | grep $(echo "$l" | head -n1) | wc -l) ]; then tar xf $1; else mkdir ${1%.tar.gz} && tar xf $1 -C ${1%.tar.gz}; fi ; }
+
+# WATCH ANALOG TV
+#function atv()
+#{
+#echo -n "What analog/cable tv channel would you like to watch? (1-99)?:
+#"
+#read ANALOGSTATION
+#sh -c "mplayer -tv driver=v4l2:device=/dev/video1:input=0:norm=ntsc:chanlist=us-cable:channel="$ANALOGSTATION" tv:// & sox -r 48000 -t alsa hw:1,0 -t alsa hw:0,0"
+#}
+
+
+
+function atv_()
+{
+sh -c "tvtime & sox -r 48000 -t alsa hw:1,0 -t alsa hw:0,0"
+}
+
+
+
+function ATV()
+{
+sox -s -r 32000 -c 2 -t alsa hw:1,0 -s -r 32000 -c 2 -t alsa hw:0,0 &
+tvtime
+t=`pidof sox`;
+kill $t;
+}
+
+
+
+###### WATCH DIGITAL TV
+function dtv()
+{
+dtvchannels
+echo -n "What digital tv channel would you like to watch?:
+"
+read DIGITALSTATION
+mplayer dvb://"$DIGITALSTATION"
+}
+
+# Download AUR package using best guess at
+## filename
+function aurget() {
+  local DIR=$HOME/abs/dlpkgs
+  cd $DIR && wget http://aur.archlinux.org/packages/${1}/${1}.tar.gz
+  ls -l
+}
+
+## Directory Functions
+function backupsfolder()
+{
+    if [ -d $HOME/backups_html ]; then
+        chown -R $USER:www-data $HOME/backups_html
+        chmod 755 $HOME/backups_html
+        find $HOME/backups_html/ -type d -exec chmod 775 {} \;
+        find $HOME/backups_html/ -type f -exec chmod 664 {} \;
+        chmod 755 $HOME
+    fi
+}
+
+
+
+function private()
+{
+    find $HOME -type d -exec chmod 700 {} \;
+    find $HOME -type f -exec chmod 600 {} \;
+    find $HOME/bin -type f -exec chmod +x {} \;
+    find $HOME/.dropbox-dist/dropbox* -type f -exec chmod +x {} \;
+}
+
+
+
+function publicfolder()
+{
+    if [ -d $HOME/public_html ]; then
+        chown -R $USER:www-data $HOME/public_html
+        chmod 755 $HOME/public_html
+        find $HOME/public_html/ -type d -exec chmod 775 {} \;
+        find $HOME/public_html/ -type f -exec chmod 664 {} \;
+        chmod 755 $HOME
+    fi
+}
+
+
+
+function setperms()
+{
+    echo "setting proper permissions in ~/"
+    private
+    public
+}
+
+
+
+function wwwrc()
+{
+    alias mv="mv"
+    mv -f ~/.[a-z]*.html ~/public_html/
+    chmod 644 ~/public_html/.[a-z]*.html
+    chown $USER:www-data ~/public_html/.[a-z]*.html
+    alias mv="mv -i"
+}
+
+# Backup .bash* files
+function backup_bashfiles()
+{
+  ARCHIVE="$HOME/backups/bash_files/bash_dotfiles_$(date +%Y%m%d_%H%M%S).tar.gz";
+  cd ~
+  tar -czvf $ARCHIVE .synergy.conf .xsession .xmodmaprc .xinitrc .xbindkeysrc .wgetrc .screenrc .screenrc_c .esmtprc .msmtprc .Xmodmap .Xresources .asoundrc .dir_colors .inputrc .profile .bash_profile .bashrc .bash_stuff/*
+  echo "All backed up in $ARCHIVE";
+}
+
+# Creates a backup of the file passed as
+## parameter with the date and time
+function bak()
+{
+  cp $1 $1_`date +%H:%M:%S_%d-%m-%Y`
+}
+
+# Good bash tips for everyone
+function bashtips() {
+# copyright 2007 - 2010 Christopher Bratusek
+cat <<EOF
+DIRECTORIES
+-----------
+~-          Previous working directory
+pushd tmp   Push tmp && cd tmp
+popd        Pop && cd
+GLOBBING AND OUTPUT SUBSTITUTION
+--------------------------------
+ls a[b-dx]e Globs abe, ace, ade, axe
+ls a{c,bl}e Globs ace, able
+\$(ls)      \`ls\` (but nestable!)
+HISTORY MANIPULATION
+--------------------
+!!        Last command
+!?foo     Last command containing \`foo'
+^foo^bar^ Last command containing \`foo', but substitute \`bar'
+!!:0      Last command word
+!!:^      Last command's first argument
+!\$       Last command's last argument
+!!:*      Last command's arguments
+!!:x-y    Arguments x to y of last command
+C-s       search forwards in history
+C-r       search backwards in history
+LINE EDITING
+------------
+M-d     kill to end of word
+C-w     kill to beginning of word
+C-k     kill to end of line
+C-u     kill to beginning of line
+M-r     revert all modifications to current line
+C-]     search forwards in line
+M-C-]   search backwards in line
+C-t     transpose characters
+M-t     transpose words
+M-u     uppercase word
+M-l     lowercase word
+M-c     capitalize word
+COMPLETION
+----------
+M-/     complete filename
+M-~     complete user name
+M-@     complete host name
+M-\$    complete variable name
+M-!     complete command name
+M-^     complete history
+EOF
+}
+
+# Execute a given Linux command on a group of files
+##### Example: batchexec sh ls          # lists all files that have the extension 'sh'
+# Example: batchexec sh chmod 755       # 'chmod 755' all files that have the extension 'sh'
+function batchexec()
+{
+find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
+}
+
+# Clock - A bash clock that can run in your terminal window.
+###### binary clock
+function bclock()
+{
+watch -n 1 'echo "obase=2;`date +%s`" | bc'
+}
+
+
+
+###### binary clock
+function bclock2()
+{
+perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
+}
+
+
+
+function clock()
+{
+while true;do clear;echo "===========";date +"%r";echo "===========";sleep 1;done
+}
+
+
+# Appends a '&' to a command so it will run in the background
+## useful for aliases
+function bg_wrapper()
+{
+    "$@" &
+}
+
+# Bookmarking
+## bookmarking the current directory in 'alias' form
+function bookmark() {
+    # copyright 2007 - 2010 Christopher Bratusek
+    if [[ $1 != "" && $(alias | grep -w go-$1) == "" ]]; then
+        echo "alias go-$1='cd $PWD'" >> $HOME/.bookmarks
+        . $HOME/.bookmarks
+    elif [[ $1 == "" ]]; then
+        echo "need name for the bookmark."
+    else        echo "bookmark go-$1 already exists."
+    fi
+}
+
+
+
+function unmark() {
+    # copyright 2007 - 2010 Christopher Bratusek
+    if [[ $(alias | grep -w go-$1= ) != "" ]]; then
+        sed -e "/go-$1/d" -i $HOME/.bookmarks
+        xunalias go-$1
+    fi
+}
+
+
+
+###### copies/moves files to a bookmarked dir
+# cto file1.jpg file2.jpg file3.jpg pics
+function cto() {
+    eval lastarg=\${$#}
+    targetdir=`getBookmark $lastarg`
+    echo "Copying files to $targetdir"
+    if [ -n "$targetdir" ]; then
+        for dir in "$@";
+            do
+                if [ "$dir" != $lastarg ]; then
+                    cp -iv "$dir" "$targetdir"
+                fi
+            done
+    fi
+}
+
+
+
+# mto vid1.avi vid2.avi videos
+function mto() {
+    eval lastarg=\${$#}
+    targetdir=`getBookmark $lastarg`
+    echo "Moving files to $targetdir"
+    if [ -n "$targetdir" ]; then
+        for dir in "$@";
+            do
+                if [ "$dir" != $lastarg ]; then
+                    mv -iv "$dir" "$targetdir"
+                fi
+            done
+    fi
+}
+
+
+## Directory Bookmarks for BASH (c) 2009, Ira Chayut, Version 090927
+# DirB and its implementation in this file are the product of, and
+# copyrighted by Ira Chayut.  You are granted a non-exclusive, royalty-free
+# license to use, reproduce, modify and create derivative works from DirB;
+# providing that credit is given to DirB as a source material.
+# The lastest version is available from: http://www.dirb.info/bashDirB.  Ira can
+# be reached at ira@dirb.info.
+# By default DirB will have the shell echo the current working directory out
+# to the title bars of Xterm windows.  To disable this behavior, comment
+# out the next line.
+# PS1="\[\033]0;\w\007\]\t \!> "
+# If the repository of bookmarks does not exist, create it
+if  [ ! -e ~/.DirB ]
+then
+    mkdir ~/.DirB
+fi
+
+
+
+###### "d" - Display (or Dereference) a saved bookmark
+# to use: cd "$(d xxx)"
+function d() {
+    # if the bookmark exists, then extract its directory path and print it
+    if [ -e ~/.DirB/"$1" ]
+    then
+        sed -e 's/\$CD //' -e 's/\\//g' ~/.DirB/"$1"
+
+    # if the bookmark does not exists, complain and exit with a failing code
+    else
+        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
+        false
+    fi
+}
+
+
+
+###### "g" - Go to bookmark
+function g() {
+    # if no arguments, then just go to the home directory
+    if [ -z "$1" ]
+    then
+        cd
+    else
+        # if $1 is in ~/.DirB and does not begin with ".", then go to it
+        if [ -f ~/.DirB/"$1" -a ${1:0:1} != "." ]
+        then
+            # update the bookmark's timestamp and then execute it
+            touch ~/.DirB/"$1" ;
+            CD=cd source ~/.DirB/"$1" ;
+        # else just do a "cd" to the argument, usually a directory path of "-"
+        else
+            cd "$1"
+        fi
+    fi
+}
+
+
+
+###### "p" - Push a bookmark
+function p() {
+    # Note, the author's preference is to list the directory stack in a single
+    # column.  Thus, the standard behavior of "pushd" and "popd" have been
+    # replaced by discarding the normal output of these commands and using a
+    # "dirs -p" after each one.
+
+    # if no argument given, then just pushd and print out the directory stack
+    if [ -z "$1" ]
+    then
+        pushd > /dev/null && dirs -p
+
+    # if $1 is a dash, then just do a "popd" and print out the directory stack
+    elif [ "$1" == "-" ]
+    then
+        popd > /dev/null
+        dirs -p
+    else
+        # if $1 is in ~/.DirB and does not begin with ".", then go to it
+        # and then print out the directory stack
+        if [ -f ~/.DirB/"$1" -a "${1:0:1}" != "." ]
+            then
+                touch ~/.DirB/$1 ;
+                CD=pushd source ~/.DirB/$1 > /dev/null && dirs -p ;
+
+        # else just do a "pushd" and print out the directory stack
+        else
+            pushd "$1" > /dev/null && dirs -p
+        fi
+    fi
+}
+
+
+
+###### "r" - Remove a saved bookmark
+function r() {
+    # if the bookmark file exists, remove it
+    if [ -e ~/.DirB/"$1" ]
+    then
+        rm ~/.DirB/"$1"
+
+    # if the bookmark file does not exist, complain and exit with a failing code
+    else
+        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
+        false
+    fi
+}
+
+
+
+###### "s" - Save bookmark
+function s() {
+    if [ -n "$2" ]
+    then
+        # build the bookmark file with the contents "$CD directory_path"
+        ( echo '$CD ' \"$2\" > ~/.DirB/"$1" ;) > /dev/null 2>&1
+    else
+        # build the bookmark file with the contents "$CD directory_path"
+        ( echo -n '$CD ' > ~/.DirB/"$1" ;
+          pwd | sed "s/ /\\\\ /g" >> ~/.DirB/"$1" ; ) > /dev/null 2>&1
+    fi
+    # if the bookmark could not be created, print an error message and
+    # exit with a failing return code
+    if [ $? != 0 ]
+    then
+        echo bash: DirB: ~/.DirB/"$1" could not be created >&2
+        false
+    fi
+}
+
+
+
+###### "sl" - Saved bookmark Listing
+function sl() {
+    # if the "-l" argument is given, then do a long listing, passing any
+    # remaining arguments to "ls", printing in reverse time order.  Pass the
+    # output to "less" to page the output if longer than a screen in length.
+    if [ "$1" == "-l" ]
+    then
+        shift
+        ( cd ~/.DirB ;
+        ls -lt $* |
+            sed -e 's/  */ /g' -e '/^total/d' \
+                -e 's/^\(... \)\([0-9] \)/\1 \2/' |
+            cut -d ' ' -s -f6- | sed -e '/ [0-9] /s// &/' | less -FX ; )
+
+    # else print the short form of the bookmarks in reverse time order
+    else
+        ( cd ~/.DirB ; ls -xt $* ; )
+    fi
+}
+
+
+
+###### simple bookmark system
+function getBookmark() {
+    case "$1" in
+    video|vids|vid) echo "~/Videos" ;; # video, vids and vid are shortcuts to use with the functions below, the bookmarked directory is "~/videos"
+    images|img|pics|pictures) echo "~/Pictures";;
+    *) echo "" ;;
+    esac
+}
+
+
+
+###### list contents of a bookmarked dir without
+# going there: list vids
+function list() {
+    dir=`getBookmark $1`
+    echo $dir
+    if [ -n "$dir" ]; then
+        ls "$dir"
+    fi
+}
+
+
+
+###### same as "list" but with details: llist vids
+function llist() {
+    dir=`getBookmark $1`
+    echo $dir
+    if [ -n "$dir" ]; then
+        ll "$dir"
+    fi
+}
+
+# Create box of '#' characters around given string
+function box() { t="$1xxxx";c=${2:-#}; echo ${t//?/$c}; echo "$c $1 $c"; echo ${t//?/$c}; }
+
+# Randomness
+## This script models Brownian motion:
+# random wanderings of tiny particles in fluid, as they are buffeted
+# by random currents and collisions (colloquially known as "Drunkard's Walk")
+# Author: Mendel Cooper
+function brownian()
+{
+PASSES=500                      #  Number of particle interactions / marbles.
+ROWS=10                         #  Number of "collisions" (or horiz. peg rows).
+RANGE=3                         #  0 - 2 output range from $RANDOM.
+POS=0                           #  Left/right position.
+RANDOM=$$                       #  Seeds the random number generator from PID of script.
+declare -a Slots                # Array holding cumulative results of passes.
+NUMSLOTS=21                     # Number of slots at bottom of board.
+function Initialize_Slots() {   # Zero out all elements of the array.
+for i in $( seq $NUMSLOTS )
+do
+  Slots[$i]=0
+done
+echo                            # Blank line at beginning of run.
+  }
+function Show_Slots() {
+echo -n " "
+for i in $( seq $NUMSLOTS )     # Pretty-print array elements.
+do
+  printf "%3d" ${Slots[$i]}     # Allot three spaces per result.
+done
+echo                            # Row of slots:
+echo " |__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|__|"
+echo "                                ^^"
+echo                            #  Note that if the count within any particular slot exceeds 99,
+                    #+ it messes up the display.
+                    #  Running only(!) 500 passes usually avoids this.
+  }
+function Move() {               # Move one unit right / left, or stay put.
+  Move=$RANDOM                  # How random is $RANDOM? Well, let's see ...
+  let "Move %= RANGE"           # Normalize into range of 0 - 2.
+  case "$Move" in
+    0 ) ;;                      # Do nothing, i.e., stay in place.
+    1 ) ((POS--));;             # Left.
+    2 ) ((POS++));;             # Right.
+    * ) echo -n "Error ";;      # Anomaly! (Should never occur.)
+  esac
+  }
+function Play() {               # Single pass (inner loop).
+i=0
+while [ "$i" -lt "$ROWS" ]      # One event per row.
+do
+  Move
+  ((i++));
+done
+SHIFT=11                        # Why 11, and not 10?
+let "POS += $SHIFT"             # Shift "zero position" to center.
+(( Slots[$POS]++ ))             # DEBUG: echo $POS
+  }
+function Run() {                # Outer loop.
+p=0
+while [ "$p" -lt "$PASSES" ]
+do
+  Play
+  (( p++ ))
+  POS=0                         # Reset to zero. Why?
+done
+  }
+# main()
+Initialize_Slots
+Run
+Show_Slots
+}
+
+# create random blank files
+function randomblanks()
+{
+for ((  i = 0 ;  i < $1;  i++  )); do touch $RANDOM; done
+}
+
+
+
+# Random file
+# copyright 2007 - 2010 Christopher Bratusek
+function randomfile() {
+    case $1 in
+            *first)
+                sed -n '1p' $HOME/.randomhistory
+            ;;
+            *last)
+                sed -n '$p' $HOME/.randomhistory
+            ;;
+            *n)
+                sed -n "${2}p" $HOME/.randomhistory
+            ;;
+            *l)
+                wc -l $HOME/.randomhistory | gawk '{print $1}'
+            ;;
+            *c)
+                rm $HOME/.randomhistory
+            ;;
+            *help )
+                echo -e "\n${ewhite}Usage:\n"
+                echo -e "${eorange}randomfile${ewhite} | ${egreen}--first ${eiceblue}[get the first file in the history]\
+                \n${eorange}randomfile${ewhite} | ${egreen}--last ${eiceblue}[get the last file in the history]\
+                \n${eorange}randomfile${ewhite} | ${egreen}--n ${eiceblue}[get the NUMBERth file in the history]\
+                \n${eorange}randomfile${ewhite} | ${egreen}--l ${eiceblue}[get the number of files in history]\
+                \n${eorange}randomfile${ewhite} | ${egreen}--c ${eiceblue}[clear the history]\n" | column -t
+                tput sgr0
+            ;;
+            *)
+                if [[ ! "$FILES" ]]; then
+                    files=(*)
+                else    files=("$FILES")
+                fi
+                n=${#files[@]}
+                RANDOMFILE="${files[RANDOM % n]}"
+                echo "$RANDOMFILE" >> $HOME/.randomhistory
+                if [[ ! "$@" ]]; then
+                    echo "$RANDOMFILE"
+                else    "$@" "$RANDOMFILE"
+                fi
+            ;;
+    esac
+}
+
+
+
+# Pulls a random line from text file
+function randomline()
+{
+# AUTHOR: David Ivan Stark (clyphox), clyphox@gmail.com
+if [ "$1" ];then  #checking if we were passed a filename/variable
+        FileName="$1"  #just an easier variable to work with
+        if [ ! -f "$FileName" ];then  #check if it is a file
+            echo "Err: $FileName is not a file"
+        fi
+        #Count how many lines in the file
+        LineCount="$(wc -l "$FileName" | cut -f 1 -d ' ')"
+        #Dont continue if we have less than 1 line
+        if [ "$LineCount" -gt "1" ];then
+                #Test past.. selecting random line
+                TargetLine=$[ ( $RANDOM % $LineCount )  + 1 ]
+                Output="$(sed -n "${TargetLine}p" "$FileName")"
+                echo "$Output"
+            else
+                echo need a file with more than 1 line... cmon...
+        fi
+    else        #seems we didnt get any input
+        echo "Please specify a text file"
+fi
+}
+
+# Generates neverending list of random numbers
+function randomnumbers()
+{
+while :
+do
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+ echo $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM $RANDOM
+done
+}
+
+# Backup a file with a date-time stamp
+# Usage "bu filename.txt"
+function bu() { cp $1 ${1}-`date +%Y%m%d%H%M`.backup ; }
+
+function buf() { cp -v $1 ${1/${1%%.*}/$f-$(date +"%Y%m%d_%H%M%S")}; }
+
+# Extract a file and cd into the new folder
+function build()
+{
+   extract "$1" && cd
+}
+
+# Needs fixing
+function build_() {
+args=($@)
+args[0]=
+reset
+tcc -o $1 ${1}.c ${args[@]}
+if [ $? -eq 0 ]; then
+./$1;
+fi
+}
+
+# Buffer in order to avoir mistakes with redirections that empty your files
+
+function buffer() { tty -s && return; tmp=$(mktemp); cat > "${tmp}"; if [ -n "$1" ] && ( ( [ -f "$1" ] && [ -w "$1" ] ) || ( ! [ -a "$1" ] && [ -w "$(dirname "$1")" ] ) ); then mv -f "${tmp}" "$1"; else echo "Can't write in \"$1\""; rm -f "${tmp}"; fi }
+
+# Copy & paste files and folders from the command line
+## Usage: "ccopy FILE/FOLDER#1 FILE/FOLDER#2 FILE/FOLDER#3 FILE/FOLDER#4 ..."
+# Note: You must 'cd' into the folder first ("whatever" works, while "~/myfolder/whatever" doesn't)
+function ccopy() { for i in $*; do cp -a $i /tmp/ccopy.$i; done }
+alias cpaste="ls -d /tmp/ccopy* | sed 's|[^\.]*.\.||' | xargs -I % mv /tmp/ccopy.% ./%"
+
+# Print working directory after a cd.
+# function cd() {
+#     if [[ $@ == '-' ]]; then
+#         builtin cd "$@" > /dev/null  # We'll handle pwd.
+#     else
+#         builtin cd "$@"
+#     fi
+#     echo -e "   \033[1;30m"`pwd`"\033[0m"
+# }
+
+# Change directory and list files
+function cds() {
+    # only change directory if a directory is specified
+    [ -n "${1}" ] && cd $1
+    lls
+}
+
+# Analyze your bash usage
+function check_()
+{
+cut -f1 -d" " .bash_history | sort | uniq -c | sort -nr | head -n 30
+}
+
+# Checksum
+
+function checksum()
+# copyright 2007 - 2010 Christopher Bratusek
+{
+    action=$1
+    shift
+    if [[ ( $action == "-c" || $action == "--check" ) && $1 == *.* ]]; then
+        type="${1/*./}"
+    else        type=$1
+        shift
+    fi
+    case $type in
+        md5 )
+            checktool=md5sum
+        ;;
+        sha1 | sha )
+            checktool=sha1sum
+        ;;
+        sha224 )
+            checktool=sha224sum
+        ;;
+        sha256 )
+            checktool=sha256sum
+        ;;
+        sha384 )
+            checktool=sha384sum
+        ;;
+        sha512 )
+            checktool=sha512sum
+        ;;
+    esac
+    case $action in
+        -g | --generate )
+            for file in "${@}"; do
+                $checktool "${file}" > "${file}".$type
+            done
+        ;;
+        -c | --check )
+            for file in "${@}"; do
+                if [[ "${file}" == *.$type ]]; then
+                    $checktool --check "${file}"
+                else    $checktool --check "${file}".$type
+                fi
+            done
+        ;;
+        -h | --help )
+        ;;
+    esac
+}
+
+
+
+# MD5 checksum
+function md5()
+{
+    echo -n $@ | md5sum
+}
+
+
+
+## Encode a string in md5 hash of 32 characters
+# You can short the length with the second parameter.
+#  @param string $1 string (required)
+#  @param integer $2 length (option, default: 32)
+#  @return string
+#  @example:    md5 "Hello World" 8
+function md5_() {
+      local length=${2:-32}
+      local string=$( echo "$1" | md5sum | awk '{ print $1 }' )
+      echo ${string:0:${length}}
+}
+
+# Mount/unmount CIFS shares; pseudo-replacement for smbmount
+##   $1 = remote share name in form of //server/share
+##   $2 = local mount point
+function cifsmount() { sudo mount -t cifs -o username=${USER},uid=${UID},gid=${GROUPS} $1 $2; }
+
+function cifsumount() { sudo umount $1; }
+
+# Network information and IP address stuff
+###### clear iptables rules safely
+function clearIptables()
+{
+iptables -P INPUT ACCEPT; iptables -P FORWARD ACCEPT; iptables -P OUTPUT ACCEPT; iptables -F; iptables -X; iptables -L
+}
+
+
+
+###### find an unused unprivileged TCP port
+function findtcp()
+{
+(netstat  -atn | awk '{printf "%s\n%s\n", $4, $4}' | grep -oE '[0-9]*$'; seq 32768 61000) | sort -n | uniq -u | head -n 1
+}
+
+
+
+###### geoip lookup (need geoip database: sudo apt-get install geoip-bin)
+function geoip() {
+geoiplookup $1
+}
+
+
+
+###### geoip information
+# requires 'html2text': sudo apt-get install html2text
+function geoiplookup() { curl -A "Mozilla/5.0" -s "http://www.geody.com/geoip.php?ip=$1" | grep "^IP.*$1" | html2text; }
+
+
+
+###### get IP address of a given interface
+# Example: getip lo
+# Example: getip eth0   # this is the default
+function getip()                { lynx -dump http://whatismyip.org/; }
+
+
+
+###### display private IP
+function ippriv()
+{
+    ifconfig eth0|grep "inet adr"|awk '{print $2}'|awk -F ':' '{print $2}'
+}
+
+
+
+###### ifconfig connection check
+function ips()
+{
+    if [ "$OS" = "Linux" ]; then
+        for i in $( /sbin/ifconfig | grep ^e | awk '{print $1}' | sed 's/://' ); do echo -n "$i: ";  /sbin/ifconfig $i | perl -nle'/dr:(\S+)/ && print $1'; done
+    elif [ "$OS" = "Darwin" ]; then
+        for i in $( /sbin/ifconfig | grep ^e | awk '{print $1}' | sed 's/://' ); do echo -n "$i: ";  /sbin/ifconfig $i | perl -nle'/inet (\S+)/ && print $1'; done
+    fi
+}
+
+
+
+###### geolocate a given IP address
+function ip2loc() { wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICountry\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g'; }
+
+
+
+function ip2locall() {
+# best if used through a proxy, as ip2loc's free usage only lets you search a maximum of 20 times per day
+# currently set on using a proxy through tor; if don't want that, just comment out the two 'export..' and 'unset...' lines
+export http_proxy='http://localhost:8118'
+export https_proxy='http://localhost:8118'
+echo ""
+echo "Country:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICountry\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Region (State, Province, Etc.):"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIRegion\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "City:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICity\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Latitude:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblILatitude\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Longitude:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblILongitude\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "ZIP Code:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIZIPCode\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Time Zone:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblITimeZone\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Net Speed:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblINetSpeed\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "ISP:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIISP\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Domain:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIDomain\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "IDD Code:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIIDDCode\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Area Code:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIAreaCode\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Weather Station:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIWeatherStation\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "MCC:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIMCC\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "MNC:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIMNC\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Mobile Brand:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIMobileBrand\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+unset http_proxy
+unset https_proxy
+}
+
+
+
+function ip2locate() {
+# best if used through a proxy, as ip2loc's free usage only lets you search a maximum of 20 times per day
+# currently set on using a proxy through tor; if don't want that, just comment out the two 'export..' and 'unset...' lines
+export http_proxy='http://localhost:8118'
+export https_proxy='http://localhost:8118'
+echo ""
+echo "Country:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICountry\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Region (State, Province, Etc.):"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblIRegion\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "City:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICity\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Latitude:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblILatitude\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+echo "Longitude:"
+wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblILongitude\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g';
+echo ""
+unset http_proxy
+unset https_proxy
+}
+
+
+
+###### myip - finds your current IP if your connected to the internet
+function myip()
+{
+lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'
+}
+
+
+
+###### netinfo - shows network information for your system
+function netinfo()
+{
+echo "--------------- Network Information ---------------"
+/sbin/ifconfig | grep broadcast | awk '{print "inet:",$2}'
+/sbin/ifconfig | grep broadcast | awk '{print "netmask:",$6}'
+/sbin/ifconfig | grep broadcast | awk '{print "broadcast:",$4}'
+/sbin/ifconfig | grep ether | tr -d '\n' | awk '{print "macaddr(s):","eth0:",$2,"wlan0:",$7}'
+myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
+echo "${myip}"
+echo "---------------------------------------------------"
+}
+
+
+
+###### show ip
+# copyright 2007 - 2010 Christopher Bratusek
+function show_ip()
+{
+    case $1 in
+        *help | "" )
+            echo -e "\n${ewhite}Usage:\n"
+            echo -e "${eorange}show_ip${ewhite} |${egreen} <interface> ${eiceblue}[show ip-address for <interface>]\
+            \n${eorange}show_ip${ewhite} |${egreen} external${eiceblue} [show external ip address]\n"
+            tput sgr0
+        ;;
+        *external )
+            wget -q -O - http://showip.spamt.net/
+        ;;
+        * )
+            LANG=C /sbin/ifconfig $1 | grep 'inet addr:' | cut -d: -f2 | gawk '{ print $1}'
+        ;;
+    esac
+}
+
+
+
+###### display the ttl of a hostname in a human readable form
+function ttl()
+{
+/usr/sbin/timetrans -count $(dig +noquestion +noadditional +noauthority $1 | grep "^$1" | awk '{print $2}')
+}
+
+
+
+###### show Url information
+# Usage:        url-info "ur"
+# This script is part of nixCraft shell script collection (NSSC)
+# Visit http://bash.cyberciti.biz/ for more information.
+# Modified by Silviu Silaghi (http://docs.opensourcesolutions.ro) to handle
+# more ip adresses on the domains on which this is available (eg google.com or yahoo.com)
+# Last updated on Sep/06/2010
+function url-info()
+{
+doms=$@
+if [ $# -eq 0 ]; then
+echo -e "No domain given\nTry $0 domain.com domain2.org anyotherdomain.net"
+fi
+for i in $doms; do
+_ip=$(host $i|grep 'has address'|awk {'print $4'})
+if [ "$_ip" == "" ]; then
+echo -e "\nERROR: $i DNS error or not a valid domain\n"
+continue
+fi
+ip=`echo ${_ip[*]}|tr " " "|"`
+echo -e "\nInformation for domain: $i [ $ip ]\nQuerying individual IPs"
+ for j in ${_ip[*]}; do
+echo -e "\n$j results:"
+whois $j |egrep -w 'OrgName:|City:|Country:|OriginAS:|NetRange:'
+done
+done
+}
+
+# What package does that command come from?
+function cmdpkg() { PACKAGE=$(dpkg -S $(which $1) | cut -d':' -f1); echo "[${PACKAGE}]"; dpkg -s "${PACKAGE}" ;}
+
+# Sets custom Catalog Number ID3 tag for all MP3 files in current directory
+## $1 = catalog number
+function cn() { for i in *.mp3; do id3v2 --TXXX "Catalog Number":"$1" "$i"; done; }
+
+# Quick reference color charts  & color stuff
+## shows a gui color chart (requires python-gtkmozembed:
+# sudo apt-get install python-gtkmozembed
+function color-picker()
+{
+echo "When you are finished, press "Control C" to continue..."
+cat > "/tmp/color-picker.py" <<"End-of-message"
+#!/usr/bin/python
+import os
+import pygtk
+pygtk.require('2.0')
+import gtk
+import gtkmozembed
+homedir = os.path.expanduser('~')
+try:
+    from win32com.shell import shellcon, shell
+    homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
+except ImportError:
+    homedir = os.path.expanduser("~/.gnome2/nautilus-scripts/.colorchart/view.html")
+class ColorChart:
+    def __init__(self):
+                self.moz = gtkmozembed.MozEmbed()
+        box = gtk.VBox(False,0)
+        win = gtk.Window()
+        win.add(box)
+        hbox = gtk.HBox(False,0)
+                box.pack_start(hbox,False,False)
+                hbox.show()
+        box.pack_start(self.moz,True,True,0)
+                self.moz.show()
+        self.moz.load_url(homedir)
+                self.moz.set_size_request(650,550)
+        title=self.moz.get_title()
+        win.set_title("RGB/HEX Color Picker")
+        win.show_all()
+if __name__ == "__main__":
+    ColorChart()
+    gtk.main()
+End-of-message
+chmod +x "/tmp/color-picker.py"
+/usr/bin/python "/tmp/color-picker.py"
+rm "/tmp/color-picker.py"
+}
+
+
+
+###### takes a name of a color and some text and then echoes out the text in the named color
+# Usage:        colorize_text "color" "whatever text"
+function colorize-text()
+{
+b='[0;30m'
+# Implement command-line options
+while getopts "nr" opt
+ do
+  case $opt in
+   n  )  o='-n' ;;
+   r  )  b=''   ;;
+  esac
+ done
+shift $(($OPTIND - 1))
+# Set variables
+col=$1
+shift
+text="$*"
+# Set a to console color code
+case $col in
+ 'black'  ) a='[0;30m' ;;
+ 'blue'   ) a='[0;34m' ;;
+ 'green'  ) a='[0;32m' ;;
+ 'cyan'   ) a='[0;36m' ;;
+ 'red'    ) a='[0;31m' ;;
+ 'purple' ) a='[0;35m' ;;
+ 'brown'  ) a='[0;33m' ;;
+ 'ltgray' ) a='[0;37m' ;;
+ 'white'  ) a='[1;30m' ;;
+ 'ltblue' ) a='[1;34m' ;;
+ 'ltgreen') a='[1;32m' ;;
+ 'ltcyan' ) a='[1;36m' ;;
+ 'ltred'  ) a='[1;31m' ;;
+ 'pink'   ) a='[1;35m' ;;
+ 'yellow' ) a='[1;33m' ;;
+ 'gray'   ) a='[1;37m' ;;
+esac
+# Display text in designated color, no newline
+echo -en "\033$a$text"
+# If 'b' switch not on, restore color to black
+if [ -n $b ]
+ then
+  echo -en "\033$b"
+fi
+# If 'n' switch on, do not display final newline
+# otherwise output newline
+echo $o
+}
+
+
+
+###### shows the colors in a kewl way...partially stolen from HH
+function colors()
+{
+       # Display ANSI colours.
+    esc="\033["
+    echo -e "\t  40\t   41\t   42\t    43\t      44       45\t46\t 47"
+    for fore in 30 31 32 33 34 35 36 37; do
+        line1="$fore  "
+        line2="    "
+        for back in 40 41 42 43 44 45 46 47; do
+            line1="${line1}${esc}${back};${fore}m Normal  ${esc}0m"
+            line2="${line2}${esc}${back};${fore};1m Bold    ${esc}0m"
+        done
+        echo -e "$line1\n$line2"
+    done
+    echo ""
+    echo "# Example:"
+    echo "#"
+    echo "# Type a Blinkin TJEENARE in Swedens colours (Yellow on Blue)"
+    echo "#"
+    echo "#           ESC"
+    echo "#            |  CD"
+    echo "#            |  | CD2"
+    echo "#            |  | | FG"
+    echo "#            |  | | |  BG + m"
+    echo "#            |  | | |  |         END-CD"
+    echo "#            |  | | |  |            |"
+    echo "# echo -e '\033[1;5;33;44mTJEENARE\033[0m'"
+    echo "#"
+    echo "# Sedika Signing off for now ;->"
+}
+
+
+
+###### displays all 256 possible background colors, using ANSI escape sequences.
+# author: Chetankumar Phulpagare
+# used in ABS Guide with permission.
+function colors2()
+{
+T1=8
+T2=6
+T3=36
+offset=0
+for num1 in {0..7}
+do {
+   for num2 in {0,1}
+       do {
+          shownum=`echo "$offset + $T1 * ${num2} + $num1" | bc`
+          echo -en "\E[0;48;5;${shownum}m color ${shownum} \E[0m"
+          }
+       done
+   echo
+   }
+done
+offset=16
+for num1 in {0..5}
+do {
+   for num2 in {0..5}
+       do {
+          for num3 in {0..5}
+              do {
+                 shownum=`echo "$offset + $T2 * ${num3} \
+                 + $num2 + $T3 * ${num1}" | bc`
+                 echo -en "\E[0;48;5;${shownum}m color ${shownum} \E[0m"
+                 }
+               done
+          echo
+          }
+       done
+}
+done
+offset=232
+for num1 in {0..23}
+do {
+   shownum=`expr $offset + $num1`
+   echo -en "\E[0;48;5;${shownum}m ${shownum}\E[0m"
+}
+done
+echo
+}
+
+
+
+###### print all 256 colors for testing TERM or for a quick reference
+# show numerical values for each of the 256 colors in bash
+function colors2nums()
+{
+for code in {0..255}; do echo -e "\e[38;05;${code}m $code: Test"; done
+}
+
+
+
+###### replaces a color in PDF document (useful for removing dark background for printing)
+# usage:        remove_color input.pdf output.pdf
+function uncolorpdf()
+{
+convert -density 300 "$1" -fill "rgb(255,255,255)" -opaque "rgb(0,0,0)" "$2"
+}
+
+# Get name of app that created a corefile
+function corename()
+{
+    for file ; do
+        echo -n $file : ; gdb --core=$file --batch | head -1
+    done
+}
+
+# Count opening and closing braces in a string
+function countbraces() { COUNT_OPENING=$(echo $1 | grep -o "(" | wc -l); COUNT_CLOSING=$(echo $1 | grep -o ")" | wc -l); echo Opening: $COUNT_OPENING; echo Closing: $COUNT_CLOSING; }
+
+# Count files in current directory
+function count_files()
+# copyright 2007 - 2010 Christopher Bratusek
+{
+    case $1 in
+        *+h)
+            echo $(($(ls --color=no -1 -la . | grep -v ^l | wc -l)-1))
+        ;;
+        *-h)
+            echo $(($(ls --color=no -1 -l . | grep -v ^l | wc -l)-1))
+        ;;
+        *+d)
+            echo $(($(ls --color=no -1 -la . | grep -v ^- | wc -l)-1))
+        ;;
+        *-d)
+            echo $(($(ls --color=no -1 -l . | grep -v ^- | wc -l)-1))
+        ;;
+        *+f)
+            echo $(($(ls --color=no -1 -la . | grep -v ^d | wc -l)-1))
+        ;;
+        *-f)
+            echo $(($(ls --color=no -1 -l . | grep -v ^d | wc -l)-1))
+        ;;
+        *)
+            echo -e "\n${ewhite}Usage:"
+            echo -e "\n${eorange}count_files${ewhite} | ${egreen}+h ${eiceblue}[count files and folders - include hidden ones] \
+            \n${eorange}count_files${ewhite} | ${egreen}-h ${eiceblue}[count files and folders - exclude hidden ones] \
+            \n${eorange}count_files${ewhite} | ${egreen}+d ${eiceblue}[count folders - include hidden ones] \
+            \n${eorange}count_files${ewhite} | ${egreen}-d ${eiceblue}[count folders - exclude hidden ones] \
+            \n${eorange}count_files${ewhite} | ${egreen}+f ${eiceblue}[count files - include hidden ones] \
+            \n${eorange}count_files${ewhite} | ${egreen}-f ${eiceblue}[count files - exclude hidden ones]\n"
+            tput sgr0
+        ;;
+    esac
+}
+
+# Count processes that are running
+function count_processes()
+# copyright 2007 - 2010 Christopher Bratusek
+{
+    case $1 in
+        *help )
+            echo -e "\n${ewhite}Usage:"
+            echo -e "\n${eorange}count_processes${ewhite} | ${egreen}! no options !\n"
+            tput sgr0
+        ;;
+        * )
+            procs=$(ps ax | wc -l | awk '{print $1}')
+            if [[ $procs -lt 10 ]]; then
+                echo "000$procs"
+            elif [[ $procs -lt 100 ]]; then
+                echo "00$procs"
+            elif [[ $procs -lt 1000 ]]; then
+                echo "0$procs"
+            fi
+        ;;
+    esac
+}
+
+# Cp with progress bar (using pv)
+function cp_p() {
+    if [ `echo "$2" | grep ".*\/$"` ]
+    then
+        pv "$1" > "$2""$1"
+    else
+        pv "$1" > "$2"/"$1"
+    fi
+}
+
+# Encryption / decryption
+## do twice to decrypt
+# copyright 2007 - 2010 Christopher Bratusek
+function crypt() {
+    if [[ -e "$1" ]]; then
+        tr a-zA-Z n-za-mN-ZA-M < "$1" > "$1".crypt
+        rm -f "$1"
+        mv "$1".crypt "$1"
+    fi
+}
+
+
+
+###### basic encrypt / decrypt
+# example: "encry filename" or "decry filename"
+function encry()
+{
+gpg -ac --no-options "$1"
+}
+
+
+
+function decry()
+{
+gpg --no-options "$1"
+}
+
+
+
+###### More advanced encryption / decryption
+# example: "encrypt filename" or "decrypt filename"
+function encrypt()
+{
+# Author: Martin Langasek <cz4160@gmail.com>
+case $LANG in
+  cs* )
+    err_title="Chyba"
+    err_files="Neoznačen soubor"
+    encrypt="Šifrovat"
+    decrypt="Dešifrovat"
+    file_msg="soubor:"
+    pass_msg="Vložte heslo";;
+  * )
+    err_title="Error"
+    err_files="No file selected"
+    encrypt="Encrypt"
+    decrypt="Decrypt"
+    file_msg="file:"
+    pass_msg="Enter passphrase";;
+esac
+if [ "$1" != "" ]
+then
+  i=1
+  file=`echo "$1" | sed ''$i'!d'`
+  while [ "$file" != "" ]
+  do
+    ext=`echo "$file" | grep [.]gpg$ 2>&1`
+    if [ "$ext" != "" ]
+    then
+      pass_decrypt=`zenity --entry --entry-text "$pass_decrypt" --hide-text --title "$pass_msg" --text "$decrypt $file_msg ${file##*/}" "" 2>&1`
+      if [ "$pass_decrypt" != "" ]
+      then
+        output=${file%.*}
+        echo "$pass_decrypt" | gpg -o "$output" --batch --passphrase-fd 0 -d "$file"
+      fi
+    else
+      pass_encrypt=`zenity --entry --hide-text --entry-text "$pass_encrypt" --title "$pass_msg" --text "$encrypt $file_msg ${file##*/}" "" 2>&1`
+      if [ "$pass_encrypt" != "" ]
+      then
+        echo "$pass_encrypt" | gpg --batch --passphrase-fd 0 --cipher-algo aes256 -c "$file"
+      fi
+    fi
+    i=$(($i+1))
+    file=`echo "$1" | sed ''$i'!d'`
+  done
+else
+  zenity --error --title "$err_title" --text "$err_files"
+fi
+}
+
+
+
+alias decrypt='encrypt'
+
+
+
+###### rot13 ("rotate alphabet 13 places" Caesar-cypher encryption)
+function rot13()
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "Seriously?  You don't know what rot13 does?"
+    else
+        echo $@ | tr A-Za-z N-ZA-Mn-za-m
+    fi
+}
+
+
+
+###### rot47 ("rotate ASCII characters from '!" to '~' 47 places" Caesar-cypher encryption)
+function rot47()
+{
+    if [ $# -lt 1 ] || [ $# -gt 1 ]; then
+        echo "Seriously?  You don't know what rot47 does?"
+    else
+        echo $@ | tr '!-~' 'P-~!-O'
+    fi
+}
+
+# Cut last n lines in file, 10 by default
+
+function cuttail()
+{
+    nlines=${2:-10}
+    sed -n -e :a -e "1,${nlines}!{P;N;D;};N;ba" $1
+}
+
+
+
+# Continuously print string as if being entered from the keyboard
+
+function cycle() { while :;do((i++));echo -n "${3:$(($i%${#3})):1}";sleep .$(($RANDOM%$2+$1));done;}
+
+
+
+# Super stealth background launch
+
+function daemon()
+{
+    (exec "$@" >&/dev/null &)
+}
+
+
+
+# Shows what processes need to be restarted after system upgrade
+function deadlib() { lsof | grep 'DEL.*lib' | cut -f 1 -d ' ' | sort -u; }
+
+
+
+# Show dead links
+function deadlink() {
+    # copyright 2007 - 2010 Christopher Bratusek
+    find -L -type l
+}
+
+# Usage: mkalias <name> "<command>"
+## Example: mkalias rm "rm -i"
+function mkalias()
+{
+        if [[ $1 && $2 ]]
+        then
+        echo -e "alias $1=\"$2\"" >> ~/.bashrc
+        alias $1=$2
+        fi
+}
+
+# Makes directory then moves into it
+function mkcdr() {
+    mkdir -p -v $1
+    cd $1
+}
+
+function mkdircd()      { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
+# Creates an archive from directory
+function mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
+
+function mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+function mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+
+# Reminder / to do list
+function mnote()
+{
+    echo -e "- $* \n" >> ~/todo
+    echo -e "- $* \n" >> ~/todo.perm
+    ~/motd.pl
+}
 
