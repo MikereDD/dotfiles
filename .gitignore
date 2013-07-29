@@ -52,7 +52,7 @@ Session.vim
 /.gconfd
 /.cache
 /.bash_history
-/.bash_stuff/bash_sfs
+/.bash_stuff/aliases/sfs
 /.lesshst
 /.slime
 /.gconf
