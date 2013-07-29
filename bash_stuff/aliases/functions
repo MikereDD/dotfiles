@@ -602,13 +602,10 @@ function bclock2()
 perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
 }
 
-
-
 function clock()
 {
 while true;do clear;echo "===========";date +"%r";echo "===========";sleep 1;done
 }
-
 
 # Appends a '&' to a command so it will run in the background
 ## useful for aliases
@@ -630,8 +627,6 @@ function bookmark() {
     fi
 }
 
-
-
 function unmark() {
     # copyright 2007 - 2010 Christopher Bratusek
     if [[ $(alias | grep -w go-$1= ) != "" ]]; then
@@ -639,8 +634,6 @@ function unmark() {
         xunalias go-$1
     fi
 }
-
-
 
 ###### copies/moves files to a bookmarked dir
 # cto file1.jpg file2.jpg file3.jpg pics
@@ -658,8 +651,6 @@ function cto() {
     fi
 }
 
-
-
 # mto vid1.avi vid2.avi videos
 function mto() {
     eval lastarg=\${$#}
@@ -674,7 +665,6 @@ function mto() {
             done
     fi
 }
-
 
 ## Directory Bookmarks for BASH (c) 2009, Ira Chayut, Version 090927
 # DirB and its implementation in this file are the product of, and
@@ -693,11 +683,9 @@ then
     mkdir ~/.DirB
 fi
 
-
-
 ###### "d" - Display (or Dereference) a saved bookmark
 # to use: cd "$(d xxx)"
-function d() {
+function d-() {
     # if the bookmark exists, then extract its directory path and print it
     if [ -e ~/.DirB/"$1" ]
     then
@@ -710,10 +698,8 @@ function d() {
     fi
 }
 
-
-
 ###### "g" - Go to bookmark
-function g() {
+function g-() {
     # if no arguments, then just go to the home directory
     if [ -z "$1" ]
     then
@@ -731,8 +717,6 @@ function g() {
         fi
     fi
 }
-
-
 
 ###### "p" - Push a bookmark
 function p() {
@@ -766,8 +750,6 @@ function p() {
     fi
 }
 
-
-
 ###### "r" - Remove a saved bookmark
 function r() {
     # if the bookmark file exists, remove it
@@ -781,8 +763,6 @@ function r() {
         false
     fi
 }
-
-
 
 ###### "s" - Save bookmark
 function s() {
@@ -804,8 +784,6 @@ function s() {
     fi
 }
 
-
-
 ###### "sl" - Saved bookmark Listing
 function sl() {
     # if the "-l" argument is given, then do a long listing, passing any
@@ -826,18 +804,15 @@ function sl() {
     fi
 }
 
-
-
 ###### simple bookmark system
 function getBookmark() {
     case "$1" in
-    video|vids|vid) echo "~/Videos" ;; # video, vids and vid are shortcuts to use with the functions below, the bookmarked directory is "~/videos"
-    images|img|pics|pictures) echo "~/Pictures";;
+    video|vids|vid) echo "$HOME/media/video" ;; # video, vids and vid are shortcuts to use with the functions below, the bookmarked directory is "~/media/video"
+    audio|music|tunes) echo "$HOME/media/audio" ;;
+    images|img|pics|pictures) echo "$HOME/media/images";;
     *) echo "" ;;
     esac
 }
-
-
 
 ###### list contents of a bookmarked dir without
 # going there: list vids
@@ -848,8 +823,6 @@ function list() {
         ls "$dir"
     fi
 }
-
-
 
 ###### same as "list" but with details: llist vids
 function llist() {

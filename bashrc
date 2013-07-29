@@ -5,6 +5,9 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #---------------------------------------------
 
+# locale export UTF-8
+export LC_ALL=en_US.UTF-8
+
 # support path for Plex HomeTheater/MediaServer
 export XBMC_HOME=/usr/share/XBMC
 # force ssh to keycheck

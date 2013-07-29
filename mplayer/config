@@ -49,7 +49,7 @@ zoom=yes
 #ontop=yes
 
 # Monitor Position
-geometry="2875:25"
+geometry="845x507-64+27"
 
 # Zoom
 zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
@@ -59,8 +59,8 @@ zoom="1" # Allow sofware scaling if you use x11 for vo from the commandline
 ##################
 
 # Specify default audio driver (see -ao help for a list).
-#ao=alsa
-ao="alsa:device=hw=Creative"
+ao=alsa
+#ao="alsa:device=hw=Creative"
 channels=6
 
 # Soft Volume
@@ -68,7 +68,7 @@ softvol="yes"
 softvol-max="600"
 
 # Specify the mixer device.
-mixer=hw:Creative
+#mixer=hw:Creative
 mixer-channel="PCM"
 #mixer = /dev/mixer
 
