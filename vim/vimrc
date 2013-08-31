@@ -61,12 +61,14 @@ Bundle 'vim-scripts/bash-support.vim'
 Bundle 'git://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'git://github.com/Lokaltog/vim-powerline.git'
 Bundle 'git://github.com/bronson/vim-trailing-whitespace.git'
+Bundle 'git://github.com/davidhalter/jedi-vim.git'
+Bundle 'git://github.com/zaki/zazen.git'
 filetype plugin indent on
 
 " }}}
 " Basic options ----------------------------------------------------------- {{{
 
-set encoding=utf-8
+"set encoding=utf-8
 set modelines=0
 set autoindent
 set sts=4
@@ -82,7 +84,7 @@ set nonumber
 set norelativenumber
 set laststatus=2
 "set fileformat=unix
-set fileformats=unix,dos
+"set fileformats=unix,dos
 set fillchars=diff:⣿,vert:│
 set fillchars+=stl:\ ,stlnc:\
 set history=50
@@ -124,6 +126,19 @@ set backupskip=/tmp/*,/private/tmp/*"
 " Better Completion
 set complete=.,w,b,u,t
 set completeopt=longest,menuone,preview
+
+" Autocompletion with jedi-vim
+let g:jedi#auto_initialization = 0
+"let g:jedi#goto_command = "<leader>g"
+"let g:jedi#get_definition_command = "<leader>d"
+"let g:jedi#pydoc = "K"
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#popup_select_first = 0
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#related_names_command = "<leader>n"
+let g:jedi#autocompletion_command = "<C-Space>"
+"let g:jedi#show_function_definition = "0"
 
 " Save when losing focus
 au FocusLost * :silent! wall
@@ -258,12 +273,12 @@ syntax on
 set background=dark
 let g:badwolf_tabline = 2
 let g:badwolf_html_link_underline = 0
-colorscheme badwolf
+colorscheme zazen
 
 " Reload the colorscheme whenever we write the file.
-augroup color_badwolf_dev
+augroup color_zazen_dev
     au!
-    au BufWritePost badwolf.vim color badwolf
+    au BufWritePost zazen.vim color zazen
 augroup END
 
 " Highlight VCS conflict markers
@@ -569,10 +584,10 @@ set virtualedit+=block
 
 noremap <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
 
-runtime macros/matchit.vim
+runtime plugin/matchit.vim
 map <tab> %
-unmap [%
-unmap ]%
+"unmap [%
+"unmap ]%
 
 " Made D behave
 nnoremap D d$
