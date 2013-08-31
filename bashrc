@@ -31,13 +31,13 @@ fi
 # pkgfile
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && . /usr/share/doc/pkgfile/command-not-found.bash
 # bash_stuff - my bash files
-# source ~/.bash_stuff/aliases/
-if [ -d ~/.bash_stuff/aliases/ ]; then
-    for f in ~/.bash_stuff/aliases/*; do
+# source ~/.bash_stuff/files/*
+if [ -d ~/.bash_stuff/files/ ]; then
+    for f in ~/.bash_stuff/files/*; do
         . $f
     done
 fi
-
+## old ... need to remove
 #[[ -f ~/.bash_stuff/aliases/aliases ]] && . ~/.bash_stuff/bash_aliases
 #[[ -f ~/.bash_stuff/bash_binds ]] && . ~/.bash_stuff/bash_binds
 #[[ -f ~/.bash_stuff/bash_colors ]] && . ~/.bash_stuff/bash_colors

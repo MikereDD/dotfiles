@@ -8,6 +8,9 @@
 # BASH_ENV
 BASH_ENV="~/.bashrc"
 
+# ZSH_ENV
+ZSH_ENV="~/.zshrc"
+
 # USER
 USERNAME="$(whoami)"
 
@@ -24,8 +27,11 @@ LC_COLLATE="C"
 TMPDIR="/home/typezero/tmp"
 
 # EDITOR
-EDITOR="vim"
-GIT_EDITOR="vim"
+EDITOR=`which vim`
+FCEDIT="/usr/bin/vim"
+GIT_EDITOR="/usr/bin/vim"
+VISUAL="/usr/bin/vim"
+SUDO_EDITOR="/usr/bin/vim"
 
 # PAGER
 PAGER="vimpager"
@@ -74,47 +80,12 @@ GOPATH="~/go"
 
 #### START ANDROID NEEDS ####
 
-# JAVA_JDK
-#J2SDKDIR=/opt/java6
-#PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
-#JAVA_HOME=/opt/java6
-#DERBY_HOME=/opt/java6/db
-
-# JAVA_JRE
-#export PATH=$PATH:/opt/java6/jre/bin
-#export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
-
-# ANDROID_JAVA_HOME
-ANDROID_JAVA_HOME="$JAVA_HOME"
-
-# ANDROID_SDK
-#ANDROID_HOME=/opt/android-sdk
-#ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
-#ANDROID_SWT=$ANDROID_HOME/tools/lib/x86_64
-#PATH=$PATH:$ANDROID_HOME/tools
-#PATH=$PATH:/opt/android-sdk/platform-tools
-
-# ANDROID_NDK
-#PATH=$PATH:/opt/android-ndk
-#ANDROID_NDK=/opt/android-ndk
-
-# ARM
-ARM_ROOT=/opt/android-ndk
-ARM_INC=$ARM_ROOT/platforms/android-9/arch-arm/usr/include/
-ARM_LIB=$ARM_ROOT/platforms/android-9/arch-arm/usr/lib/
-ARM_TOOL=$ARM_ROOT/toolchains/arm-linux-androideabi-4.7/prebuilt/linux-x86
-ARM_LIBO=$ARM_TOOL/lib/gcc/arm-linux-androideabi/4.7/
-ARM_PRE=arm-eabi
-
-# CCACHE
-USE_CCACHE="1"
-CCACHE_DIR="/home/typezero/android/.ccache"
+## MOVED TO ~/.bash_stuff/aliases/android
 
 #### END ANDROID NEEDS ####
 
-#PATH=$PATH:$HOME/bin:$HOME/Scripts
-# EXPORT ALL
-export BASH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME GOPATH ANDROID_JAVA_HOME USE_CCACHE CCACHE_DIR ARM_ROOT ARM_INC ARM_LIB ARM_TOOL ARM_LIBO ARM_PRE PATH
+# export
+export BASH_ENV ZSH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME GOPATH PATH
 
 # PATH
 PATH="${PATH}:/home/typezero/bin:/home/typezero/Scripts:/home/typezero/.gem/ruby/2.0.0/bin"
