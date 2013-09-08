@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #--------------------------------------------
-# file:     ~/.bash_stuff/bash_functions
+# file:     ~/.bash_stuff/files/functions
 # author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #--------------------------------------------
