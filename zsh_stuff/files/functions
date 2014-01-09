@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+#--------------------------------------------
+# file:     ~/.zsh_stuff/files/aliases
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
+
+# Android Functions
+mclean() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;make clean"
+}
+
+mclobber() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;make clobber"
+}
+
+mraum() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildraum grouper 32 19"
+}

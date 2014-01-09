@@ -1848,3 +1848,33 @@ function mnote()
     ~/motd.pl
 }
 
+# Generate a random password
+#  $1 = number of characters; defaults to 32
+#  $2 = include special characters; 1 = yes, 0 = no; defaults to 1
+function randpass() {
+  [ "$2" == "0" ] && CHAR="[:alnum:]" || CHAR="[:graph:]"
+    cat /dev/urandom | tr -cd "$CHAR" | head -c ${1:-32}
+    echo
+}
+
+# Android Functions
+makeotapackage() {
+    set -e
+    PREP_FILE=~/android/.prep_files/android_prep
+    DROID_PATH=~/android/kitkat
+    cd $DROID_PATH
+    source $PREP_FILE
+    . build/envsetup.sh
+    if [[ $1 ]]; then
+        target=$1
+    else
+        target="raumzero_grouper-userdebug"
+    fi
+    lunch $target
+    if [[ $1 ]]; then
+        mka $@ 2>&1 | tee $target.log
+    else
+        mka bacon 2>&1 | tee $target.log
+    fi
+    set +e
+}
