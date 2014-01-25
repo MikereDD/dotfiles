@@ -1,0 +1,97 @@
+#!/usr/bin/env bash
+#--------------------------------------------
+# file:     ~/.bash_stuff/files/exports
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
+
+# BASH_ENV
+BASH_ENV="~/.bashrc"
+
+# ZSH_ENV
+ZSH_ENV="~/.zshrc"
+
+# USER
+USERNAME="$(whoami)"
+
+# LANG
+LANG="en_US.UTF-8"
+
+# LC_ALL
+LC_ALL=
+
+# LC_COLLATE
+LC_COLLATE="C"
+
+# TMPDIR
+TMPDIR="/home/typezero/tmp"
+
+# EDITOR
+EDITOR=`which vim`
+FCEDIT="/usr/bin/vim"
+GIT_EDITOR="/usr/bin/vim"
+VISUAL="/usr/bin/vim"
+SUDO_EDITOR="/usr/bin/vim"
+
+# PAGER
+PAGER="vimpager"
+
+# HISTCONTROL
+HISTCONTROL="ignoreboth"
+
+# HISTIGNORE
+HISTIGNORE="history*"
+
+# PROMPT_COMMAND
+#export PROMPT_COMMAND='history -a;echo -en "\e]2;";history 1|sed "s/^[ \t]*[0-9]\{1,\}  //g";echo -en "\e\\";
+# SDL_AUDIODRIVER
+SDL_AUDIODRIVER="alsa"
+
+# SDL_VIDEO_FULLSCREEN_HEAD
+SDL_VIDEO_FULLSCREEN_HEAD="1"
+
+# VDPAU No Overlay, helper for empty video windows in screenshots
+VDPAU_NVIDIA_NO_OVERLAY=1
+
+# VAAPI No Overlay, helper for empty video windows in screenshots
+VAAPI_NVIDIA_NO_OVERLAY=1
+
+# DISPLAY
+DISPLAY=:0.0
+if [ -n "$DISPLAY" ]; then
+#    export BROWSER="dwb"
+    BROWSER="dwb"
+else
+#    export BROWSER="elinks"
+    BROWSER="elinks"
+fi
+
+# GTK_IM_MODULE
+GTK_IM_MODULE="xims"
+
+# IRC
+IRC_CLIENT="irssi"
+
+# ZShaolin
+ZHOME="~/dev/git/zshaolin"
+
+# Google Go compiler
+GOPATH="~/go"
+
+# VirtualBox
+VBOX_USB=usbfs
+
+# GNU
+GNUPGHOME="~/.gnupg"
+
+##### START ANDROID NEEDS ####
+
+## MOVED TO ~/.bash_stuff/aliases/android
+
+#### END ANDROID NEEDS ####
+
+# export
+export BASH_ENV ZSH_ENV USERNAME TMPDIR PATH EDITOR GIT_EDITOR LANG LC_ALL LC_COLLATE EDITOR PAGER HISTCONTROL HISTCONTROL HISTIGNORE PROMPT_COMMAND SDL_AUDIODRIVER SDL_VIDEO_FULLSCREEN_HEAD DISPLAY BROWSER GTK_IM_MODULE IRC_CLIENT ZHOME GOPATH VBOX_USB GNUPGHOME PATH
+
+# PATH
+PATH="${PATH}:/home/typezero/bin:/home/typezero/Scripts:/home/typezero/.gem/ruby/2.0.0/bin"

@@ -3,20 +3,20 @@
 § ========== USER MACROS ======================================
 § =============================================================
 §
-|AUTHOR|        = 'Mike Redd' 
-|AUTHORREF|     = 'MikereDD' 
-|EMAIL|         = 'mredd@0tue0.com' 
-|COMPANY|       = 'Dumb Terminal, Inc.' 
-|LICENSE|       = 
+|AUTHOR|        = 'Mike Redd'
+|AUTHORREF|     = 'MikereDD'
+|EMAIL|         = 'mikeredd@mobileinfern.us'
+|COMPANY|       = 'Dumb Terminal, Inc.'
 |ORGANIZATION|  = 'Dumb Terminal Team'
-|PROJECT|       = 
-|COPYRIGHT|     = 'Copyright (c) |YEAR|, |AUTHOR|' 
-|BASENAME|      = 
-|FILENAME|      = 
-|PATH|          = 
-|SUFFIX|        = 
-|DATE|          = '%m-%d' 
-|TIME|          = '%H:%M %Z %:z' 
+|PROJECT|       =
+|COPYRIGHT|     = 'Copyright (c) |YEAR|, |AUTHOR|'
+|LICENSE|       = 'http://www.wtfpl.net'
+|BASENAME|      =
+|FILENAME|      =
+|PATH|          =
+|SUFFIX|        =
+|DATE|          = '%m-%d'
+|TIME|          = '%H:%M %Z %:z'
 |YEAR|          = '%Y'
 |CREATED|       = '|YEAR|-|DATE| |TIME|'
 |REVISION|      = '|YEAR|-|DATE| |TIME|'
