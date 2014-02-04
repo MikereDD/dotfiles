@@ -6,14 +6,257 @@
 #--------------------------------------------
 
 # Android Functions
-mclean() {
+zrepo() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;repo $@"
+}
+
+zclean() {
     bash -c ". ~/.bashrc;source ../.prep_files/android_prep;make clean"
 }
 
-mclobber() {
+zclobber() {
     bash -c ". ~/.bashrc;source ../.prep_files/android_prep;make clobber"
 }
 
-mraum() {
-    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildraum grouper 32 19"
+zraum() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildraum grouper 8 10"
 }
+
+zslim() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildslim grouper 8 10"
+}
+
+zcfx() {
+    bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildcfx grouper 8 10"
+}
+
+# extended cd
+function smart_cd () {
+  if [[ -f $1 ]] ; then
+    [[ ! -e ${1:h} ]] && return 1
+    print correcting ${1} to ${1:h}
+    builtin cd ${1:h}
+  else
+    builtin cd ${1}
+  fi
+}
+
+function cd () {
+  setopt localoptions
+  setopt extendedglob
+  local approx1 ; approx1=()
+  local approx2 ; approx2=()
+  if (( ${#*} == 0 )) || [[ ${1} = [+-]* ]] ; then
+    builtin cd "$@"
+  elif (( ${#*} == 1 )) ; then
+    approx1=( (#a1)${1}(N) )
+    approx2=( (#a2)${1}(N) )
+    if [[ -e ${1} ]] ; then
+      smart_cd ${1}
+    elif [[ ${#approx1} -eq 1 ]] ; then
+      print correcting ${1} to ${approx1[1]}
+      smart_cd ${approx1[1]}
+    elif [[ ${#approx2} -eq 1 ]] ; then
+      print correcting ${1} to ${approx2[1]}
+      smart_cd ${approx2[1]}
+    else
+      print couldn\'t correct ${1}
+    fi
+  elif (( ${#*} == 2 )) ; then
+    builtin cd $1 $2
+  else
+    print cd: too many arguments
+  fi
+}
+
+# Highlighted grep
+# hgrep - highlight grep
+
+#if (( ! $# )); then
+#  echo "Usage: $0:t [-e pattern...] [file...]" &gt;&amp;2
+#  return 1
+#fi
+#
+#local -a regex
+#local htext=`echotc so` ntext=`echotc se`
+#
+#while [[ "$1" = -e ]]; do
+#  regex=( $regex "$2" )
+#  shift 2
+#done
+#
+#if (( ! $#regex )); then
+#  regex=( "$1" )
+#  shift
+#fi
+#
+#regex=( "-e
+#s/${^regex[@]}/$htext&amp;$ntext/g" )
+#sed ${(Ff)regex[@]} "$@"
+
+# quick rename
+function name() {
+  [[ $#@ -eq 1 ]] || { echo Give exactly one argument ; return 1 }
+  test -e "$1" || { echo No such file or directory: "$1" ; return 1 }
+  local newname=$1
+  if vared -c -p 'rename to: ' newname &&
+    [[ -n $newname && $newname != $1 ]]
+  then
+    command mv -i -- $1 $newname
+  else
+    echo Some error occured; return 1
+  fi
+}
+
+## scpzshconf
+# (c) Julien Danjou &lt;julien@jdanjou.org&gt;
+# License: GPLv2
+
+#function scpzshconf
+#{
+#        if [ ! -z $1 ]; then
+#                echo -n "Sending zsh conf to $1... "
+#                cd $HOME &amp;&amp; \
+#                tar cf - .zsh/rc/* \
+#                         .zshrc 2&gt; /dev/null | \
+#                ssh $1 "tar xf - 2&gt; /dev/null" &amp;&amp; \
+#                cd $OLDPWD &amp;&amp; echo done
+#        fi
+#}
+#
+## Functions for use with the e glob flag
+#in() { [[ -e $1/$REPLY ]] }
+#empty() { a=( $REPLY/*(N[1]) ); (( ! $#a )) }
+#fattr() {
+#  local val=${${${(s.=.)$(getfattr -n user.$1 $REPLY 2&gt;/dev/null)}[2]%\"}#\"}
+#  [[ -z $val ]] &amp;&amp; return 1
+#  [[ -z $2 ]] &amp;&amp; return 0
+#  [[ $val = $~2 ]]
+#}
+#
+## Functions to display values of environment variables
+#ev() { echo
+#       set | egrep -i \^$1 |sed -e 's/=/     /' -e '/^PATH/d' -e '/^CDPATH/d' | sort
+#       echo }
+#
+#eva() { echo
+#set | egrep -i "^[a-z_]*$1" |sed -e 's/=/     /' -e '/^PATH/d' -e '/^CDPATH/d' | sort
+#        echo }
+
+# Create personal .fpath dir and zcp and zln links
+# nice to have your own fpath dir
+[[ ! -d ~/.fpath ]] && mkdir ~/.fpath
+fpath=(~/.fpath $fpath)
+
+# zln and zcp have to be symlinks to the zmv function
+for name in zln zcp; do
+    fn=~/.fpath/$name
+    # this is a hack to see if it is a broken symlink
+    # these symlinks will break when you upgrade your zsh
+    if [ -L $fn -a ! -e $fn ]; then
+        rm $fn
+    fi
+    if [[ ! -a $fn ]]; then
+        for dir in $fpath; do
+            if [[ -a $dir/zmv ]]; then
+                ln -s $dir/zmv $fn
+                break
+            fi
+        done
+    fi
+done
+
+# browse a file or path (open in web browser)
+browse () {
+    if [[ $BROWSER == opera ]]; then
+        opera -remote "openURL(file://`pwd`/$1,new-page)"
+    else
+        $BROWSER file://"`pwd`/$1"
+    fi
+}
+alias br=browse
+
+# Smart python
+# Prefer ipython for interactive shell
+smart_python () {
+    # this function is actually rather dumb
+    if [[ -n $1 ]]; then
+        python $argv
+    else
+        #if no parameters were given, then assume we want an ipython shell
+        if [[ -n $commands[ipython] ]]; then
+            ipython
+        else
+            python
+        fi
+    fi
+}
+
+alias py=smart_python
+
+# tab-complete options for smart_python just like for python
+compdef _python smart_python
+
+# Smart sudo
+# Give us a root shell, or run the command with sudo.
+# Expands command aliases first (cool!)
+
+smart_sudo () {
+    if [[ -n $1 ]]; then
+        #test if the first parameter is a alias
+        if [[ -n $aliases[$1] ]]; then
+            #if so, substitute the real command
+            sudo ${=aliases[$1]} $argv[2,-1]
+        else
+            #else just run sudo as is
+            sudo $argv
+        fi
+    else
+        #if no parameters were given, then assume we want a root shell
+        sudo -s
+    fi
+}
+
+alias s=smart_sudo
+compdef _sudo smart_sudo
+
+# extract any archive
+extract_archive () {
+    local old_dirs current_dirs lower
+    lower=${(L)1}
+    old_dirs=( *(N/) )
+    if [[ $lower == *.tar.gz || $lower == *.tgz ]]; then
+        tar zxfv $1
+    elif [[ $lower == *.gz ]]; then
+        gunzip $1
+    elif [[ $lower == *.tar.bz2 || $lower == *.tbz ]]; then
+        bunzip2 -c $1 | tar xfv -
+    elif [[ $lower == *.bz2 ]]; then
+        bunzip2 $1
+    elif [[ $lower == *.zip ]]; then
+        unzip $1
+    elif [[ $lower == *.rar ]]; then
+        unrar e $1
+    elif [[ $lower == *.tar ]]; then
+        tar xfv $1
+    elif [[ $lower == *.lha ]]; then
+        lha e $1
+    else
+        print "Unknown archive type: $1"
+        return 1
+    fi
+    # Change in to the newly created directory, and
+    # list the directory contents, if there is one.
+    current_dirs=( *(N/) )
+    for i in {1..${#current_dirs}}; do
+        if [[ $current_dirs[$i] != $old_dirs[$i] ]]; then
+            cd $current_dirs[$i]
+            ls
+            break
+        fi
+    done
+}
+
+alias ex=extract_archive
+compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
+

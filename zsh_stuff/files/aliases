@@ -14,7 +14,7 @@ alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
 alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
 
 # reset & source zshrc
-alias resetbash="reset;source $HOME/.zshrc"
+alias resetzsh="reset;source $HOME/.zshrc"
 alias resetX="xrdb -merge $HOME/.Xresources"
 
 # ls commands
