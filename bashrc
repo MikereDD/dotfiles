@@ -6,7 +6,7 @@
 #---------------------------------------------
 
 # locale export UTF-8
-export LC_ALL=en_US.UTF-8
+#export LC_ALL=en_US.UTF-8
 
 # support path for Plex HomeTheater/MediaServer
 export XBMC_HOME=/usr/share/XBMC

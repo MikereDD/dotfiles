@@ -56,11 +56,11 @@ alias npmplyer="sh ~/scripts/video/nowplaying-mplayer.sh"
 alias mplayertv="rm $HOME/.mplayer/nowplaying.log;mplayer -identify $@> $HOME/.mplayer/nowplaying.log -vf pp=lb -cache 2000 -panscan 1 /dev/video0"
 
 # Pandora
-alias nppbfly='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/.*on//g')"'
-alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
+#alias nppbfly='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;97m$(cat ~/.config/pianobarfly/nowplaying | sed 's/.*on//g')"'
+#alias nppandora='echo -e " \033[0;37m:\e[0;96mPandora\033[0;37m: \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/by.*//g') \033[0;37mby \e[0;96m$(cat ~/.config/pianobar/nowplaying | sed 's/on.*//g' | sed 's/.*.by//g') \033[0;37mon \e[0;95m$(cat ~/.config/pianobar/nowplaying | sed 's/.*on//g')"'
 alias np="sh ~/bin/nowplaying"
 # LastFM
-alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
+#alias nplastfm='echo -e " \033[0;37m:\e[0;96mLastFM\033[0;37m: \e[0;95m$(cat ~/.shell-fm/nowplaying | sed 's/by.*.//g') \033[0;37mby \e[0;96m$(cat ~/.shell-fm/nowplaying | sed 's/.*.by//g')"'
 
 # TVNamer
 #alias tvnamer="tvnamer -c ~/.tvnamer.json"

@@ -5,6 +5,9 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #----------------------------------------------
 
+alias adb="/opt/android-sdk/platform-tools/adb"
+alias fastboot="/opt/android-sdk/platform-tools/fastboot"
+
 # exports
 # JAVA_JDK
 #J2SDKDIR=/opt/java6
@@ -40,7 +43,7 @@ ANDROID_NDK=/opt/android-ndk
 
 # CCACHE
 USE_CCACHE="1"
-CCACHE_DIR="/home/typezero/android/.ccache"
+CCACHE_DIR="/media/tdev/typezero/android/.ccache"
 
 # android sdk
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"

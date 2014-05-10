@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #--------------------------------------------
-# file:     ~/.bash_stuff/files/myaliases 
+# file:     ~/.zsh_stuff/files/aliases
 # author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #--------------------------------------------
@@ -13,8 +13,8 @@ alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
 ## :)
 alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
 
-# reset & source bash_profile
-alias resetbash="reset;source $HOME/.bash_profile"
+# reset & source zshrc
+alias resetzsh="reset;source $HOME/.zshrc"
 alias resetX="xrdb -merge $HOME/.Xresources"
 
 # ls commands
@@ -82,6 +82,7 @@ alias x="xinit"
 alias reboot="sudo reboot"
 alias shutdown="sudo shutdown -h now"
 alias :q="exit"
+
 ## sudo
 #alias sudo='sudo '
 # privileged access
@@ -106,8 +107,8 @@ alias du='du -c -h'
 alias mountedinfo="df -hT"
 
 ## encrypt
-alias mntdbcrypt="encfs $HOME/.typ0dboxs/ $HOME/Dropbox-typo/TiBu/"
-alias umntdbcrypt="fusermount -u $HOME/Dropbox-typo/TiBu/"
+alias mntdbcrypt="encfs $HOME/.dropbox/ $HOME/Dropbox/enc/"
+alias umntdbcrypt="fusermount -u $HOME/Dropbox/enc/"
 
 ## safety features
 alias cp='cp -i'
@@ -215,12 +216,6 @@ calc() { echo "scale=3;$@" | bc -l ; }
 ## dropbox
 alias dburl="dropbox puburl"
 
-# SSH Gen Keys
-# ECDSA
-alias genecdsa="ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)-$(date -I)""
-# DSA
-alias gendsa="ssh-keygen -t dsa -b 1024 -C "$(whoami)@$(hostname)-$(date -I)""
-# RSA
-alias genrsa="ssh-keygen -t rsa -b 4096 -C "$(whoami)@$(hostname)-$(date -I)""
+####
 
-# vim: set filetype=bash:
+# vim: set filetype=zsh:

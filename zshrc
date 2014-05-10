@@ -5,11 +5,25 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="trapd00r"
+ZSH_THEME="mymod"
 
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Uncomment this to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -23,6 +37,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(archlinux autoenv autojump bundler colored-man colorize command-not-found compleat copydir copyfile cp extract gem git git-extras git-remote-branch gitfast github gnu-utils go gpg-agent history history-substring-search last-working-dir mercurial per-directory-history perl profiles python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux torrent urltools vi-mode vundle)
+#plugins=(archlinux autojump bundler colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
 plugins=(archlinux autojump bundler colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
 
 source $ZSH/oh-my-zsh.sh
@@ -62,7 +77,14 @@ export GPGKEY=
 #[[ -f ~/.zsh_stuff/zsh_functions ]] && . ~/.zsh_stuff/zsh_functions
 #
 # ssh, ftp, etc, - my file
-[[ -f ~/.zsh_stuff/zsh_sfs ]] && . ~/.zsh_stuff/zsh_sfs
+#[[ -f ~/.zsh_stuff/zsh_sfs ]] && . ~/.zsh_stuff/zsh_sfs
+# zsh_stuff - my zsh files
+# source ~/.zsh_stuff/files/*
+if [ -d ~/.zsh_stuff/files/ ]; then
+    for f in ~/.zsh_stuff/files/*; do
+        . $f
+    done
+fi
 # inputrc - my inputrc
 [[ -f ~/.inputrc ]] && . ~/.inputrc
 # colors - my dir_colors

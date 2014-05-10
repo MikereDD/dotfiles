@@ -59,7 +59,7 @@ bind R respawn-window
 
 # Key bindings
 # reload settings
-#bind-key R source-file ~/.tmux.conf
+bind-key E source-file ~/.tmux.conf
 
 # detach client
 bind-key d detach
@@ -137,7 +137,7 @@ bind-key p choose-buffer
 bind-key x delete-buffer
 
 
-# Screen-like key bindings 
+# Screen-like key bindings
 
 # new window
 bind-key C-c new-window
@@ -164,7 +164,7 @@ bind-key * list-clients
 #bind-key l refresh-client
 bind-key r refresh-client
 
-# Split windows like vim 
+# Split windows like vim
 # vim's definition of a horizontal/vertical split is reversed from tmux's
 #bind-key s split-window -v
 #bind-key v split-window -h
@@ -180,7 +180,7 @@ bind-key -r > resize-pane -R 3
 bind-key -r + resize-pane -U 1
 bind-key -r = resize-pane -D 1
 
-# Statusbar settings 
+# Statusbar settings
 # toggle statusbar
 bind-key s set status
 
@@ -237,10 +237,10 @@ set -g pane-active-border-fg colour248
 set -g pane-active-border-bg colour233
 
 # wm window title string (uses statusbar variables)
-set -g set-titles-string "tmux:#I [ #W ]"
+set -g set-titles-string "tmux:#I ⁝ #W ⁝"
 
 # initialize sessions
-bind S source-file ~/.tmux/dev
+bind D source-file ~/.tmux/dev
 bind I source-file ~/.tmux/edit
 
 # environment
@@ -249,8 +249,6 @@ set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_C
 # statusbar --------------------------------------------------------------
 #set -g window-status-format "#I:#W"
 #set -g window-status-current-format "#I:#W"
-
-set -g status-keys vi
 bind-key -t vi-edit Up history-up
 bind-key -t vi-edit Down history-down
 
@@ -261,8 +259,8 @@ set -g status-right centre # center align window list
 set -g status-right "#(wemux status_users)"
 
 # Statusbar starting in X or not
-#if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
-#if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
+if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
+if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
 
 # Tab-like window switching. Uses the same keys mainstream terminals would use
 # such as Ctrl-[Shift]-PGUP/PGDN, and adds Ctrl-INS to make a window along with
@@ -307,35 +305,54 @@ set -s escape-time 0
 set -g status-position top
 
 # Allow the status bar to be
-#set -g status-bg default
-#set -g status-fg white
+set -g status-bg default
+set -g status-fg white
+
 ## Forced by tmux to use ignorant british spelling of color.
-#set -g status-left "#[bg=colour8,bold] #(echo \"\$USER\")@#h "
+#set -g status-left "#[fg=colour245,bg=colour234,bold] #(echo \"\$USER\")@#h "
 #set -g status-left-length 20
 #set -g status-right ""
+#setw -g window-status-format "#[fg=colour245,bg=colour234,bold]#I#[fg=colour250,bold]:#[fg=colour250,bold][#[default,fg=colour250,bg=colour234,bold]#W#[bold]] "
+#setw -g window-status-current-format "#[fg=colour245,bg=color234,bold]#I#[fg=colour250,bold]:#[fg=colour245,bold][#[fg=colour250,bg=colour234,bold]#W#[fg=colour245,bold]] "
 #
-#setw -g window-status-format "#[fg=colour8,bold]#I#[fg=colour8]:#[fg=colour4][#[default,fg=colour4]#W#[bold]] "
-#setw -g window-status-current-format "#[fg=colour7,bold]#I#[fg=colour8]:#[fg=colour4][#[fg=colour6]#W#[fg=colour4,bold]] "
+set -g status-left '#S ᢰ #(cat ~/.adminlh-mail.txt) ⁝'
+set -g status-left-length 32
+#
+set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(check_weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b ᢱ #h'
+set -g status-right-length 150
+#
+set -g window-status-activity-attr bold
+set -g window-status-format ' #I< #W ⁝'
+set -g window-status-current-format '#I> #W ⁝'
+#
+set -g pane-border-fg colour245
+set -g pane-active-border-fg colour39
+#
+set -g message-fg colour16
+set -g message-bg colour221
+set -g message-attr bold
+#
+set -g status-interval 5
 
 # Activity
 setw -g monitor-activity on
-set -g visual-activity off
+set -g visual-activity on
 
 setw -g alternate-screen on
 
 set -g mouse-utf8 on
 
-set -g mouse-resize-pane off
-set -g mouse-select-pane off
+set -g mouse-resize-pane on
+set -g mouse-select-pane on
 # With this option on, you must hold shift when selecting text with the mouse.
-set -g mouse-select-window off
+set -g mouse-select-window on
 
 # present a menu of URLs to open from the visible pane. sweet.
-bind-key U capture-pane \; save-buffer /tmp/tmux-buffer \; split-window -l 10 "urlview /tmp/tmux-buffer"
+bind-key U capture-pane \; save-buffer ~/tmp/tmux-buffer \; split-window -l 10 "urlview ~/tmp/tmux-buffer"
 
 # numbering starts at 1
 set -g base-index 1
 set -g pane-base-index 1
 
 #powerline
-source $HOME/.config/powerline/bindings/tmux/powerline.conf
+#source $HOME/.config/powerline/bindings/tmux/powerline.conf
