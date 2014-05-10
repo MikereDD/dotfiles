@@ -1,1 +1,0 @@
-../vimshell-ssh/ftplugin/int-ssh.vim

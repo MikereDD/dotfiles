@@ -38,7 +38,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 #plugins=(archlinux autoenv autojump bundler colored-man colorize command-not-found compleat copydir copyfile cp extract gem git git-extras git-remote-branch gitfast github gnu-utils go gpg-agent history history-substring-search last-working-dir mercurial per-directory-history perl profiles python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux torrent urltools vi-mode vundle)
 #plugins=(archlinux autojump bundler colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
-plugins=(archlinux autojump bundler colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
+plugins=(archlinux autojump colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
 
 source $ZSH/oh-my-zsh.sh
 
