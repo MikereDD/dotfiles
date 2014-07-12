@@ -5,5 +5,10 @@
 #---------------------------------------------------------------
 
 # session initialization
-new -s dev -n aosp/pax 'cd ~/android/platform'
-splitw -h -p 50 'paxssh'
+new -s dev -n edit/file 'vim'
+splitw -h 50 -p 'vifm'
+new -n irc 'irssi'
+new -n build 'cd ~/android/slimroms'
+splitw -h 50 -p 'cd ~/android/kitkat'
+new -n music/shell 'pianobarfly'
+splitw -v 50 -p 'cd ~/'

@@ -8,11 +8,11 @@ set -g status-left-length 50
 set-window-option -g window-status-fg white
 set-window-option -g window-status-bg default
 set-window-option -g window-status-attr bright
+set-window-option -g window-status-current-fg red
 
 # message colours
 set -g message-fg white
-set -g message-bg default
 set -g message-attr bright
 
-#set -g status-left "#[fg=blue] #H #[fg=black]• #[fg=green]#(acpi -t | awk \'{ print $4\"°C\" }\')#[fg=black] • #[fg=red]Power: #(acpi -V | awk \'NR==1 {print $4}\' | cut -d \",\" -f1) "
-#set -g status-right "#[fg=yellow,nobright]Mail: #(tmuxmail.sh)#[fg=black,bright] • #[fg=magenta]#(awk \'{ print $1,$2,$3 }\' </proc/loadavg)#[fg=black] • #[fg=cyan]%I:%M #[default] "
+set -g status-left "#[fg=colour245] #H #[fg=black]"
+set -g status-right "#[fg=black] #[fg=colour245]#(awk \'{ print $1,$2,$3 }\'</proc/loadavg)#[fg=black] #[fg=cyan]%I:%M:%S %p #[default] "
