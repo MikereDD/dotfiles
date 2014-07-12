@@ -30,19 +30,6 @@ zcfx() {
     bash -c ". ~/.bashrc;source ../.prep_files/android_prep;sh ./buildcfx grouper 8 10"
 }
 
-# generate random password
-function genpasswd() {
-  RANDPASSWDLNGTH=$1
-  if [ -z "$RANDPASSWDLNGTH" ]; then
-     RANDPASSWDLNGTH=20
-  else
-     unset response
-     RANDPASSWDLNGTH=$1
-  fi
-     pass=</dev/urandom tr -dc '1234567890!@#$%^&*(){}[],.qwertyuiopQWERTYUIOPasdfghjklASDFGHJKLzxcvbNMZXCVBnm' | head -c $RANDPASSWDLNGTH;
-     echo -e "$pass"
-}
-
 # extended cd
 function smart_cd () {
   if [[ -f $1 ]] ; then
@@ -82,6 +69,31 @@ function cd () {
   fi
 }
 
+# Highlighted grep
+# hgrep - highlight grep
+
+#if (( ! $# )); then
+#  echo "Usage: $0:t [-e pattern...] [file...]" &gt;&amp;2
+#  return 1
+#fi
+#
+#local -a regex
+#local htext=`echotc so` ntext=`echotc se`
+#
+#while [[ "$1" = -e ]]; do
+#  regex=( $regex "$2" )
+#  shift 2
+#done
+#
+#if (( ! $#regex )); then
+#  regex=( "$1" )
+#  shift
+#fi
+#
+#regex=( "-e
+#s/${^regex[@]}/$htext&amp;$ntext/g" )
+#sed ${(Ff)regex[@]} "$@"
+
 # quick rename
 function name() {
   [[ $#@ -eq 1 ]] || { echo Give exactly one argument ; return 1 }
@@ -95,6 +107,41 @@ function name() {
     echo Some error occured; return 1
   fi
 }
+
+## scpzshconf
+# (c) Julien Danjou &lt;julien@jdanjou.org&gt;
+# License: GPLv2
+
+#function scpzshconf
+#{
+#        if [ ! -z $1 ]; then
+#                echo -n "Sending zsh conf to $1... "
+#                cd $HOME &amp;&amp; \
+#                tar cf - .zsh/rc/* \
+#                         .zshrc 2&gt; /dev/null | \
+#                ssh $1 "tar xf - 2&gt; /dev/null" &amp;&amp; \
+#                cd $OLDPWD &amp;&amp; echo done
+#        fi
+#}
+#
+## Functions for use with the e glob flag
+#in() { [[ -e $1/$REPLY ]] }
+#empty() { a=( $REPLY/*(N[1]) ); (( ! $#a )) }
+#fattr() {
+#  local val=${${${(s.=.)$(getfattr -n user.$1 $REPLY 2&gt;/dev/null)}[2]%\"}#\"}
+#  [[ -z $val ]] &amp;&amp; return 1
+#  [[ -z $2 ]] &amp;&amp; return 0
+#  [[ $val = $~2 ]]
+#}
+#
+## Functions to display values of environment variables
+#ev() { echo
+#       set | egrep -i \^$1 |sed -e 's/=/     /' -e '/^PATH/d' -e '/^CDPATH/d' | sort
+#       echo }
+#
+#eva() { echo
+#set | egrep -i "^[a-z_]*$1" |sed -e 's/=/     /' -e '/^PATH/d' -e '/^CDPATH/d' | sort
+#        echo }
 
 # Create personal .fpath dir and zcp and zln links
 # nice to have your own fpath dir
@@ -213,488 +260,3 @@ extract_archive () {
 alias ex=extract_archive
 compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
 
-# Escape potential tarbombs
-function atb() { l=$(tar tf $1); if [ $(echo "$l" | wc -l) -eq $(echo "$l" | grep $(echo "$l" | head -n1) | wc -l) ]; then tar xf $1; else mkdir ${1%.tar.gz} && tar xf $1 -C ${1%.tar.gz}; fi ; }
-
-## Directory Functions
-function backupsfolder()
-{
-    if [ -d $HOME/backups_html ]; then
-        chown -R $USER:www-data $HOME/backups_html
-        chmod 755 $HOME/backups_html
-        find $HOME/backups_html/ -type d -exec chmod 775 {} \;
-        find $HOME/backups_html/ -type f -exec chmod 664 {} \;
-        chmod 755 $HOME
-    fi
-}
-
-function private()
-{
-    find $HOME -type d -exec chmod 700 {} \;
-    find $HOME -type f -exec chmod 600 {} \;
-    find $HOME/bin -type f -exec chmod +x {} \;
-    find $HOME/.dropbox-dist/dropbox* -type f -exec chmod +x {} \;
-}
-
-function publicfolder()
-{
-    if [ -d $HOME/public_html ]; then
-        chown -R $USER:www-data $HOME/public_html
-        chmod 755 $HOME/public_html
-        find $HOME/public_html/ -type d -exec chmod 775 {} \;
-        find $HOME/public_html/ -type f -exec chmod 664 {} \;
-        chmod 755 $HOME
-    fi
-}
-
-function setperms()
-{
-    echo "setting proper permissions in ~/"
-    private
-    public
-}
-
-function wwwrc()
-{
-    alias mv="mv"
-    mv -f ~/.[a-z]*.html ~/public_html/
-    chmod 644 ~/public_html/.[a-z]*.html
-    chown $USER:www-data ~/public_html/.[a-z]*.html
-    alias mv="mv -i"
-}
-
-# Backup .zsh* files
-function backup_zshfiles()
-{
-  ARCHIVE="$HOME/backups/zsh_files/zsh_dotfiles_$(date +%Y%m%d_%H%M%S).tar.gz";
-  cd ~
-  tar -czvf $ARCHIVE .synergy.conf .xsession .xmodmaprc .xinitrc .xbindkeysrc .wgetrc .screenrc .screenrc_c .esmtprc .msmtprc .Xmodmap .Xresources .asoundrc .dir_colors .inputrc .profile .zsh_profile .zshrc .zsh_stuff/*
-  echo "All backed up in $ARCHIVE";
-}
-
-# Creates a backup of the file passed as
-## parameter with the date and time
-function bak()
-{
-  cp $1 $1_`date +%H:%M:%S_%d-%m-%Y`
-}
-
-# Execute a given Linux command on a group of files
-##### Example: batchexec sh ls          # lists all files that have the extension 'sh'
-# Example: batchexec sh chmod 755       # 'chmod 755' all files that have the extension 'sh'
-function batchexec()
-{
-find . -type f -iname '*.'${1}'' -exec ${@:2}  {} \; ;
-}
-
-# Clock - A bash clock that can run in your terminal window.
-###### binary clock
-function bclock()
-{
-watch -n 1 'echo "obase=2;`date +%s`" | bc'
-}
-
-###### binary clock
-function bclock2()
-{
-perl -e 'for(;;){@d=split("",`date +%H%M%S`);print"\r";for(0..5){printf"%.4b ",$d[$_]}sleep 1}'
-}
-
-function clock()
-{
-while true;do clear;echo "===========";date +"%r";echo "===========";sleep 1;done
-}
-
-# Appends a '&' to a command so it will run in the background
-## useful for aliases
-function bg_wrapper()
-{
-    "$@" &
-}
-
-# Bookmarking
-## bookmarking the current directory in 'alias' form
-function bookmark() {
-    # copyright 2007 - 2010 Christopher Bratusek
-    if [[ $1 != "" && $(alias | grep -w go-$1) == "" ]]; then
-        echo "alias g-$1='cd $PWD'" >> $HOME/.bookmarks
-        . $HOME/.bookmarks
-    elif [[ $1 == "" ]]; then
-        echo "need name for the bookmark."
-    else        echo "bookmark g-$1 already exists."
-    fi
-}
-
-function unmark() {
-    # copyright 2007 - 2010 Christopher Bratusek
-    if [[ $(alias | grep -w g-$1= ) != "" ]]; then
-        sed -e "/g-$1/d" -i $HOME/.bookmarks
-        xunalias g-$1
-    fi
-}
-
-###### copies/moves files to a bookmarked dir
-# cto file1.jpg file2.jpg file3.jpg pics
-function cto() {
-    eval lastarg=\${$#}
-    targetdir=`getBookmark $lastarg`
-    echo "Copying files to $targetdir"
-    if [ -n "$targetdir" ]; then
-        for dir in "$@";
-            do
-                if [ "$dir" != $lastarg ]; then
-                    cp -iv "$dir" "$targetdir"
-                fi
-            done
-    fi
-}
-
-# mto vid1.avi vid2.avi videos
-function mto() {
-    eval lastarg=\${$#}
-    targetdir=`getBookmark $lastarg`
-    echo "Moving files to $targetdir"
-    if [ -n "$targetdir" ]; then
-        for dir in "$@";
-            do
-                if [ "$dir" != $lastarg ]; then
-                    mv -iv "$dir" "$targetdir"
-                fi
-            done
-    fi
-}
-
-## Directory Bookmarks for BASH (c) 2009, Ira Chayut, Version 090927
-# DirB and its implementation in this file are the product of, and
-# copyrighted by Ira Chayut.  You are granted a non-exclusive, royalty-free
-# license to use, reproduce, modify and create derivative works from DirB;
-# providing that credit is given to DirB as a source material.
-# The lastest version is available from: http://www.dirb.info/bashDirB.  Ira can
-# be reached at ira@dirb.info.
-# By default DirB will have the shell echo the current working directory out
-# to the title bars of Xterm windows.  To disable this behavior, comment
-# out the next line.
-# PS1="\[\033]0;\w\007\]\t \!> "
-# If the repository of bookmarks does not exist, create it
-if  [ ! -e ~/.DirB ]
-then
-    mkdir ~/.DirB
-fi
-
-###### "d" - Display (or Dereference) a saved bookmark
-# to use: cd "$(d xxx)"
-function d-() {
-    # if the bookmark exists, then extract its directory path and print it
-    if [ -e ~/.DirB/"$1" ]
-    then
-        sed -e 's/\$CD //' -e 's/\\//g' ~/.DirB/"$1"
-
-    # if the bookmark does not exists, complain and exit with a failing code
-    else
-        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
-        false
-    fi
-}
-
-###### "g" - Go to bookmark
-function g-() {
-    # if no arguments, then just go to the home directory
-    if [ -z "$1" ]
-    then
-        cd
-    else
-        # if $1 is in ~/.DirB and does not begin with ".", then go to it
-        if [ -f ~/.DirB/"$1" -a ${1:0:1} != "." ]
-        then
-            # update the bookmark's timestamp and then execute it
-            touch ~/.DirB/"$1" ;
-            CD=cd source ~/.DirB/"$1" ;
-        # else just do a "cd" to the argument, usually a directory path of "-"
-        else
-            cd "$1"
-        fi
-    fi
-}
-
-###### "p" - Push a bookmark
-function p() {
-    # Note, the author's preference is to list the directory stack in a single
-    # column.  Thus, the standard behavior of "pushd" and "popd" have been
-    # replaced by discarding the normal output of these commands and using a
-    # "dirs -p" after each one.
-
-    # if no argument given, then just pushd and print out the directory stack
-    if [ -z "$1" ]
-    then
-        pushd > /dev/null && dirs -p
-
-    # if $1 is a dash, then just do a "popd" and print out the directory stack
-    elif [ "$1" == "-" ]
-    then
-        popd > /dev/null
-        dirs -p
-    else
-        # if $1 is in ~/.DirB and does not begin with ".", then go to it
-        # and then print out the directory stack
-        if [ -f ~/.DirB/"$1" -a "${1:0:1}" != "." ]
-            then
-                touch ~/.DirB/$1 ;
-                CD=pushd source ~/.DirB/$1 > /dev/null && dirs -p ;
-
-        # else just do a "pushd" and print out the directory stack
-        else
-            pushd "$1" > /dev/null && dirs -p
-        fi
-    fi
-}
-
-###### "r" - Remove a saved bookmark
-function r() {
-    # if the bookmark file exists, remove it
-    if [ -e ~/.DirB/"$1" ]
-    then
-        rm ~/.DirB/"$1"
-
-    # if the bookmark file does not exist, complain and exit with a failing code
-    else
-        echo bash: DirB: ~/.DirB/"$1" does not exist >&2
-        false
-    fi
-}
-
-###### "s" - Save bookmark
-function s() {
-    if [ -n "$2" ]
-    then
-        # build the bookmark file with the contents "$CD directory_path"
-        ( echo '$CD ' \"$2\" > ~/.DirB/"$1" ;) > /dev/null 2>&1
-    else
-        # build the bookmark file with the contents "$CD directory_path"
-        ( echo -n '$CD ' > ~/.DirB/"$1" ;
-          pwd | sed "s/ /\\\\ /g" >> ~/.DirB/"$1" ; ) > /dev/null 2>&1
-    fi
-    # if the bookmark could not be created, print an error message and
-    # exit with a failing return code
-    if [ $? != 0 ]
-    then
-        echo bash: DirB: ~/.DirB/"$1" could not be created >&2
-        false
-    fi
-}
-
-###### "sl" - Saved bookmark Listing
-function sl() {
-    # if the "-l" argument is given, then do a long listing, passing any
-    # remaining arguments to "ls", printing in reverse time order.  Pass the
-    # output to "less" to page the output if longer than a screen in length.
-    if [ "$1" == "-l" ]
-    then
-        shift
-        ( cd ~/.DirB ;
-        ls -lt $* |
-            sed -e 's/  */ /g' -e '/^total/d' \
-                -e 's/^\(... \)\([0-9] \)/\1 \2/' |
-            cut -d ' ' -s -f6- | sed -e '/ [0-9] /s// &/' | less -FX ; )
-
-    # else print the short form of the bookmarks in reverse time order
-    else
-        ( cd ~/.DirB ; ls -xt $* ; )
-    fi
-}
-
-###### simple bookmark system
-function getBookmark() {
-    case "$1" in
-    video|vids|vid) echo "$HOME/media/video" ;; # video, vids and vid are shortcuts to use with the functions below, the bookmarked directory is "~/media/video"
-    audio|music|tunes) echo "$HOME/media/audio" ;;
-    images|img|pics|pictures) echo "$HOME/media/images";;
-    *) echo "" ;;
-    esac
-}
-
-###### list contents of a bookmarked dir without
-# going there: list vids
-function list() {
-    dir=`getBookmark $1`
-    echo $dir
-    if [ -n "$dir" ]; then
-        ls "$dir"
-    fi
-}
-
-###### same as "list" but with details: llist vids
-function llist() {
-    dir=`getBookmark $1`
-    echo $dir
-    if [ -n "$dir" ]; then
-        ll "$dir"
-    fi
-}
-
-# Backup a file with a date-time stamp
-# Usage "bu filename.txt"
-function bu() { cp $1 ${1}-`date +%Y%m%d%H%M`.backup ; }
-
-function buf() { cp -v $1 ${1/${1%%.*}/$f-$(date +"%Y%m%d_%H%M%S")}; }
-
-# Extract a file and cd into the new folder
-function build()
-{
-   extract "$1" && cd
-}
-
-# Needs fixing
-function build_() {
-args=($@)
-args[0]=
-reset
-tcc -o $1 ${1}.c ${args[@]}
-if [ $? -eq 0 ]; then
-./$1;
-fi
-}
-
-# Buffer in order to avoid mistakes with redirections that empty your files
-
-function buffer() { tty -s && return; tmp=$(mktemp); cat > "${tmp}"; if [ -n "$1" ] && ( ( [ -f "$1" ] && [ -w "$1" ] ) || ( ! [ -a "$1" ] && [ -w "$(dirname "$1")" ] ) ); then mv -f "${tmp}" "$1"; else echo "Can't write in \"$1\""; rm -f "${tmp}"; fi }
-
-# Copy & paste files and folders from the command line
-## Usage: "ccopy FILE/FOLDER#1 FILE/FOLDER#2 FILE/FOLDER#3 FILE/FOLDER#4 ..."
-# Note: You must 'cd' into the folder first ("whatever" works, while "~/myfolder/whatever" doesn't)
-function ccopy() { for i in $*; do cp -a $i /tmp/ccopy.$i; done }
-alias cpaste="ls -d /tmp/ccopy* | sed 's|[^\.]*.\.||' | xargs -I % mv /tmp/ccopy.% ./%"
-
-# Print working directory after a cd.
-# function cd() {
-#     if [[ $@ == '-' ]]; then
-#         builtin cd "$@" > /dev/null  # We'll handle pwd.
-#     else
-#         builtin cd "$@"
-#     fi
-#     echo -e "   \033[1;30m"`pwd`"\033[0m"
-# }
-
-# Change directory and list files
-function cds() {
-    # only change directory if a directory is specified
-    [ -n "${1}" ] && cd $1
-    lls
-}
-
-# Analyze your zsh usage
-function check_()
-{
-cut -f1 -d" " .zsh_history | sort | uniq -c | sort -nr | head -n 30
-}
-
-###### find an unused unprivileged TCP port
-function findtcp()
-{
-(netstat  -atn | awk '{printf "%s\n%s\n", $4, $4}' | grep -oE '[0-9]*$'; seq 32768 61000) | sort -n | uniq -u | head -n 1
-}
-
-###### geoip lookup (need geoip database: sudo apt-get install geoip-bin)
-function geoip() {
-geoiplookup $1
-}
-
-###### geoip information
-# requires 'html2text': sudo apt-get install html2text
-function geoiplookup() { curl -A "Mozilla/5.0" -s "http://www.geody.com/geoip.php?ip=$1" | grep "^IP.*$1" | html2text; }
-
-###### get IP address of a given interface
-# Example: getip lo
-# Example: getip eth0   # this is the default
-function getip()                { lynx -dump http://whatismyip.org/; }
-
-###### display private IP
-function ippriv()
-{
-    ifconfig eth0|grep "inet adr"|awk '{print $2}'|awk -F ':' '{print $2}'
-}
-
-###### ifconfig connection check
-function ips()
-{
-    if [ "$OS" = "Linux" ]; then
-        for i in $( /sbin/ifconfig | grep ^e | awk '{print $1}' | sed 's/://' ); do echo -n "$i: ";  /sbin/ifconfig $i | perl -nle'/dr:(\S+)/ && print $1'; done
-    elif [ "$OS" = "Darwin" ]; then
-        for i in $( /sbin/ifconfig | grep ^e | awk '{print $1}' | sed 's/://' ); do echo -n "$i: ";  /sbin/ifconfig $i | perl -nle'/inet (\S+)/ && print $1'; done
-    fi
-}
-
-###### geolocate a given IP address
-function ip2loc() { wget -qO - www.ip2location.com/$1 | grep "<span id=\"dgLookup__ctl2_lblICountry\">" | sed 's/<[^>]*>//g; s/^[\t]*//; s/&quot;/"/g; s/</</g; s/>/>/g; s/&amp;/\&/g'; }
-
-###### myip - finds your current IP if your connected to the internet
-function myip()
-{
-lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | awk '{ print $4 }' | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g'
-}
-
-###### netinfo - shows network information for your system
-function netinfo()
-{
-echo "--------------- Network Information ---------------"
-/sbin/ifconfig | grep broadcast | awk '{print "inet:",$2}'
-/sbin/ifconfig | grep broadcast | awk '{print "netmask:",$6}'
-/sbin/ifconfig | grep broadcast | awk '{print "broadcast:",$4}'
-/sbin/ifconfig | grep ether | tr -d '\n' | awk '{print "macaddr(s):","eth0:",$2,"wlan0:",$7}'
-myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
-echo "${myip}"
-echo "---------------------------------------------------"
-}
-
-###### show ip
-# copyright 2007 - 2010 Christopher Bratusek
-function show_ip()
-{
-    case $1 in
-        *help | "" )
-            echo -e "\n${ewhite}Usage:\n"
-            echo -e "${eorange}show_ip${ewhite} |${egreen} <interface> ${eiceblue}[show ip-address for <interface>]\
-            \n${eorange}show_ip${ewhite} |${egreen} external${eiceblue} [show external ip address]\n"
-            tput sgr0
-        ;;
-        *external )
-            wget -q -O - http://showip.spamt.net/
-        ;;
-        * )
-            LANG=C /sbin/ifconfig $1 | grep 'inet addr:' | cut -d: -f2 | gawk '{ print $1}'
-        ;;
-    esac
-}
-
-# makes directory then moves into it
-function mkcdr() {
-    mkdir -p -v $1
-    cd $1
-}
-
-function mkdircd() {
-    mkdir -p "$@" && eval cd "\"\$$#\"";
-}
-
-# Creates an archive from directory
-function mktar() {
-    tar cvf  "${1%%/}.tar"     "${1%%/}/";
-}
-
-function mktbz() {
-    tar cvjf "${1%%/}.tar.bz2" "${1%%/}/";
-}
-
-function mktgz() {
-    tar cvzf "${1%%/}.tar.gz"  "${1%%/}/";
-}
-
-# Reminder / to do list
-function mnote() {
-    echo -e "- $* \n" >> ~/todo
-    echo -e "- $* \n" >> ~/todo.perm
-    ~/motd.pl
-}
-
-function makepkgsign() {
-     makepkg -cfs --key 2F90D05F --sign
-}

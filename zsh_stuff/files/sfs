@@ -1,0 +1,14 @@
+#!/usr/bin/env zsh
+#----------------------------------------------
+# file:     ~/.zsh_stuff/files/sfs
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#----------------------------------------------
+
+## Gen SSH Keys
+# RSA
+alias genrsa="ssh-keygen -t rsa -b 4096 -C "$(whoami)@$(hostname)-$(date -I)""
+# DSA
+alias gendsa="ssh-keygen -t dsa -b 1024 -C "$(whoami)@$(hostname)-$(date -I)""
+# ECDSA
+alias genecdsa="ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)-$(date -I)""

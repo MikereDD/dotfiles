@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 #----------------------------------------------
 # file:     ~/.bash_stuff/files/pkg_git
 # author:   Mike Redd - http://m-redd.com/
