@@ -9,7 +9,7 @@ ONNOWB="$(cat /home/typezero/.mplayer/nowplaying.log | grep "ID_FILENAME=" | cut
 ONNOWC="$(cat /home/typezero/.mplayer/nowplaying.log | grep "ID_FILENAME=" | cut -f 2 -d "=" | tail -1 | cut -f 2 -d "." | grep "mp3")"
 ONNOWD="$(cat /home/typezero/.mplayer/nowplaying.log | grep "ID_FILENAME=" | cut -f 2 -d "=" | tail -1 | cut -f 2 -d "." | grep "ogg")"
 
-if [ "$ONNOWA" = "/dev/video0" ];then 
+if [ "$ONNOWA" = "/dev/video0" ];then
     ONNOW="[TV] $(sh $HOME/scripts/tv/tvguideparse.sh)"
 #     ONNOW="[TV - tehIdiotBox]"
     echo -e "Watching: $ONNOW"
