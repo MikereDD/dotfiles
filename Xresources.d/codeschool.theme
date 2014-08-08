@@ -1,7 +1,7 @@
 ! Base16 Codeschool
 ! Scheme: brettof86
 
-#define base00 #232c31
+#define base00 #101010
 #define base01 #1c3657
 #define base02 #2a343a
 #define base03 #3f4944
