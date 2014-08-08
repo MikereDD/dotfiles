@@ -356,3 +356,9 @@ set -g pane-base-index 1
 
 #powerline
 #source $HOME/.config/powerline/bindings/tmux/powerline.conf
+
+# Idle screensaver
+set -g lock-after-time 10
+#set -g lock-command "/usr/bin/cmatrix -C blue"
+#set -g lock-command "/usr/bin/cmatrixreloaded"
+set -g lock-command "~/bin/pipes"
