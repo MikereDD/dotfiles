@@ -11,7 +11,8 @@ alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
 #alias ssinfo="sh $HOME/scripts/system/ssinfo.sh"
 
 ## :)
-alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
+alias COLORSPOOF="perl ~/scripts/colors/hypnotoad.pl ; sh ~/scripts/colors/pacman_nom.sh ; archey ; sh ~/scripts/colors/colors.sh"
+alias colorreference="sh ~/scripts/colors/color_reference.sh"
 
 # reset & source zshrc
 alias resetzsh="reset;source $HOME/.zshrc"
@@ -216,6 +217,8 @@ calc() { echo "scale=3;$@" | bc -l ; }
 ## dropbox
 alias dburl="dropbox puburl"
 
+# chromium proxy
+alias chromeoxy="chromium --proxy-server="localhost:8118""
 ####
 
 # vim: set filetype=zsh:
