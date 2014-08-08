@@ -20,6 +20,8 @@ Xft.lcdfilter:                    lcddefault
 ! ***** Colors Themes ***** ! {{{
 #ifdef COLOR
 !#include ".Xresources.d/chalk.theme"
+!#include ".Xresources.d/codeschool.theme"
+!#include ".Xresources.d/dark.theme"
 !#include ".Xresources.d/google.theme"
 #include ".Xresources.d/greyscale.theme"
 !#include ".Xresources.d/railscasts.theme"
