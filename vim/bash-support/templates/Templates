@@ -1,32 +1,45 @@
-§
 § =============================================================
-§ ========== USER MACROS ======================================
+§  User Macros
 § =============================================================
-§
-|AUTHOR|        = 'Mike Redd'
-|AUTHORREF|     = 'MikereDD'
-|EMAIL|         = 'mikeredd@mobileinfern.us'
-|COMPANY|       = 'Dumb Terminal, Inc.'
-|ORGANIZATION|  = 'Dumb Terminal Team'
-|PROJECT|       =
-|COPYRIGHT|     = 'Copyright (c) |YEAR|, |AUTHOR|'
-|LICENSE|       = 'http://www.wtfpl.net'
-|BASENAME|      =
-|FILENAME|      =
-|PATH|          =
-|SUFFIX|        =
-|DATE|          = '%m-%d'
-|TIME|          = '%H:%M %Z %:z'
-|YEAR|          = '%Y'
-|CREATED|       = '|YEAR|-|DATE| |TIME|'
-|REVISION|      = '|YEAR|-|DATE| |TIME|'
-|VERSION|       = '0.1a'
-§
+
+SetMacro( 'AUTHOR',      'Mike Redd' )
+SetMacro( 'AUTHORREF',   'mr' )
+SetMacro( 'COMPANY',     'Dumb Terminal, Inc.' )
+SetMacro( 'COPYRIGHT',   'Copyright (c) |YEAR|, |AUTHOR|' )
+SetMacro( 'EMAIL',       'mredd@pyrrhous.com' )
+SetMacro( 'LICENSE',     'WTFPL http://www.wtfpl.net' )
+SetMacro( 'ORGANIZATION','Dumb Terminal Team' )
+SetFormat( 'DATE',       '%m-%d' )
+SetFormat( 'TIME',       '%H:%M %Z' )
+SetFormat( 'YEAR',       '%Y' )
+SetMacro( 'CREATED',     '|TIME| |DATE| |YEAR|')
+SetMacro( 'REVISION',    '|TIME| |DATE| |YEAR|')
+SetMacro( 'VERSION',     '0.1a')
+
+SetStyle( 'default' )
+
 § =============================================================
-§ ========== FILE INCLUDES ====================================
+§  File Includes and Shortcuts
 § =============================================================
-§
-|includefile| = bash.comments.template
-|includefile| = bash.statements.template
-|includefile| = bash.paramsub.template
-§
+
+§ :TODO:14.07.13 12:50:WM: files "paramsub.templates" and "io-redirection.templates": maps, shortcuts? sort alphabetically?
+
+MenuShortcut( 'Comments',        'c' )
+MenuShortcut( 'Statements',      's' )
+MenuShortcut( 'Tests',           't' )
+MenuShortcut( 'ParamSub',        'p' )
+MenuShortcut( 'Regexp',          'x' )
+MenuShortcut( 'IO-Redir',        'i' )
+
+IncludeFile( 'comments.templates'       )
+IncludeFile( 'statements.templates'     )
+IncludeFile( 'tests.templates'          )
+IncludeFile( 'paramsub.templates'       )
+IncludeFile( 'specialparams.templates'  )
+IncludeFile( 'environment.templates'    )
+IncludeFile( 'builtins.templates'       )
+IncludeFile( 'set.templates'            )
+IncludeFile( 'shelloptions.templates'   )
+IncludeFile( 'io-redirection.templates' )
+IncludeFile( 'regexp.templates'         )
+

@@ -3,7 +3,7 @@
 § =============================================================
 
 == Comments.end-of-line comment == nomenu, append ==
-# <CURSOR>
+ # <CURSOR>
 == Comments.frame == map:cfr, sc:r ==
 #-------------------------------------------------------------------------------
 # <CURSOR>
@@ -20,31 +20,33 @@
 #===============================================================================
 #
 #          FILE: |FILENAME|
-# 
-#         USAGE: ./|FILENAME| 
-# 
+#
+#         USAGE: ./|FILENAME|
+#
 #   DESCRIPTION: 
-# 
+#
 #       OPTIONS: ---
 #  REQUIREMENTS: ---
 #          BUGS: ---
 #         NOTES: ---
 #        AUTHOR: |AUTHOR| (|AUTHORREF|), |EMAIL|
 #  ORGANIZATION: |ORGANIZATION|
-#       CREATED: |DATE| |TIME|
-#      REVISION:  ---
+#     COPYRIGHT: |COPYRIGHT|
+#       LICENSE: |LICENSE|
+#       CREATED: |CREATED|
+#      REVISION: |REVISION|
+#       VERSION: |VERSION|
 #===============================================================================
 
-set -o nounset                              # Treat unset variables as an error
 <CURSOR>
 == ENDTEMPLATE ==
 
 § -------------------------------------------------------------
 
-== Comments.date == insert, map:cd, sc:d ==
-|DATE|<CURSOR>
-== Comments.date+time == insert, map:ct, sc:t ==
-|DATE| |TIME|<CURSOR>
+== Comments.date == append, map:cd, sc:d ==
+|DATE|
+== Comments.date+time == append, map:ct, sc:t ==
+|DATE| |TIME|
 == ENDTEMPLATE ==
 
 § -------------------------------------------------------------

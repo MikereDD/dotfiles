@@ -15,7 +15,6 @@
 'compat40',
 'compat41',
 'dirspell',
-'direxpand',
 'dotglob',
 'execfail',
 'expand_aliases',
