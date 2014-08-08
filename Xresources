@@ -17,51 +17,9 @@ Xft.hintstyle:                    hintslight
 Xft.lcdfilter:                    lcddefault
 ! }}}
 
-! ***** Colors ***** ! {{{
-!*background:                      #101116
-*background:                      #060606
-!*foreground:                      #d2d2d2
-*foreground:                      #999999
-*fading:                          40
-!*fadeColor:                       #101119
-*fadeColor:                       #030303
-*cursorColor:                     #d2d2d2
-!*pointerColorBackground:          #191919
-*pointerColorBackground:          #060606
-!*pointerColorForeground:          #d2d2d2
-*pointerColorForeground:          #999999
-!
-! black dark/light
-*color0:                          #000000
-*color8:                          #030303
-!
-! red dark/light
-*color1:                          #8B0000
-*color9:                          #CD5C5C
-!
-! green dark/light
-*color2:                          #008000
-*color10:                         #90EE90
-!
-! yellow dark/light
-*color3:                          #FFFF00
-*color11:                         #FFFFE0
-!
-! blue dark/light
-*color4:                          #00008B
-*color12:                         #ADD8E6
-!
-! magenta dark/light
-*color5:                          #8B008B
-*color13:                         #FF00FF
-!
-!!! cyan dark/light
-*color6:                          #00FFFF
-*color14:                         #E0FFFF
-!
-! white dark/light
-*color7:                          #F5F5F5
-*color15:                         #FAEBD7
+! ***** Colors Themes ***** ! {{{
+#ifdef COLOR
+#include ".Xresources.d/colors"
 ! }}}
 
 ! ***** URxvt General Preferences ***** ! {{{
