@@ -10,18 +10,27 @@
         smtpencryption = tls
         smtpserver = smtp.gmail.com
         smtpuser = *@*
-        smtpserverport = 587
+        smtpserverport = 465
 [color]
-        ui = auto
-        #diff = auto
-        #status = auto
-        #branch = auto
-        interactive = auto
+	ui = true
+	interactive = auto
         pager = true
+	branch = auto
+	diff = auto
+	status = auto
 [color "status"]
         added = yellow
         changed = green
         untracked = cyan
+[color "branch"]
+        added = yellow reverse
+        local = yellow
+        remote = green
+[color "diff"]
+        meta = yellow bold
+        frag = magenta bold
+        old = red bold
+        new = green bold
 [pager]
         diff =
         external =
@@ -64,9 +73,10 @@
         mnf = merge --no-ff
         vdm = mergetool -t vimdiff
         graph = log --graph --oneline --decorate
+	sh = !git-sh
 [mergetool "diffconflicts"]
         cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
         trustExitCode = true
         keepBackup = false
 [push]
-        default = current 
+        default = current
