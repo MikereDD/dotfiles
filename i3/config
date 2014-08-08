@@ -217,6 +217,7 @@ bindsym $mod+Shift+0 move container to workspace end
 # app control {{{
 # Left Monitor
 assign [class="(?i)firefox"] → web
+assign [class="(?i)chromium"] → web
 assign [class="(?i)dwb"] → web
 assign [class="(?i)thunderbird"] → web
 assign [class="(?i)build"] → bld
@@ -252,6 +253,9 @@ for_window [instance="gimp"] floating enable resize shrink right 28px or 28 ppt
 for_window [title="GNU Image Manipulation Program"] floating disable border none
 for_window [window_role="gimp-toolbox"] floating enable resize shrink right 28px or 28 ppt
 for_window [window_role="GIMP Message"] floating enable resize shrink right 32px or 32 ppt
+for_window [title="(?i)Calculator"] floating enable border none
+for_window [class="xcalc"] floating enable border none
+for_window [instance="xcalc"] floating enable resize shrink right 32px or 32 ppt
 
 # dirty hack to set tabbed container layout
 for_window [class="(?i)firefox"] layout tabbed border none
@@ -281,7 +285,8 @@ colors {
         #background         #060606
         #background         #161616
         #background         #101010
-        background         #1c1c1c
+        #background         #1c1c1c
+        background          #101010
 
         #statusline         #999999
         statusline         #b2b2b2
@@ -289,17 +294,21 @@ colors {
         #focused_workspace  #181e31 #101116 #d2d2d2
         #focused_workspace  #090909 #060606 #d2d2d2 #969696
         #focused_workspace  #262626 #121212 #d0d0d0 #969696
-        focused_workspace  #262626 #1c1c1c #d2d2d2 #969696
+        #focused_workspace  #262626 #1c1c1c #d2d2d2 #969696
+        focused_workspace  #1c1c1c #101010 #f7f7f7
         #active_workspace   #181e31 #101116 #999999
         #active_workspace   #1e1e1e #060606 #999999 #444444
         #active_workspace   #080808 #161616 #303030 #444444
-        active_workspace   #080808 #1c1c1c #303030 #444444
+        #active_workspace   #080808 #1c1c1c #303030 #444444
+        active_workspace   #1c1c1c  #121212 #f7f7f7 #444444
         #inactive_workspace #181e31 #101116 #515152
         #inactive_workspace #0e0e0e #090909 #666666 #222222
-        inactive_workspace #161616 #1c1c1c #262626 #222222
+        #inactive_workspace #161616 #1c1c1c #262626 #222222
+        inactive_workspace #080808 #101010 #262626 #222222
         #urgent_workspace   #900000 #757a83 #ffffff
         #urgent_workspace   #330909 #000000 #ffffff #330909
-        urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
+        #urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
+        urgent_workspace   ##e4e4e4 #121212 #e4e4e4
     }
 
 }
