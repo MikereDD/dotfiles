@@ -1187,20 +1187,6 @@ let g:BASH_Man                     = 'man'      "     (Linux/U**X)
 "let g:BASH_Errorformat             = '%f:\ xyz\ %l:\ %m'
 "let g:BASH_AlsoBash                = ''
 "
-let g:BASH_AUTHOR                  = 'Mike Redd'
-let g:BASH_AUTHORREF               = 'MikereDD'
-let g:BASH_EMAIL                   = 'mikeredd@mobileinfern.us'
-let g:BASH_COMPANY                 = 'Dumb Terminal, Inc.'
-let g:BASH_ORGANIZATION            = 'Dumb Terminal Team'
-let g:BASH_COPYRIGHT               = 'Copyright (c) |YEAR|, |AUTHOR|'
-let g:BASH_LICENSE                 = 'http://www.wtfpl.net'
-let g:BASH_DATE                    = '%m-%d'
-let g:BASH_TIME                    = '%H:%M %Z %:z'
-let g:BASH_YEAR                    = '%Y'
-let g:BASH_CREATED                 = '|YEAR|-|DATE| |TIME|'
-let g:BASH_REVISION                = '|YEAR|-|DATE| |TIME|'
-let g:BASH_VERSION                 = '0-1a'
-"
 "  }}}
 " Clam {{{
 
