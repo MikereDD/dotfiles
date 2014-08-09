@@ -44,10 +44,6 @@
     m:0x54 + c:36
     Control+Mod2+Mod4 + Return
 
-"urxvt -name 'zeohn'"
-    m:0x59 + c:36
-    Shift+Alt+Mod2+Mod4 + Return
-
 "urxvt -name 'su'"
     m:0x18 + c:36
     Alt+Mod2 + Return
