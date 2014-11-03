@@ -219,6 +219,10 @@ alias dburl="dropbox puburl"
 
 # chromium proxy
 alias chromeoxy="chromium --proxy-server="localhost:8118""
+
+# reflector 50 http
+alias reflectornew="reflector --verbose -l 50 -p http --sort rate --save /etc/pacman.d/mirrorlist"
+
 ####
 
 # vim: set filetype=zsh:

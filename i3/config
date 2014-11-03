@@ -27,8 +27,8 @@ font xft:Comfortaa 9
 
 # monitors
 set $resize_step 100
-#set $screenL HDMI-0
-#set $screenR DVI-I-1
+set $screenL DVI-I-1
+set $screenR HDMI-0
 #set $screenL HDMI-0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -201,17 +201,17 @@ bindsym $mod+Shift+8 move container to workspace img
 bindsym $mod+Shift+9 move container to workspace sim
 bindsym $mod+Shift+0 move container to workspace end
 
-#workspace  begn output  $screenL
-#workspace  web  output  $screenL
-#workspace  bld  output  $screenL
-#workspace  offc output  $screenL
-#workspace  misc output  $screenL
+workspace  begn output  $screenL
+workspace  web  output  $screenL
+workspace  bld  output  $screenL
+workspace  offc output  $screenL
+workspace  misc output  $screenL
 
-#workspace  soc  output  $screenR
-#workspace  cd*  output  $screenR
-#workspace  img  output  $screenR
-#workspace  sim  output  $screenR
-#workspace  end  output  $screenR
+workspace  soc  output  $screenR
+workspace  cd*  output  $screenR
+workspace  img  output  $screenR
+workspace  sim  output  $screenR
+workspace  end  output  $screenR
 # }}}
 
 # app control {{{
@@ -271,8 +271,8 @@ for_window [class="(?i)dwb"] layout tabbed border none
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-        output HDMI-0
-#        output DVI-I-1
+#        output HDMI-0
+        output DVI-I-1
         status_command i3status --config ~/.i3/i3status.conf
 #        status_command ~/.i3/scripts/my_i3status.sh | i3status
         position top
