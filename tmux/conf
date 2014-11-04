@@ -239,9 +239,13 @@ set -g pane-active-border-bg colour233
 # wm window title string (uses statusbar variables)
 set -g set-titles-string "tmux:#I ⁝ #W ⁝"
 
+# reload tmux config
+bind-key r source-file ~/.tmux.conf
+
 # initialize sessions
-bind D source-file ~/.tmux/dev
-bind I source-file ~/.tmux/edit
+bind-key P source-file ~/.tmux/mymux
+bind-key Z source-file ~/.tmux/dev
+bind-key X source-file ~/.tmux/edit
 
 # environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
@@ -315,10 +319,10 @@ set -g status-fg white
 #setw -g window-status-format "#[fg=colour245,bg=colour234,bold]#I#[fg=colour250,bold]:#[fg=colour250,bold][#[default,fg=colour250,bg=colour234,bold]#W#[bold]] "
 #setw -g window-status-current-format "#[fg=colour245,bg=color234,bold]#I#[fg=colour250,bold]:#[fg=colour245,bold][#[fg=colour250,bg=colour234,bold]#W#[fg=colour245,bold]] "
 #
-set -g status-left '#S ᢰ #(cat ~/.adminlh-mail.txt) ⁝'
+set -g status-left '#S | #(cat ~/.adminlh-mail.txt) ⁝'
 set -g status-left-length 32
 #
-set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(check_weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b ᢱ #h'
+set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(check_weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b | #h'
 set -g status-right-length 150
 #
 set -g window-status-activity-attr bold
