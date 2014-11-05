@@ -1,0 +1,34 @@
+#!/bin/bash
+# California Lotto Number Picker
+#
+# 
+echo ''
+echo '##############################'
+echo '# Lucky reDD's Lottery Picks #'
+echo '##############################'
+echo ''
+echo ' Can reDD win the lotto for you?'
+echo ' Lottery Choices.'
+echo ' Mega | Super | Five | Four | Three'
+echo ' -----------------------------------'
+echo '  What lottery would you like to win?'
+echo ''
+echo '1) MegaMillions'
+echo '2) SuperLotto'
+echo '3) DailyThree'
+echo '4) DailyFour'
+echo '5) DailyFive'
+echo '6) Quit'
+echo''
+read case;
+
+case $case in
+
+    1) echo -e " MegaMillions Lucky Lotto Picks" ; printf '(Five numbers) %02i-%02i-%02i-%02i-%02i (Mega number) %02i\n' $[($RANDOM % 56)] $[($RANDOM % 56)] $[($RANDOM % 56)] $[($RANDOM % 56)] $[($RANDOM % 56)] $[($RANDOM % 46)] ;;
+    2) echo -e " Super Lotto Number Picks" ; printf '(Five numbers) %02i-%02i-%02i-%02i-%02i (Mega number) %02i\n' $[($RANDOM % 47)] $[($RANDOM % 47)] $[($RANDOM % 47)] $[($RANDOM % 47)] $[($RANDOM % 47)] $[($RANDOM % 27)] ;;
+    3) echo -e " Daily Three Lucky Lotto Picks" ; printf '(Three numbers) %02i-%02i-%02i\n' $[($RANDOM % 9)] $[($RANDOM % 9)] $[($RANDOM % 9)] ;;
+    4) echo -e " Daily Four Lucky Lotto Picks" ; printf '(Four numbers) %02i-%02i-%02i-%02i\n' $[($RANDOM % 9)] $[($RANDOM % 9)] $[($RANDOM % 9)] $[($RANDOM % 9)] ;;
+    5) echo -e " Daily Five Lucky Lotto Picks" ; printf '(Five numbers) %02i-%02i-%02i-%02i-%02i\n' $[($RANDOM % 39)] $[($RANDOM % 39)] $[($RANDOM % 39)] $[($RANDOM % 39)] $[($RANDOM % 39)] ;;
+    6) exit
+
+esac
