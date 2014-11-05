@@ -68,7 +68,7 @@ export GPGKEY=
 # Aliases files from ~/.zsh_stuff
 [[ -f /usr/share/doc/pkgfile/command-not-found.zsh ]] && . /usr/share/doc/pkgfile/command-not-found.zsh
 # zsh_stuff - my zsh files
-[[ -f ~/.zsh_stuff/zsh_aliases ]] && . ~/.zsh_stuff/zsh_aliases
+#[[ -f ~/.zsh_stuff/zsh_aliases ]] && . ~/.zsh_stuff/zsh_aliases
 #[[ -f ~/.zsh_stuff/zsh_binds ]] && . ~/.zsh_stuff/zsh_binds
 #[[ -f ~/.zsh_stuff/zsh_colors ]] && . ~/.zsh_stuff/zsh_colors
 #[[ -f ~/.zsh_stuff/zsh_completion ]] && . ~/.zsh_stuff/zsh_completion

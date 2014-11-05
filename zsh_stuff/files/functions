@@ -260,3 +260,15 @@ extract_archive () {
 alias ex=extract_archive
 compdef '_files -g "*.gz *.tgz *.bz2 *.tbz *.zip *.rar *.tar *.lha"' extract_archive
 
+  # generate random password
+function genpasswd() {
+  RANDPASSWDLNGTH=$1
+  if [ -z "$RANDPASSWDLNGTH" ]; then
+      RANDPASSWDLNGTH=20
+  else
+      unset response
+      RANDPASSWDLNGTH=$1
+  fi
+  pass=</dev/urandom tr -dc '1234567890!@#$%^&*(){}[],.qwertyuiopQWERTYUIOPasdfghjklASDFGHJKLzxcvbNMZXCVBnm' | head -c $RANDPASSWDLNGTH;
+  echo -e "$pass"
+}
