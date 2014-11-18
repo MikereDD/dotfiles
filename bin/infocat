@@ -78,22 +78,22 @@ $f7         'Okdl:'  ;OMMMMKOKNMMW:;o0l  .'.
 $f7         ;MMMMMMWWMMMMMMMMMMMMMMMMMXKWMMK         $H $f4$time$NC - $f7$date
 $f7         'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK         $f6 $USER $f1@ $f2$HOSTNAME
 $f7          NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO
-$f7          dMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          GTK Theme   $f1»$f4 $gtktheme$NC
-$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM.          GTK Icons   $f1»$f4 $gtkicon$NC
-$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font    $f1»$f4 $gtkfont$NC
-$f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font   $f1»$f4 $termfont$NC
-$f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime      $f1»$f4 $uptime
-$f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load        $f1»$f4 $load
-$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD         $f1»$f4 $use$gb$f2/$f4$size$gb
-$f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages    $f1»$f4 $pacman
-$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper   $f1»$f4 $wallpaper$NC
-$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro $NC     $f1»$f4 $distro
-$f8                   .:cc:;;.$NC                       $f7 WM     $NC     $f1»$f4 $WinMan
-$f8                   .o0MMMK'$NC                       $f7 Kernel $NC     $f1»$f4 $kernel
-$f1                     xMMM: $NC                       $f7 $rigmanu   $f1»$f4 $rigprocname
-$f1                     KMMMl$NC                        $f7 $cpu1  $f1»$f4 $cpu2
-$f1                    .MMMMo$NC                        $f7 $gpu1 $f1»$f4 $gpu2
-$f1                    ,MMMMx$NC                        $f7 $audio1    $f1»$f4 $audio2
+$f7          dMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          GTK Theme $f1»$f4 $gtktheme$NC
+$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM.          GTK Icons $f1»$f4 $gtkicon$NC
+$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font  $f1»$f4 $gtkfont$NC
+$f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font $f1»$f4 $termfont$NC
+$f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime    $f1»$f4 $uptime
+$f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load      $f1»$f4 $load
+$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use$gb$f2/$f4$size$gb
+$f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages  $f1»$f4 $pacman
+$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaper$NC
+$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro $NC   $f1»$f4 $distro
+$f8                   .:cc:;;.$NC                       $f7 WM   $NC     $f1»$f4 $WinMan
+$f8                   .o0MMMK'$NC                       $f7 Kernel $NC   $f1»$f4 $kernel
+$f1                     xMMM: $NC                       $f7 Rig       $f1»$f4 $rigmanu $rigprocname
+$f1                     KMMMl$NC                        $f7 CPU       $f1»$f4 $cpu1 $cpu2
+$f1                    .MMMMo$NC                        $f7 GPU       $f1»$f4 $gpu1 $gpu2
+$f1                    ,MMMMx$NC                        $f7 Audio     $f1»$f4 $audio1 $audio2
 $f1                    oMMMMx$NC
 $f1                    OMMMMO                        $f7"And you can go fuck yourself, bitch"
 $f1                    .OMMMd                                                     $f7 the$f1 cat
