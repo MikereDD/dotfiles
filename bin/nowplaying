@@ -61,7 +61,7 @@ NPPB=`cat $HOME/.config/pianobarfly/nowplaying`
 else
 IFONSPOTIFY=`sh $HOME/scripts/system/check_spotify_running-PID.sh`
 if [ "$IFONSPOTIFY" = "On" ]; then
-    echo -e ":♪: $(sh ~/bin/spotify-nowplaying)"
+    echo -e ":♪: np: $(sh ~/bin/spotify-nowplaying)"
 else
 IFONMOC=`sh $HOME/scripts/system/check_moc_running-PID.sh`
 if [ "$IFONMOC" = "On" ]; then
