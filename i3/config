@@ -16,7 +16,8 @@ set $alt Mod1
 
 # environment {{{
 # font
-font xft:Comfortaa 9
+# font xft:
+font pango: Comfortaa, FontAwesome 9
 
 # monitors
 set $resize_step 100
@@ -67,7 +68,8 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
+#bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
+bindsym $mod+p exec dmenu_run -fn "-*-termsyn-*-*-*-*-12-*-*-*-*-*-*-*" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -81,10 +83,10 @@ bindsym $mod+k focus up
 bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+#bindsym $mod+Left focus left
+#bindsym $mod+Down focus down
+#bindsym $mod+Up focus up
+#bindsym $mod+Right focus right
 
 # move focused window
 bindsym $mod+Shift+h move left
@@ -93,10 +95,10 @@ bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
 bindsym $mod+d split h
@@ -168,65 +170,78 @@ bindsym $mod+r mode "resize"
 # }}}
 
 # workspaces {{{
-# switch to workspace
-bindsym $mod+1 workspace begn
-bindsym $mod+2 workspace web
-bindsym $mod+3 workspace bld
-bindsym $mod+4 workspace offc
-bindsym $mod+5 workspace misc
 
-bindsym $mod+6 workspace soc
-bindsym $mod+7 workspace cd*
-bindsym $mod+8 workspace img
-bindsym $mod+9 workspace sim
-bindsym $mod+0 workspace end
+#only icons
+set $WS1 1 
+set $WS2 2 
+set $WS3 3 
+set $WS4 4 
+set $WS5 5 
+set $WS6 6 
+set $WS7 7 
+set $WS8 8 
+set $WS9 9 
+set $WS0 10 
+
+# switch to workspace
+bindsym $mod+1 workspace $WS1
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3
+bindsym $mod+4 workspace $WS4
+bindsym $mod+5 workspace $WS5
+
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8
+bindsym $mod+9 workspace $WS9
+bindsym $mod+0 workspace $WS0
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace begn
-bindsym $mod+Shift+2 move container to workspace web
-bindsym $mod+Shift+3 move container to workspace bld
-bindsym $mod+Shift+4 move container to workspace offc
-bindsym $mod+Shift+5 move container to workspace misc
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
 
-bindsym $mod+Shift+6 move container to workspace soc
-bindsym $mod+Shift+7 move container to workspace cd*
-bindsym $mod+Shift+8 move container to workspace img
-bindsym $mod+Shift+9 move container to workspace sim
-bindsym $mod+Shift+0 move container to workspace end
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+bindsym $mod+Shift+8 move container to workspace $WS8
+bindsym $mod+Shift+9 move container to workspace $WS9
+bindsym $mod+Shift+0 move container to workspace $WS0
 
-workspace  begn output  $screenL
-workspace  web  output  $screenL
-workspace  bld  output  $screenL
-workspace  offc output  $screenL
-workspace  misc output  $screenL
+workspace  "$WS1" output  $screenL
+workspace  "$WS2" output  $screenL
+workspace  "$WS3" output  $screenL
+workspace  "$WS4" output  $screenL
+workspace  "$WS5" output  $screenL
 
-workspace  soc  output  $screenR
-workspace  cd*  output  $screenR
-workspace  img  output  $screenR
-workspace  sim  output  $screenR
-workspace  end  output  $screenR
+workspace  "$WS6" output  $screenR
+workspace  "$WS7" output  $screenL
+workspace  "$WS8" output  $screenR
+workspace  "$WS9" output  $screenR
+workspace  "$WS0" output  $screenR
 # }}}
 
 # app control {{{
 # Left Monitor
-assign [class="(?i)firefox"] → web
-assign [class="(?i)chromium"] → web
-assign [class="(?i)dwb"] → web
-assign [class="(?i)thunderbird"] → web
-assign [class="(?i)build"] → bld
-assign [class="(?i)libreoffice"] → offc
-assign [class="(?i)virtualbox"] → sim
+assign [class="(?i)firefox"] → $WS2
+assign [class="(?i)chromium"] → $WS2
+assign [class="(?i)dwb"] → $WS2
+assign [class="(?i)thunderbird"] → $WS2
+assign [class="(?i)build"] → $WS3
+assign [class="(?i)libreoffice"] → $WS4
+assign [class="(?i)virtualbox"] → $WS9
 
 # Right Monitor
-assign [class="(?i)zeohn"] → soc
-assign [class="(?i)code"] → cd*
-assign [class="(?i)gedit"] → cd*
-assign [class="(?i)Gimp"] → img
-assign [class="(?i)inkscape"] → img
-assign [class="(?i)darktable"] → img
-assign [class="(?i)XMBC Media Center"] → soc
-assign [class="(?i)plexhometheater"] → soc
-assign [class="(?i)MPlayer"] → soc
+assign [class="(?i)zeohn"] → $WS5
+assign [class="(?i)code"] → $WS7
+assign [class="(?i)gedit"] → $WS7
+assign [class="(?i)Gimp"] → $WS8
+assign [class="(?i)inkscape"] → $WS8
+assign [class="(?i)darktable"] → $WS8
+assign [class="(?i)XMBC Media Center"] → $WS6
+assign [class="(?i)plexhometheater"] → $WS6
+#assign [class="(?i)MPlayer"] → $WS6
 
 # floating
 for_window [class="(?i)nvidia-settings"] floating enable
@@ -272,8 +287,8 @@ bar {
         mode hide
         modifier mod1
         workspace_buttons yes
-        tray_output HDMI-0
-        font xft:Menlo 9
+        tray_output DVI-I-1
+        font pango: Menlo, FontAwesome 9
 
 colors {
         #background         #191f2d
