@@ -20,43 +20,43 @@ Xft.lcdfilter:                    lcddefault
 ! ***** Colors Themes ***** ! {{{
 #ifdef COLOR
 !#include ".Xresources.d/chalk.theme"
-#include ".Xresources.d/codeschool.theme"
+!#include ".Xresources.d/codeschool.theme"
 !#include ".Xresources.d/dark.theme"
 !#include ".Xresources.d/google.theme"
-!#include ".Xresources.d/greyscale.theme"
+#include ".Xresources.d/greyscale.theme"
 !#include ".Xresources.d/railscasts.theme"
 #endif
 ! }}}
 
-! ***** URxvt General Preferences ***** ! {{{
-! Default Terminal Name !
+! ***** URxvt Preferences ***** ! {{{
+! *Default Terminal Name* !
 urxvt*termName:                   rxvt-256color
 
-! Fonts
-!URxvt*font:                       xft:PragmataPro:pixelsize=11:antialias=true:hinting=true
+! *Fonts*
+URxvt*font:                       xft:PragmataPro for Powerline:pixelsize=11:antialias=true:hinting=true
 !URxvt*font:                       xft:Envy Code R:pixelsize=11:antialias=true:hinting=true
 !URxvt*font:                       xft:Inconsolata-g Medium:size=8:antialias=true:hinting=true
-URxvt*font:                       xft:Menlo:size=8:antialias=true:hinting=true
-!URxvt*boldFont:                   xft:PragmataPro:bold:pixelsize=13:antialias=true:hinting=true
+!URxvt*font:                       xft:Menlo:size=8:antialias=true:hinting=true
+URxvt*boldFont:                   xft:PragmataPro for Powerline Bold:bold:pixelsize=13:antialias=true:hinting=true
 !URxvt*boldFont:                   xft:Envy Code R Bold:pixelsize=12:antialias=true:hinting=true
 !URxvt*boldFont:                   xft:Inconsolata-g Medium:bold:size=10:antialias=true:hinting=true
-URxvt*boldFont:                   xft:Menlo:bold:size=10:antialias=true:hinting=true
-!URxvt*italicFont:                 xft:PragmataPro:italic:pixelsize=11:antialias=true:hinting=true
+!URxvt*boldFont:                   xft:Menlo:bold:size=10:antialias=true:hinting=true
+URxvt*italicFont:                 xft:PragmataPro for Powerline Italic:italic:pixelsize=11:antialias=true:hinting=true
 !URxvt*italicFont:                 xft:Envy Code R Italic:pixelsize=11:antialias=true:hinting=true
 !URxvt*italicFont:                 xft:Inconsolata-g Medium:italic:size=8:antialias=true:hinting=true
-URxvt*italicFont:                 xft:Menlo:italic:size=8:antialias=true:hinting=true
-!URxvt*bolditalicFont:             xft:PragmataPro:bold:italic:pixelsize=13:antialias=true:hinting=true
+!URxvt*italicFont:                 xft:Menlo:italic:size=8:antialias=true:hinting=true
+URxvt*bolditalicFont:             xft:PragmataPro:bold for Powerline Bold Italic:italic:pixelsize=13:antialias=true:hinting=true
 !URxvt*bolditalicFont:             xft:Envy Code R Italic:bold:pixelsize=12:antialias=true:hinting=true
 !URxvt*bolditalicFont:             xft:Inconsolata-g Medium:bold:italic:size=10:antialias=true:hinting=true
-URxvt*bolditalicFont:             xft:Menlo:bold:italic:size=10:antialias=true:hinting=true
+!URxvt*bolditalicFont:             xft:Menlo:bold:italic:size=10:antialias=true:hinting=true
 
-! Background
+! *Background*
 !URxvt.background:                 rgba:0000/002b/0036/dddd
 !URxvt*inheritPixmap:              true
 !URxvt*tintColor:                  #00050a
 !URxvt*shading:                    10
 
-! Settings
+! *Settings*
 URxvt.geometry:                    80x40
 URxvt.borderless:                  true
 URxvt.internalBorder:              0
@@ -71,7 +71,7 @@ URxvt.scrollstyle:                 rxvt
 URxvt.loginShell:                  no
 URxvt.cutchars:                    BACKSLASH '"'&()*,;<=>?@[]{|}
 URxvt.print-pipe:                  cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
-URxvt.perl-ext-common:             default,matcher,clipboard,keyboard-select,tabbedex,url-select,fullscreen
+URxvt.perl-ext-common:             default,clipboard,url-select,keyboard-select
 urxvt*keysym.F11:                  perl:fullscreen:switch
 !URxvt.keysym.M-u:                  perl:mark-yank-urls:activate_mark_mode
 URxvt.keysym.M-u:                  perl:url-select:select_next
@@ -87,7 +87,7 @@ URxvt.clipboard.pastecmd:          xsel -ob
 URxvt.url-select.autocopy:         true
 URxvt.url-select.underline:        true
 URxvt.url-select.button:           2
-URxvt.url-select.launcher:         dwb
+URxvt.url-select.launcher:         firefox
 URxvt.perl-lib:                    ${HOME}/.urxvt/perl/
 URxvt.perl-ext:                    selection,mark-yank-urls
 URxvt.keysym.C-Delete:             perl:matcher:last
@@ -99,6 +99,7 @@ URxvt.matcher.pattern.1:           \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.
 URxvt.matcher.pattern.2:           \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.launcher.2:          vim +$2 $1
 
+! *Tabbed*
 URxvt.tabbed.autohide:             yes
 !URxvt.tabbar-fg:                   124
 !URxvt.tabbar-bg:                   232
@@ -128,7 +129,7 @@ URxvt.tabbed.clipboard.pastecmd:   xsel -ob
 URxvt.tabbed.url-select.autocopy:  true
 URxvt.tabbed.url-select.underline: true
 URxvt.tabbed.url-select.button:    2
-URxvt.tabbed.url-select.launcher:  dwb
+URxvt.tabbed.url-select.launcher:  firefox
 URxvt.tabbed.perl-lib:             ${HOME}/.urxvt/perl/
 URxvt.tabbed.perl-ext:             selection,mark-yank-urls
 URxvt.cursorColor:                 #485e6c
@@ -207,33 +208,33 @@ xpdf*urlCommand:                             dwb %s
 
 ! ***** xcalc.***** ! {{{
 xcalc.geometry:                              200x250+1668+21
-xcalc.ti.background:                         #060606
-xcalc.ti.bevel.borderColor:                  #3e3e3e
+xcalc.ti.background:                         #101010
+xcalc.ti.bevel.borderColor:                  #b9b9b9
 xcalc.ti.bevel.borderWidth:                  1
-xcalc.ti.bevel.background:                   #191919
-xcalc.ti.bevel.screen.background:            #060606
-xcalc.ti.bevel.screen.DEG.background:        #060606
-xcalc.ti.bevel.screen.DEG.foreground:        #999999
-xcalc.ti.bevel.screen.GRAD.background:       #060606
-xcalc.ti.bevel.screen.GRAD.foreground:       #999999
-xcalc.ti.bevel.screen.RAD.background:        #060606
-xcalc.ti.bevel.screen.RAD.foreground:        #999999
-xcalc.ti.bevel.screen.INV.background:        #060606
-xcalc.ti.bevel.screen.INV.foreground:        #999999
-xcalc.ti.bevel.screen.LCD.background:        #060606
-xcalc.ti.bevel.screen.LCD.foreground:        #999999
+xcalc.ti.bevel.background:                   #101010
+xcalc.ti.bevel.screen.background:            #121212
+xcalc.ti.bevel.screen.DEG.background:        #111111
+xcalc.ti.bevel.screen.DEG.foreground:        #b9b9b9
+xcalc.ti.bevel.screen.GRAD.background:       #111111
+xcalc.ti.bevel.screen.GRAD.foreground:       #b9b9b9
+xcalc.ti.bevel.screen.RAD.background:        #111111
+xcalc.ti.bevel.screen.RAD.foreground:        #b9b9b9
+xcalc.ti.bevel.screen.INV.background:        #111111
+xcalc.ti.bevel.screen.INV.foreground:        #b9b9b9
+xcalc.ti.bevel.screen.LCD.background:        #111111
+xcalc.ti.bevel.screen.LCD.foreground:        #b9b9b9
 xcalc.ti.bevel.screen.LCD.shadowWidth:       0
-xcalc.ti.bevel.screen.M.background:          #060606
-xcalc.ti.bevel.screen.M.foreground:          #999999
-xcalc.ti.bevel.screen.P.background:          #060606
-xcalc.ti.bevel.screen.P.foreground:          #999999
-xcalc.ti.Command.borderColor:                #3e3e3e
-xcalc.ti.Command.foreground:                 #999999
-xcalc.ti.Command.background:                 #090909
-xcalc.ti.button5.background:                 #070707
-xcalc.ti.button19.background:                #060606
-xcalc.ti.button18.background:                #060606
-xcalc.ti.button20.background:                #060606
+xcalc.ti.bevel.screen.M.background:          #111111
+xcalc.ti.bevel.screen.M.foreground:          #b9b9b9
+xcalc.ti.bevel.screen.P.background:          #111111
+xcalc.ti.bevel.screen.P.foreground:          #b9b9b9
+xcalc.ti.Command.borderColor:                #b9b9b9
+xcalc.ti.Command.foreground:                 #b9b9b9
+xcalc.ti.Command.background:                 #1c1c1c
+xcalc.ti.button5.background:                 #1c1c1c
+xcalc.ti.button19.background:                #131313
+xcalc.ti.button18.background:                #131313
+xcalc.ti.button20.background:                #131313
 !uncomment to change label on division button
 xcalc.ti.button20.label:                     /
 xcalc.ti.button25.background:                #111111

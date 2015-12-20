@@ -132,8 +132,8 @@ let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
 let g:jedi#rename_command = "<leader>r"
-let g:jedi#related_names_command = "<leader>n"
-let g:jedi#autocompletion_command = "<C-Space>"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
 "let g:jedi#show_function_definition = "0"
 
 " Save when losing focus
@@ -1985,7 +1985,7 @@ hi def InterestingWord6 guifg=#000000 ctermfg=16 guibg=#ff2c4b ctermbg=195
 if has('gui_running')
     " GUI Vim
 
-    set guifont=PragmataPro\ Regular\ for\ Powerline:h11
+    set guifont=PragmataPro\ for\ Powerline:h11
 
     " Remove all the UI cruft
     set go-=T
