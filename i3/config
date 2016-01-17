@@ -17,7 +17,7 @@ set $alt Mod1
 # environment {{{
 # font
 # font xft:
-font pango: Comfortaa, FontAwesome 9
+font pango: Confortaa, FontAwesome 9
 
 # monitors
 set $resize_step 100
@@ -284,11 +284,11 @@ bar {
         status_command i3status --config ~/.i3/i3status.conf
 #        status_command ~/.i3/scripts/my_i3status.sh | i3status
         position top
-        mode hide
+#        mode hide
         modifier mod1
         workspace_buttons yes
         tray_output DVI-I-1
-        font pango: Menlo, FontAwesome 9
+        font pango: Confortaa, FontAwesome 9
 
 colors {
         #background         #191f2d
@@ -314,7 +314,7 @@ colors {
         #inactive_workspace #181e31 #101116 #515152
         #inactive_workspace #0e0e0e #090909 #666666 #222222
         #inactive_workspace #161616 #1c1c1c #262626 #222222
-        inactive_workspace #080808 #101010 #262626 #222222
+        inactive_workspace #080808 #101010 #565656 #222222
         #urgent_workspace   #900000 #757a83 #ffffff
         #urgent_workspace   #330909 #000000 #ffffff #330909
         #urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
