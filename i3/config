@@ -17,7 +17,7 @@ set $alt Mod1
 # environment {{{
 # font
 # font xft:
-font pango: Confortaa, FontAwesome 9
+font pango: Comfortaa, FontAwesome 9
 
 # monitors
 set $resize_step 100
@@ -288,7 +288,7 @@ bar {
         modifier mod1
         workspace_buttons yes
         tray_output DVI-I-1
-        font pango: Confortaa, FontAwesome 9
+        font pango: Comfortaa, FontAwesome 9
 
 colors {
         #background         #191f2d
