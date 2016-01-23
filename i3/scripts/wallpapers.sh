@@ -5,7 +5,7 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #---------------------------------------------
 
-WALLSPATH="/home/typezero/images/wallpapers"
+WALLSPATH="$HOME/images/wallpapers"
 
 while true; do
         find $WALLSPATH -type f \( -name '*.jpg' -o -name '*.png' \) -print0 |
