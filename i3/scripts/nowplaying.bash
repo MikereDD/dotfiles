@@ -34,7 +34,7 @@ else
 IFONMOC=`sh $HOME/scripts/system/check_moc_running-PID.sh`
 if [ "$IFONMOC" = "On" ]; then
 #    echo "Off"
-#else 
+#else
 #if [ "$IFMOCON" = "On"]; then
 # Variables MOC - local player
 INFO=$(mocp -i)
