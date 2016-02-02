@@ -7,11 +7,11 @@
 # Global settings
 
 # Set prefix key to Ctrl-a
-unbind-key C-b
-set-option -g prefix C-a
+unbind C-b
+set -g prefix C-a
 
 # send the prefix to client inside window
-bind-key C-a send-prefix
+bind C-a send-prefix
 
 # toggle last window like screen
 bind-key C-a last-window
@@ -114,19 +114,6 @@ bind-key ] paste-buffer -s \015
 # vi-style controls for copy mode
 setw -g mode-keys vi
 
-# enable mouse selection in copy mode
-setw -g mode-mouse on
-bind ` copy-mode
-unbind [
-unbind p
-bind p paste-buffer
-bind -t vi-copy H start-of-line
-bind -t vi-copy L end-of-line
-bind -t vi-copy v begin-selection
-bind -t vi-copy y copy-selection
-bind -t vi-copy Escape cancel
-bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-
 # list all paste buffers (default key is '#')
 bind-key b list-buffers
 
@@ -191,23 +178,6 @@ set -g status-keys vi
 # are displayed. time is in milliseconds.
 set -g display-time 2000
 
-# ssh
-bind S command-prompt -p 'SSH to:' "new-window -n %1 'ssh %1'"
-
-# set vi keys
-setw -g mode-keys vi
-setw -g mode-mouse on
-unbind [
-bind Escape copy-mode
-unbind p
-bind p paste-buffer
-bind-key -t vi-copy 'v' begin-selection
-bind-key -t vi-copy 'y' copy-selection
-bind -t vi-copy 'H' start-of-line
-bind -t vi-copy 'L' end-of-line
-bind -t vi-copy Escape cancel
-bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-
 # copy tmux buffer to clipboard
 bind C-y run "tmux show-buffer | xsel -b"
 # move x clipboard into tmux paste buffer
@@ -215,9 +185,6 @@ bind C-p run "tmux set-buffer \"$(xsel -o)\"; tmux paste-buffer"
 
 # open %% man page
 bind C-m command-prompt -p "Open man page for:" "new-window 'exec man %%'"
-
-# send the prefix to client inside window (ala nested sessions)
-bind-key -n C-a send-prefix
 
 # on-screen time for display-panes in ms
 set -g display-panes-time 2000
@@ -243,9 +210,9 @@ set -g set-titles-string "tmux:#I ⁝ #W ⁝"
 bind-key r source-file ~/.tmux.conf
 
 # initialize sessions
-bind-key P source-file ~/.tmux/mymux
-bind-key Z source-file ~/.tmux/dev
-bind-key X source-file ~/.tmux/edit
+#bind-key P source-file ~/.tmux/mymux
+#bind-key Z source-file ~/.tmux/dev
+#bind-key X source-file ~/.tmux/edit
 
 # environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
@@ -263,8 +230,8 @@ set -g status-right centre # center align window list
 set -g status-right "#(wemux status_users)"
 
 # Statusbar starting in X or not
-if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
-if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
+#if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
+#if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
 
 # Tab-like window switching. Uses the same keys mainstream terminals would use
 # such as Ctrl-[Shift]-PGUP/PGDN, and adds Ctrl-INS to make a window along with
@@ -344,12 +311,12 @@ set -g visual-activity on
 
 setw -g alternate-screen on
 
-set -g mouse-utf8 on
+#set -g mouse-utf8 on
 
-set -g mouse-resize-pane on
-set -g mouse-select-pane on
+#set -g mouse-resize-pane on
+#set -g mouse-select-pane on
 # With this option on, you must hold shift when selecting text with the mouse.
-set -g mouse-select-window on
+#set -g mouse-select-window on
 
 # present a menu of URLs to open from the visible pane. sweet.
 bind-key U capture-pane \; save-buffer ~/tmp/tmux-buffer \; split-window -l 10 "urlview ~/tmp/tmux-buffer"
