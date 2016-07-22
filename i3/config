@@ -281,13 +281,15 @@ for_window [class="(?i)dwb"] layout tabbed border none
 bar {
 #        output HDMI-0
         output DVI-I-1
-        status_command i3status --config ~/.i3/i3status.conf
+        status_command i3blocks -c ~/.i3/i3blocks.conf
+#        status_command i3status --config ~/.i3/i3status.conf
 #        status_command ~/.i3/scripts/my_i3status.sh | i3status
         position top
 #        mode hide
         modifier mod1
         workspace_buttons yes
         tray_output DVI-I-1
+#        height 18
         font pango: Comfortaa, FontAwesome 9
 
 colors {
