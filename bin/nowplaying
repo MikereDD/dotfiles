@@ -76,7 +76,7 @@ TITLE=$(mocp -i | grep SongTitle | cut -f2 -d ":")
 #    if [ "$STATE" == "State: PLAY" ]; then
         echo -e ":♪: np: $TITLE by $ARTIST on $ALBUM" #| Vol: $VOLUME
     else
-        echo -e ":♭: x"
+        echo -e ""
     fi
     fi
 fi
