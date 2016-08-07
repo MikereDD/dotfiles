@@ -290,15 +290,15 @@ bar {
         workspace_buttons yes
         tray_output DVI-I-1
 #        height 18
-        font pango: Comfortaa, FontAwesome 9
+        font pango: Comfortaa, FontAwesome 11
 
 colors {
         #background         #191f2d
         #background         #060606
         #background         #161616
-        #background         #101010
         #background         #1c1c1c
         background          #101010
+        #background          #000000
 
         #statusline         #999999
         statusline         #b2b2b2

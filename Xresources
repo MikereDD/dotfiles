@@ -19,7 +19,7 @@ Xft.lcdfilter:                    lcddefault
 
 ! ***** Colors Themes ***** ! {{{
 #ifdef COLOR
-#include ".Xresources.d/apathy.theme"
+!#include ".Xresources.d/apathy.theme"
 !#include ".Xresources.d/atelierdune.theme"
 !#include ".Xresources.d/bespin.theme"
 !#include ".Xresources.d/chalk.theme"
@@ -28,7 +28,8 @@ Xft.lcdfilter:                    lcddefault
 !#include ".Xresources.d/flat.theme"
 !#include ".Xresources.d/google.theme"
 !#include ".Xresources.d/greyscale.theme"
-!#include ".Xresources.d/railscasts.theme"
+#include ".Xresources.d/railscasts.theme"
+!#include ".Xresources.d/manjaro.theme"
 #endif
 ! }}}
 
