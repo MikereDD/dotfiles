@@ -20,7 +20,7 @@ alias fastboot="/opt/android-sdk/platform-tools/fastboot"
 #export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
 
 # ANDROID_JAVA_HOME
-ANDROID_JAVA_HOME="/opt/java6"
+#ANDROID_JAVA_HOME="/opt/java6"
 
 # ANDROID_SDK
 ANDROID_HOME=/opt/android-sdk
@@ -43,7 +43,7 @@ ANDROID_NDK=/opt/android-ndk
 
 # CCACHE
 USE_CCACHE="1"
-CCACHE_DIR="/media/tdev/typezero/android/.ccache"
+CCACHE_DIR="/home/typezero/android/.ccache"
 
 # android sdk
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
