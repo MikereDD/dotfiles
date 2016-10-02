@@ -20,7 +20,7 @@ alias fastboot="/opt/android-sdk/platform-tools/fastboot"
 #export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
 
 # ANDROID_JAVA_HOME
-#ANDROID_JAVA_HOME="/opt/java6"
+ANDROID_JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
 
 # ANDROID_SDK
 ANDROID_HOME=/opt/android-sdk
