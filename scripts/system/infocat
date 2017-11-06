@@ -84,7 +84,7 @@ $f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font  $f1»$f4 $gtkfon
 $f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font $f1»$f4 $termfont$NC
 $f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime    $f1»$f4 $uptime
 $f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load      $f1»$f4 $load
-$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use$gb $f2/ $f4$size$gb
+$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use $f2/ $f4$size
 $f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages  $f1»$f4 $pacman
 $f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaper
 $f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro    $f1»$f4 $distro
