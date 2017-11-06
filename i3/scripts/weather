@@ -1,0 +1,14 @@
+#!/bin/bash
+# A dirty simple weather script.
+# For use with http://openweathermap.org
+
+# Add your API key
+API_KEY=""
+
+# Add your City ID
+# Check on http://openweathermap.org/find
+CITY_ID=""
+
+WEATHER_URL="http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"
+
+echo -e $(curl -s $WEATHER_URL | jq '.main.temp' | cut -f1 -d".")°F
