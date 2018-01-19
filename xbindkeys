@@ -147,27 +147,27 @@
 
 # Logitech PerformanceMX buttons
 # Prior
-"xdotool key Prior"
-    m:0x10 + c:112
-    Mod2 + Prior
+#"xdotool key Prior"
+#    m:0x10 + c:112
+#    Mod2 + Prior
 #    b:8
 
 # Next
-"xdotool key Next"
-    m:0x10 + c:117
-    Mod2 + Next
+#"xdotool key Next"
+#    m:0x10 + c:117
+#    Mod2 + Next
 #    b:9
 
 # Home
-"xdotool key Home"
-    m:0x10 + c:110
-    Mod2 + Home
+#"xdotool key Home"
+#    m:0x10 + c:110
+#    Mod2 + Home
 #    b:10
 
 # End
-"xdotool key End"
-    m:0x10 + c:115
-    Mod2 + End
+#"xdotool key End"
+#    m:0x10 + c:115
+#    Mod2 + End
 #    b:13
 
 # Mouse Buttons
