@@ -95,6 +95,11 @@
     m:0x10 + c:148
     Mod2 + XF86Calculator
 
+# Telegram
+"telegram-desktop"
+    m:0x10 + c:225
+    Mod2 + XF86Search
+
 # Vifm
 "urxvt -name 'vifm' -e vifm ~/ /media"
     m:0x10 + c:180
