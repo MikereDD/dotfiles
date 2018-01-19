@@ -120,6 +120,11 @@
     m:0x14 + c:121
     Control+Mod2 + XF86AudioMute
 
+# MOCP
+"urxvt -name 'mocp' -e mocp"
+    m:0x14 + c:179
+    Control+Mod2 + XF86Tools
+
 # Play/Pause
 "(mocp -G)"
     m:0x14 + c:172
