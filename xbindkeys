@@ -121,9 +121,9 @@
     Control+Mod2 + XF86AudioPlay
 
 # Stop
-#"(mocp -s)"
-#    m:0x10 + c:174
-#    Mod2 + XF86AudioStop
+"(mocp -s)"
+    m:0x18 + c:172
+    Alt+Mod2 + XF86AudioPlay
 
 # Skip Prev
 "(mocp -r)"
