@@ -36,42 +36,39 @@
 
 
 ## Titled Shells
-"urxvt -name 'zeohn'"
-    m:0x58 + c:36
-    Alt+Mod2+Mod4 + Return
-
-"urxvt -name 'code'"
-    m:0x54 + c:36
-    Control+Mod2+Mod4 + Return
-
-"urxvt -name 'su'"
-    m:0x18 + c:36
-    Alt+Mod2 + Return
-
 "urxvt -name 'tmux' -e tmux -f ~/.tmux/conf"
     m:0x5c + c:38
     Control+Alt+Mod2+Mod4 + a
+
+"dmenu_run -fn "-*-termsyn-*-*-*-*-12-*-*-*-*-*-*-*" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee""
+    m:0x51 + c:33
+    Shift+Mod2+Mod4 + p
+
+"dmenu_run -fn "-*-termsyn-*-*-*-*-12-*-*-*-*-*-*-*" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee""
+    m:0x51 + c:50
+    Shift+Mod2+Mod4 + Shift_L
+
 
 ## Browser
 #"dwb -r Mine"
 #    m:0x50 + c:57
 #    Mod2+Mod4 + n
-#"firefox"
-#    m:0x50 + c:57
-#    Mod2+mod4 + n
-"chromium"
+"firefox"
     m:0x50 + c:57
     Mod2+mod4 + n
+#"chromium"
+#    m:0x50 + c:57
+#    Mod2+mod4 + n
 
 # Email
 "thunderbird"
-    m:0x51 + c:36
-    Shift+Mod2+Mod4 + Return
+    m:0x10 + c:163
+    Mod2 + XF86Mail
 
 # ftp - gui
 "filezilla"
-    m:0x58 + c:57
-    Alt+Mod2+Mod4 + n
+    m:0x18 + c:23
+    Alt+Mod2 + Tab
 
 # Google MusicManager - Wine
 "MusicManager"
@@ -93,59 +90,81 @@
     m:0x58 + c:55
     Alt+Mod2+Mod4 + v
 
+# Calculator
+"xcalc"
+    m:0x10 + c:148
+    Mod2 + XF86Calculator
+
+# Vifm
+"urxvt -name 'vifm' -e vifm ~/ /media"
+    m:0x10 + c:180
+    Mod2 + XF86HomePage
+
 ## Raise Volume
-"amixer -q set Master 1+ unmute"
-    m:0x10 + c:123
-    Mod2 + XF86AudioRaiseVolume
+"amixer -q set PCM 1+ unmute"
+    m:0x14 + c:123
+    Control+Mod2 + XF86AudioRaiseVolume
 
 ## Lower Volume
-"amixer -q set Master 1- unmute"
-    m:0x10 + c:122
-    Mod2 + XF86AudioLowerVolume
+"amixer -q set PCM 1- unmute"
+    m:0x14 + c:122
+    Control+Mod2 + XF86AudioLowerVolume
 
 ## Mute Volume
-"amixer sset Master toggle"
-    m:0x10 + c:121
-    Mod2 + XF86AudioMute
+"amixer sset PCM toggle"
+    m:0x14 + c:121
+    Control+Mod2 + XF86AudioMute
 
+# Play/Pause
 "(mocp -G)"
-    m:0x10 + c:172
-    Mod2 + XF86AudioPlay
+    m:0x14 + c:172
+    Control+Mod2 + XF86AudioPlay
 
-"(mocp -s)"
-    m:0x10 + c:174
-    Mod2 + XF86AudioStop
+# Stop
+#"(mocp -s)"
+#    m:0x10 + c:174
+#    Mod2 + XF86AudioStop
 
+# Skip Prev
 "(mocp -r)"
-    m:0x10 + c:173
-    Mod2 + XF86AudioPrev
+    m:0x14 + c:173
+    Control+Mod2 + XF86AudioPrev
 
+# Skip Next
 "(mocp -f)"
-    m:0x10 + c:171
-    Mod2 + XF86AudioNext
-
-"(slock)"
-    m:0x5c + c:39
-    Control+Alt+Mod2+Mod4 + s
+    m:0x14 + c:171
+    Control+Mod2 + XF86AudioNext
 
 # Logitech PerformanceMX buttons
-# PageUp
+# Prior
 "xdotool key Prior"
- b:8
-# PageDown
+    m:0x10 + c:112
+    Mod2 + Prior
+#    b:8
+
+# Next
 "xdotool key Next"
- b:9
+    m:0x10 + c:117
+    Mod2 + Next
+#    b:9
+
 # Home
 "xdotool key Home"
- b:10
+    m:0x10 + c:110
+    Mod2 + Home
+#    b:10
+
 # End
 "xdotool key End"
- b:13
+    m:0x10 + c:115
+    Mod2 + End
+#    b:13
+
 # Mouse Buttons
 #"xvkbd -xsendevent -text "\[XF86Back]""
-#m:0x0 + b:8
+#    m:0x0 + b:8
 #"xvkbd -xsendevent -text "\[XF86Forward]""
-#m:0x0 + b:9
+#    m:0x0 + b:9
 
 #
 # End of xbindkeys configuration
