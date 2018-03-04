@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ ! -d "$HOME/tmp/bin/python2" ]; then
+    mkdir -p $HOME/tmp/bin/python2
+    ln -s /usr/bin/python2 $HOME/tmp/bin/python2/python
+fi
+
+USE_CCACHE=1
+CCACHE_DIR=/home/typezero/android/.ccache
+ANDROID_HOME=/opt/android-sdk
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk
+OUT_DIR_COMMON_BASE=/media/disk3/android-out
+PATH=$PATH:$ANDROID_HOME/tools
+PATH=$PATH:$ANDROID_HOME/platform-tools
+PATH=$PATH:$ANDROID_HOME/build-tools/27.0.3
+
+export USE_CCACHE CCACHE_DIR ANDROID_HOME JAVA_HOME OUT_DIR_COMMON_BASE
+
+export PATH=$HOME/tmp/bin/python2:$PATH
