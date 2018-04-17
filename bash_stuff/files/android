@@ -69,8 +69,6 @@ alias reposfj1="repo sync -f -j1"
 
 alias fetchlmanifest="curl -L -o .repo/local_manifest.xml -O -L https://raw.github.com/pax10/local_manifest/rb/local_manifest.xml"
 
-alias pyfix="source ~/android/.prep_files/android_prep"
-
 # export
 export ANDROID_NDK USE_CCACHE CCACHE_DIR
 
