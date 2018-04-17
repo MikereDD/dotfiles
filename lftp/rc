@@ -31,7 +31,7 @@ set cmd:default-protocol ftp
 # if true, exit when an unconditional (without || and && at begin) command fails.
 set cmd:fail-exit false
 
-# The commands in string are executed before lftp exits. 
+# The commands in string are executed before lftp exits.
 set cmd:at-exit bye
 
 # time of command execution, which is considered as 'long' and a beep is done before next prompt. 0 means off.
@@ -40,19 +40,19 @@ set cmd:at-exit bye
 # default ls argument
 #set cmd:ls-default "ls -lh"
 
-# If true, lftp uses control connection address instead of the one returned in  PASV reply for data connection. 
+# If true, lftp uses control connection address instead of the one returned in  PASV reply for data connection.
 # This can be useful for broken NATs. Default is false.
 set ftp:fix-pasv-address true
 set ftp:fxp-passive-source true
 #set ftp:fxp-passive-sscn true
 
-# if true, lftp will try to correct address returned by server for PASV command in case when server address is  
-# in  public  network and PASV returns an address from a private network. In this case lftp would substitute server 
+# if true, lftp will try to correct address returned by server for PASV command in case when server address is
+# in  public  network and PASV returns an address from a private network. In this case lftp would substitute server
 #address instead of the one returned by  PASV  command, port number would not be changed.  Default is true.
-set ftp:auto-passive-mode true 
+set ftp:auto-passive-mode true
 set ftp:passive-mode true
 
-# if true,try to negotiate SSL connection with ftp server for non-anonymous access. Default is true. This and other  
+# if true,try to negotiate SSL connection with ftp server for non-anonymous access. Default is true. This and other
 # ssl settings are only available if lftp was compiled with an ssl/tls library.
 set ftp:ssl-allow true
 
@@ -62,8 +62,8 @@ set ftp:ssl-auth TLS
 # if true, request ssl connection for data transfers. This is cpu-intensive but provides privacy. Default is false.
 set ftp:ssl-protect-data true
 
-# if true, request ssl connection for data  transfer  between  two ftp  servers  in  FXP mode. CPSV or SSCN command 
-# will be used in that case. If ssl connection fails for some reason,  lftp  would try unprotected FXP transfer unless 
+# if true, request ssl connection for data  transfer  between  two ftp  servers  in  FXP mode. CPSV or SSCN command
+# will be used in that case. If ssl connection fails for some reason,  lftp  would try unprotected FXP transfer unless
 # ftp:ssl-force is set for any of the two servers. Default is false.
 set ftp:ssl-protect-fxp true
 
@@ -78,8 +78,8 @@ set cmd:csh-history on
 #
 set ssl:verify-certificate false
 
-# Number of jobs run in parallel in non-interactive mode. For example, this may be useful for scripts with multiple 'get' commands. 
-# Note that setting this to a value greater than 1 changes conditional execution behaviour, basically makes it inconsistent. 
+# Number of jobs run in parallel in non-interactive mode. For example, this may be useful for scripts with multiple 'get' commands.
+# Note that setting this to a value greater than 1 changes conditional execution behaviour, basically makes it inconsistent.
 #set cmd:parallel 1
 
 # Number of jobs run in parallel in a queue.
@@ -91,29 +91,27 @@ set cmd:time-style "%b %e %Y|%b %e %H:%M"
 # local character set. It is set from current locale initially.
 set file:charset utf-8
 
-# the program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port number. 
+# the program to use for connecting to remote server. It should support '-l' option for user name, '-p' for port number.
 # Default is 'ssh -a -x'. You can set it to 'rsh', for example.
 set fish:connect-program "ssh -a -x"
 
-# use specified shell on server side. Default is /bin/sh. On some systems, /bin/sh exits when doing cd to a non-existent directory. 
-# lftp can handle that but it has to reconnect. Set it to /bin/bash for such systems if bash is installed. 
+# use specified shell on server side. Default is /bin/sh. On some systems, /bin/sh exits when doing cd to a non-existent directory.
+# lftp can handle that but it has to reconnect. Set it to /bin/bash for such systems if bash is installed.
 set fish:shell /bin/bash
 
 ## Terminal strings to set titlebars for terminals that don't
 ## properly specify tsl and fsl capabilities.
 ## Use cmd:set-term-status to enable this.
-set cmd:term-status/*screen* "\e_\T\e\\"
+#set cmd:term-status/*screen* "\e_\T\e\\"
 #set cmd:term-status/*xterm* "\e[11;0]\e]2;\T\007\e[11]"
 set cmd:term-status/*rxvt* "\e[11;0]\e]2;\T\007\e[11]"
 set cmd:set-term-status on
 
 # IPV4 Address
-set ftp:port-ipv4 *.*.*.*
+#set ftp:port-ipv4 *.*.*.*
 # Port Range
-set ftp:port-range *-*
+#set ftp:port-range *-*
 
 # Custom command prompt line
 set cmd:prompt "\[\033[0;31m\]lftp \[\e[0;37m\][\[\e[0;96m\]\u\[\033[0;31m\]@\[\e[0;96m\]\h \[\e[0;37m\]- \[\e[0;92m\]\W\[\e[0;37m\]] \n \[\e[0;37m\]--\[\033[0;31m\]> \[\e[0;37m\]:\[\e[0;96m\]$\[\033[0;37m\] "
-#set cmd:prompt "\[\e[0;37m\](\[\e[0;96m\]lftp\[\e[0;37m\])\] \[\e[0;96m\]\]\u\[\033[0;31m\]@\]\[\e[0;37m\]\]\h\] \[\e[0;37m\]-\[\033[0;31m\]+ \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;96m\]\]\W\] \[\e[0;37m\]-\[\033[0;31m\]+\] \n \[\033[0;31m\]+\[\e[0;37m\]-\] \[\e[0;37m\]:\[\033[0;31m\](\] \[\e[00m\]\]"
-
-
+#set prompt "\[\e[0;32m\]┌┼───┤\[\e[1;33m\] [lftp] \[\e[0;36m\]\u\[\e[0;33m\]\@\[\e[0;36m\]\h \[\e[0;32m\]├───┤\[\e[0;33m\]\w\[\e[0;32m\]├───\n└┼─\[\e[1;33m\]$\[\e[0;32m\]─┤► :\[\e[0m\] "
