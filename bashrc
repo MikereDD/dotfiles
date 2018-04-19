@@ -89,14 +89,14 @@ if [ "$TERM" = "linux" ]; then
 fi
 
 # Bash shell driver for go (http://code.google.com/p/go-tool/).
-function gcd {
-    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
-    python2 -m go $*
-    if [ -f $GO_SHELL_SCRIPT ] ; then
-        source $GO_SHELL_SCRIPT
-    fi
-    unset GO_SHELL_SCRIPT
-}
+#function gcd {
+#$    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
+#    python2 -m go $*
+#    if [ -f $GO_SHELL_SCRIPT ] ; then
+#        source $GO_SHELL_SCRIPT
+#    fi
+#    unset GO_SHELL_SCRIPT
+#}
 
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
