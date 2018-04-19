@@ -16,7 +16,7 @@
 #        AUTHOR: Mike Redd (MikereDD), mredd@0tue0.com
 #  ORGANIZATION: Dumb Terminal Team
 #       CREATED: 06/03/2012 05:27:57 PM PDT
-#      REVISION: 06/02/2015 13:43:12 PM PDT
+#      REVISION: 07/02/2016 10:35:20 PM PDT
 #===============================================================================
 #
 # Volume
@@ -59,6 +59,7 @@ NPPB=`cat $HOME/.config/pianobarfly/nowplaying`
 #    sleep 10
 #    wmiir remove /rbar/anowplaying
 else
+# Variables Spotify - radio
 IFONSPOTIFY=`sh $HOME/scripts/system/check_spotify_running-PID.sh`
 if [ "$IFONSPOTIFY" = "On" ]; then
     echo -e ":♪: np: $(sh ~/bin/spotify-nowplaying)"
