@@ -18,7 +18,7 @@
 #alias buildinstall="chmod a+x *.SlackBuild ;sudo ./*.SlackBuild;installpkg /tmp/*.tgz;sudo rm /tmp/*.tgz"
 
 # Backup and use reflector to create a new mirror list
-alias newmirrorlist='CNTY="United States" && sudo mv /etc/pacman.d/mirrorlist.$(date +'%d-%m-%Y').bak && sudo reflector -l 5 -c "$CNTY" --sort rate --save /etc/pacman.d/mirrorlist'
+alias newmirrorlist='CNTY="United States" && sudo mv /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.$(date +'%d-%m-%Y').bak && sudo reflector -l 12 -c "$CNTY" --protocol https --sort rate --save /etc/pacman.d/mirrorlist'
 
 # backup installed pkglist
 alias bkuppkglst="comm -23 <(pacman -Qeq|sort) <(pacman -Qmq|sort) > ~/documents/_backups/list/pkglist-$(date +%Y%d%m).txt"
@@ -153,7 +153,7 @@ alias gclo="git clone "
 alias gp="git pull "
 alias gm="git merge"
 alias gcb="git-create-branch"
-alias grv="git remote -v"
+alias gr-v="git remote -v"
 alias gaups="git remote add upstream"
 alias gfups="git fetch upstream"
 alias gbva="git branch -va"
@@ -185,8 +185,5 @@ ghclone ()
         git clone "${gh_url}" "${co_dir}" && cd "${co_dir}";
     fi
 }
-
-# Repo
-alias repo="~/bin/repo"
 
 # vim: set filetype=bash:
