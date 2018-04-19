@@ -39,21 +39,21 @@ Xft.lcdfilter:                    lcddefault
 urxvt*termName:                   rxvt-256color
 
 ! *Fonts*
-URxvt*font:                       xft:PragmataPro for Powerline:pixelsize=11:antialias=true:hinting=true
+!URxvt*font:                       xft:PragmataPro for Powerline:pixelsize=11:antialias=true:hinting=true
 !URxvt*font:                       xft:Envy Code R:pixelsize=11:antialias=true:hinting=true
-!URxvt*font:                       xft:Inconsolata-g Medium:size=8:antialias=true:hinting=true
+URxvt*font:                       xft:Inconsolata-g Medium:size=8:antialias=true:hinting=true
 !URxvt*font:                       xft:Menlo:size=8:antialias=true:hinting=true
-URxvt*boldFont:                   xft:PragmataPro for Powerline Bold:bold:pixelsize=13:antialias=true:hinting=true
+!URxvt*boldFont:                   xft:PragmataPro for Powerline Bold:bold:pixelsize=13:antialias=true:hinting=true
 !URxvt*boldFont:                   xft:Envy Code R Bold:pixelsize=12:antialias=true:hinting=true
-!URxvt*boldFont:                   xft:Inconsolata-g Medium:bold:size=10:antialias=true:hinting=true
+URxvt*boldFont:                   xft:Inconsolata-g Medium:bold:size=10:antialias=true:hinting=true
 !URxvt*boldFont:                   xft:Menlo:bold:size=10:antialias=true:hinting=true
-URxvt*italicFont:                 xft:PragmataPro for Powerline Italic:italic:pixelsize=11:antialias=true:hinting=true
+!URxvt*italicFont:                 xft:PragmataPro for Powerline Italic:italic:pixelsize=11:antialias=true:hinting=true
 !URxvt*italicFont:                 xft:Envy Code R Italic:pixelsize=11:antialias=true:hinting=true
-!URxvt*italicFont:                 xft:Inconsolata-g Medium:italic:size=8:antialias=true:hinting=true
+URxvt*italicFont:                 xft:Inconsolata-g Medium:italic:size=8:antialias=true:hinting=true
 !URxvt*italicFont:                 xft:Menlo:italic:size=8:antialias=true:hinting=true
-URxvt*bolditalicFont:             xft:PragmataPro:bold for Powerline Bold Italic:italic:pixelsize=13:antialias=true:hinting=true
+!URxvt*bolditalicFont:             xft:PragmataPro:bold for Powerline Bold Italic:italic:pixelsize=13:antialias=true:hinting=true
 !URxvt*bolditalicFont:             xft:Envy Code R Italic:bold:pixelsize=12:antialias=true:hinting=true
-!URxvt*bolditalicFont:             xft:Inconsolata-g Medium:bold:italic:size=10:antialias=true:hinting=true
+URxvt*bolditalicFont:             xft:Inconsolata-g Medium:bold:italic:size=10:antialias=true:hinting=true
 !URxvt*bolditalicFont:             xft:Menlo:bold:italic:size=10:antialias=true:hinting=true
 
 ! *Background*
@@ -67,7 +67,7 @@ URxvt.geometry:                    80x40
 URxvt.borderless:                  true
 URxvt.internalBorder:              0
 URxvt.depth:                       32
-URxvt.saveLines:                   1500
+URxvt.saveLines:                   1000000
 URxvt.visualBell:                  true
 URxvt.scrollWithBuffer:            false
 URxvt.scrollTtyOutput:             false
