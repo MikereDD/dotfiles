@@ -69,7 +69,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
-bindsym $mod+p exec dmenu_run -fn "Antipasto-10" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
+bindsym $mod+p exec dmenu_run -fn "Comfortaa-10" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -324,4 +324,8 @@ colors {
     }
 
 }
+# }}}
+
+# i3lock {{{
+exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy'
 # }}}
