@@ -23,7 +23,6 @@ font pango: Comfortaa, FontAwesome 9
 set $resize_step 100
 set $screenL DVI-I-1
 set $screenR HDMI-0
-#set $screenL HDMI-0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -211,13 +210,13 @@ bindsym $mod+Shift+0 move container to workspace $WS0
 
 workspace  "$WS1" output  $screenL
 workspace  "$WS2" output  $screenL
-workspace  "$WS3" output  $screenL
-workspace  "$WS4" output  $screenL
 workspace  "$WS5" output  $screenL
+workspace  "$WS6" output  $screenL
+workspace  "$WS8" output  $screenL
 
-workspace  "$WS6" output  $screenR
-workspace  "$WS7" output  $screenL
-workspace  "$WS8" output  $screenR
+workspace  "$WS3" output  $screenR
+workspace  "$WS4" output  $screenR
+workspace  "$WS7" output  $screenR
 workspace  "$WS9" output  $screenR
 workspace  "$WS0" output  $screenR
 # }}}
@@ -239,8 +238,7 @@ assign [class="(?i)gedit"] → $WS7
 assign [class="(?i)Gimp"] → $WS8
 assign [class="(?i)inkscape"] → $WS8
 assign [class="(?i)darktable"] → $WS8
-assign [class="(?i)XMBC Media Center"] → $WS6
-assign [class="(?i)plexhometheater"] → $WS6
+assign [class="(?i)kodi"] → $WS6
 #assign [class="(?i)MPlayer"] → $WS6
 
 # floating
@@ -279,11 +277,9 @@ for_window [class="(?i)dwb"] layout tabbed border none
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-#        output HDMI-0
+        #output HDMI-0
         output DVI-I-1
         status_command i3blocks -c ~/.i3/i3blocks.conf
-#        status_command i3status --config ~/.i3/i3status.conf
-#        status_command ~/.i3/scripts/my_i3status.sh | i3status
         position top
 #        mode hide
         modifier mod1
