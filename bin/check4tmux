@@ -1,0 +1,33 @@
+#!/bin/env bash -
+
+#===============================================================================
+#
+#          FILE: check4tmux
+#
+#         USAGE: ./check4tmux
+#
+#   DESCRIPTION: Simple script to check if tmux is running.
+#                If running then attach to session.
+#                If not running then start a tmux session.
+#
+#       OPTIONS: ---
+#  REQUIREMENTS: tmux https://github.com/tmux/tmux
+#          BUGS: ---
+#         NOTES: ---
+#        AUTHOR: Mike Redd (MR), mikeredd@mobileinfern.us
+#  ORGANIZATION: Dumb Terminal Team
+#       CREATED: 2018-06-30 18:14:15 PST -08:00
+#      REVISION: ---
+#       VERSION: 0.1a
+#===============================================================================
+
+APPNAME=tmux
+
+if [ "$(pidof $APPNAME)" ]
+then
+    echo $APPNAME is running.
+    tmux a
+else
+    echo $APPNAME is not running.
+    tmux
+fi
