@@ -31,7 +31,7 @@ if [ "$gtkfont" == "" ]; then
 fi
 
 # Wallpaper set by feh
-wallpaper=$(cat /home/$USER/.fehbg | cut -c 69-105 | tr -d "'")
+wallpaper=$(cat /home/$USER/.fehbg | cut -c 69-133 | tr -d "'" | tail -1)
 
 # Settings from ~/.Xresources
 xdef="/home/$USER/.Xresources"
@@ -48,18 +48,15 @@ kernel=$(uname -r)
 # WM version
 WinMan=$(i3 -v | awk '{ print $1,$2,$3 }')
 
-# Other
-#UPT=`uptime | awk -F'( |,)' '{print $2}' | awk -F ":" '{print $1}'`
-#uptime=$(uptime | sed 's/.*up \([^,]*\), .*/\1/')
-#uptime2=$(uptime | sed -nr 's/.*\s+([[:digit:]]{1,2}):[[:digit:]]{2},.*/\1/p')
+#
 uptime=$(uptime | cut -f2 -d "p" | cut -f1 -d "," | tr -d " ")
 load=$(cut -d " " -f1-3 /proc/loadavg)
 size=$(df | grep '^/dev/[hs]d' | awk '{s+=$2} END {printf("%.0f\n", s/1048576)}')
 use=$(df | grep '^/dev/[hs]d' | awk -M '{s+=$3} END {printf("%.0f\n", s/1048576)}')
 gb=$(echo "G")
-pac=$(pacman -Qe | wc -l)
+#pac=$(pacman -Qe | wc -l)
 pacman=$(pacman -Q | wc -l)
-dist=$(cat /etc/issue | sed 's/ /n/')
+#dist=$(cat /etc/issue | sed 's/ /n/')
 COUNT=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //' | wc -l)
 cpu1=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $4 }' | sed 's|(R)||')
 cpu2=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $6,$8,$9,$10 }')
@@ -69,6 +66,9 @@ audio1=$(lspci | grep -E 'Bridge' | tail -1 | awk '{ print $4 }')
 audio2=$(lspci | grep -E 'Bridge' | tail -1 | awk '{ print $7,$8,$9 }' | tr -d ']')
 rigmanu=$(sudo dmidecode -s system-manufacturer | sed 's| Inc.||g')
 rigprocname=$(sudo dmidecode -s system-product-name)
+#memory=$(free -m|awk '/^Mem:/{print $3}')
+memoryuse=$(free -m | awk '/^Mem:/{print $3}')
+memorytotal=$(free -m | awk '/^Mem:/{print $2}')
 
 cat << EOF
 $bld
@@ -84,19 +84,19 @@ $f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font  $f1»$f4 $gtkfon
 $f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font $f1»$f4 $termfont$NC
 $f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime    $f1»$f4 $uptime
 $f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load      $f1»$f4 $load
-$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use$gb$f2/$f4$size$gb
+$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use $f2/ $f4$size
 $f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages  $f1»$f4 $pacman
-$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaper$NC
-$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro $NC   $f1»$f4 $distro
+$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaper
+$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro    $f1»$f4 $distro
 $f8                   .:cc:;;.$NC                       $f7 WM   $NC     $f1»$f4 $WinMan
 $f8                   .o0MMMK'$NC                       $f7 Kernel $NC   $f1»$f4 $kernel
 $f1                     xMMM: $NC                       $f7 Rig       $f1»$f4 $rigmanu $rigprocname
 $f1                     KMMMl$NC                        $f7 CPU       $f1»$f4 $cpu1 $cpu2
 $f1                    .MMMMo$NC                        $f7 GPU       $f1»$f4 $gpu1 $gpu2
 $f1                    ,MMMMx$NC                        $f7 Audio     $f1»$f4 $audio1 $audio2
-$f1                    oMMMMx$NC
-$f1                    OMMMMO                        $f7"And you can go fuck yourself, bitch"
-$f1                    .OMMMd                                                     $f7 the$f1 cat
-$f1                      :Nl
+$f1                    oMMMMx$NC                        $f7 Memory    $f1»$f4 ${memoryuse} $f2/ $f4${memorytotal}
+$f1                    OMMMMO
+$f1                    .OMMMd                        $f7"And you can go fuck yourself, bitch"
+$f1                      :Nl                                                      $f7 the$f1 cat
 
 EOF
