@@ -17,7 +17,7 @@ set $alt Mod1
 # environment {{{
 # font
 # font xft:
-font pango: Comfortaa, FontAwesome 9
+font pango: Google Sans, FontAwesome 9
 
 # monitors
 set $resize_step 100
@@ -238,7 +238,7 @@ assign [class="(?i)gedit"] → $WS7
 assign [class="(?i)Gimp"] → $WS8
 assign [class="(?i)inkscape"] → $WS8
 assign [class="(?i)darktable"] → $WS8
-assign [class="(?i)kodi"] → $WS6
+#assign [class="(?i)kodi"] → $WS6
 #assign [class="(?i)MPlayer"] → $WS6
 
 # floating
@@ -320,6 +320,9 @@ colors {
     }
 
 }
+#bar {
+#    i3bar_command ~/.i3/lemonbar/i3_lemonbar.sh
+#}
 # }}}
 
 # i3lock {{{
