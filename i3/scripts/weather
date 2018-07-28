@@ -8,6 +8,6 @@ CITY_ID='Houston, US'
 
 TEMP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq .main.temp|cut -f1 -d".")
 
-DESCRIP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq '.weather'|head -4|tail -1|cut -f2 -d":"|tr -d '",')
+DESCRIP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq '.weather'|grep description|cut -f2 -d":"|tr -d '",')
 
 echo -e Weather: ${TEMP}°F ${DESCRIP}
