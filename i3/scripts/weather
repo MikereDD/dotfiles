@@ -2,13 +2,12 @@
 # A dirty simple weather script.
 # For use with http://openweathermap.org
 
-# Add your API key
 API_KEY=""
 
-# Add your City ID
-# Check on http://openweathermap.org/find
-CITY_ID=""
+CITY_ID='Houston, US'
 
-WEATHER_URL="http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"
+TEMP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq .main.temp|cut -f1 -d".")
 
-echo -e $(curl -s $WEATHER_URL | jq '.main.temp' | cut -f1 -d".")°F
+DESCRIP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq '.weather'|head -4|tail -1|cut -f2 -d":"|tr -d '",')
+
+echo -e Weather: ${TEMP}°F ${DESCRIP}
