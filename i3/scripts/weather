@@ -10,4 +10,4 @@ TEMP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPI
 
 DESCRIP=$(curl -s "http://api.openweathermap.org/data/2.5/weather?q=${CITY_ID}&APPID=${API_KEY}&units=imperial"|jq '.weather'|grep description|cut -f2 -d":"|tr -d '",')
 
-echo -e Weather: ${TEMP}°F ${DESCRIP}
+echo -e ${TEMP}°F ${DESCRIP}
