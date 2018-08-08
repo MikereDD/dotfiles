@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Simple Dark Sky Weather Script
+# Powered by Dark Sky - https://darksky.net/poweredby/
+#
+
+# add apikey
+APIKEY=""
+# add latitude
+LATITUDE=""
+# add longitude
+LONGITUDE=""
+
+# get the temp
+TEMP=$(GET https://api.darksky.net/forecast/${APIKEY}/${LATITUDE},-${LONGITUDE}?exclude=minutely,hourly,daily,flags|json_reformat|grep 'temperature'|sed 's/"temperature": //g'|cut -f1 -d '.')
+# get the condition
+CONDITION=$(GET https://api.darksky.net/forecast/${APIKEY}/${LATITUDE},-${LONGITUDE}?exclude=minutely,hourly,daily,flags|json_reformat|grep 'summary'|sed 's/"summary": "//g'|tr -d '",')
+
+# dump it
+echo -e ${TEMP}°F ${CONDITION}
