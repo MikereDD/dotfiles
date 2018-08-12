@@ -327,4 +327,5 @@ colors {
 
 # i3lock {{{
 exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy'
+bindsym $mod+Shift+s exec /usr/share/i3lock-fancy-multimonitor/lock
 # }}}
