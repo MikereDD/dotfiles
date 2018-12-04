@@ -283,7 +283,7 @@ for_window [class="(?i)dwb"] layout tabbed border none
 # finds out, if available)
 bar {
         #output HDMI-0
-        #output DVI-D-0
+        output DVI-D-0
         status_command i3blocks -c ~/.i3/i3blocks.conf
         position top
 #        mode hide
