@@ -55,7 +55,8 @@ numlockx &
 
 # wallpaper
 #sh ~/.i3/scripts/wallpapers.sh &
-sh ~/.i3/scripts/wallpapersdualmonitorh+v.sh &
+#sh ~/.i3/scripts/wallpapersdualmonitorh+v.sh &
+sh ~/.i3/scripts/wallpaperstrimonitorh+h+v.sh &
 
 # wicd
 #wicd-client --tray &
@@ -64,3 +65,4 @@ sh ~/.i3/scripts/wallpapersdualmonitorh+v.sh &
 # launch i3
 #systemd --user &
 exec i3
+#exec fluxbox
