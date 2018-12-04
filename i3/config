@@ -21,8 +21,9 @@ font pango: Google Sans, FontAwesome 9
 
 # monitors
 set $resize_step 100
-set $screenL DVI-I-1
-set $screenR HDMI-0
+set $screenR DVI-D-0
+set $screenM HDMI-2
+set $screenL HDMI-0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -173,13 +174,13 @@ bindsym $mod+r mode "resize"
 #only icons
 set $WS1 1 
 set $WS2 2 
-set $WS3 3 
-set $WS4 4 
+set $WS3 3 
+set $WS4 4 
 set $WS5 5 
-set $WS6 6 
-set $WS7 7 
+set $WS6 6 
+set $WS7 7 
 set $WS8 8 
-set $WS9 9 
+set $WS9 9 
 set $WS0 10 
 
 # switch to workspace
@@ -188,7 +189,6 @@ bindsym $mod+2 workspace $WS2
 bindsym $mod+3 workspace $WS3
 bindsym $mod+4 workspace $WS4
 bindsym $mod+5 workspace $WS5
-
 bindsym $mod+6 workspace $WS6
 bindsym $mod+7 workspace $WS7
 bindsym $mod+8 workspace $WS8
@@ -208,17 +208,21 @@ bindsym $mod+Shift+8 move container to workspace $WS8
 bindsym $mod+Shift+9 move container to workspace $WS9
 bindsym $mod+Shift+0 move container to workspace $WS0
 
-workspace  "$WS1" output  $screenL
-workspace  "$WS2" output  $screenL
-workspace  "$WS5" output  $screenL
-workspace  "$WS6" output  $screenL
-workspace  "$WS8" output  $screenL
-
+#Left Monitor
+workspace  "$WS1" output  $screenR
+workspace  "$WS2" output  $screenR
 workspace  "$WS3" output  $screenR
-workspace  "$WS4" output  $screenR
-workspace  "$WS7" output  $screenR
-workspace  "$WS9" output  $screenR
-workspace  "$WS0" output  $screenR
+
+# Middle Monitor
+workspace  "$WS4" output  $screenM
+workspace  "$WS5" output  $screenM
+workspace  "$WS6" output  $screenM
+workspace  "$WS7" output  $screenM
+
+# Right Monitor
+workspace  "$WS8" output  $screenL
+workspace  "$WS9" output  $screenL
+workspace  "$WS0" output  $screenL
 # }}}
 
 # app control {{{
@@ -227,19 +231,20 @@ assign [class="(?i)firefox"] → $WS2
 assign [class="(?i)chromium"] → $WS2
 assign [class="(?i)dwb"] → $WS2
 assign [class="(?i)thunderbird"] → $WS2
-assign [class="(?i)build"] → $WS3
+
+# Middle Monitor
 assign [class="(?i)libreoffice"] → $WS4
-assign [class="(?i)virtualbox"] → $WS9
+assign [class="(?i)virtualbox"] → $WS6
+assign [class="(?i)irssi"] → $WS5
+assign [class="(?i)Telegram"] → $WS5
+assign [class="(?i)MPlayer"] → $WS7
 
 # Right Monitor
-assign [class="(?i)zeohn"] → $WS5
-assign [class="(?i)code"] → $WS7
-assign [class="(?i)gedit"] → $WS7
 assign [class="(?i)Gimp"] → $WS8
 assign [class="(?i)inkscape"] → $WS8
 assign [class="(?i)darktable"] → $WS8
-#assign [class="(?i)kodi"] → $WS6
-#assign [class="(?i)MPlayer"] → $WS6
+assign [class="(?i)build"] → $WS9
+
 
 # floating
 for_window [class="(?i)nvidia-settings"] floating enable
@@ -278,23 +283,23 @@ for_window [class="(?i)dwb"] layout tabbed border none
 # finds out, if available)
 bar {
         #output HDMI-0
-        output DVI-I-1
+        #output DVI-D-0
         status_command i3blocks -c ~/.i3/i3blocks.conf
         position top
 #        mode hide
         modifier mod1
         workspace_buttons yes
-        tray_output DVI-I-1
+        tray_output DVI-D-0
 #        height 18
-        font pango: Comfortaa, FontAwesome 11
+        font pango: Comfortaa, Icons 11
 
 colors {
         #background         #191f2d
         #background         #060606
         #background         #161616
         #background         #1c1c1c
-        background          #101010
-        #background          #000000
+        #background          #101010
+        background          #000000
 
         #statusline         #999999
         statusline         #b2b2b2
@@ -303,20 +308,20 @@ colors {
         #focused_workspace  #090909 #060606 #d2d2d2 #969696
         #focused_workspace  #262626 #121212 #d0d0d0 #969696
         #focused_workspace  #262626 #1c1c1c #d2d2d2 #969696
-        focused_workspace  #1c1c1c #101010 #f7f7f7
+        focused_workspace  #1c1c1c #010101 #f7f7f7
         #active_workspace   #181e31 #101116 #999999
         #active_workspace   #1e1e1e #060606 #999999 #444444
         #active_workspace   #080808 #161616 #303030 #444444
         #active_workspace   #080808 #1c1c1c #303030 #444444
-        active_workspace   #1c1c1c  #121212 #f7f7f7 #444444
+        active_workspace   #000000  #010101 #f7f7f7 #444444
         #inactive_workspace #181e31 #101116 #515152
         #inactive_workspace #0e0e0e #090909 #666666 #222222
         #inactive_workspace #161616 #1c1c1c #262626 #222222
-        inactive_workspace #080808 #101010 #565656 #222222
+        inactive_workspace #080808 #000000 #565656 #222222
         #urgent_workspace   #900000 #757a83 #ffffff
         #urgent_workspace   #330909 #000000 #ffffff #330909
         #urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
-        urgent_workspace   ##e4e4e4 #121212 #e4e4e4
+        urgent_workspace   #e4e4e4 #121212 #e4e4e4
     }
 
 }
@@ -328,4 +333,8 @@ colors {
 # i3lock {{{
 exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy'
 bindsym $mod+Shift+s exec /usr/share/i3lock-fancy-multimonitor/lock
+# }}}
+
+# nm-applet {{{
+exec 'nm-applet'
 # }}}
