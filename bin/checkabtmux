@@ -1,0 +1,58 @@
+#!/bin/env bash
+
+# script to check for running tmux
+# connect to specific session if running
+# or connect to the running session
+# if not running start a specific session
+
+# tmux app
+APPNAME=tmux
+
+# specific session
+TSESSION=AndroidBuild
+
+# list tmux sessions
+LSS=$($APPNAME ls | awk '{ print $1 }' | sed 's/://g')
+
+# check if tmux is running
+if [ "$(pidof $APPNAME)" ]
+
+then
+
+echo $APPNAME is running.
+
+if [ $LSS == $TSESSION ]
+
+then
+
+# if running specific session attach
+echo build session running
+echo attaching to build session
+sleep 3
+$APPNAME a -t $TSESSION
+
+else
+
+# attach to session running if not specified session
+echo build session not running
+echo
+echo $LSS session running
+echo
+echo attaching to $LSS session
+echo
+sleep 3
+$APPNAME a -t $LSS
+
+fi
+
+else
+
+# if tmux is not running start it with specified session
+echo $APPNAME is not running
+echo
+echo starting $APPNAME $TSESSION session
+echo
+sleep 3
+$APPNAME new -s $TSESSION
+
+fi
