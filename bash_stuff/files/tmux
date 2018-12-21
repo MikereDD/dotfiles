@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+#--------------------------------------------
+# file:     ~/.bash_stuff/files/tmux
+# author:   Mike Redd - http://m-redd.com/
+# vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
+#--------------------------------------------
+
+## list sessions
+alias tmuxls="tmux ls"
+
+## attach
+alias tmuxa="tmux a"
+
+## attach and detach all users
+alias tmuxad="tmux a -d"
+
+## start and name session
+alias tmuxns="tmux new -s "
+
+## attach to a session
+alias tmuxat="tmux a -t "
+
+## attach to a session and detach all users
+alias tmuxadt="tmux a -dt "
+
+## kill session
+alias tmuxkill="tmux kill-session -t "
+
+## kill all sessions
+alias tmuxkillall="tmux ls | grep : | cut -d. -f1 | awk '{print substr($1, 0, length($1)-1)}' | xargs kill"
+
+## android build sessions
+# create build session
+alias tmuxnsbuild="tmux new -s AndroidBuild"
+# attach to build session
+alias tmuxatbuild="tmux a -t AndroidBuild"
+# attach to build session detach all users
+alias tmuxadtbuild="tmux a -dt AndroidBuild"
+# kill build session
+alias tmuxkillbuild="tmux kill-session -t AndroidBuild"
+
+# vim: set filetype=bash:
