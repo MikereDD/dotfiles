@@ -1,0 +1,111 @@
+! ***** URxvt Preferences ***** ! {{{
+! *Default Terminal Name* !
+urxvt*termName:                   rxvt-256color
+
+! *Fonts*
+!URxvt*font:                       xft:PragmataPro for Powerline:pixelsize=11:antialias=true:hinting=true
+!URxvt*font:                       xft:Envy Code R:pixelsize=11:antialias=true:hinting=true
+URxvt*font:                       xft:Inconsolata-g Medium:size=8:antialias=true:hinting=true
+!URxvt*font:                       xft:Menlo:size=8:antialias=true:hinting=true
+!URxvt*boldFont:                   xft:PragmataPro for Powerline Bold:bold:pixelsize=13:antialias=true:hinting=true
+!URxvt*boldFont:                   xft:Envy Code R Bold:pixelsize=12:antialias=true:hinting=true
+URxvt*boldFont:                   xft:Inconsolata-g Medium:bold:size=10:antialias=true:hinting=true
+!URxvt*boldFont:                   xft:Menlo:bold:size=10:antialias=true:hinting=true
+!URxvt*italicFont:                 xft:PragmataPro for Powerline Italic:italic:pixelsize=11:antialias=true:hinting=true
+!URxvt*italicFont:                 xft:Envy Code R Italic:pixelsize=11:antialias=true:hinting=true
+URxvt*italicFont:                 xft:Inconsolata-g Medium:italic:size=8:antialias=true:hinting=true
+!URxvt*italicFont:                 xft:Menlo:italic:size=8:antialias=true:hinting=true
+!URxvt*bolditalicFont:             xft:PragmataPro:bold for Powerline Bold Italic:italic:pixelsize=13:antialias=true:hinting=true
+!URxvt*bolditalicFont:             xft:Envy Code R Italic:bold:pixelsize=12:antialias=true:hinting=true
+URxvt*bolditalicFont:             xft:Inconsolata-g Medium:bold:italic:size=10:antialias=true:hinting=true
+!URxvt*bolditalicFont:             xft:Menlo:bold:italic:size=10:antialias=true:hinting=true
+
+! *Background*
+!URxvt.background:                 rgba:0000/002b/0036/dddd
+!URxvt*inheritPixmap:              true
+!URxvt*tintColor:                  #00050a
+!URxvt*shading:                    10
+
+! *Settings*
+URxvt.geometry:                    80x40
+URxvt.borderless:                  true
+URxvt.internalBorder:              0
+URxvt.depth:                       32
+URxvt.saveLines:                   1000000
+URxvt.visualBell:                  true
+URxvt.scrollWithBuffer:            false
+URxvt.scrollTtyOutput:             false
+URxvt.jumpScroll:                  true
+URxvt.scrollBar:                   false
+URxvt.scrollstyle:                 rxvt
+URxvt.loginShell:                  no
+URxvt.cutchars:                    BACKSLASH '"'&()*,;<=>?@[]{|}
+URxvt.print-pipe:                  cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt.perl-ext-common:             default,clipboard,url-select,keyboard-select
+urxvt*keysym.F11:                  perl:fullscreen:switch
+!URxvt.keysym.M-u:                  perl:mark-yank-urls:activate_mark_mode
+URxvt.keysym.M-u:                  perl:url-select:select_next
+URxvt.keysym.M-Escape:             perl:keyboard-select:activate
+URxvt.keysym:M-s:                  perl:keyboard-select:search
+URxvt.keysym.M-c:                  perl:clipboard:copy
+URxvt.keysym.M-v:                  perl:clipboard:paste
+URxvt.keysym.M-C-v:                perl:clipboard:paste_escaped
+URxvt.clipboard.copycmd:           xsel -ib
+URxvt.clipboard.pastecmd:          xsel -ob
+!URxvt.clipboard.copycmd:           xclip -i -selection clipboard
+!URxvt.clipboard.pastecmd:          xclip -o -selection clipboard
+URxvt.url-select.autocopy:         true
+URxvt.url-select.underline:        true
+URxvt.url-select.button:           2
+URxvt.url-select.launcher:         chromium
+URxvt.perl-lib:                    ${HOME}/.urxvt/perl/
+URxvt.perl-ext:                    selection,mark-yank-urls
+URxvt.keysym.C-Delete:             perl:matcher:last
+URxvt.keysym.M-Delete:             perl:matcher:list
+URxvt.matcher.button:              1
+!URxvt.matcher.pattern.1:           \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
+!URxvt.matcher.pattern.2:           \\B(/\\S+?):(\\d+)(?=:|$)
+URxvt.matcher.pattern.1:           \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.pattern.2:           \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.matcher.launcher.2:          vim +$2 $1
+
+! *Tabbed*
+URxvt.tabbed.autohide:             yes
+!URxvt.tabbar-fg:                   124
+!URxvt.tabbar-bg:                   232
+URxvt.tabbar-fg:                   #999999
+URxvt.tabbar-bg:                   #060606
+!URxvt.tab-fg:                      51
+!URxvt.tab-bg:                      233
+URxvt.tab-fg:                      #999999
+URxvt.tab-bg:                      #060606
+!URxvt.title-fg:                    124
+!URxvt.title-bg:                    232
+URxvt.title-fg:                    #999999
+URxvt.title-bg:                    #060606
+URxvt.tabbed.secondaryScroll:      true
+URxvt.tabbed.matcher.button:       2
+URxvt.tabbed.perl-ext-common:      default,matcher,clipboard,keyboard-select,tabbedex
+URxvt.tabbed.keysym.M-u:           perl:url-select:select_next
+URxvt.tabbed.keysym.M-Escape:      perl:keyboard-select:activate
+URxvt.tabbed.keysym:M-s:           perl:keyboard-select:search
+URxvt.tabbed.keysym.M-c:           perl:clipboard:copy
+URxvt.tabbed.keysym.M-v:           perl:clipboard:paste
+URxvt.tabbed.keysym.M-C-v:         perl:clipboard:paste_escaped
+URxvt.tabbed.clipboard.copycmd:    xsel -ib
+URxvt.tabbed.clipboard.pastecmd:   xsel -ob
+!URxvt.clipboard.copycmd:           xclip -i -selection clipboard
+!URxvt.clipboard.pastecmd:          xclip -o -selection clipboard
+URxvt.tabbed.url-select.autocopy:  true
+URxvt.tabbed.url-select.underline: true
+URxvt.tabbed.url-select.button:    2
+URxvt.tabbed.url-select.launcher:  chrmoium
+URxvt.tabbed.perl-lib:             ${HOME}/.urxvt/perl/
+URxvt.tabbed.perl-ext:             selection,mark-yank-urls
+URxvt.cursorColor:                 #485e6c
+URxvt.cursorColor2:                #c0672d
+URxvt.colorBD:                     #ffffff
+URxvt.colorIT:                     #bbbbbb
+URxvt.colorUL:                     #d2d2d2
+URxvt.underlineColor:              #006e85
+! }}}

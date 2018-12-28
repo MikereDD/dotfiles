@@ -11,12 +11,12 @@
 #define base07 #b5d8f6
 #define base08 #2a5491
 #define base09 #43820d
-#define base0A #a03b1e
+#define base0A #ff7878
 #define base0B #237986
-#define base0C #b02f30
+#define base0C #ff6961
 #define base0D #484d79
-#define base0E #c59820
-#define base0F #c98344
+#define base0E #afaf54
+#define base0F #afffaf
 
 *.foreground:   base05
 *.background:   base00

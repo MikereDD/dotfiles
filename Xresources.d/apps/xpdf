@@ -1,0 +1,7 @@
+! ***** Xpdf Preferences ***** ! {{{
+xpdf*enableFreetype:          yes
+xpdf*antialias:               yes
+xpdf*foreground:            white
+xpdf*background:            black
+xpdf*urlCommand:           dwb %s
+! }}}

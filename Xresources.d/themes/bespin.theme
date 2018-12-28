@@ -1,7 +1,7 @@
 ! Base16 Bespin
 ! Scheme: Jan T. Sott
 
-#define base00 #101010
+#define base00 #010101
 #define base01 #36312e
 #define base02 #5e5d5c
 #define base03 #666666

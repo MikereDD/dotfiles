@@ -1,22 +1,22 @@
-! Base16 Apathy
-! Scheme: Jannik Siebert (https://github.com/janniks)
+! Base16 Chalk
+! Scheme: Chris Kempson (http://chriskempson.com)
 
-#define base00 #101010
-#define base01 #0B342D
-#define base02 #184E45
-#define base03 #2B685E
-#define base04 #5F9C92
-#define base05 #81B5AC
-#define base06 #A7CEC8
-#define base07 #D2E7E4
-#define base08 #3E9688
-#define base09 #3E7996
-#define base0A #3E4C96
-#define base0B #883E96
-#define base0C #963E4C
-#define base0D #96883E
-#define base0E #4C963E
-#define base0F #3E965B
+#define base00 #010101
+#define base01 #202020
+#define base02 #303030
+#define base03 #505050
+#define base04 #b0b0b0
+#define base05 #d0d0d0
+#define base06 #e0e0e0
+#define base07 #f5f5f5
+#define base08 #fb9fb1
+#define base09 #eda987
+#define base0A #ddb26f
+#define base0B #acc267
+#define base0C #12cfc0
+#define base0D #6fc2ef
+#define base0E #e1a3ee
+#define base0F #deaf8f
 
 *.foreground:   base05
 *.background:   base00

@@ -1,22 +1,22 @@
-! Base16 Chalk
-! Scheme: Chris Kempson (http://chriskempson.com)
+! Base16 3024
+! Scheme: Jan T. Sott (http://github.com/idleberg)
 
-#define base00 #101010
-#define base01 #202020
-#define base02 #303030
-#define base03 #505050
-#define base04 #b0b0b0
-#define base05 #d0d0d0
-#define base06 #e0e0e0
-#define base07 #f5f5f5
-#define base08 #fb9fb1
-#define base09 #eda987
-#define base0A #ddb26f
-#define base0B #acc267
-#define base0C #12cfc0
-#define base0D #6fc2ef
-#define base0E #e1a3ee
-#define base0F #deaf8f
+#define base00 #010101
+#define base01 #3a3432
+#define base02 #4a4543
+#define base03 #5c5855
+#define base04 #807d7c
+#define base05 #a5a2a2
+#define base06 #d6d5d4
+#define base07 #f7f7f7
+#define base08 #db2d20
+#define base09 #e8bbd0
+#define base0A #fded02
+#define base0B #01a252
+#define base0C #b5e4f4
+#define base0D #01a0e4
+#define base0E #a16a94
+#define base0F #cdab53
 
 *.foreground:   base05
 *.background:   base00

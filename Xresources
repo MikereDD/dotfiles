@@ -1,8 +1,8 @@
 ! Basic Info --------------------------------------------! {{{
 ! Author:     Mike reDD | http://m-redd.com              !
-! Email:      mredd@0tue0.com                            !
+! Email:      mikeredd@mobileinfern.us                   !
 ! Filename:   $HOME/.Xresources                          !
-! Modified:   Sat Mar 31 15:49:56 PDT 2012               !
+! Modified:   Fri Dec 28 16:36:06 CST 2018               !
 ! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:      !
 !--------------------------------------------------------! }}}
 
@@ -17,251 +17,30 @@ Xft.hintstyle:                    hintslight
 Xft.lcdfilter:                    lcddefault
 ! }}}
 
-! ***** Colors Themes ***** ! {{{
+! ***** Themes Settings ***** ! {{{
 #ifdef COLOR
-#include ".Xresources.d/apathy.theme"
-!#include ".Xresources.d/atelierdune.theme"
-!#include ".Xresources.d/bespin.theme"
-!#include ".Xresources.d/chalk.theme"
-!#include ".Xresources.d/codeschool.theme"
-!#include ".Xresources.d/dark.theme"
-!#include ".Xresources.d/flat.theme"
-!#include ".Xresources.d/google.theme"
-!#include ".Xresources.d/greyscale.theme"
-!#include ".Xresources.d/railscasts.theme"
-!#include ".Xresources.d/manjaro.theme"
-!#include ".Xresources.d/irblack.theme"
+!#include ".Xresources.d/themes/apathy.theme"
+!#include ".Xresources.d/themes/atelierdune.theme"
+!#include ".Xresources.d/themes/bespin.theme"
+!#include ".Xresources.d/themes/chalk.theme"
+!#include ".Xresources.d/themes/codeschool.theme"
+#include ".Xresources.d/themes/dark.theme"
+!#include ".Xresources.d/themes/flat.theme"
+!#include ".Xresources.d/themes/google.theme"
+!#include ".Xresources.d/themes/greyscale.theme"
+!#include ".Xresources.d/themes/irblack.theme"
+!#include ".Xresources.d/themes/manjaro.theme"
+!#include ".Xresources.d/themes/railscasts.theme"
 #endif
 ! }}}
 
-! ***** URxvt Preferences ***** ! {{{
-! *Default Terminal Name* !
-urxvt*termName:                   rxvt-256color
-
-! *Fonts*
-!URxvt*font:                       xft:PragmataPro for Powerline:pixelsize=11:antialias=true:hinting=true
-!URxvt*font:                       xft:Envy Code R:pixelsize=11:antialias=true:hinting=true
-URxvt*font:                       xft:Inconsolata-g Medium:size=8:antialias=true:hinting=true
-!URxvt*font:                       xft:Menlo:size=8:antialias=true:hinting=true
-!URxvt*boldFont:                   xft:PragmataPro for Powerline Bold:bold:pixelsize=13:antialias=true:hinting=true
-!URxvt*boldFont:                   xft:Envy Code R Bold:pixelsize=12:antialias=true:hinting=true
-URxvt*boldFont:                   xft:Inconsolata-g Medium:bold:size=10:antialias=true:hinting=true
-!URxvt*boldFont:                   xft:Menlo:bold:size=10:antialias=true:hinting=true
-!URxvt*italicFont:                 xft:PragmataPro for Powerline Italic:italic:pixelsize=11:antialias=true:hinting=true
-!URxvt*italicFont:                 xft:Envy Code R Italic:pixelsize=11:antialias=true:hinting=true
-URxvt*italicFont:                 xft:Inconsolata-g Medium:italic:size=8:antialias=true:hinting=true
-!URxvt*italicFont:                 xft:Menlo:italic:size=8:antialias=true:hinting=true
-!URxvt*bolditalicFont:             xft:PragmataPro:bold for Powerline Bold Italic:italic:pixelsize=13:antialias=true:hinting=true
-!URxvt*bolditalicFont:             xft:Envy Code R Italic:bold:pixelsize=12:antialias=true:hinting=true
-URxvt*bolditalicFont:             xft:Inconsolata-g Medium:bold:italic:size=10:antialias=true:hinting=true
-!URxvt*bolditalicFont:             xft:Menlo:bold:italic:size=10:antialias=true:hinting=true
-
-! *Background*
-!URxvt.background:                 rgba:0000/002b/0036/dddd
-!URxvt*inheritPixmap:              true
-!URxvt*tintColor:                  #00050a
-!URxvt*shading:                    10
-
-! *Settings*
-URxvt.geometry:                    80x40
-URxvt.borderless:                  true
-URxvt.internalBorder:              0
-URxvt.depth:                       32
-URxvt.saveLines:                   1000000
-URxvt.visualBell:                  true
-URxvt.scrollWithBuffer:            false
-URxvt.scrollTtyOutput:             false
-URxvt.jumpScroll:                  true
-URxvt.scrollBar:                   false
-URxvt.scrollstyle:                 rxvt
-URxvt.loginShell:                  no
-URxvt.cutchars:                    BACKSLASH '"'&()*,;<=>?@[]{|}
-URxvt.print-pipe:                  cat > $(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
-URxvt.perl-ext-common:             default,clipboard,url-select,keyboard-select
-urxvt*keysym.F11:                  perl:fullscreen:switch
-!URxvt.keysym.M-u:                  perl:mark-yank-urls:activate_mark_mode
-URxvt.keysym.M-u:                  perl:url-select:select_next
-URxvt.keysym.M-Escape:             perl:keyboard-select:activate
-URxvt.keysym:M-s:                  perl:keyboard-select:search
-URxvt.keysym.M-c:                  perl:clipboard:copy
-URxvt.keysym.M-v:                  perl:clipboard:paste
-URxvt.keysym.M-C-v:                perl:clipboard:paste_escaped
-URxvt.clipboard.copycmd:           xsel -ib
-URxvt.clipboard.pastecmd:          xsel -ob
-!URxvt.clipboard.copycmd:           xclip -i -selection clipboard
-!URxvt.clipboard.pastecmd:          xclip -o -selection clipboard
-URxvt.url-select.autocopy:         true
-URxvt.url-select.underline:        true
-URxvt.url-select.button:           2
-URxvt.url-select.launcher:         firefox
-URxvt.perl-lib:                    ${HOME}/.urxvt/perl/
-URxvt.perl-ext:                    selection,mark-yank-urls
-URxvt.keysym.C-Delete:             perl:matcher:last
-URxvt.keysym.M-Delete:             perl:matcher:list
-URxvt.matcher.button:              1
-!URxvt.matcher.pattern.1:           \\bwww\\.[\\w-]+\\.[\\w./?&@#-]*[\\w/-]
-!URxvt.matcher.pattern.2:           \\B(/\\S+?):(\\d+)(?=:|$)
-URxvt.matcher.pattern.1:           \\b(mailto|http|https|ftp|file):[/]*[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.pattern.2:           \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.launcher.2:          vim +$2 $1
-
-! *Tabbed*
-URxvt.tabbed.autohide:             yes
-!URxvt.tabbar-fg:                   124
-!URxvt.tabbar-bg:                   232
-URxvt.tabbar-fg:                   #999999
-URxvt.tabbar-bg:                   #060606
-!URxvt.tab-fg:                      51
-!URxvt.tab-bg:                      233
-URxvt.tab-fg:                      #999999
-URxvt.tab-bg:                      #060606
-!URxvt.title-fg:                    124
-!URxvt.title-bg:                    232
-URxvt.title-fg:                    #999999
-URxvt.title-bg:                    #060606
-URxvt.tabbed.secondaryScroll:      true
-URxvt.tabbed.matcher.button:       2
-URxvt.tabbed.perl-ext-common:      default,matcher,clipboard,keyboard-select,tabbedex
-URxvt.tabbed.keysym.M-u:           perl:url-select:select_next
-URxvt.tabbed.keysym.M-Escape:      perl:keyboard-select:activate
-URxvt.tabbed.keysym:M-s:           perl:keyboard-select:search
-URxvt.tabbed.keysym.M-c:           perl:clipboard:copy
-URxvt.tabbed.keysym.M-v:           perl:clipboard:paste
-URxvt.tabbed.keysym.M-C-v:         perl:clipboard:paste_escaped
-URxvt.tabbed.clipboard.copycmd:    xsel -ib
-URxvt.tabbed.clipboard.pastecmd:   xsel -ob
-!URxvt.clipboard.copycmd:           xclip -i -selection clipboard
-!URxvt.clipboard.pastecmd:          xclip -o -selection clipboard
-URxvt.tabbed.url-select.autocopy:  true
-URxvt.tabbed.url-select.underline: true
-URxvt.tabbed.url-select.button:    2
-URxvt.tabbed.url-select.launcher:  firefox
-URxvt.tabbed.perl-lib:             ${HOME}/.urxvt/perl/
-URxvt.tabbed.perl-ext:             selection,mark-yank-urls
-URxvt.cursorColor:                 #485e6c
-URxvt.cursorColor2:                #c0672d
-URxvt.colorBD:                     #ffffff
-URxvt.colorIT:                     #bbbbbb
-URxvt.colorUL:                     #d2d2d2
-URxvt.underlineColor:              #006e85
-! }}}
-
-! ***** XTerm Preferences ******* {{{
-xterm*VT100.geometry:              80x25
-xterm*faceName:                    Iconsolata:style=Regular:size=10
-!xterm*font:                        -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
-xterm*dynamicColors:               true
-xterm*utf8:                        2
-xterm*eightBitInput:               true
-xterm*saveLines:                   512
-xterm*scrollKey:                   true
-xterm*scrollTtyOutput:             false
-xterm*scrollBar:                   true
-xterm*rightScrollBar:              true
-xterm*jumpScroll:                  true
-xterm*multiScroll:                 true
-xterm*toolBar:                     false
-! }}}
-
-! ***** XScreensaver ******* {{{
-xscreensaver.Dialog.headingFont:             -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:                -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:               -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:               -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:              -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:                -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:              -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:              #999999
-xscreensaver.Dialog.background:              #060606
-xscreensaver.Dialog.topShadowColor:          #020202
-xscreensaver.Dialog.bottomShadowColor:       #090909
-xscreensaver.Dialog.Button.foreground:       #999999
-xscreensaver.Dialog.Button.background:       #080808
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:         #999999
-xscreensaver.Dialog.text.background:         #060606
-xscreensaver.Dialog.internalBorderWidth:     24
-xscreensaver.Dialog.borderWidth:             20
-xscreensaver.Dialog.shadowThickness:         2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #999999
-xscreensaver.passwd.thermometer.background:  #060606
-xscreensaver.passwd.thermometer.width:       8
-!datestamp format--see the strftime(3) manual page for details
-xscreensaver.dateFormat:                     %I:%M%P %a %b %d, %Y
-! }}}
-
-! ****** X11 SSH AskPass ****** ! {{{
-x11-ssh-askpass*font:                        -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
-x11-ssh-askpass*background:                  #060606
-x11-ssh-askpass*foreground:                  #999999
-x11-ssh-askpass.Button*background:           #090909
-x11-ssh-askpass.Indicator*foreground:        #999999
-x11-ssh-askpass.Indicator*background:        #030303
-x11-ssh-askpass*topShadowColor:              #090909
-x11-ssh-askpass*bottomShadowColor:           #000000
-x11-ssh-askpass.*borderWidth:                1
-! }}}
-
-! ***** Xpdf ***** ! {{{
-xpdf*enableFreetype:                         yes
-xpdf*antialias:                              yes
-xpdf*foreground:                             white
-xpdf*background:                             black
-xpdf*urlCommand:                             dwb %s
-! }}}
-
-! ***** xcalc.***** ! {{{
-xcalc.geometry:                              200x250+1668+21
-xcalc.ti.background:                         #101010
-xcalc.ti.bevel.borderColor:                  #b9b9b9
-xcalc.ti.bevel.borderWidth:                  1
-xcalc.ti.bevel.background:                   #101010
-xcalc.ti.bevel.screen.background:            #121212
-xcalc.ti.bevel.screen.DEG.background:        #111111
-xcalc.ti.bevel.screen.DEG.foreground:        #b9b9b9
-xcalc.ti.bevel.screen.GRAD.background:       #111111
-xcalc.ti.bevel.screen.GRAD.foreground:       #b9b9b9
-xcalc.ti.bevel.screen.RAD.background:        #111111
-xcalc.ti.bevel.screen.RAD.foreground:        #b9b9b9
-xcalc.ti.bevel.screen.INV.background:        #111111
-xcalc.ti.bevel.screen.INV.foreground:        #b9b9b9
-xcalc.ti.bevel.screen.LCD.background:        #111111
-xcalc.ti.bevel.screen.LCD.foreground:        #b9b9b9
-xcalc.ti.bevel.screen.LCD.shadowWidth:       0
-xcalc.ti.bevel.screen.M.background:          #111111
-xcalc.ti.bevel.screen.M.foreground:          #b9b9b9
-xcalc.ti.bevel.screen.P.background:          #111111
-xcalc.ti.bevel.screen.P.foreground:          #b9b9b9
-xcalc.ti.Command.borderColor:                #b9b9b9
-xcalc.ti.Command.foreground:                 #b9b9b9
-xcalc.ti.Command.background:                 #1c1c1c
-xcalc.ti.button5.background:                 #1c1c1c
-xcalc.ti.button19.background:                #131313
-xcalc.ti.button18.background:                #131313
-xcalc.ti.button20.background:                #131313
-!uncomment to change label on division button
-xcalc.ti.button20.label:                     /
-xcalc.ti.button25.background:                #111111
-xcalc.ti.button25.foreground:                #999999
-xcalc.ti.button30.background:                #111111
-xcalc.ti.button35.background:                #111111
-xcalc.ti.button40.background:                #111111
-xcalc.ti.button22.background:                #101110
-xcalc.ti.button23.background:                #101110
-xcalc.ti.button24.background:                #101110
-xcalc.ti.button27.background:                #101110
-xcalc.ti.button28.background:                #101110
-xcalc.ti.button29.background:                #101110
-xcalc.ti.button32.background:                #101110
-xcalc.ti.button33.background:                #101110
-xcalc.ti.button34.background:                #101110
-xcalc.ti.button37.background:                #101110
-xcalc.ti.button38.background:                #111111
-xcalc.ti.button39.background:                #111111
-xcalc.Cursor:                                hand1
-xcalc.ShapeStyle:                            circle
+! ***** App Settings ***** ! {{{
+#include ".Xresources.d/apps/ssh-askpass"
+#include ".Xresources.d/apps/xcalc"
+#include ".Xresources.d/apps/xpdf"
+#include ".Xresources.d/apps/xscreensaver"
+#include ".Xresources.d/apps/xterm"
+#include ".Xresources.d/apps/urxvt"
 ! }}}
 
 ! vim:foldmethod=marker foldmarker={{{,}}}
