@@ -20,10 +20,10 @@ xset fp rehash &
 
 # Source system xinit.d files
 if [ -d /etc/X11/xinit/xinitrc.d ]; then
-  for f in /etc/X11/xinit/xinitrc.d/*; do
-    [ -x "$f" ] && . "$f"
-  done
-  unset f
+    for f in /etc/X11/xinit/xinitrc.d/*; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
 fi
 
 # Xmodmap xmodmaprc
@@ -67,6 +67,12 @@ sh $HOME/.i3/scripts/wallpaperstrimonitorh+h+v.sh &
 
 # ---- window manager ----
 # launch i3
+
+# window manager
+i3 & wmpid=$!
+
 systemd --user &
-exec i3 -V >> $HOME/log/i3log-$(date +'%F-%k-%M-%S') 2>&1
+#exec i3 -V >> $HOME/log/i3log-$(date +'%F-%k-%M-%S') 2>&1
+# HANG POINT - wait for window manager to exit
+wait $wmpid
 #exec fluxbox
