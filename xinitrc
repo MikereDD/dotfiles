@@ -1,68 +1,72 @@
-# file:     ~/.xsession
-# author:   Mike Redd - http://m-redd.com
-# modified: Monday Jan. 16 11:43:41(PST) 2012
-# vim: set fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
-# ----------------------------------------------------------------------------
-
-eval $(gpg-agent --daemon) &
+#!/usr/bin/env bash
 #
-#if [ -d /etc/X11/xinit/xinitrc.d ]; then
-#  for f in /etc/X11/xinit/xinitrc.d/*; do
-#    [ -x "$f" ] && . "$f"
-#  done
-#  unset f
-#fi
+# file:     $HOME/.xsession
+# author:   Mike Redd - http://git.m-redd.com
+# modified: Fri Dec 28 15:45:00 CST 2018
+# vim: set fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
+# ----------------------------------------------------------
 
-# Font #
+# GPG agent
+eval $(gpg-agent --daemon) &
+
+# Disable bell
+xset -b
+
+# Fonts
 #xset +fp ${HOME}/.fonts
+xset +fp /usr/share/fonts/local
+#xset +fp /usr/share/fonts/TTF
+xset fp rehash &
 
-# Misc #
+# Source system xinit.d files
+if [ -d /etc/X11/xinit/xinitrc.d ]; then
+  for f in /etc/X11/xinit/xinitrc.d/*; do
+    [ -x "$f" ] && . "$f"
+  done
+  unset f
+fi
+
+# Xmodmap xmodmaprc
 #if [ -f $HOME/.xmodmaprc ]; then
 #    /usr/bin/xmodmap $HOME/.xmodmaprc
 #fi
 
+# Xmodmap
 #[ -f /etc/X11/Xmodmap ] && xmodmap /etc/X11/Xmodmap
 
-# Run Apps #
+# Extra settings
 #autocutsel -fork &
 #autocutsel -selection PRIMARY -fork &
 #xset m 4 1 &
-#xset +fp /usr/share/fonts/local &
-#xset fp rehash &
-#
-[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
+# Xresources
+[[ -f $HOME/.Xresources ]] && xrdb -merge $HOME/.Xresources
 #setterm -blank 0 -powersave off -powerdown 0
 #xset s off
-#
-#xcompmgr -CcfF -I-.010 -O-.03 -D3 -t-.5 -l-2 -r3.1 -o.3 -s &
+
+# Load apps
 xbindkeys
 #xscreensaver -no-splash &
 numlockx &
 #irexec &
-#
 #VBoxClient-all &
 #setxkbmap -option compose:paus &
 #bash -c "xhost +si:localuser:$(whoami)" &
-
-# urxvt daemon
 #/usr/bin/urxvtd -q -o -f
 
-# nzbget
-#nzbget -c ~/.config/nzbget/nzbget.conf -D &
-#sabnzbd &
-# check pid's
-#sh ~/scripts/system/check_pid.sh dhcpcd root &
+# Check pid's
+#sh $HOME/scripts/system/check_pid.sh dhcpcd root &
 
-# wallpaper
-#sh ~/.i3/scripts/wallpapers.sh &
-#sh ~/.i3/scripts/wallpapersdualmonitorh+v.sh &
-sh ~/.i3/scripts/wallpaperstrimonitorh+h+v.sh &
+# Load Wallpaper
+#sh $HOME/.i3/scripts/wallpapers.sh &
+#sh $HOME/.i3/scripts/wallpapersdualmonitorh+v.sh &
+sh $HOME/.i3/scripts/wallpaperstrimonitorh+h+v.sh &
 
 # wicd
 #wicd-client --tray &
 
 # ---- window manager ----
 # launch i3
-#systemd --user &
-exec i3
+systemd --user &
+exec i3 -V >> $HOME/log/i3log-$(date +'%F-%k-%M-%S') 2>&1
 #exec fluxbox
