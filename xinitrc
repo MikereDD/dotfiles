@@ -66,13 +66,12 @@ sh $HOME/.i3/scripts/wallpaperstrimonitorh+h+v.sh &
 #wicd-client --tray &
 
 # ---- window manager ----
-# launch i3
-
-# window manager
+# launch i3 with process ID
 i3 & wmpid=$!
-
+# systemd user
 systemd --user &
+# launch i3 and log
 #exec i3 -V >> $HOME/log/i3log-$(date +'%F-%k-%M-%S') 2>&1
-# HANG POINT - wait for window manager to exit
+# i3 hang point
 wait $wmpid
 #exec fluxbox
