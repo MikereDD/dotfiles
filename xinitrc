@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# file:     $HOME/.xsession
+# file:     $HOME/.xinitrc
 # author:   Mike Redd - http://git.m-redd.com
 # modified: Fri Dec 28 15:45:00 CST 2018
 # vim: set fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults:
