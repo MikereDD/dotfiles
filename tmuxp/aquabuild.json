@@ -1,0 +1,38 @@
+{
+"windows":[
+    {
+        "window_index": 0,
+        "window_name": "home",
+        "start_directory": "~/",
+        "panes": [
+            "echo 'first pane'"
+        ]
+    },
+    {
+        "window_index": 1,
+        "window_name": "build",
+        "start_directory": "~/android/aquarios",
+        "panes": [
+            "echo 'second pane'"
+        ],
+        "focus": true
+    },
+    {
+        "window_index": 2,
+        "window_name": "pcloud",
+        "start_directory": "~/pcloud",
+        "panes": [
+            "echo 'third pane'"
+        ]
+    },
+    {
+        "window_index": 3,
+        "window_name": "vim",
+        "start_directory": "~/",
+        "panes": [
+            "echo 'fourth pane'"
+        ]
+    }
+],
+"session_name": "AndroidBuild"
+}
