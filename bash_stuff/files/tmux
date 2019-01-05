@@ -39,4 +39,6 @@ alias tmuxadtbuild="tmux a -dt AndroidBuild"
 # kill build session
 alias tmuxkillbuild="tmux kill-session -t AndroidBuild"
 
+alias tmuxplab="tmuxp load $HOME/.tmuxp/aquabuild.json"
+
 # vim: set filetype=bash:
