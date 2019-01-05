@@ -1,6 +1,6 @@
 # MikereDD’s dotfiles
 
-![Screenshot shell prompt](https://raw.githubusercontent.com/MikereDD/dotfiles/master/_images/18%3A22%3A12_drag.png)
+![Screenshot shell prompt](https://raw.githubusercontent.com/MikereDD/dotfiles/master/img/screenshot.png)
 
 Config files and scripts I use for my Arch setup.
 
