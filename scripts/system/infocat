@@ -30,13 +30,11 @@ if [ "$gtkfont" == "" ]; then
     gtkfont="None"
 fi
 
-# Wallpaper set by feh
-#wallpaper=$(cat /home/$USER/.fehbg | cut -c 69-133 | tr -d "'" | tail -1)
-wallpaperh="$(sh $HOME/bin/dualwalloutput | head -1)"
-wallpaperv="$(sh $HOME/bin/dualwalloutput | tail -1)"
+# Display resolution
+resolution="$(xrandr  | grep '+0' | awk '{ print $3,$4 }' | sed 's|primary ||g' | awk '{ print $1 }' | cut -f1 -d "+" | tr '\n' ' ')"
 
-# Settings from ~/.Xresources
-xdef="/home/$USER/.Xresources"
+# Settings from ~/.Xresources.d/apps/urxvt
+xdef="/home/$USER/.Xresources.d/apps/urxvt"
 termfont="$(grep 'URxvt\*font' $xdef | tail -1 | cut -d\: -f2- | sed -re 's/xft://g; s/:size=(.*):.*/ \1/g; s/^ *//g' | cut -f1 -d ":")"
 
 # Time and date
@@ -60,14 +58,14 @@ gb=$(echo "G")
 pacman=$(pacman -Q | wc -l)
 #dist=$(cat /etc/issue | sed 's/ /n/')
 COUNT=$(cat /proc/cpuinfo | grep 'model name' | sed -e 's/.*: //' | wc -l)
-cpu1=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $4 }' | sed 's|(R)||')
-cpu2=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $6,$8,$9,$10 }')
-gpu1=$(lspci | grep VGA | awk '{ print $5 }' | tr -d ']')
-gpu2=$(lspci | grep VGA | awk '{ print $9$10 }' | tr -d ']')
-audio1=$(lspci | grep -E 'Bridge' | tail -1 | awk '{ print $4 }')
-audio2=$(lspci | grep -E 'Bridge' | tail -1 | awk '{ print $7,$8,$9 }' | tr -d ']')
-rigmanu=$(sudo dmidecode -s system-manufacturer | sed 's| Inc.||g')
-rigprocname=$(sudo dmidecode -s system-product-name)
+cpu1=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $4,$5,$6,$7 }')
+#cpu2=$(cat /proc/cpuinfo | grep 'model name' | head -1 | awk '{ print $6,$8,$9,$10 }')
+gpu1=$(lspci | grep VGA | awk '{ print $5,$8,$9,$10,$11 }' | tr -d '[]')
+#gpu2=$(lspci | grep VGA | awk '{ print $9$10 }' | tr -d ']')
+audio1=$(lspci | grep -E 'Audio' | tail -1 | awk '{ print $8,$13,$14 }' | tr -d '[]')
+#audio2=$(lspci | grep -E 'Bridge' | tail -1 | awk '{ print $7,$8,$9 }' | tr -d ']')
+mobo1=$(cat /sys/devices/virtual/dmi/id/product_name)
+#rigprocname=$(sudo dmidecode -s system-product-name)
 #memory=$(free -m|awk '/^Mem:/{print $3}')
 memoryuse=$(free -m | awk '/^Mem:/{print $3}')
 memorytotal=$(free -m | awk '/^Mem:/{print $2}')
@@ -80,23 +78,23 @@ $f7         'Okdl:'  ;OMMMMKOKNMMW:;o0l  .'.
 $f7         ;MMMMMMWWMMMMMMMMMMMMMMMMMXKWMMK         $H $f4$time$NC - $f7$date
 $f7         'MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMK         $f6 $USER $f1@ $f2$HOSTNAME
 $f7          NMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO
-$f7          dMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          GTK Theme $f1»$f4 $gtktheme$NC
-$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM.          GTK Icons $f1»$f4 $gtkicon$NC
-$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font  $f1»$f4 $gtkfont$NC
-$f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font $f1»$f4 $termfont$NC
-$f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime    $f1»$f4 $uptime
-$f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load      $f1»$f4 $load
-$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use $f2/ $f4$size
-$f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages  $f1»$f4 $pacman
-$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaperh $wallpaperv
-$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro    $f1»$f4 $distro
-$f8                   .:cc:;;.$NC                       $f7 WM   $NC     $f1»$f4 $WinMan
-$f8                   .o0MMMK'$NC                       $f7 Kernel $NC   $f1»$f4 $kernel
-$f1                     xMMM: $NC                       $f7 Rig       $f1»$f4 $rigmanu $rigprocname
-$f1                     KMMMl$NC                        $f7 CPU       $f1»$f4 $cpu1 $cpu2
-$f1                    .MMMMo$NC                        $f7 GPU       $f1»$f4 $gpu1 $gpu2
-$f1                    ,MMMMx$NC                        $f7 Audio     $f1»$f4 $audio1 $audio2
-$f1                    oMMMMx$NC                        $f7 Memory    $f1»$f4 ${memoryuse} $f2/ $f4${memorytotal}
+$f7          dMMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          GTK Theme  $f1»$f4 $gtktheme$NC
+$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM.          GTK Icons  $f1»$f4 $gtkicon$NC
+$f7          'MMMMMMMMMMMMMMMMMMMMMMMMMMMMM;          GTK Font   $f1»$f4 $gtkfont$NC
+$f7          lMMMMM  MMMMMMMMMM  MMMMMMMMMM,          Term Font  $f1»$f4 $termfont$NC
+$f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime     $f1»$f4 $uptime
+$f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load       $f1»$f4 $load
+$f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD        $f1»$f4 $use $f2/ $f4$size
+$f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages   $f1»$f4 $pacman
+$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Resolution $f1»$f4 $resolution
+$f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro     $f1»$f4 $distro
+$f8                   .:cc:;;.$NC                       $f7 WM   $NC      $f1»$f4 $WinMan
+$f8                   .o0MMMK'$NC                       $f7 Kernel $NC    $f1»$f4 $kernel
+$f1                     xMMM: $NC                       $f7 Mobo       $f1»$f4 $mobo1
+$f1                     KMMMl$NC                        $f7 CPU        $f1»$f4 $cpu1
+$f1                    .MMMMo$NC                        $f7 GPU        $f1»$f4 $gpu1
+$f1                    ,MMMMx$NC                        $f7 Audio      $f1»$f4 $audio1
+$f1                    oMMMMx$NC                        $f7 Memory     $f1»$f4 ${memoryuse} $f2/ $f4${memorytotal}
 $f1                    OMMMMO
 $f1                    .OMMMd                        $f7"And you can go fuck yourself, bitch"
 $f1                      :Nl                                                      $f7 the$f1 cat
