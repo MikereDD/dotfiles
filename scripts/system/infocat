@@ -31,7 +31,9 @@ if [ "$gtkfont" == "" ]; then
 fi
 
 # Wallpaper set by feh
-wallpaper=$(cat /home/$USER/.fehbg | cut -c 69-133 | tr -d "'" | tail -1)
+#wallpaper=$(cat /home/$USER/.fehbg | cut -c 69-133 | tr -d "'" | tail -1)
+wallpaperh="$(sh $HOME/bin/dualwalloutput | head -1)"
+wallpaperv="$(sh $HOME/bin/dualwalloutput | tail -1)"
 
 # Settings from ~/.Xresources
 xdef="/home/$USER/.Xresources"
@@ -86,7 +88,7 @@ $f7          KMMMMM  MMMMMMMMMM  MMMMMMMMMM.          Uptime    $f1»$f4 $uptime
 $f7         ;WMMMMMkNMMMMMMMMMMONMMMMMMMMMW:          Load      $f1»$f4 $load
 $f7       oNMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMO         HDD       $f1»$f4 $use $f2/ $f4$size
 $f7      .,cxKWMMMMMMMMMMMMMMMMMMMMMMMMMMMXdxo        Packages  $f1»$f4 $pacman
-$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaper
+$f7         ;kWMMMMMMMMMMMMMMMMMMMMMMMMMMMM:          Wallpaper $f1»$f4 $wallpaperh $wallpaperv
 $f7         '::'  .;ok0NMMMMWNK0kdoc;'  '::'          Distro    $f1»$f4 $distro
 $f8                   .:cc:;;.$NC                       $f7 WM   $NC     $f1»$f4 $WinMan
 $f8                   .o0MMMK'$NC                       $f7 Kernel $NC   $f1»$f4 $kernel
