@@ -20,9 +20,6 @@ alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bu
 #export PATH=$PATH:/opt/java6/jre/bin
 #export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
 
-# ANDROID_JAVA_HOME
-#ANDROID_JAVA_HOME="/usr/lib/jvm/java-8-openjdk"
-
 # ANDROID_SDK
 #ANDROID_HOME=/opt/android-sdk
 #ANDROID_SWT=/opt/android-sdk/tools/lib/x86/swt.jar
@@ -33,7 +30,7 @@ alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bu
 
 # ANDROID_NDK
 #PATH=$PATH:/opt/android-ndk
-ANDROID_NDK=/opt/android-ndk
+#ANDROID_NDK="/opt/android-ndk"
 
 # ARM
 #ARM_ROOT=/opt/android-ndk
@@ -43,22 +40,10 @@ ANDROID_NDK=/opt/android-ndk
 #ARM_LIBO=$ARM_TOOL/lib/gcc/arm-linux-androideabi/4.7/
 #ARM_PRE=arm-eabi
 
-# CCACHE
-USE_CCACHE="1"
-CCACHE_DIR="$HOME/android/.ccache"
-
-# android sdk
+# UPDATE ANDROID-SDK
 alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
-alias android-buildenv="source ~/android/.extra/android_aliases"
-
-# build scripts
-#alias buildashamu="sh ~/android/scripts/build/build_raum.sh"
-#alias buildaokpjb="sh ~/android/scripts/build/build_rom-aokp_jb.sh"
-#alias buildparadigm="sh ~/android/scripts/build/build_rom-bamf_paradigm.sh"
 
 # make commands
-alias aquashamu=". build/envsetup.sh;make clobber;brunch shamu-userdebug"
-alias aquaberkeley=". build/envsetup.sh;lunch berkeley-userdebug;make clobber;mka systemimage -j8"
 
 # tcp/ip
 alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
@@ -67,9 +52,14 @@ alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
 alias reposj1="repo sync -j1"
 alias reposfj1="repo sync -f -j1"
 
-alias fetchlmanifest="curl -L -o .repo/local_manifest.xml -O -L https://raw.github.com/pax10/local_manifest/rb/local_manifest.xml"
-
 # export
-export ANDROID_NDK USE_CCACHE CCACHE_DIR
+#export USE_CCACHE CCACHE_DIR 
+
+# build ready source
+alias source4build="source ~/android/.aliases/android_aliases"
+# official build aquarios
+alias aquaofficial="source ~/android/.aliases/aquarios-aliases"
+# AQUA OFFICAL BUILD SETUP
+alias aquabuildprep="source ~/anddoid/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
 
 # vim: set filetype=bash:
