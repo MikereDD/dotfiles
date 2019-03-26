@@ -93,6 +93,11 @@
     m:0x0 + c:171
     XF86AudioNext
 
+# Mute Audio
+"(amixer sset Master toggle)"
+    m:0x4 + c:121
+    Control + XF86AudioMute
+
 ##################################
 # End of xbindkeys configuration #
 ##################################
