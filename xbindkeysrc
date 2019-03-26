@@ -1,0 +1,98 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Browser
+"(vivaldi-stable)"
+    m:0xc + c:57
+    Control+Alt + n
+
+# Email
+"(thunderbird)"
+    m:0x0 + c:163
+    XF86Mail
+
+# Screenshot
+"(sh ~/scripts/images/scrotsnap.sh)"
+    m:0x0 + c:135
+    Menu
+
+# Image Editor
+"(gimp)"
+    m:0xc + c:42
+    Control+Alt + g
+
+# Calculator
+"(xcalc)"
+    m:0x0 + c:148
+    XF86Calculator
+
+# File Browser
+"(urxvt -name "ViFM" -e vifm ~/ /mnt)"
+    m:0x0 + c:180
+    XF86HomePage
+
+# Messenger
+"(telegram-desktop)"
+    m:0xc + c:58
+    Control+Alt + m
+
+# Music Player
+"(urxvt -name "MOC" -e mocp)"
+    m:0x0 + c:179
+    XF86Tools
+# Pause/Play
+"(mocp -G)"
+    m:0x0 + c:172
+    XF86AudioPlay
+# Stop
+"(mocp -s)"
+    m:0x8 + c:172
+    Alt + XF86AudioPlay
+# Previous
+"(mocp -r)"
+    m:0x0 + c:173
+    XF86AudioPrev
+# Next
+"(mocp -f)"
+    m:0x0 + c:171
+    XF86AudioNext
+
+##################################
+# End of xbindkeys configuration #
+##################################
