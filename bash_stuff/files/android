@@ -62,4 +62,7 @@ alias aquaofficial="source ~/android/.aliases/aquarios-aliases"
 # AQUA OFFICAL BUILD SETUP
 alias aquabuildprep="source ~/anddoid/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
 
+# virtualenv2
+alias virtenv="virtualenv2 venv;source venv/bin/activate"
+
 # vim: set filetype=bash:
