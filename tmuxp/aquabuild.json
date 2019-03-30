@@ -28,10 +28,10 @@
     },
     {
         "window_index": 3,
-        "window_name": "pie_build",
-        "start_directory": "~/android/pie",
+        "window_name": "aqua-mod_build",
+        "start_directory": "~/android/aquarios-mod",
         "panes": [
-            "echo 'pie build pane'"
+            "echo 'aqua-mod build pane'"
         ],
         "focus": true
     },
