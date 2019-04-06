@@ -10,30 +10,30 @@
 unbind C-b
 set -g prefix C-a
 
-# send the prefix to client inside window
+# Send the prefix to client inside window
 bind C-a send-prefix
 
-# toggle last window like screen
+# Toggle last window like screen
 bind-key C-a last-window
 
-# open a man page in new window
+# Open a man page in new window
 bind-key / command-prompt "split-window 'exec man %%'"
 
-# quick view of processes
+# Quick view of processes
 bind-key "~" split-window "exec htop"
 
-# scrollback buffer n lines
+# Scrollback buffer n lines
 set -g history-limit 5000
 
-# listen for activity on all windows
+# Listen for activity on all windows
 set -g bell-action any
 #set -g bell-action none
 
-# start window indexing at zero (default)
+# Start window indexing at zero (default)
 set -g base-index 0
 
-# instructs tmux to expect UTF-8 sequences
-setw -g utf8 on
+# Instructs tmux to expect UTF-8 sequences
+#setw -g utf8 on
 
 # Use the screen's 256color TERM by default.
 set -g default-terminal "screen-256color"
@@ -41,19 +41,19 @@ set -g default-terminal "screen-256color"
 # Translate keycodes to xterm keycodes!
 setw -g xterm-keys on
 
-# control automatic window renaming
+# Control automatic window renaming
 setw -g automatic-rename off
 
-# enable wm window titles
+# Enable wm window titles
 set -g set-titles on
 
-# wm window title string (uses statusbar variables)
+# WM window title string (uses statusbar variables)
 #set -g set-titles-string "tmux.#I.#W"
 
-# don't close windows. just deactivate them. use respawn-window to reactivate.
+# Don't close windows. just deactivate them. use respawn-window to reactivate.
 setw -g remain-on-exit on
 
-# restart panes/windows marked with remain-on-exit
+# Restart panes/windows marked with remain-on-exit
 bind C-r respawn-pane
 bind R respawn-window
 
@@ -61,33 +61,33 @@ bind R respawn-window
 # reload settings
 bind-key E source-file ~/.tmux.conf
 
-# detach client
+# Detach client
 bind-key d detach
 bind-key C-d detach
 
-# choose a client to detach
+# Choose a client to detach
 bind-key D choose-client
 
-# choose window/session
+# Choose window/session
 bind-key "'" choose-window
 bind-key '"' choose-session
 
-# display visible indicator of each pane
+# Display visible indicator of each pane
 bind-key w display-panes
 
-# navigate panes using jk, and ctrl+jk (no prefix)
+# Navigate panes using jk, and ctrl+jk (no prefix)
 bind-key -r j select-pane -t :.-
 bind-key -r k select-pane -t :.+
 bind-key -r C-j select-pane -t :.-
 bind-key -r C-k select-pane -t :.+
 
-# navigate windows using hl, and ctrl-hl (no prefix)
+# Navigate windows using hl, and ctrl-hl (no prefix)
 bind-key -r h select-window -t :-
 bind-key -r l select-window -t :+
 bind-key -r C-h select-window -t :-
 bind-key -r C-l select-window -t :+
 
-# swap panes
+# Swap panes
 bind-key -r J swap-pane -D
 bind-key -r K swap-pane -U
 
@@ -102,51 +102,51 @@ bind-key -n "C-Down" select-pane -t :.+
 # Cycle to next pane
 bind-key -r Tab select-pane -t :.+
 
-# kill current pane/window
+# Kill current pane/window
 bind-key q confirm-before kill-pane
 bind-key Q confirm-before kill-window
 bind-key C-q confirm-before kill-pane
 
-# copying and pasting
+# Copying and pasting
 bind-key [ copy-mode
 bind-key ] paste-buffer -s \015
 
-# vi-style controls for copy mode
+# Vi-style controls for copy mode
 setw -g mode-keys vi
 
-# list all paste buffers (default key is '#')
+# List all paste buffers (default key is '#')
 bind-key b list-buffers
 
-# choose buffer to paste interactively (default key was '=')
+# Choose buffer to paste interactively (default key was '=')
 bind-key p choose-buffer
 
-# delete the most recently copied buffer of text (default key was '-')
+# Delete the most recently copied buffer of text (default key was '-')
 bind-key x delete-buffer
 
 
 # Screen-like key bindings
 
-# new window
+# New window
 bind-key C-c new-window
 bind-key c new-window
 
-# next
+# Next
 bind-key -r Space next-window
 bind-key -r "C-Space" next-window
 
-# prev
+# Prev
 bind-key BSpace previous-window
 
-# title (default key in tmux is ',')
+# Title (default key in tmux is ',')
 bind-key A command-prompt "rename-window %%"
 
-# quit
+# Quit
 bind-key \ confirm-before kill-server
 
-# displays
+# Displays
 bind-key * list-clients
 
-# redisplay (default key in tmux is 'r')
+# Redisplay (default key in tmux is 'r')
 #bind-key C-l refresh-client
 #bind-key l refresh-client
 bind-key r refresh-client
@@ -156,78 +156,77 @@ bind-key r refresh-client
 #bind-key s split-window -v
 #bind-key v split-window -h
 
-# alternatively, use better mnemonics for horizontal/vertical splits
+# Alternatively, use better mnemonics for horizontal/vertical splits
 bind-key - split-window -v
 bind-key _ split-window -v
 bind-key | split-window -h
 
-# resize panes like vim
+# Resize panes like vim
 bind-key -r < resize-pane -L 3
 bind-key -r > resize-pane -R 3
 bind-key -r + resize-pane -U 1
 bind-key -r = resize-pane -D 1
 
 # Statusbar settings
-# toggle statusbar
+# Toggle statusbar
 bind-key s set status
 
-# use vi-style key bindings in the status line
+# Use vi-style key bindings in the status line
 set -g status-keys vi
 
-# amount of time for which status line messages and other indicators
+# Amount of time for which status line messages and other indicators
 # are displayed. time is in milliseconds.
 set -g display-time 2000
 
-# copy tmux buffer to clipboard
+# Copy tmux buffer to clipboard
 bind C-y run "tmux show-buffer | xsel -b"
-# move x clipboard into tmux paste buffer
+# Move x clipboard into tmux paste buffer
 bind C-p run "tmux set-buffer \"$(xsel -o)\"; tmux paste-buffer"
 
-# open %% man page
+# Open %% man page
 bind C-m command-prompt -p "Open man page for:" "new-window 'exec man %%'"
 
-# on-screen time for display-panes in ms
+# On-screen time for display-panes in ms
 set -g display-panes-time 2000
 
-# start window indexing at one instead of zero
+# Start window indexing at one instead of zero
 set -g base-index 1
 
-# enable wm window titles
+# Enable wm window titles
 set -g set-titles on
 
-# enable auto renaming
+# Enable auto renaming
 setw -g automatic-rename on
 
-# border colours
+# Border colours
 set -g pane-border-fg colour236
 set -g pane-active-border-fg colour248
 set -g pane-active-border-bg colour233
 
-# wm window title string (uses statusbar variables)
+# WM window title string (uses statusbar variables)
 set -g set-titles-string "tmux:#I ⁝ #W ⁝"
 
-# reload tmux config
+# Reload tmux config
 bind-key r source-file ~/.tmux.conf
 
-# initialize sessions
+# Initialize sessions
 #bind-key P source-file ~/.tmux/mymux
 #bind-key Z source-file ~/.tmux/dev
 #bind-key X source-file ~/.tmux/edit
 
-# environment
+# Environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
 
 # statusbar --------------------------------------------------------------
 #set -g window-status-format "#I:#W"
 #set -g window-status-current-format "#I:#W"
-bind-key -t vi-edit Up history-up
-bind-key -t vi-edit Down history-down
+#bind-key -t vi-editor Up history-up
+#bind-key -t vi-editor Down history-down
 
-#set -g status-interval 1
 set -g status-right centre # center align window list
 
-# wemux userlist
-set -g status-right "#(wemux status_users)"
+# Wemux userlist
+#set -g status-right "#(wemux status_users)"
 
 # Statusbar starting in X or not
 #if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
@@ -248,6 +247,7 @@ bind -n C-S-IC new-window
 bind -n C-DC confirm-before -p "Are you sure you want to unlinkw -k to close this window?" "unlink-window -k"
 bind -n C-S-DC unlink-window -k
 
+# Meta-key binds
 bind -n M-1 select-window -t 1
 bind -n M-2 select-window -t 2
 bind -n M-3 select-window -t 3
@@ -285,53 +285,63 @@ set -g status-fg white
 #set -g status-right ""
 #setw -g window-status-format "#[fg=colour245,bg=colour234,bold]#I#[fg=colour250,bold]:#[fg=colour250,bold][#[default,fg=colour250,bg=colour234,bold]#W#[bold]] "
 #setw -g window-status-current-format "#[fg=colour245,bg=color234,bold]#I#[fg=colour250,bold]:#[fg=colour245,bold][#[fg=colour250,bg=colour234,bold]#W#[fg=colour245,bold]] "
-#
-set -g status-left '#S | #(cat ~/.adminlh-mail.txt) ⁝'
-set -g status-left-length 32
-#
-set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(check_weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b | #h'
+
+# Show email count in statusbar
+#set -g status-left '#S | #(cat ~/.adminlh-mail.txt) ⁝'
+#set -g status-left-length 32
+
+# Show nowplaying, weather, uptime and loadavg in statusbar
+set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(sh ~/.i3/scripts/weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b | #h'
 set -g status-right-length 150
-#
+
+# Show window status activity in statusbar
 set -g window-status-activity-attr bold
 set -g window-status-format ' #I< #W ⁝'
 set -g window-status-current-format '#I> #W ⁝'
-#
+
+# Border foreground color
 set -g pane-border-fg colour245
 set -g pane-active-border-fg colour39
-#
+
+# Message colors
 set -g message-fg colour16
 set -g message-bg colour221
 set -g message-attr bold
-#
+
+# Status interval
 set -g status-interval 5
 
 # Activity
 setw -g monitor-activity on
 set -g visual-activity on
 
+# Alternate
 setw -g alternate-screen on
 
+# Mouse binds
 #set -g mouse-utf8 on
 
+# Mouse binds resize
 #set -g mouse-resize-pane on
 #set -g mouse-select-pane on
 # With this option on, you must hold shift when selecting text with the mouse.
 #set -g mouse-select-window on
 
-# present a menu of URLs to open from the visible pane. sweet.
+# Present a menu of URLs to open from the visible pane. sweet.
 bind-key U capture-pane \; save-buffer ~/tmp/tmux-buffer \; split-window -l 10 "urlview ~/tmp/tmux-buffer"
 
-# numbering starts at 1
+# Numbering starts at 1
 set -g base-index 1
 set -g pane-base-index 1
 
-#powerline
+# Powerline
 #source $HOME/.config/powerline/bindings/tmux/powerline.conf
 
 # Idle screensaver
-set -g lock-after-time 650
+#set -g lock-after-time 650
 #set -g lock-command "/usr/bin/cmatrix -C blue"
-#set -g lock-command "/usr/bin/cmatrixreloaded"
-set -g lock-command "~/bin/pipes"
-#set -g lock-command "~/bin/pipesX"
-#set -g lock-command "~/bin/rain"
+#set -g lock-command "/usr/bin/pipes.sh -t 4"
+#set -g lock-command "/usr/bin/pipesX.sh -t 4"
+#set -g lock-command "~/bin/rain.sh"
+
+# vim: set filetype=bash:
