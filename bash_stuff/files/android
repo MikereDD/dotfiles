@@ -7,9 +7,8 @@
 
 alias adb="/opt/android-sdk/platform-tools/adb"
 alias fastboot="/opt/android-sdk/platform-tools/fastboot"
-alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bundle --no-tags --optimized-fetch --prune"
 
-# exports
+# EXPORTS
 # JAVA_JDK
 #J2SDKDIR=/opt/java6
 #PATH=$PATH:/opt/java6/bin:/opt/java6/db/bin
@@ -19,6 +18,9 @@ alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bu
 # JAVA_JRE
 #export PATH=$PATH:/opt/java6/jre/bin
 #export JAVA_HOME=${JAVA_HOME:-/opt/java6/jre}
+
+# UPDATE ANDROID-SDK
+alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
 
 # ANDROID_SDK
 #ANDROID_HOME=/opt/android-sdk
@@ -32,7 +34,7 @@ alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bu
 #PATH=$PATH:/opt/android-ndk
 #ANDROID_NDK="/opt/android-ndk"
 
-# ARM
+# ARM PATH
 #ARM_ROOT=/opt/android-ndk
 #ARM_INC=$ARM_ROOT/platforms/android-9/arch-arm/usr/include/
 #ARM_LIB=$ARM_ROOT/platforms/android-9/arch-arm/usr/lib/
@@ -40,29 +42,30 @@ alias reposyncf="time repo sync -j$( nproc --all ) --force-sync -c --no-clone-bu
 #ARM_LIBO=$ARM_TOOL/lib/gcc/arm-linux-androideabi/4.7/
 #ARM_PRE=arm-eabi
 
-# UPDATE ANDROID-SDK
-alias android-sdk-update="/opt/android-sdk/tools/android update sdk --no-ui"
-
-# make commands
-
-# tcp/ip
+# TCP/IP mod
 alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
 
-# repo commands
-alias reposj1="repo sync -j1"
-alias reposfj1="repo sync -f -j1"
+# Repo commands
+# repo sync all threads
+alias reposyncj="repo sync -c -f -j$(nproc -all)"
+# repo sync force sync all threads
+alias reposyncfj="repo sync -c -f -j$(nproc -all) --force-sync"
+# timed repo sync force sync all threads trimmed
+alias reposynctf="time repo sync -c -f -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune"
+# repo sync force sync all threads trimmed
+alias reposyncf="repo sync -c -f -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune"
 
 # export
-#export USE_CCACHE CCACHE_DIR 
+#export USE_CCACHE CCACHE_DIR
 
-# build ready source
-alias source4build="source ~/android/.aliases/android_aliases"
-# official build aquarios
-alias aquaofficial="source ~/android/.aliases/aquarios-aliases"
-# AQUA OFFICAL BUILD SETUP
-alias aquabuildprep="source ~/anddoid/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
+# Build ready source
+#alias source4build="source ~/android/.aliases/android_aliases"
+# Official build aquarios
+#alias aquaofficial="source ~/android/.aliases/aquarios-aliases"
+# Aquarios prep build
+alias aquabuildprep="virtualenv2 venv;source venv/bin/activate;source ~/android/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
 
-# virtualenv2
+# Virtualenv2
 alias virtenv="virtualenv2 venv;source venv/bin/activate"
 
 # vim: set filetype=bash:
