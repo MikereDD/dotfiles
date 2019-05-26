@@ -1,4 +1,6 @@
-! ****** SSH AskPass Preferences ****** ! {{{
+! ****** SSH AskPass Preferences ****** !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 x11-ssh-askpass*font:                        -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
 x11-ssh-askpass*background:                  #060606
 x11-ssh-askpass*foreground:                  #999999
@@ -9,3 +11,5 @@ x11-ssh-askpass*topShadowColor:              #090909
 x11-ssh-askpass*bottomShadowColor:           #000000
 x11-ssh-askpass.*borderWidth:                1
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}

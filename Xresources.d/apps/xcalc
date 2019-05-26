@@ -1,4 +1,6 @@
-! ***** Xcalc Preferences ***** ! {{{
+! ***** Xcalc Preferences ***** !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 xcalc.geometry:                              200x250+1668+21
 xcalc.ti.background:                         #101010
 xcalc.ti.bevel.borderColor:                  #b9b9b9
@@ -49,3 +51,5 @@ xcalc.ti.button39.background:                #111111
 xcalc.Cursor:                                hand1
 xcalc.ShapeStyle:                            circle
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}

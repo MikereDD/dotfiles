@@ -47,9 +47,9 @@ alias modtcp="sudo sysctl -w net.ipv4.tcp_window_scaling=0"
 
 # Repo commands
 # repo sync all threads
-alias reposyncj="repo sync -c -f -j$(nproc -all)"
+alias reposyncj="repo sync -c -f -j$(nproc --all)"
 # repo sync force sync all threads
-alias reposyncfj="repo sync -c -f -j$(nproc -all) --force-sync"
+alias reposyncfj="repo sync -c -f -j$(nproc --all) --force-sync"
 # timed repo sync force sync all threads trimmed
 alias reposynctf="time repo sync -c -f -j$(nproc --all) --force-sync --no-clone-bundle --no-tags --optimized-fetch --prune"
 # repo sync force sync all threads trimmed
@@ -64,6 +64,7 @@ alias reposyncf="repo sync -c -f -j$(nproc --all) --force-sync --no-clone-bundle
 #alias aquaofficial="source ~/android/.aliases/aquarios-aliases"
 # Aquarios prep build
 alias aquabuildprep="virtualenv2 venv;source venv/bin/activate;source ~/android/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
+alias aquabuildpython2prep="source ~/android/.aliases/android_aliases;source ~/android/.aliases/python2_aliases;source ~/android/.aliases/aquarios_aliases"
 
 # Virtualenv2
 alias virtenv="virtualenv2 venv;source venv/bin/activate"

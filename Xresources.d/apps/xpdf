@@ -1,7 +1,11 @@
-! ***** Xpdf Preferences ***** ! {{{
+! ***** Xpdf Preferences ***** !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 xpdf*enableFreetype:          yes
 xpdf*antialias:               yes
 xpdf*foreground:            white
 xpdf*background:            black
 xpdf*urlCommand:           dwb %s
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}

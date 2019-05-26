@@ -1,4 +1,6 @@
-! ***** XScreensaver Preferences ******* {{{
+! ***** XScreensaver Preferences ******* !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 xscreensaver.Dialog.headingFont:             -*-dina-bold-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.Dialog.bodyFont:                -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
 xscreensaver.Dialog.labelFont:               -*-dina-medium-r-*-*-12-*-*-*-*-*-*-*
@@ -26,3 +28,5 @@ xscreensaver.passwd.thermometer.width:       8
 !datestamp format--see the strftime(3) manual page for details
 xscreensaver.dateFormat:                     %I:%M%P %a %b %d, %Y
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}

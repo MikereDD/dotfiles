@@ -9,12 +9,21 @@
 #export LC_ALL=en_US.UTF-8
 
 # support path for Plex HomeTheater/MediaServer
-export XBMC_HOME=/usr/share/XBMC
+#export XBMC_HOME=/usr/share/XBMC
+
+# Start ssh-agent
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+    ssh-agent > ~/.ssh-agent-thing
+fi
+if [[ ! "$SSH_AUTH_SOCK" ]]; then
+    eval "$(<~/.ssh-agent-thing)"
+fi
+
 # force ssh to keycheck
 alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet ~/.ssh/id_?sa*) && ssh'
 
 # GPG Key
-export GPGKEY=
+#export GPGKEY=
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -88,6 +97,12 @@ if [ "$TERM" = "linux" ]; then
     clear # bring us back to default input colours
 fi
 
+# Base16 Shell
+BASE16_SHELL="$HOME/.config/base16-shell/"
+[ -n "$PS1" ] && \
+    [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
+        eval "$("$BASE16_SHELL/profile_helper.sh")"
+
 # Bash shell driver for go (http://code.google.com/p/go-tool/).
 #function gcd {
 #$    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
@@ -149,14 +164,16 @@ fi
 }
 
 # auto startx and logout, security !
-#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
-#  startx
-#  logout
-#fi
+if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/vc/1 ]]; then
+  startx
+  logout
+fi
 
 PROMPT_COMMAND=bash_prompt_command
 bash_prompt
 unset bash_prompt
+
+eval $(thefuck --alias)
 
 # Crosstool
 #export PATH=${PATH}:${HOME}/tools/toolchains/crosstool-ng-linaro

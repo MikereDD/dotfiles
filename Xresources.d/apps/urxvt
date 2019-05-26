@@ -1,4 +1,6 @@
-! ***** URxvt Preferences ***** ! {{{
+! ***** URxvt Preferences ***** !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 ! *Default Terminal Name* !
 urxvt*termName:                   rxvt-256color
 
@@ -109,3 +111,5 @@ URxvt.colorIT:                     #bbbbbb
 URxvt.colorUL:                     #d2d2d2
 URxvt.underlineColor:              #006e85
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}

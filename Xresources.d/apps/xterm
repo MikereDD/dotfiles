@@ -1,4 +1,6 @@
-! ***** XTerm Preferences ******* {{{
+! ***** XTerm Preferences ******* !
+! vim:enc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=xdefaults: !
+! {{{
 xterm*VT100.geometry:              80x25
 xterm*faceName:                    Iconsolata:style=Regular:size=10
 !xterm*font:                        -*-dina-medium-r-*-*-16-*-*-*-*-*-*-*
@@ -14,3 +16,5 @@ xterm*jumpScroll:                  true
 xterm*multiScroll:                 true
 xterm*toolBar:                     false
 ! }}}
+
+! vim:foldmethod=marker foldmarker={{{,}}}
