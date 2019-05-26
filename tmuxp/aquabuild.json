@@ -10,7 +10,7 @@
     },
     {
         "window_index": 1,
-        "window_name": "aqua_build",
+        "window_name": "aquarios",
         "start_directory": "~/android/aquarios",
         "panes": [
             "echo 'aqua build pane'"
@@ -19,7 +19,7 @@
     },
     {
         "window_index": 2,
-        "window_name": "aqua-caf_build",
+        "window_name": "aquarios-caf",
         "start_directory": "~/android/aqua-caf",
         "panes": [
             "echo 'aqua-caf build pane'"
@@ -28,7 +28,7 @@
     },
     {
         "window_index": 3,
-        "window_name": "aqua-mod_build",
+        "window_name": "aquarios-mod",
         "start_directory": "~/android/aquarios-mod",
         "panes": [
             "echo 'aqua-mod build pane'"
@@ -53,6 +53,14 @@
     },
     {
         "window_index": 6,
+        "window_name": "gerrit",
+        "start_directory": "~/gerrit",
+        "panes": [
+            "echo 'gerrit pane'"
+        ]
+    },
+    {
+        "window_index": 7,
         "window_name": "vim",
         "start_directory": "~/",
         "panes": [
@@ -60,5 +68,5 @@
         ]
     }
 ],
-"session_name": "AndroidBuild"
+"session_name": "AquariOS-tmux"
 }
