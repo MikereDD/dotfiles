@@ -5,13 +5,13 @@
 #---------------------------------------------------------------
 
 # Global settings
-
-# Set prefix key to Ctrl-a
+# change the prefix from 'C-b' to 'C-a'
+# (remap capslock to CTRL for easy access)
 unbind C-b
-set -g prefix C-a
+set-option -g prefix C-a
 
 # Send the prefix to client inside window
-bind C-a send-prefix
+bind-key C-a send-prefix
 
 # Toggle last window like screen
 bind-key C-a last-window
@@ -25,41 +25,27 @@ bind-key "~" split-window "exec htop"
 # Scrollback buffer n lines
 set -g history-limit 5000
 
-# Listen for activity on all windows
-set -g bell-action any
-#set -g bell-action none
+# start with window 1 (instead of 0)
+set -g base-index 1
 
-# Start window indexing at zero (default)
-set -g base-index 0
+# start with pane 1
+set -g pane-base-index 1
 
-# Instructs tmux to expect UTF-8 sequences
-#setw -g utf8 on
+# split panes using | and -, make sure they open in the same path
+bind | split-window -h -c "#{pane_current_path}"
+bind - split-window -v -c "#{pane_current_path}"
 
-# Use the screen's 256color TERM by default.
-set -g default-terminal "screen-256color"
+unbind '"'
+unbind %
 
-# Translate keycodes to xterm keycodes!
-setw -g xterm-keys on
+# open new windows in the current path
+bind c new-window -c "#{pane_current_path}"
 
-# Control automatic window renaming
-setw -g automatic-rename off
+# reload config file
+bind r source-file ~/.tmux.conf
 
-# Enable wm window titles
-set -g set-titles on
-
-# WM window title string (uses statusbar variables)
-#set -g set-titles-string "tmux.#I.#W"
-
-# Don't close windows. just deactivate them. use respawn-window to reactivate.
-setw -g remain-on-exit on
-
-# Restart panes/windows marked with remain-on-exit
-bind C-r respawn-pane
-bind R respawn-window
-
-# Key bindings
-# reload settings
-bind-key E source-file ~/.tmux.conf
+unbind p
+bind p previous-window
 
 # Detach client
 bind-key d detach
@@ -111,8 +97,45 @@ bind-key C-q confirm-before kill-pane
 bind-key [ copy-mode
 bind-key ] paste-buffer -s \015
 
-# Vi-style controls for copy mode
-setw -g mode-keys vi
+# shorten command delay
+set -sg escape-time 1
+
+# don't rename windows automatically
+set-option -g allow-rename off
+
+# Enable wm window titles
+set -g set-titles on
+
+# Don't close windows. just deactivate them. use respawn-window to reactivate.
+setw -g remain-on-exit on
+
+# Restart panes/windows marked with remain-on-exit
+bind C-r respawn-pane
+bind R respawn-window
+
+# mouse control (clickable windows, panes, resizable panes)
+set -g mouse on
+
+# Navigate panes using jk, and ctrl+jk (no prefix)
+bind-key -r j select-pane -t :.-
+bind-key -r k select-pane -t :.+
+bind-key -r C-j select-pane -t :.-
+bind-key -r C-k select-pane -t :.+
+
+# Navigate windows using hl, and ctrl-hl (no prefix)
+bind-key -r h select-window -t :-
+bind-key -r l select-window -t :+
+bind-key -r C-h select-window -t :-
+bind-key -r C-l select-window -t :+
+
+# enable vi mode keys
+set-window-option -g mode-keys vi
+
+# set default terminal mode to 256 colors
+set -g default-terminal "screen-256color"
+
+# Translate keycodes to xterm keycodes!
+setw -g xterm-keys on
 
 # List all paste buffers (default key is '#')
 bind-key b list-buffers
@@ -123,49 +146,10 @@ bind-key p choose-buffer
 # Delete the most recently copied buffer of text (default key was '-')
 bind-key x delete-buffer
 
-
-# Screen-like key bindings
-
-# New window
-bind-key C-c new-window
-bind-key c new-window
-
-# Next
-bind-key -r Space next-window
-bind-key -r "C-Space" next-window
-
-# Prev
-bind-key BSpace previous-window
-
-# Title (default key in tmux is ',')
-bind-key A command-prompt "rename-window %%"
-
-# Quit
-bind-key \ confirm-before kill-server
-
-# Displays
-bind-key * list-clients
-
-# Redisplay (default key in tmux is 'r')
-#bind-key C-l refresh-client
-#bind-key l refresh-client
-bind-key r refresh-client
-
-# Split windows like vim
-# vim's definition of a horizontal/vertical split is reversed from tmux's
-#bind-key s split-window -v
-#bind-key v split-window -h
-
-# Alternatively, use better mnemonics for horizontal/vertical splits
-bind-key - split-window -v
-bind-key _ split-window -v
-bind-key | split-window -h
-
-# Resize panes like vim
-bind-key -r < resize-pane -L 3
-bind-key -r > resize-pane -R 3
-bind-key -r + resize-pane -U 1
-bind-key -r = resize-pane -D 1
+# present a menu of URLs to open from the visible pane. sweet.
+bind-key u capture-pane \;\
+    save-buffer /tmp/tmux-buffer \;\
+    split-window -l 10 "urlview /tmp/tmux-buffer"
 
 # Statusbar settings
 # Toggle statusbar
@@ -178,170 +162,60 @@ set -g status-keys vi
 # are displayed. time is in milliseconds.
 set -g display-time 2000
 
-# Copy tmux buffer to clipboard
-bind C-y run "tmux show-buffer | xsel -b"
-# Move x clipboard into tmux paste buffer
-bind C-p run "tmux set-buffer \"$(xsel -o)\"; tmux paste-buffer"
-
-# Open %% man page
-bind C-m command-prompt -p "Open man page for:" "new-window 'exec man %%'"
-
-# On-screen time for display-panes in ms
-set -g display-panes-time 2000
-
-# Start window indexing at one instead of zero
-set -g base-index 1
-
-# Enable wm window titles
-set -g set-titles on
-
-# Enable auto renaming
-setw -g automatic-rename on
-
-# Border colours
-set -g pane-border-fg colour236
-set -g pane-active-border-fg colour248
-set -g pane-active-border-bg colour233
-
-# WM window title string (uses statusbar variables)
-set -g set-titles-string "tmux:#I ⁝ #W ⁝"
-
-# Reload tmux config
-bind-key r source-file ~/.tmux.conf
-
-# Initialize sessions
-#bind-key P source-file ~/.tmux/mymux
-#bind-key Z source-file ~/.tmux/dev
-#bind-key X source-file ~/.tmux/edit
-
 # Environment
 set -g update-environment "DISPLAY SSH_ASKPASS SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION WINDOWID XAUTHORITY"
 
-# statusbar --------------------------------------------------------------
-#set -g window-status-format "#I:#W"
-#set -g window-status-current-format "#I:#W"
-#bind-key -t vi-editor Up history-up
-#bind-key -t vi-editor Down history-down
+######################
+### DESIGN CHANGES ###
+######################
 
-set -g status-right centre # center align window list
+# loud or quiet?
+set-option -g visual-activity off
+set-option -g visual-bell off
+set-option -g visual-silence off
+set-window-option -g monitor-activity off
+set-option -g bell-action none
 
-# Wemux userlist
-#set -g status-right "#(wemux status_users)"
+#  modes
+setw -g clock-mode-colour colour5
+setw -g mode-attr bold
+setw -g mode-fg colour1
+setw -g mode-bg colour18
 
-# Statusbar starting in X or not
-#if '[ -n "$DISPLAY" ]' 'source-file ~/.tmux/inx'
-#if '[ -z "$DISPLAY" ]' 'source-file ~/.tmux/xless'
+# panes
+set -g pane-border-bg colour0
+set -g pane-border-fg colour235
+set -g pane-active-border-bg colour0
+set -g pane-active-border-fg colour245
 
-# Tab-like window switching. Uses the same keys mainstream terminals would use
-# such as Ctrl-[Shift]-PGUP/PGDN, and adds Ctrl-INS to make a window along with
-# Ctrl-DEL to close a window. If your terminal already has these hotkeys, it
-# will eat the keycode before tmux gets it anyway. Having this here allows
-# users of simple terminals to get native-feeling "tabs" through tmux.
-bind -n C-PPage prev
-bind -n C-NPage next
-bind -n C-S-PPage swap-window -t -1
-bind -n C-S-NPage swap-window -t +1
+# statusbar
+set -g status-position bottom
+set -g status-justify left
+set -g status-bg colour18
+set -g status-fg colour137
+set -g status-attr dim
+set -g status-left ''
+set -g status-right '#[fg=colour233,bg=colour245,bold] %d/%m #[fg=colour233,bg=colour8,bold] %H:%M:%S '
+set -g status-right-length 50
+set -g status-left-length 20
 
-bind -n C-IC new-window
-bind -n C-S-IC new-window
-bind -n C-DC confirm-before -p "Are you sure you want to unlinkw -k to close this window?" "unlink-window -k"
-bind -n C-S-DC unlink-window -k
+setw -g window-status-current-fg colour1
+setw -g window-status-current-bg colour237
+setw -g window-status-current-attr bold
+setw -g window-status-current-format ' #I#[fg=colour249]:#[fg=colour255]#W#[fg=colour249]#F '
 
-# Meta-key binds
-bind -n M-1 select-window -t 1
-bind -n M-2 select-window -t 2
-bind -n M-3 select-window -t 3
-bind -n M-4 select-window -t 4
-bind -n M-5 select-window -t 5
-bind -n M-6 select-window -t 6
-bind -n M-7 select-window -t 7
-bind -n M-8 select-window -t 8
-bind -n M-9 select-window -t 9
-bind -n M-0 select-window -t 10
+setw -g window-status-fg colour9
+setw -g window-status-bg colour18
+setw -g window-status-attr none
+setw -g window-status-format ' #I#[fg=colour237]:#[fg=colour250]#W#[fg=colour244]#F '
 
+setw -g window-status-bell-attr bold
+setw -g window-status-bell-fg colour255
+setw -g window-status-bell-bg colour1
 
-# Only resize windows to the size of the smallest attached viewer of the window,
-# rather than the smallest attached viewer of the entire session. Without this,
-# a small terminal viewing a different window of a given session will result in
-# the other window the small terminal is not looking at also being resized.
-setw -g aggressive-resize on
-
-# Get rid of the timer for escape sequences so "ESC" in vim works as expected.
-# Without this, pressing ESC and immediately hitting an arrow key will result
-# in the cursor moving without entering command mode at all; essentially
-# ignoring the escape.
-set -s escape-time 0
-
-# Status on top (1.7+ feature, patch required for 1.6)
-set -g status-position top
-
-# Allow the status bar to be
-set -g status-bg default
-set -g status-fg white
-
-## Forced by tmux to use ignorant british spelling of color.
-#set -g status-left "#[fg=colour245,bg=colour234,bold] #(echo \"\$USER\")@#h "
-#set -g status-left-length 20
-#set -g status-right ""
-#setw -g window-status-format "#[fg=colour245,bg=colour234,bold]#I#[fg=colour250,bold]:#[fg=colour250,bold][#[default,fg=colour250,bg=colour234,bold]#W#[bold]] "
-#setw -g window-status-current-format "#[fg=colour245,bg=color234,bold]#I#[fg=colour250,bold]:#[fg=colour245,bold][#[fg=colour250,bg=colour234,bold]#W#[fg=colour245,bold]] "
-
-# Show email count in statusbar
-#set -g status-left '#S | #(cat ~/.adminlh-mail.txt) ⁝'
-#set -g status-left-length 32
-
-# Show nowplaying, weather, uptime and loadavg in statusbar
-set -g status-right '⁝ #(nowplaying) ⁝ Weather: #(sh ~/.i3/scripts/weather) ⁝ Uptime: #(uptime | cut -d " " -f4-5 | cut -d"," -f1) ⁝ #(cut -d " " -f1-3 /proc/loadavg) ⁝ %R ⁝ %d %b | #h'
-set -g status-right-length 150
-
-# Show window status activity in statusbar
-set -g window-status-activity-attr bold
-set -g window-status-format ' #I< #W ⁝'
-set -g window-status-current-format '#I> #W ⁝'
-
-# Border foreground color
-set -g pane-border-fg colour245
-set -g pane-active-border-fg colour39
-
-# Message colors
-set -g message-fg colour16
-set -g message-bg colour221
+# messages
 set -g message-attr bold
-
-# Status interval
-set -g status-interval 5
-
-# Activity
-setw -g monitor-activity on
-set -g visual-activity on
-
-# Alternate
-setw -g alternate-screen on
-
-# Mouse binds
-#set -g mouse-utf8 on
-
-# Mouse binds resize
-#set -g mouse-resize-pane on
-#set -g mouse-select-pane on
-# With this option on, you must hold shift when selecting text with the mouse.
-#set -g mouse-select-window on
-
-# Present a menu of URLs to open from the visible pane. sweet.
-bind-key U capture-pane \; save-buffer ~/tmp/tmux-buffer \; split-window -l 10 "urlview ~/tmp/tmux-buffer"
-
-# Numbering starts at 1
-set -g base-index 1
-set -g pane-base-index 1
-
-# Powerline
-#source $HOME/.config/powerline/bindings/tmux/powerline.conf
-
-# Idle screensaver
-#set -g lock-after-time 650
-#set -g lock-command "/usr/bin/cmatrix -C blue"
-#set -g lock-command "/usr/bin/pipes.sh -t 4"
-#set -g lock-command "/usr/bin/pipesX.sh -t 4"
-#set -g lock-command "~/bin/rain.sh"
+set -g message-fg colour232
+set -g message-bg colour16
 
 # vim: set filetype=bash:
