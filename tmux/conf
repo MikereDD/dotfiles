@@ -97,6 +97,12 @@ bind-key C-q confirm-before kill-pane
 bind-key [ copy-mode
 bind-key ] paste-buffer -s \015
 
+# Vim-bindings for copying into tmux buffer
+bind P paste-buffer
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection
+bind-key -T copy-mode-vi r send-keys -X rectangle-toggle
+
 # shorten command delay
 set -sg escape-time 1
 
