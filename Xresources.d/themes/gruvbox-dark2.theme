@@ -1,0 +1,51 @@
+! Base16 Gruvbox-Dark
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+
+#define base00 #282828
+#define base01 #cc241d
+#define base02 #98971a
+#define base03 #d79921
+#define base04 #458588
+#define base05 #b16286
+#define base06 #689d6a
+#define base07 #a89984
+#define base08 #928374
+#define base09 #fb4934
+#define base0A #b8bb26
+#define base0B #fabd2f
+#define base0C #83a598
+#define base0D #d3869b
+#define base0E #8ec07c
+#define base0F #ebdbb2
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
