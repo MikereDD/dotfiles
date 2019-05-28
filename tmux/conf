@@ -201,12 +201,12 @@ set -g status-bg colour236
 set -g status-fg colour248
 set -g status-attr dim
 set -g status-left ''
-set -g status-right '#[fg=colour248,bg=colour234,bold] %d/%m #[fg=colour248,bg=colour236,bold] %H:%M:%S '
+set -g status-right '#[fg=colour248,bg=colour234,bold] %d/%m #[fg=colour248,bg=colour233,bold] %H:%M '
 set -g status-right-length 50
 set -g status-left-length 20
 
 setw -g window-status-current-fg colour248
-setw -g window-status-current-bg colour237
+setw -g window-status-current-bg colour235
 setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour249]:#[fg=colour255]#W#[fg=colour247]#F '
 
