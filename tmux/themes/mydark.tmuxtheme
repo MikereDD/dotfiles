@@ -11,7 +11,7 @@ set -g status-position bottom
 set -g status-justify left
 #set -g status-justify centre
 set -g status-fg colour249
-set -g status-bg colour236
+set -g status-bg colour233
 set -g status-attr dim
 
 # Status Bar Left
@@ -21,18 +21,18 @@ set -g status-left-length 20
 
 # Status Bar Right
 set -g status-right-style fg=colour249,bg=colour233
-set -g status-right '#[fg=colour250,bg=colour232,bold] %d/%m #[fg=colour250,bg=colour232,bold] %H:%M '
+set -g status-right '#[fg=colour250,bg=colour233,bold] %d/%m #[fg=colour250,bg=colour233,bold] %H:%M '
 set -g status-right-length 50
 
 # Window Status
 setw -g window-status-fg colour248
-setw -g window-status-bg colour236
+setw -g window-status-bg colour233
 setw -g window-status-attr none
 setw -g window-status-format ' #I#[fg=colour248]:#[fg=colour250]#W#[fg=colour249]#F '
 
 # Current Window Status
 setw -g window-status-current-fg colour249
-setw -g window-status-current-bg colour233
+setw -g window-status-current-bg colour236
 setw -g window-status-current-attr bold
 setw -g window-status-current-format ' #I#[fg=colour252]:#[fg=colour254]#W#[fg=colour250]#F '
 
@@ -66,11 +66,11 @@ set-option -g bell-action none
 
 # Messages
 set -g message-attr bold
-set -g message-fg colour249
-set -g message-bg colour233
+set -g message-fg colour252
+set -g message-bg colour232
 
 # Command Message
-set -g message-command-style fg=colour240,bg=colour233
+set -g message-command-style fg=colour252,bg=colour232
 
 #  Modes
 setw -g clock-mode-colour colour249
