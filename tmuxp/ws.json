@@ -1,0 +1,109 @@
+{
+"windows":[
+    {
+        "window_index": 0,
+        "window_name": "home",
+        "start_directory": "~/",
+        "panes": [
+            "echo 'home pane'"
+        ]
+    },
+    {
+        "window_index": 1,
+        "window_name": "aquarios",
+        "start_directory": "~/android/aquarios",
+        "panes": [
+          {
+            "shell_command": [
+              "virtualenv2 venv;source venv/bin/activate;source ~/android/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
+            ]
+          }
+        ]
+    },
+    {
+        "window_index": 2,
+        "window_name": "aquarios-caf",
+        "start_directory": "~/android/aqua-caf",
+        "panes": [
+          {
+            "shell_command": [
+              "virtualenv2 venv;source venv/bin/activate;source ~/android/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
+            ]
+          }
+        ]
+    },
+    {
+        "window_index": 3,
+        "window_name": "aquarios-mod",
+        "start_directory": "~/android/aquarios-mod",
+        "panes": [
+          {
+            "shell_command": [
+              "virtualenv2 venv;source venv/bin/activate;source ~/android/.aliases/android_aliases;source ~/android/.aliases/aquarios_aliases"
+            ]
+          }
+        ]
+    },
+    {
+        "window_index": 4,
+        "window_name": "pcloud",
+        "start_directory": "~/pcloud",
+        "panes": [
+            "echo 'pcloud pane'"
+        ]
+    },
+    {
+        "window_index": 5,
+        "window_name": "git",
+        "start_directory": "~/git",
+        "panes": [
+            "echo 'git pane'"
+        ]
+    },
+    {
+        "window_index": 6,
+        "window_name": "gerrit",
+        "start_directory": "~/gerrit",
+        "panes": [
+            "echo 'gerrit pane'"
+        ]
+    },
+    {
+        "window_index": 7,
+        "window_name": "vim",
+        "start_directory": "~/",
+        "panes": [
+          {
+            "shell_command": [
+              "vim"
+            ]
+          }
+        ]
+    },
+    {
+        "window_index": 8,
+        "window_name": "vifm",
+        "start_directory": "~/",
+        "panes": [
+          {
+            "shell_command": [
+              "vifm"
+            ]
+          }
+        ]
+    },
+    {
+        "window_index": 9,
+        "window_name": "gotop",
+        "start_directory": "~/",
+        "panes": [
+          {
+            "shell_command": [
+              "gotop"
+            ]
+          }
+        ]
+    }
+],
+"session_name": "WS-tmux"
+}
