@@ -31,6 +31,7 @@ Xft.lcdfilter:                    lcddefault
 !#include ".Xresources.d/themes/gruvbox-dark-hard.theme"
 !#include ".Xresources.d/themes/irblack.theme"
 !#include ".Xresources.d/themes/manjaro.theme"
+!#include ".Xresoueces.d/themes/nuke.theme"
 !#include ".Xresources.d/themes/outrun-dark.theme"
 !#include ".Xresources.d/themes/papercolor-dark.theme"
 !#include ".Xresources.d/themes/railscasts.theme"
