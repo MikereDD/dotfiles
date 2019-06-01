@@ -9,7 +9,9 @@ set undolevels=400
 set novimhelp
 set norunexec
 set noiec
-colorscheme mine
+" colorscheme mine
+" colorscheme ph
+colorscheme nuke
 set fusehome=/tmp/vifm_FUSE
 set timefmt=%m/%d\ %H:%M
 set wildmenu
