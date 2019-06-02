@@ -38,26 +38,31 @@ popup_during_fullscreen ignore
 # Colors {{{
 # class                 border  backgr. text    indicator
 #client.background       #181e31
-client.background       #060606
+#client.background       #060606
 #client.background       #1c1c1c
+client.background       #191919
 #statusline
 #client.focused          #181e31 #101116 #d2d2d2 #2e9ef4
 #client.focused          #090909 #101010 #999999 #969696
 #client.focused          #262626 #121212 #d0d0d0 #969696
 #client.focused          #262626 #1c1c1c #d0d0d0 #969696
-client.focused          #303030 #060606 #949494 #eeeeee
+#client.focused          #303030 #060606 #949494 #eeeeee
+client.focused          #999999 #191919 #FEFEFA #E8E8E8
 #client.focused_inactive #181e31 #101116 #666666 #484e50
 #client.focused_inactive #1e1e1e #060606 #333333 #444444
 #client.focused_inactive  #080808 #1c1c1c #303030 #444444
-client.focused_inactive #121212 #060606 #262626 #121212
+#client.focused_inactive #121212 #060606 #262626 #121212
+client.focused_inactive #333333 #191919 #C1C1C1 #484E50
 #client.unfocused        #181e31 #101116 #515152 #292d2e
 #client.unfocused        #0e0e0e #060606 #222222 #222222
 #client.unfocused        #1c1c1c #161616 #262626 #222222
-client.unfocused        #1c1c1c #060606 #262626 #444444
+#client.unfocused        #1c1c1c #060606 #262626 #444444
+client.unfocused        #333333 #191919 #9C9C9C #292D2E
 #client.urgent           #700000 #900000 #d2d2d2 #ffffff
 #client.urgent           #330909 #000000 #ffffff #330909
 #client.urgent           #ffd77ff #080808 #eeeeee #ff0000
-client.urgent           #5f0000 #060606 #5f0000 #870000
+#client.urgent           #5f0000 #060606 #5f0000 #870000
+client.urgent           #AF0000 #191919 #FF8080 #E60000
 # }}}
 
 # binds {{{
@@ -69,7 +74,8 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+p exec dmenu_run -fn -*-termsyn-*-*-*-*-12-*-*-*-*-*-*-* -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
-bindsym $mod+p exec dmenu_run -fn "Comfortaa-10" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
+#bindsym $mod+p exec dmenu_run -fn "Comfortaa-10" -nb "#060606" -nf "#949494" -sb "#121212" -sf "#eeeeee"
+bindsym $mod+p exec dmenu_run -fn "Comfortaa-10" -nb "#191919" -nf "#E8E8E8" -sb "#191919" -sf "#EEEEEE"
 
 # volume
 bindsym XF86AudioMute exec amixer -q sset PCM toggle
@@ -231,11 +237,12 @@ assign [class="(?i)firefox"] → $WS2
 assign [class="(?i)chromium"] → $WS2
 assign [class="(?i)dwb"] → $WS2
 assign [class="(?i)thunderbird"] → $WS2
+assign [class="(?i)vivaldi-stable"] → $WS2
 
 # Middle Monitor
 assign [class="(?i)libreoffice"] → $WS4
 assign [class="(?i)virtualbox"] → $WS6
-assign [class="(?i)irssi"] → $WS5
+assign [class="(?i)IRC"] → $WS5
 assign [class="(?i)Telegram"] → $WS5
 assign [class="(?i)MPlayer"] → $WS7
 
@@ -243,7 +250,7 @@ assign [class="(?i)MPlayer"] → $WS7
 assign [class="(?i)Gimp"] → $WS8
 assign [class="(?i)inkscape"] → $WS8
 assign [class="(?i)darktable"] → $WS8
-assign [class="(?i)build"] → $WS9
+assign [class="(?i)AndroidBuild"] → $WS9
 
 
 # floating
@@ -257,9 +264,9 @@ for_window [class="(?i)virtualbox"] floating enable
 
 
 # layout per app
-for_window [title="zeohn"] border none
+for_window [title="AndroidBuild"] border none
 for_window [class="URxvt"] border none
-for_window [title="code"] border none
+for_window [title="IRC"] border none
 for_window [class="URxvt"] border none
 for_window [instance="gimp"] floating enable resize shrink right 28px or 28 ppt
 for_window [title="GNU Image Manipulation Program"] floating disable border none
@@ -276,6 +283,7 @@ for_window [class="(?i)chromium"] layout tabbed border none
 for_window [title="Chromium"] layout tabbed border none
 for_window [class="(?i)opera"] layout tabbed border none
 for_window [class="(?i)dwb"] layout tabbed border none
+for_window [class="(?i)vivaldi-stable"] layout tabbed border none
 # }}}
 
 # bar {{{
@@ -294,34 +302,40 @@ bar {
         font pango: Comfortaa, Icons 11
 
 colors {
-        #background         #191f2d
-        #background         #060606
-        #background         #161616
-        #background         #1c1c1c
+        #background          #191f2d
+        #background          #060606
+        #background          #161616
+        #background          #1c1c1c
         #background          #101010
-        background          #000000
+        #background          #000000
+        background          #191919
 
         #statusline         #999999
-        statusline         #b2b2b2
+        #statusline         #b2b2b2
+        statusline         #FEFEFA
         # class            border  backgr  text    indicator
         #focused_workspace  #181e31 #101116 #d2d2d2
         #focused_workspace  #090909 #060606 #d2d2d2 #969696
         #focused_workspace  #262626 #121212 #d0d0d0 #969696
         #focused_workspace  #262626 #1c1c1c #d2d2d2 #969696
-        focused_workspace  #1c1c1c #010101 #f7f7f7
+        #focused_workspace  #1c1c1c #010101 #f7f7f7
+        focused_workspace  #999999 #191919 #FEFEFA
         #active_workspace   #181e31 #101116 #999999
         #active_workspace   #1e1e1e #060606 #999999 #444444
         #active_workspace   #080808 #161616 #303030 #444444
         #active_workspace   #080808 #1c1c1c #303030 #444444
-        active_workspace   #000000  #010101 #f7f7f7 #444444
+        #active_workspace   #000000  #010101 #f7f7f7 #444444
+        active_workspace   #333333 #191919 #F7F7F7
         #inactive_workspace #181e31 #101116 #515152
         #inactive_workspace #0e0e0e #090909 #666666 #222222
         #inactive_workspace #161616 #1c1c1c #262626 #222222
-        inactive_workspace #080808 #000000 #565656 #222222
+        #inactive_workspace #080808 #000000 #565656 #222222
+        inactive_workspace #333333 #191919 #A5A5A5
         #urgent_workspace   #900000 #757a83 #ffffff
         #urgent_workspace   #330909 #000000 #ffffff #330909
         #urgent_workspace   #ffd77ff #080808 #eeeeee #ff0000
-        urgent_workspace   #e4e4e4 #121212 #e4e4e4
+        #urgent_workspace   #e4e4e4 #121212 #e4e4e4
+        urgent_workspace   #2F343A #191919 #F6F6F6
     }
 
 }
@@ -337,4 +351,8 @@ bindsym $mod+Shift+s exec /usr/share/i3lock-fancy-multimonitor/lock
 
 # nm-applet {{{
 exec 'nm-applet'
+#exec --no-startup-id i3-msg 'workspace 5; exec telegram-desktop'
+#exec --no-startup-id i3-msg 'workspace 5; exec urxvt -name IRC -title IRC -e "irssi"'
+#exec --no-startup-id i3-msg 'workspace 2; exec vivaldi-stable'
+#exec --no-startup-id i3-msg 'workspace 9; exec urxvt -name AndroidBuild -title AndroidBuild -e sh ~/scripts/apps/start-tmuxp.sh'
 # }}}
