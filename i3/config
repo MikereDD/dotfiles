@@ -22,8 +22,8 @@ font pango: Google Sans, FontAwesome 9
 # monitors
 set $resize_step 100
 set $screenR DVI-D-0
-set $screenM HDMI-2
-set $screenL HDMI-0
+set $screenM HDMI-0
+set $screenL DP-0
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -284,6 +284,10 @@ for_window [title="Chromium"] layout tabbed border none
 for_window [class="(?i)opera"] layout tabbed border none
 for_window [class="(?i)dwb"] layout tabbed border none
 for_window [class="(?i)vivaldi-stable"] layout tabbed border none
+
+# You can also use any non-zero value if you'd like to have a border
+for_window [class=".*"] border pixel 0
+
 # }}}
 
 # bar {{{
