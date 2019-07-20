@@ -1,82 +1,86 @@
 [user]
-        name = Mike Redd
-        email = *@*
+	name = Mike Redd
+	email = *@*
 [core]
-        editor = $EDITOR
-        pager = $PAGER
-        excludesfile = /home/typezero/.gitignore_global
-        whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+	editor = $EDITOR
+	pager = $PAGER
+	excludesfile = /home/typezero/.gitignore_global
+	whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
 [sendemail]
-        smtpencryption = tls
-        smtpserver = smtp.gmail.com
-        smtpuser = *@*
-        smtpserverport = 465
+	smtpserver = smtp.gmail.com
+	smtpuser = *@*
+	smtpencryption = tls
+	chainreplyto = false
+	smtpserverport = 587
+	smtppass = 
 [color]
 	ui = true
 	interactive = auto
-        pager = true
+	pager = true
 	branch = auto
 	diff = auto
 	status = auto
 [color "status"]
-        added = yellow
-        changed = green
-        untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [color "branch"]
-        added = yellow reverse
-        local = yellow
-        remote = green
+	added = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-        meta = yellow bold
-        frag = magenta bold
-        old = red bold
-        new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [pager]
-        diff =
-        external =
+	diff =
+	external =
 [diff]
-        tool = vimdiff
+	tool = vimdiff
 [merge]
-        tool = diffconflicts
+	tool = diffconflicts
 [difftool]
-        prompt = false
+	prompt = false
 [alias]
-        ba = branch -a
-        bav = branch -a -v
-        bl = branch -l
-        br = branch -r
-        s = status -s -b
-        diff = diff
-        add = add
-        ca = commit -a
-        cm = commit -m
-        po = push origin
-        co = checkout
-        cp = cherry-pick
-        clo = clone
-        p = pull
-        m = merge
-        cb = git-create-branch
-        rv = remote -v
-        raus = remote add upstream
-        f = fetch
-        wc = whatchanged
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-        dd = diff --color-words
-        dc = diff --cached
-        bb = branch -vv
-        bc = branch --contains
-        f = fetch --all --tags
-        r = rebase
-        re = reset --hard @{upstream}
-        short = rev-parse --short
-        mnf = merge --no-ff
-        vdm = mergetool -t vimdiff
-        graph = log --graph --oneline --decorate
+	ba = branch -a
+	bav = branch -a -v
+	bl = branch -l
+	br = branch -r
+	s = status -s -b
+	diff = diff
+	add = add
+	ca = commit -a
+	cm = commit -m
+	po = push origin
+	co = checkout
+	cp = cherry-pick
+	clo = clone
+	p = pull
+	m = merge
+	cb = git-create-branch
+	rv = remote -v
+	raus = remote add upstream
+	f = fetch
+	wc = whatchanged
+	lgol = log --pretty=oneline
+	lgll = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgllr = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+	dd = diff --color-words
+	dc = diff --cached
+	bb = branch -vv
+	bc = branch --contains
+	fat = fetch --all --tags
+	r = rebase
+	re = reset --hard @{upstream}
+	short = rev-parse --short
+	mnf = merge --no-ff
+	vdm = mergetool -t vimdiff
+	graph = log --graph --oneline --decorate
 	sh = !git-sh
 [mergetool "diffconflicts"]
-        cmd = diffconflicts $EDITOR $BASE $LOCAL $REMOTE $MERGED
-        trustExitCode = true
-        keepBackup = false
+	cmd = vim -c DiffConflicts \"$MERGED\" \"$BASE\" \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+	keepBackup = false
 [push]
-        default = current
+	default = current
