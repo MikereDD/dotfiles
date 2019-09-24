@@ -5,20 +5,11 @@
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #--------------------------------------------
 
-## sysinfo
-alias sysinfoarchlogo="sh $HOME/scripts/system/sysinfo.sh"
-alias sysinfoirc="sh $HOME/scripts/system/newsysinfo.sh"
-#alias ssinfo="sh $HOME/scripts/system/ssinfo.sh"
-
-## :)
-alias COLORSPOOF="perl ~/scripts/misc/hypnotoad.pl ; sh ~/scripts/misc/pacman_nom.sh ; archey ; sh ~/scripts/misc/colors.sh"
-
 # reset & source bash_profile
 alias resetbash="reset;source $HOME/.bash_profile"
 alias resetX="xrdb -merge $HOME/.Xresources"
 
 # ls commands
-#alias ls='ls -hF --color=auto'
 alias lr='ls -R'                    # recursive ls
 alias ll='ls -l'
 alias la='ll -A'
@@ -33,11 +24,6 @@ alias lsA="ls -A --color=always"
 alias lsAl="ls -Al --color=always"
 alias lsg="ls --color=always | grep $@"
 alias llee='tree --dirsfirst -ChFupDaLg 1'
-#alias ls="ls++ "
-#alias lsl="ls++ -l"
-#alias lsal="ls++ -al"
-#alias lsA="ls++ -A"
-#alias lsAl="ls++ -Al"
 alias listdira="ls -la | grep "^d" && ls -la | grep "^-" && ls -la | grep "^l""
 alias listdirb="ls -la | grep "^d" && ls -la | grep -v "^d""
 
@@ -79,36 +65,15 @@ alias thismonth="cal -m $(date +"%m %Y" -d "this month")"
 alias upT="uptime"
 alias exi="clear;exit"
 alias x="xinit"
-alias reboot="sudo reboot"
-alias shutdown="sudo shutdown -h now"
+alias reboot="reboot"
+alias shutdown="shutdown -h now"
 alias :q="exit"
-alias yaourtupdate="yaourt -Syu --aur"
-## sudo
-#alias sudo='sudo '
-# privileged access
-if [ $UID -ne 0 ]; then
-    alias sudo='sudo '
-    alias scat='sudo cat'
-    alias svim='sudo vim'
-    alias sroot='sudo su'
-    alias sreboot='sudo reboot'
-    alias shalt='sudo halt'
-    alias supdate='sudo pacman -Su'
-    alias snetcfg='sudo netcfg2'
-fi
-
 
 ## du, df
 alias d="du -h -d=1"
-#alias du1='du --max-depth=1'
 alias df='df -h'
 alias du='du -c -h'
-#alias duh="du -h --max-depth=1 $1 | sort -n -r"
 alias mountedinfo="df -hT"
-
-## encrypt
-alias mntdbcrypt="encfs $HOME/.typ0dboxs/ $HOME/Dropbox-typo/TiBu/"
-alias umntdbcrypt="fusermount -u $HOME/Dropbox-typo/TiBu/"
 
 ## safety features
 alias cp='cp -i'
@@ -142,7 +107,6 @@ alias cpuALL="mpstat -P ALL"
 
 ## editor('s)
 # nano
-alias na="nano -w"
 # vi(m)
 alias view="vim -p -R"
 alias vp="vim -p"
@@ -150,50 +114,6 @@ alias ebrc="vim $HOME/.bashrc && source $HOME/.bashrc"
 alias ebrca="vim $HOME/.bash_aliases && source $HOME/.bashrc_aliases"
 alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
 alias vim2html="$HOME/scripts/office/vim2html.sh "
-# edit sudo
-#alias visudo="sudo bash -c 'umask 0227;F=/etc/sudoers;T=\$F.tmp;cp -vPf \$F \$T;vim -u /dev/null --noplugins -mpX -c '\''exe \"set nu noswf nobk noaw write ft=sudoers\"|syn on|colorscheme desert'\'' \$T; visudo -cs -f \$T && mv -vf \$T \$F'"
-
-## translator
-alias translate="sh ~/bin/tw-translator-helper.sh"
-
-## browser
-# elinks
-alias web="cd ~/downloads/http/ && elinks https://encrypted.google.com"
-# uzbl
-#alias uzblweb="$HOME/.config/uzbl/scripts/uzbl-tabbed & "
-# vimprobable2
-#alias vimprob2="sh $HOME/scripts/net/strttabbedvimprobable2.sh"
-# chromium
-#alias chromium="chromium-browser"
-
-## security
-alias firewall="sudo /usr/local/etc/DTfw/dtfw"
-alias killrepeat="/usr/bin/xset r on"
-
-## find
-#alias findfs50="find . -type f -size +50000k -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'"
-
-## archive
-alias munrar="sh ~/scripts/archive/unrar.sh"
-alias urarpl="perl ~/scripts/archive/unrar.pl"
-#alias massunrar="for name in `find . -iname \*.rar`; do unrar x $name; done"
-alias un="tar -zxvf"
-alias prepair="par2repair *.par2"
-alias szipaa="sh ~/scripts/archive/7zip-AA.sh"
-alias szipmh="sh ~/scripts/archive/7z-multihelp.sh"
-alias sitegrab="sh ~/apps/bin/dtsitegrab/dtsitegrab "
-
-
-
-## screen
-alias suscrn="screen -c $HOME/.screenrc_su"
-alias apkscrn="screen -c $HOME/.screenrc_apk"
-alias scrnna="screen -dr a"
-alias scrnc="screen -dr c"
-alias scrnsu="screen -dr su"
-
-# tmux
-alias tmux="tmux -f ~/.tmux.conf"
 
 #chmod
 #############
@@ -206,15 +126,8 @@ alias chmodfile="find . -type d -exec chmod $@ {} \;"
 alias grpdirrw="find . -type d -exec chmod ugo+rwx {} \;"
 alias grpfilerw="find . -type f -exec chmod ugo+rw {} \;"
 
-# Vbox
-alias virtbox="virtualbox &"
-alias rebuildvboxkmods="sudo vboxbuild"
-
 # calculator
 calc() { echo "scale=3;$@" | bc -l ; }
-
-## dropbox
-alias dburl="dropbox puburl"
 
 # SSH Gen Keys
 # ECDSA
@@ -223,5 +136,17 @@ alias genecdsa="ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)-$(date -I)"
 alias gendsa="ssh-keygen -t dsa -b 1024 -C "$(whoami)@$(hostname)-$(date -I)""
 # RSA
 alias genrsa="ssh-keygen -t rsa -b 4096 -C "$(whoami)@$(hostname)-$(date -I)""
+#PAIMON
+alias genrsapaimon="ssh-keygen -t rsa -b 4096 -C "typezero@paimon.64-b.it-$(date -I)""
+
+# gotop statusbar
+alias gotops="gotop -c mydark -s"
+# gotop average cpu and statusbar
+alias gotopas="gotop -c mydark -a -s"
+# gotop minimal and statusbar
+alias gotopms="gotop -c mydark -m -s"
+
+# lynx
+alias lynx="lynx -cfg=~/.lynxrc"
 
 # vim: set filetype=bash:

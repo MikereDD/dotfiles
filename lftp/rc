@@ -23,7 +23,7 @@ alias edit "eval -f \"get $0 -o ~/.lftp/edit.tmp.$$ && shell \\\"cp -p ~/.lftp/e
 #set xfer:max-redirections 10
 
 # save plain text passwords in ~/.lftp/bookmarks on 'bookmark add' command. Off by default.
-set bmk:save-passwords yes
+set bmk:save-passwords true
 
 #The value is used when 'open' is used with just host name without protocol. Default is 'ftp'.
 set cmd:default-protocol ftp
@@ -56,11 +56,12 @@ set ftp:passive-mode true
 # ssl settings are only available if lftp was compiled with an ssl/tls library.
 set ftp:ssl-allow true
 
-set ftp:ssl-force false
+set ftp:ssl-force true
 set ftp:ssl-auth TLS
 
 # if true, request ssl connection for data transfers. This is cpu-intensive but provides privacy. Default is false.
 set ftp:ssl-protect-data true
+set ftp:ssl-protect-list true
 
 # if true, request ssl connection for data  transfer  between  two ftp  servers  in  FXP mode. CPSV or SSCN command
 # will be used in that case. If ssl connection fails for some reason,  lftp  would try unprotected FXP transfer unless
@@ -77,6 +78,9 @@ set cmd:csh-history on
 #set cmd:move-background-detach yes
 #
 set ssl:verify-certificate false
+
+# ssl cert
+set ssl:ca-file "/etc/ssl/certs/ca-certificates.crt"
 
 # Number of jobs run in parallel in non-interactive mode. For example, this may be useful for scripts with multiple 'get' commands.
 # Note that setting this to a value greater than 1 changes conditional execution behaviour, basically makes it inconsistent.
