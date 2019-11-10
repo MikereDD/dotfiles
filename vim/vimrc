@@ -58,7 +58,8 @@ Bundle 'git://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'git://github.com/bronson/vim-trailing-whitespace.git'
 Bundle 'git://github.com/davidhalter/jedi-vim.git'
 Bundle 'git://github.com/zaki/zazen.git'
-Bundle 'git://github.com/bling/vim-airline'
+Bundle 'git://github.com/xolox/vim-misc.git'
+Bundle 'git://github.com/flazz/vim-colorschemes.git'
 filetype plugin indent on
 
 " }}}
@@ -269,12 +270,12 @@ syntax on
 set background=dark
 let g:badwolf_tabline = 2
 let g:badwolf_html_link_underline = 0
-colorscheme tomorrow-dark
+colorscheme codedark
 
 " Reload the colorscheme whenever we write the file.
-augroup color_tomorrow-dark
+augroup codedark
     au!
-    au BufWritePost  tomorrow-dark.vim color mymod
+    au BufWritePost codedark.vim color codedark
 augroup END
 
 " Highlight VCS conflict markers
