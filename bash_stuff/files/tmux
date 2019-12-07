@@ -40,6 +40,8 @@ alias tmuxadtbuild="tmux a -dt AndroidBuild"
 alias tmuxkillbuild="tmux kill-session -t AndroidBuild"
 # aquarios tmux session
 alias tmuxplab="tmuxp load $HOME/.tmuxp/aquabuild.json"
+# tmux-build tmux session
+alias tmuxptbuild="tmuxp load $HOME/.tmuxp/tmux-build.json"
 # dev tmux session
 alias tmuxpdev="tmuxp load $HOME/.tmuxp/dev.json"
 # ws tmux session
