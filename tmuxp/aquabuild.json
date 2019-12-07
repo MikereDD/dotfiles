@@ -64,7 +64,23 @@
         "window_name": "vim",
         "start_directory": "~/",
         "panes": [
-            "echo 'vim pane'"
+          {
+            "shell_command": [
+              "vim"
+            ]
+          }
+        ]
+     },
+    {
+        "window_index": 8,
+        "window_name": "gotop",
+        "start_directory": "~/",
+        "panes": [
+          {
+            "shell_command": [
+              "gotop"
+            ]
+          }
         ]
     }
 ],
