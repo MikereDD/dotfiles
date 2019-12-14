@@ -10,21 +10,20 @@
     },
     {
         "window_index": 1,
-        "window_name": "aquarios",
+        "window_name": "aqua",
         "start_directory": "~/android/aquarios",
         "panes": [
-            "echo 'aqua build pane'"
+            "echo 'aquarios build pane'"
         ],
         "focus": true
     },
     {
         "window_index": 2,
-        "window_name": "dirtyunicorns",
+        "window_name": "du",
         "start_directory": "~/android/du-q10x",
         "panes": [
-            "echo 'du build pane'"
-        ],
-        "focus": true
+            "echo 'dirtyunicorns build pane'"
+        ]
     },
     {
         "window_index": 3,
