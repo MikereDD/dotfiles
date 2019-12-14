@@ -19,6 +19,15 @@
     },
     {
         "window_index": 2,
+        "window_name": "dirtyunicorns",
+        "start_directory": "~/android/du-q10x",
+        "panes": [
+            "echo 'du build pane'"
+        ],
+        "focus": true
+    },
+    {
+        "window_index": 3,
         "window_name": "git",
         "start_directory": "~/git",
         "panes": [
@@ -26,7 +35,7 @@
         ]
     },
     {
-        "window_index": 3,
+        "window_index": 4,
         "window_name": "gerrit",
         "start_directory": "~/gerrit",
         "panes": [
@@ -34,7 +43,7 @@
         ]
     },
     {
-        "window_index": 4,
+        "window_index": 5,
         "window_name": "dropbox",
         "start_directory": "~/Dropbox",
         "panes": [
@@ -42,7 +51,7 @@
         ]
     },
     {
-        "window_index": 5,
+        "window_index": 6,
         "window_name": "pcloud",
         "start_directory": "~/pcloud",
         "panes": [
@@ -50,7 +59,7 @@
         ]
     },
     {
-        "window_index": 6,
+        "window_index": 7,
         "window_name": "box",
         "start_directory": "~/Box",
         "panes": [
@@ -58,7 +67,7 @@
         ]
     },
     {
-        "window_index": 7,
+        "window_index": 8,
         "window_name": "vim",
         "start_directory": "~/",
         "panes": [
@@ -70,7 +79,7 @@
         ]
      },
     {
-        "window_index": 8,
+        "window_index": 9,
         "window_name": "gotop",
         "start_directory": "~/",
         "panes": [
