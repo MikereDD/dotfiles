@@ -12,15 +12,15 @@
 #export XBMC_HOME=/usr/share/XBMC
 
 # Start ssh-agent
-if ! pgrep -u "$USER" ssh-agent > /dev/null; then
-    ssh-agent > ~/.ssh-agent-thing
-fi
-if [[ ! "$SSH_AUTH_SOCK" ]]; then
-    eval "$(<~/.ssh-agent-thing)"
-fi
+#if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+#    ssh-agent > ~/.ssh-agent-thing
+#fi
+#if [[ ! "$SSH_AUTH_SOCK" ]]; then
+#    eval "$(<~/.ssh-agent-thing)"
+#fi
 
 # force ssh to keycheck
-alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet ~/.ssh/id_?sa*) && ssh'
+#alias ssh='eval $(/usr/bin/keychain --eval --agents ssh -Q --quiet ~/.ssh/id_?sa*) && ssh'
 
 # GPG Key
 #export GPGKEY=
@@ -39,25 +39,14 @@ fi
 
 # pkgfile
 [[ -f /usr/share/doc/pkgfile/command-not-found.bash ]] && . /usr/share/doc/pkgfile/command-not-found.bash
+
 # bash_stuff - my bash files
-# source ~/.bash_stuff/files/*
 if [ -d ~/.bash_stuff/files/ ]; then
     for f in ~/.bash_stuff/files/*; do
         . $f
     done
 fi
-## old ... need to remove
-#[[ -f ~/.bash_stuff/aliases/aliases ]] && . ~/.bash_stuff/bash_aliases
-#[[ -f ~/.bash_stuff/bash_binds ]] && . ~/.bash_stuff/bash_binds
-#[[ -f ~/.bash_stuff/bash_colors ]] && . ~/.bash_stuff/bash_colors
-#[[ -f ~/.bash_stuff/bash_completion ]] && . ~/.bash_stuff/bash_completion
-#[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_completion
-#[[ -f ~/.bash_stuff/bash_exports ]] && . ~/.bash_stuff/bash_exports
-#[[ -f ~/.bash_stuff/bash_functions ]] && . ~/.bash_stuff/bash_functions
-#[[ -f ~/.bash_stuff/bash_sfs ]] && . ~/.bash_stuff/bash_sfs
-#[[ -f ~/.inputrc ]] && . ~/.inputrc
-#[[ -f ~/.dir_colors ]] && eval `dircolors -b ~/.dir_colors`
-#[[ -f ~/.git-prompt.sh ]] && . ~/.git-prompt.sh
+
 # dmenu - my demnu
 if [ -f ~/.dmenurc ]; then
     source ~/.dmenurc
@@ -103,16 +92,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
         eval "$("$BASE16_SHELL/profile_helper.sh")"
 
-# Bash shell driver for go (http://code.google.com/p/go-tool/).
-#function gcd {
-#$    export GO_SHELL_SCRIPT=$HOME/.__tmp_go.sh
-#    python2 -m go $*
-#    if [ -f $GO_SHELL_SCRIPT ] ; then
-#        source $GO_SHELL_SCRIPT
-#    fi
-#    unset GO_SHELL_SCRIPT
-#}
-
 bash_prompt_command() {
     # How many characters of the $PWD should be kept
     local pwdmaxlen=25
@@ -155,8 +134,11 @@ bash_prompt() {
 
 # Bash Prompt
 if [ -f ~/.bash_stuff/prompt ]; then
+    source ~/.git-completion.bash
+    source ~/.git-prompt.sh
     source ~/.bash_stuff/prompt
 else
+    source ~/.git-completion.bash
     source ~/.git-prompt.sh
     PS1="${R}[${LG}\\u${R}@${LG}\h ${TQ}\\W${R}] \n ${TR}\\$ "
 fi
@@ -174,6 +156,10 @@ bash_prompt
 unset bash_prompt
 
 eval $(thefuck --alias)
+
+# Lynx
+export LYNX_CFG=$HOME/.lynx.cfg
+export LYNX_LSS=$HOME/.lynx.lss
 
 # Crosstool
 #export PATH=${PATH}:${HOME}/tools/toolchains/crosstool-ng-linaro

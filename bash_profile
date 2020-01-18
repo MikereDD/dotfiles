@@ -16,20 +16,32 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
     ssh-add
 fi
 
-# Aliases
-alias STARTX='startx &> $HOME/log/Xlog-$(date +'%F-%k-%M-%S')'
+# As per usual colorgcc installation, leave unchanged (don't add ccache)
+#export PATH="/usr/lib/colorgcc/bin/:$PATH"
+# Tell ccache to only use compilers here
+#export CCACHE_PATH="/usr/bin"
 
-# startx on login
-#if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-#  exec startx
-#fi
+# Aliases
+alias STARTX='startx &> $HOME/tmp/log/Xlog-$(date +'%F-%k-%M-%S')'
 
 # startx if on tty1 and tmux on tty2
-if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
-    $STARTX -- vt1 &>/dev/null
-    logout
-elif [[ $(tty) = /dev/tty2 ]]; then
-    tmux -f $HOME/.tmux.conf new -s secured
+#if [[ -z "$DISPLAY" ]] && [[ $(tty) = /dev/tty1 ]]; then
+#    $STARTX -- vt1 &>/dev/null
+#    logout
+#elif [[ $(tty) = /dev/tty2 ]]; then
+#    tmuxp load $HOME/.tmuxp/aquabuild.json
+#fi
+
+#if [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+#      #exec startx
+#      $STARTX -- vt1 &>/dev/null
+#      logout
+#  elif [[ $(tty) = /dev/tty2 ]]; then
+#      tmuxp load $HOME/.tmuxp/aquabuild.json
+#fi
+
+if systemctl -q is-active graphical.target && [[ ! $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+  exec startx
 fi
 
 # vim: set filetype=bash:
