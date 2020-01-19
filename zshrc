@@ -65,7 +65,6 @@ ZSH_THEME="type0"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-ZSH_CUSTOM=/home/typezero/.oh-my-zsh/custom/themes
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
@@ -75,7 +74,7 @@ ZSH_CUSTOM=/home/typezero/.oh-my-zsh/custom/themes
 #plugins=(archlinux autoenv autojump bundler colored-man colorize command-not-found compleat copydir copyfile cp extract gem git git-extras git-remote-branch gitfast github gnu-utils go gpg-agent history history-substring-search last-working-dir mercurial per-directory-history perl profiles python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux torrent urltools vi-mode vundle)
 #plugins=(archlinux autojump bundler colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
 #plugins=(archlinux autojump colored-man colorize copydir copyfile cp extract git git-extras git-remote-branch github gnu-utils go gpg-agent history mercurial python rsync ruby safe-paste screen ssh-agent svn systemd themes tmux urltools vundle)
-plugins=(archlinux colorize git git-extras git-remote-branch github themes tmux)
+plugins=(archlinux colorize git git-extras git-remote-branch github themes tmux zsh-256color)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -151,3 +150,6 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s $BASE16_SHELL/profile_helper.sh ] && \
         eval "$($BASE16_SHELL/profile_helper.sh)"
+
+# 256 colors
+[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
