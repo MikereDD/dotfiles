@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #--------------------------------------------
-# file:     ~/.bash_stuff/files/myaliases 
+# file:     ~/.bash_stuff/files/myaliases
 # author:   Mike Redd - http://m-redd.com/
 # vim:fenc=utf-8:nu:ai:si:et:ts=4:sw=4:ft=sh:
 #--------------------------------------------
@@ -112,7 +112,7 @@ alias view="vim -p -R"
 alias vp="vim -p"
 alias ebrc="vim $HOME/.bashrc && source $HOME/.bashrc"
 alias ebrca="vim $HOME/.bash_aliases && source $HOME/.bashrc_aliases"
-alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
+#alias ebrcas="vim $HOME/.bash_aliases_ssh-ftp && source $HOME/.bashrc_aliases_ssh-ftp"
 alias vim2html="$HOME/scripts/office/vim2html.sh "
 
 #chmod
@@ -129,22 +129,18 @@ alias grpfilerw="find . -type f -exec chmod ugo+rw {} \;"
 # calculator
 calc() { echo "scale=3;$@" | bc -l ; }
 
-# SSH Gen Keys
-# ECDSA
-alias genecdsa="ssh-keygen -t ecdsa -b 521 -C "$(whoami)@$(hostname)-$(date -I)""
-# DSA
-alias gendsa="ssh-keygen -t dsa -b 1024 -C "$(whoami)@$(hostname)-$(date -I)""
-# RSA
-alias genrsa="ssh-keygen -t rsa -b 4096 -C "$(whoami)@$(hostname)-$(date -I)""
-#PAIMON
-alias genrsapaimon="ssh-keygen -t rsa -b 4096 -C "typezero@paimon.64-b.it-$(date -I)""
-
-# gotop statusbar
-alias gotops="gotop -c mydark -s"
-# gotop average cpu and statusbar
-alias gotopas="gotop -c mydark -a -s"
-# gotop minimal and statusbar
-alias gotopms="gotop -c mydark -m -s"
+# gotop statusbar type0 theme
+alias gotopsmd="gotop -c mydark -s"
+# gotop average cpu and statusbar mydark
+alias gotopasmd="gotop -c mydark -a -s"
+# gotop minimal and statusbar mydark
+alias gotopmsmd="gotop -c mydark -m -s"
+# gotop statusbar typeo theme
+alias gotopst="gotop -c type0 -s"
+# gotop average cpu and statusbar type0
+alias gotopast="gotop -c type0 -a -s"
+# gotop minimal and statusbar type0
+alias gotopmst="gotop -c type0 -m -s"
 
 # lynx
 alias lynx="lynx -cfg=~/.lynxrc"
