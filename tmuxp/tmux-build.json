@@ -79,12 +79,12 @@
      },
     {
         "window_index": 9,
-        "window_name": "gotop",
+        "window_name": "ytop",
         "start_directory": "~/",
         "panes": [
           {
             "shell_command": [
-              "gotopast"
+              "ytopast"
             ]
           }
         ]

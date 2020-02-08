@@ -142,6 +142,19 @@ alias gotopast="gotop -c type0 -a -s"
 # gotop minimal and statusbar type0
 alias gotopmst="gotop -c type0 -m -s"
 
+# ytop statusbar type0 theme
+alias ytopsmd="ytop -c mydark -s"
+# ytop average cpu and statusbar mydark
+alias ytopasmd="ytop -c mydark -a -s"
+# ytop minimal and statusbar mydark
+alias ytopmsmd="ytop -c mydark -m -s"
+# ytop statusbar typeo theme
+alias ytopst="ytop -c type0 -s"
+# ytop average cpu and statusbar type0
+alias ytopast="ytop -c type0 -a -s"
+# ytop minimal and statusbar type0
+alias ytopmst="ytop -c type0 -m -s"
+
 # lynx
 alias lynx="lynx -cfg=~/.lynxrc"
 
