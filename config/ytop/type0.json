@@ -1,0 +1,21 @@
+{
+	"fg": 108,
+	"bg": -1,
+
+	"titles": 39,
+	"borders": 208,
+
+	"battery_lines": [39, 108, 208, 39, 108, 208, 39, 208],
+
+	"cpu_lines": [39, 108, 208, 39, 108, 208, 39, 208],
+
+	"mem_main": 39,
+	"mem_swap": 208,
+
+	"net_bars": 39,
+
+	"proc_cursor": 39,
+
+	"temp_low":  108,
+	"temp_high": 208
+}

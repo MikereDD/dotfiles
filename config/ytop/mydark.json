@@ -1,0 +1,21 @@
+{
+	"fg": 15,
+	"bg": -1,
+
+	"titles": 245,
+	"borders": 254,
+
+	"battery_lines": [81, 80, 148, 208, 178, 158, 255, 249],
+
+	"cpu_lines": [81, 80, 148, 208, 178, 158, 255, 249],
+
+	"mem_main": 51,
+	"mem_swap": 122,
+
+	"net_bars": 45,
+
+	"proc_cursor": 45,
+
+	"temp_low":  40,
+	"temp_high": 196
+}
